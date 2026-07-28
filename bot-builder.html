@@ -19,6 +19,22 @@ details{border:1px solid var(--line);border-radius:16px;background:#fff7;padding
 .output{white-space:pre-wrap;background:#4e3440;color:#fff9f8;border-radius:18px;padding:16px;max-height:310px;overflow:auto;font:12px/1.65 ui-monospace,monospace}.outputgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.outputgrid .wide{grid-column:1/-1}.outhead{display:flex;align-items:center;margin:0 0 5px}.outhead b{font-size:.8rem}.copy{margin-left:auto;border:0;border-radius:99px;padding:4px 10px;cursor:pointer}
 .toast{position:fixed;bottom:22px;left:50%;translate:-50% 0;background:#513844;color:white;border-radius:99px;padding:9px 16px;opacity:0;pointer-events:none;transition:.2s;z-index:50}.toast.show{opacity:1}
 @media(max-width:720px){header span{display:none}.grid,.checks,.outputgrid{grid-template-columns:1fr}.full,.outputgrid .wide{grid-column:auto}.choices{grid-template-columns:1fr}.shell{width:min(100% - 18px,1050px)}.progress{gap:3px}}
+
+.appearance-builder{border:1px solid var(--line);border-radius:18px;background:#fff8;padding:14px;margin-top:8px}
+.tag-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+.pick-tag{border:1px solid var(--line);background:#fff;border-radius:99px;padding:6px 10px;font-size:.78rem;cursor:pointer;color:var(--muted)}
+.pick-tag.on{background:linear-gradient(135deg,var(--pink2),#eedbb7);color:var(--ink);border-color:transparent}
+.npc-wrap{margin-top:14px}
+.npc-toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+.icon-btn{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:#fff;cursor:pointer;font-size:1.1rem;display:inline-grid;place-items:center}
+.npc-card{border:1px solid var(--line);background:#fff8;border-radius:18px;padding:14px;margin:10px 0}
+.npc-card-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.npc-card-head b{font-family:Georgia,serif;font-size:1.05rem}
+.remove-npc{margin-left:auto;border:0;background:transparent;color:var(--muted);cursor:pointer}
+.mode-tabs{display:inline-flex;border:1px solid var(--line);border-radius:99px;overflow:hidden;background:#fff}
+.mode-tabs button{border:0;background:transparent;padding:7px 12px;cursor:pointer;color:var(--muted)}
+.mode-tabs button.active{background:linear-gradient(135deg,var(--pink2),#eedbb7);color:var(--ink)}
+
 @media(prefers-reduced-motion:reduce){*{animation:none!important}}
 </style></head>
 <body><header><h1>✦ Dollie Bot Builder ✦</h1><span>Dollie dreams it, Killian keeps the complicated pieces tidy.</span><a class="headlink" href="index.html">← Tools</a></header>
@@ -34,7 +50,39 @@ details{border:1px solid var(--line);border-radius:16px;background:#fff7;padding
 <div class="navrow"><span></span><button class="btn primary" onclick="go(1)">Next: Character →</button></div></section>
 
 <section class="step" data-step="1"><h3>2. Tell Killian who they are.</h3><p class="helper">The character’s stable core. Short answers are enough.</p>
-<div class="grid"><div><label>Name</label><input id="charName" placeholder="Kyren Steinmetz"></div><div><label>Role</label><input id="charRole" placeholder="Vampire prince, professor, biker..."></div><div><label>Appearance</label><textarea id="appearance" placeholder="Height, hair, skin, eyes, build, tattoos..."></textarea></div><div><label>Personality</label><textarea id="personality" placeholder="Precise, restrained, quietly possessive..."></textarea></div><div><label>Voice</label><textarea id="voice" placeholder="Low, formal, sparse; never rambles..."></textarea></div><div><label>What they want</label><textarea id="goal" placeholder="Surface goal and the thing they secretly need..."></textarea></div></div>
+<div class="grid"><div><label>Name</label><input id="charName" placeholder="Kyren Steinmetz"></div><div><label>Role</label><input id="charRole" placeholder="Vampire prince, professor, biker..."></div><div class="full"><label>Appearance</label>
+<div class="appearance-builder">
+  <div class="grid">
+    <div><label>Height</label><select id="appHeight"><option value="">Choose</option><option>short</option><option>average height</option><option>tall</option><option>very tall</option></select></div>
+    <div><label>Build</label><select id="appBuild"><option value="">Choose</option><option>slender</option><option>lean</option><option>athletic</option><option>broad</option><option>muscular</option><option>soft-built</option><option>heavily muscular</option></select></div>
+    <div><label>Hair colour</label><select id="appHairColor"><option value="">Choose</option><option>black</option><option>dark brown</option><option>medium brown</option><option>light brown</option><option>dirty blond</option><option>blond</option><option>white</option><option>silver</option><option>red</option><option>pink</option></select></div>
+    <div><label>Hair style</label><select id="appHairStyle"><option value="">Choose</option><option>short and neat</option><option>cropped with a longer top</option><option>tousled</option><option>wavy</option><option>curly</option><option>straight over the forehead</option><option>shoulder-length</option><option>long</option></select></div>
+    <div><label>Skin</label><select id="appSkin"><option value="">Choose</option><option>very pale</option><option>pale</option><option>fair</option><option>light tan</option><option>warm beige</option><option>olive</option><option>golden brown</option><option>deep brown</option></select></div>
+    <div><label>Eyes</label><select id="appEyes"><option value="">Choose</option><option>brown</option><option>dark brown</option><option>hazel</option><option>amber</option><option>green</option><option>grey-green</option><option>grey</option><option>blue</option><option>dark pink</option></select></div>
+  </div>
+  <label style="margin-top:10px">Pick details</label>
+  <div class="tag-row" id="appearanceTags">
+    <button type="button" class="pick-tag" data-app="sharp angular face">sharp face</button>
+    <button type="button" class="pick-tag" data-app="soft features">soft features</button>
+    <button type="button" class="pick-tag" data-app="defined cheekbones">defined cheekbones</button>
+    <button type="button" class="pick-tag" data-app="full lips">full lips</button>
+    <button type="button" class="pick-tag" data-app="freckles">freckles</button>
+    <button type="button" class="pick-tag" data-app="scarred">scars</button>
+    <button type="button" class="pick-tag" data-app="tattooed arms">arm tattoos</button>
+    <button type="button" class="pick-tag" data-app="chest tattoo">chest tattoo</button>
+    <button type="button" class="pick-tag" data-app="rib tattoos">rib tattoos</button>
+    <button type="button" class="pick-tag" data-app="piercings">piercings</button>
+    <button type="button" class="pick-tag" data-app="glasses">glasses</button>
+    <button type="button" class="pick-tag" data-app="visible hand veins">visible veins</button>
+  </div>
+  <div class="row" style="margin-top:10px"><button type="button" class="btn soft" onclick="buildAppearance()">Build appearance</button></div>
+  <textarea id="appearance" placeholder="Killian will assemble the selected traits here, and Dollie can edit anything."></textarea>
+</div></div><div><label>Personality</label><textarea id="personality" placeholder="Precise, restrained, quietly possessive..."></textarea></div><div><label>Voice</label><textarea id="voice" placeholder="Low, formal, sparse; never rambles..."></textarea></div><div><label>What they want</label><textarea id="goal" placeholder="Surface goal and the thing they secretly need..."></textarea></div></div>
+<div class="grid" style="margin-top:14px">
+  <div><label>Past</label><textarea id="past" placeholder="Where they came from, what shaped them, what happened before the story begins..."></textarea></div>
+  <div><label>Present</label><textarea id="present" placeholder="What their life looks like now, current duties, current conflict..."></textarea></div>
+  <div class="full"><label>Health</label><textarea id="health" placeholder="Physical health, chronic conditions, injuries, medication, scars, limits, mental health notes the model must respect..."></textarea></div>
+</div>
 <details><summary>Let Killian hold extra character details</summary><div class="grid" style="margin-top:12px"><div><label>History</label><textarea id="history"></textarea></div><div><label>Relationships</label><textarea id="relationships"></textarea></div><div><label>Dialogue examples</label><textarea id="dialogue" placeholder='"Example." / "Example."'></textarea></div><div><label>Intimacy tone and limits</label><textarea id="intimacy"></textarea></div></div></details>
 <div class="navrow"><button class="btn" onclick="go(0)">← Back</button><button class="btn primary" onclick="go(2)">Next: World →</button></div></section>
 
@@ -44,6 +92,20 @@ details{border:1px solid var(--line);border-radius:16px;background:#fff7;padding
 
 <section class="step" data-step="3"><h3>4. What ties them to {user}?</h3><p class="helper">This is the emotional engine—not a full plot summary.</p>
 <div class="grid"><div><label>{user}’s role</label><textarea id="userRole" placeholder="Sacrifice, assistant, rival, stranger..."></textarea></div><div><label>Starting dynamic</label><textarea id="dynamic" placeholder="Suspicious attraction, reluctant protection..."></textarea></div><div><label>What changes slowly</label><textarea id="arc" placeholder="How trust, obsession or intimacy should develop..."></textarea></div><div><label>Pressure that keeps returning</label><textarea id="pressure" placeholder="Court politics, curse hunger, pack conflict..."></textarea></div></div>
+
+<details open><summary>NPCs — people around them</summary>
+  <div class="npc-wrap">
+    <div class="npc-toolbar">
+      <div class="mode-tabs">
+        <button type="button" id="npcModeGenerate" class="active" onclick="setNpcMode('generate')">Generate</button>
+        <button type="button" id="npcModeInput" onclick="setNpcMode('input')">Input</button>
+      </div>
+      <button type="button" class="icon-btn" title="Add NPC" onclick="addNpc()">+</button>
+      <span class="hint">Generate gives Dollie a quick starting point. Input leaves everything blank.</span>
+    </div>
+    <div id="npcList"></div>
+  </div>
+</details>
 <div class="navrow"><button class="btn" onclick="go(2)">← Back</button><button class="btn primary" onclick="go(4)">Next: Rules →</button></div></section>
 
 <section class="step" data-step="4"><h3>5. Let Killian handle the machinery.</h3><p class="helper">Choose only what the bot genuinely needs.</p>
@@ -111,6 +173,7 @@ function build(){
    `NAME: ${val('charName')}`, `ROLE: ${val('charRole')}`, `APPEARANCE: ${val('appearance')}`,
    `PERSONALITY: ${val('personality')}`, `VOICE: ${val('voice')}`, `GOAL / HIDDEN NEED: ${val('goal')}`,
    val('history')&&`HISTORY: ${val('history')}`, val('relationships')&&`RELATIONSHIPS: ${val('relationships')}`,
+   val('past')&&`PAST: ${val('past')}`, val('present')&&`PRESENT: ${val('present')}`, val('health')&&`HEALTH: ${val('health')}`,
    val('dialogue')&&`DIALOGUE TEXTURE: ${val('dialogue')}`, val('intimacy')&&`INTIMACY: ${val('intimacy')}`,
    aboMode&&val('charStatus')&&`SECONDARY GENDER: ${val('charStatus')}`,
    aboMode&&val('charScent')&&`SCENT: ${val('charScent')}`,
@@ -151,5 +214,58 @@ function copyOut(id){navigator.clipboard.writeText(document.getElementById(id).t
 function downloadTxt(){build();const t=`NAME\n====\n${outName.textContent}\n\nDESCRIPTION\n===========\n${outDesc.textContent}\n\nOPENING\n=======\n${outOpen.textContent}\n\nINSTRUCTIONS\n============\n${outInst.textContent}`;const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:'text/plain'}));a.download=(outName.textContent||'dollie-bot').replace(/[^a-z0-9]+/gi,'-').toLowerCase()+'.txt';a.click();URL.revokeObjectURL(a.href)}
 function clearAll(){if(!confirm('Clear this saved draft?'))return;localStorage.removeItem(aboMode?'dollieAboDraft':'dollieGeneralDraft');location.reload()}
 function toast(t){const x=document.getElementById('toast');x.textContent=t;x.classList.add('show');setTimeout(()=>x.classList.remove('show'),1300)}
-load();generateNames();go(0);
+
+let npcMode='generate', npcCount=0;
+const NPC_NAMES=['Elowen','Marlowe','Ceron','Soren','Maeve','Ephron','Alaric','Juniper','Tirion','Nisrine','Galen','Darcelle'];
+const NPC_ROLES=['confidant','rival','household attendant','security chief','healer','older sibling','political ally','servant','enemy agent','mentor','research assistant','court advisor'];
+const NPC_TRAITS=['observant and dry-humoured','warm but secretive','formal and deeply loyal','charming but unreliable','quietly protective','sharp-tongued and competent','gentle but watchful','ambitious and calculating'];
+function setNpcMode(mode){
+  npcMode=mode;
+  document.getElementById('npcModeGenerate').classList.toggle('active',mode==='generate');
+  document.getElementById('npcModeInput').classList.toggle('active',mode==='input');
+}
+function addNpc(){
+  npcCount++;
+  const id='npc-'+npcCount;
+  const name=npcMode==='generate'?NPC_NAMES[Math.floor(Math.random()*NPC_NAMES.length)]:'';
+  const role=npcMode==='generate'?NPC_ROLES[Math.floor(Math.random()*NPC_ROLES.length)]:'';
+  const traits=npcMode==='generate'?NPC_TRAITS[Math.floor(Math.random()*NPC_TRAITS.length)]:'';
+  const div=document.createElement('div');
+  div.className='npc-card'; div.id=id;
+  div.innerHTML=`<div class="npc-card-head"><b>NPC ${npcCount}</b><button type="button" class="remove-npc" onclick="document.getElementById('${id}').remove();save()">Remove</button></div>
+  <div class="grid">
+    <div><label>Name</label><input id="${id}-name" value="${name}" placeholder="NPC name"></div>
+    <div><label>Role</label><input id="${id}-role" value="${role}" placeholder="confidant, rival, healer..."></div>
+    <div><label>Personality</label><input id="${id}-traits" value="${traits}" placeholder="two or three traits"></div>
+    <div><label>Relationship</label><input id="${id}-rel" placeholder="to the main character and {{user}}"></div>
+    <div class="full"><label>What they know / what they hide</label><textarea id="${id}-secret" placeholder="Useful knowledge, secret agenda, recurring function..."></textarea></div>
+  </div>`;
+  document.getElementById('npcList').appendChild(div);
+  save();
+}
+function buildNpcText(){
+  return [...document.querySelectorAll('.npc-card')].map(card=>{
+    const id=card.id;
+    const get=s=>document.getElementById(id+s)?.value.trim()||'';
+    return [
+      `NAME: ${get('-name')}`,
+      `ROLE: ${get('-role')}`,
+      get('-traits')&&`PERSONALITY: ${get('-traits')}`,
+      get('-rel')&&`RELATIONSHIP: ${get('-rel')}`,
+      get('-secret')&&`KNOWLEDGE / SECRET: ${get('-secret')}`
+    ].filter(Boolean).join('\n');
+  }).filter(Boolean).join('\n\n');
+}
+function buildAppearance(){
+  const bits=[val('appHeight'),val('appBuild'),val('appHairColor')&&`${val('appHairColor')} hair`,val('appHairStyle'),val('appSkin')&&`${val('appSkin')} skin`,val('appEyes')&&`${val('appEyes')} eyes`,...[...document.querySelectorAll('.pick-tag.on')].map(x=>x.dataset.app)];
+  document.getElementById('appearance').value=[...new Set(bits.filter(Boolean))].join(', ');
+  save(); toast('Appearance assembled');
+}
+document.addEventListener('click',e=>{
+  const t=e.target.closest('.pick-tag');
+  if(!t)return;
+  t.classList.toggle('on');
+});
+
+load();generateNames();addNpc();go(0);
 </script></body></html>
