@@ -1,17 +1,11 @@
-# Tools
+# Dollie Tools v0.6
 
-Dollie's personal browser tools.
+Upload all files directly to the root of `dolliebun/tools`.
 
-## Files
+- `index.html`
+- `bot-builder.html`
+- `omegaverse-bot-builder.html`
+- `translate-to-dollie.html`
+- `dreams-bot-builder.html` (compatibility redirect)
 
-- `index.html` — Tools home page
-- `dreams-bot-builder.html` — Dreams Bot Builder
-- `translate-to-dollie.html` — Translate to Dollie in English and Polish
-
-No folders are required.
-
-Expected pages:
-
-- `https://dolliebun.github.io/tools/`
-- `https://dolliebun.github.io/tools/dreams-bot-builder.html`
-- `https://dolliebun.github.io/tools/translate-to-dollie.html`
+Both builders now use a seven-step Dollie + Killian workflow, browser autosave, advanced drawers, a curated name generator, copy buttons, and `.txt` export.

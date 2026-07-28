@@ -1,53 +1,28 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#f4d5de">
-<title>Dollie Tools</title>
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dollie Tools</title>
 <style>
-:root{--ink:#452f3b;--muted:#7d6671;--pink:#f3cdd9;--gold:#c6a267;--line:rgba(102,67,84,.18)}
-*{box-sizing:border-box}
-body{margin:0;min-height:100vh;padding:32px 16px 60px;color:var(--ink);font-family:Inter,system-ui,sans-serif;background:radial-gradient(circle at 12% 8%,#fff,transparent 26%),radial-gradient(circle at 88% 10%,#f2ccd8,transparent 30%),linear-gradient(145deg,#fffaf7,#f3d7df,#ead8ce)}
-main{width:min(980px,100%);margin:auto}
-header{text-align:center;padding:22px 0 30px}
-.eyebrow{text-transform:uppercase;letter-spacing:.22em;color:var(--gold);font-size:.72rem;font-weight:850}
-h1{font:500 clamp(3rem,9vw,6rem)/.95 Georgia;margin:10px 0}
-.sub{max-width:650px;margin:auto;color:var(--muted);line-height:1.65}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.tool{display:block;text-decoration:none;color:inherit;background:rgba(255,250,247,.8);border:1px solid rgba(255,255,255,.8);border-radius:26px;padding:25px;box-shadow:0 22px 58px rgba(81,45,63,.15);transition:.18s transform,.18s box-shadow}
-.tool:hover{transform:translateY(-3px);box-shadow:0 28px 68px rgba(81,45,63,.2)}
-.tag{display:inline-block;padding:6px 10px;border-radius:999px;background:var(--pink);border:1px solid var(--line);font-size:.75rem;font-weight:800}
-.tool h2{font:500 1.8rem Georgia;margin:14px 0 8px}
-.tool p{margin:0;color:var(--muted);line-height:1.55}
-.soon{opacity:.62;cursor:default}
-.arrow{display:block;margin-top:20px;font-weight:850}
-@media(max-width:700px){.grid{grid-template-columns:1fr}}
-</style>
-</head>
-<body>
-<main>
-<header>
-<div class="eyebrow">Dollie's little helpers</div>
-<h1>Tools</h1>
-<p class="sub">Private browser helpers for understanding messages, building bots, and keeping Dollie's projects organised.</p>
-</header>
-<div class="grid">
-<a class="tool" href="dreams-bot-builder.html">
-<span class="tag">The Dreams</span>
-<h2>Dreams Bot Builder</h2>
-<p>Build gothic fantasy, vampire, curse, ritual, supernatural bond, household NPC, tracker, and continuity systems using Prince Kyren's architecture.</p>
-<span class="arrow">Open builder →</span>
-</a>
-<div class="tool soon"><span class="tag">Coming next</span><h2>Hunt Bot Builder</h2><p>A/B/O houses, scent biology, political factions, resistance rules, relationship stages, rituals, and Asterfell continuity.</p></div>
-<div class="tool soon"><span class="tag">Coming later</span><h2>Blood Bot Builder</h2><p>A dedicated structure for The Blood universe once its master reference bot is selected.</p></div>
-<a class="tool" href="translate-to-dollie.html">
-<span class="tag">Utility</span>
-<h2>Translate to Dollie</h2>
-<p>English and Polish messages rewritten into clearer Dollie language.</p>
-<span class="arrow">Open translator →</span>
-</a>
-</div>
-</main>
-</body>
-</html>
+:root{--ink:#563947;--muted:#806976;--pink:#e8a9c1;--pink2:#f5cddd;--gold:#c99f5c;--cream:#fffaf8;--glass:rgba(255,255,255,.72);--line:rgba(103,67,85,.16);--shadow:0 22px 65px rgba(84,47,66,.13)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;color:var(--ink);font:15px/1.55 Nunito,system-ui,sans-serif;background:radial-gradient(circle at 9% 5%,#fff,transparent 24%),radial-gradient(circle at 89% 9%,rgba(239,184,205,.58),transparent 31%),radial-gradient(circle at 45% 108%,rgba(232,207,169,.48),transparent 36%),linear-gradient(145deg,#fffafd,#f7e5ec,#f2e9df)}
+body:before,body:after{content:"✦ · ✧ ⋆ ✦ · ✧ ⋆";position:fixed;pointer-events:none;color:rgba(198,151,73,.38);letter-spacing:1.8rem;white-space:nowrap;animation:drift 15s ease-in-out infinite alternate}
+body:before{top:11%;left:-4%;transform:rotate(-8deg)}body:after{right:-9%;bottom:8%;transform:rotate(7deg);animation-delay:-7s}
+@keyframes drift{to{translate:34px -18px;opacity:.95}}@keyframes pop{from{opacity:0;transform:translateY(5px)}}
+header{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:13px;padding:13px 20px;background:rgba(255,250,252,.86);border-bottom:1px solid rgba(201,159,92,.27);backdrop-filter:blur(18px);box-shadow:0 8px 28px rgba(91,52,71,.07)}
+header h1{margin:0;font:500 1.4rem Georgia,serif}header span{color:var(--muted);font-size:.8rem}.headlink{margin-left:auto;text-decoration:none;color:var(--ink);padding:7px 13px;border:1px solid var(--line);border-radius:99px;background:#fff9}
+.shell{width:min(1050px,calc(100% - 28px));margin:28px auto 60px;position:relative;z-index:1}.hero{text-align:center;margin:8px auto 28px}.eyebrow{letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:800;font-size:.7rem}.hero h2{margin:8px 0 7px;font:500 clamp(2.5rem,7vw,4.7rem)/1 Georgia,serif}.hero p{max-width:650px;margin:auto;color:var(--muted)}
+.progress{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin:0 0 18px}.pip{height:7px;border-radius:99px;background:#fff9;border:1px solid var(--line)}.pip.on{background:linear-gradient(90deg,var(--pink),var(--gold));border-color:transparent}
+.card{background:var(--glass);border:1px solid rgba(255,255,255,.87);border-radius:28px;padding:clamp(20px,4vw,38px);box-shadow:var(--shadow);backdrop-filter:blur(16px);animation:pop .22s ease-out}.step{display:none}.step.active{display:block}.step h3{font:500 clamp(1.65rem,4vw,2.35rem) Georgia,serif;margin:0 0 5px}.helper{color:var(--muted);margin:0 0 22px}.killian{padding:13px 15px;border-left:3px solid var(--gold);background:rgba(255,255,255,.55);border-radius:5px 15px 15px 5px;margin:14px 0 22px;color:#6c5360}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.full{grid-column:1/-1}label{display:block;font-weight:800;font-size:.82rem;margin:0 0 5px}.hint{display:block;color:var(--muted);font-weight:400;font-size:.75rem;margin-top:2px}
+input,textarea,select{width:100%;border:1px solid rgba(114,74,94,.22);border-radius:15px;background:rgba(255,255,255,.82);padding:11px 13px;color:var(--ink);font:inherit;outline:none}textarea{min-height:110px;resize:vertical}input:focus,textarea:focus,select:focus{border-color:var(--pink);box-shadow:0 0 0 4px rgba(232,169,193,.13)}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.navrow{display:flex;justify-content:space-between;gap:10px;margin-top:24px}.btn{border:0;border-radius:99px;padding:10px 18px;font-weight:850;cursor:pointer;color:var(--ink);background:#fff;border:1px solid var(--line)}.btn.primary{color:white;background:linear-gradient(135deg,#d785a5,#c89d58);box-shadow:0 9px 22px rgba(183,105,139,.2)}.btn.soft{background:linear-gradient(135deg,#f3bfd1,#ecd9b6)}.btn:disabled{opacity:.4;cursor:not-allowed}
+details{border:1px solid var(--line);border-radius:16px;background:#fff7;padding:10px 13px;margin-top:14px}summary{cursor:pointer;font-weight:850;color:#7a5668}.checks{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.check{display:flex;gap:8px;align-items:flex-start;background:#fff7;padding:9px 10px;border-radius:13px}.check input{width:auto;margin-top:4px;accent-color:var(--pink)}
+.namebox{background:linear-gradient(145deg,rgba(255,255,255,.83),rgba(249,229,237,.72));border:1px solid rgba(202,157,90,.25);border-radius:22px;padding:18px;margin:15px 0}.name-result{font:500 clamp(2rem,6vw,3.2rem) Georgia,serif;text-align:center;margin:13px 0}.choices{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.choice{background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px;text-align:center;cursor:pointer}.choice:hover{border-color:var(--gold)}
+.output{white-space:pre-wrap;background:#4e3440;color:#fff9f8;border-radius:18px;padding:16px;max-height:310px;overflow:auto;font:12px/1.65 ui-monospace,monospace}.outputgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.outputgrid .wide{grid-column:1/-1}.outhead{display:flex;align-items:center;margin:0 0 5px}.outhead b{font-size:.8rem}.copy{margin-left:auto;border:0;border-radius:99px;padding:4px 10px;cursor:pointer}
+.toast{position:fixed;bottom:22px;left:50%;translate:-50% 0;background:#513844;color:white;border-radius:99px;padding:9px 16px;opacity:0;pointer-events:none;transition:.2s;z-index:50}.toast.show{opacity:1}
+@media(max-width:720px){header span{display:none}.grid,.checks,.outputgrid{grid-template-columns:1fr}.full,.outputgrid .wide{grid-column:auto}.choices{grid-template-columns:1fr}.shell{width:min(100% - 18px,1050px)}.progress{gap:3px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+body{padding-bottom:60px}.home{width:min(980px,calc(100% - 24px));margin:35px auto;position:relative;z-index:1}.hero{padding:30px 0}.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:17px}.tool{display:block;text-decoration:none;color:var(--ink);background:var(--glass);border:1px solid #fff;border-radius:27px;padding:25px;box-shadow:var(--shadow);backdrop-filter:blur(15px);transition:.2s}.tool:hover{transform:translateY(-4px)}.tool h2{font:500 1.8rem Georgia,serif;margin:12px 0 8px}.tool p{color:var(--muted)}.tag{display:inline-block;background:linear-gradient(135deg,var(--pink2),#eedbb7);border-radius:99px;padding:5px 10px;font-size:.75rem;font-weight:850}@media(max-width:680px){.cards{grid-template-columns:1fr}}</style></head>
+<body><main class="home"><section class="hero"><div class="eyebrow">Softness, with teeth</div><h2>✦ Tools ✦</h2><p>Dollie’s helpers, with Killian holding the complicated parts quietly in the background.</p></section><section class="cards">
+<a class="tool" href="bot-builder.html"><span class="tag">Dollie + Killian</span><h2>Gentle Bot Builder</h2><p>Seven short steps, autosave, advanced details hidden until needed, name generator, and four-field Tipsy export.</p></a>
+<a class="tool" href="omegaverse-bot-builder.html"><span class="tag">The Hunt</span><h2>Gentle Omegaverse Builder</h2><p>The same calm workflow with secondary genders, scents, cycles, suppressants, bonds, pack systems, and A/B/O trackers.</p></a>
+<a class="tool" href="translate-to-dollie.html"><span class="tag">Brain helper</span><h2>Translate to Dollie</h2><p>Turn complicated English or Polish messages into clearer language.</p></a>
+</section></main></body></html>
