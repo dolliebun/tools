@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f6d8df" />
+  <title>Translate to Dollie</title>
+  <style>
+    :root {
+      --ink:#4b3039; --muted:#7d626b; --pink:#f4cfd9; --pink-deep:#d993a8;
+      --gold:#c9a56a; --glass:rgba(255,250,245,.74); --line:rgba(120,75,90,.18);
+      --shadow:0 24px 70px rgba(95,54,70,.18);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;min-height:100vh;color:var(--ink);
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:
+        radial-gradient(circle at 15% 10%,rgba(255,255,255,.95),transparent 27%),
+        radial-gradient(circle at 85% 12%,rgba(246,205,216,.75),transparent 32%),
+        linear-gradient(145deg,#fff9f6 0%,#f6d8df 52%,#ead3c4 100%);
+      padding:28px 16px 48px;
+    }
+    .shell{width:min(980px,100%);margin:0 auto}
+    header{text-align:center;margin:12px 0 24px}
+    .eyebrow{text-transform:uppercase;letter-spacing:.22em;font-size:.72rem;font-weight:800;color:var(--gold)}
+    h1{margin:8px 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(2.25rem,6vw,4.25rem);font-weight:500;line-height:.98}
+    .subtitle{margin:0 auto;max-width:680px;color:var(--muted);line-height:1.6}
+    .card{background:var(--glass);border:1px solid rgba(255,255,255,.72);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:28px;box-shadow:var(--shadow);padding:clamp(18px,4vw,34px)}
+    label{display:block;font-weight:800;margin:0 0 9px}
+    textarea{width:100%;min-height:180px;resize:vertical;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.76);color:var(--ink);padding:17px;font:inherit;line-height:1.55;outline:none}
+    textarea:focus{border-color:var(--pink-deep);box-shadow:0 0 0 4px rgba(217,147,168,.14)}
+    .language-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:16px 0}.mode-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:16px 0}
+    .language,.mode{border:1px solid var(--line);border-radius:15px;background:rgba(255,255,255,.58);padding:12px 9px;color:var(--ink);font:inherit;font-size:.86rem;font-weight:750;cursor:pointer}
+    .language.active,.mode.active{background:var(--pink);border-color:var(--pink-deep)}
+    .actions{display:flex;gap:10px;flex-wrap:wrap}
+    button.primary,button.secondary{border-radius:999px;padding:13px 20px;font:inherit;font-weight:850;cursor:pointer}
+    .primary{border:0;background:var(--ink);color:white;flex:1;min-width:210px}
+    .secondary{background:rgba(255,255,255,.7);color:var(--ink);border:1px solid var(--line)}
+    .result-wrap{margin-top:22px;display:none}.result-wrap.visible{display:block}
+    .result{white-space:pre-wrap;background:rgba(255,255,255,.8);border:1px solid var(--line);border-radius:18px;padding:18px;min-height:130px;line-height:1.65}
+    .result-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:9px}.result-head label{margin:0}
+    .tiny{font-size:.8rem;color:var(--muted);margin-top:14px;text-align:center}
+    .notice{margin:0 0 14px;padding:12px 14px;border:1px solid rgba(201,165,106,.35);border-radius:14px;background:rgba(255,248,228,.65);color:#6e5630;font-size:.88rem;line-height:1.45}
+    @media(max-width:700px){.mode-grid{grid-template-columns:repeat(2,minmax(0,1fr))}body{padding-top:16px}.card{border-radius:22px}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header>
+      <div class="eyebrow">A little brain helper</div>
+      <h1>Translate to Dollie</h1>
+      <p class="subtitle">Paste the confusing message. This version looks for the request, boundary, reassurance, and action instead of only repeating the same words.</p>
+    </header>
+
+    <section class="card">
+      <p class="notice"><strong>Important:</strong> this is still an offline helper, not full AI. It can simplify common messages, but it may not understand unusual wording perfectly.</p>
+
+      <div class="language-grid" role="group" aria-label="Language">
+        <button class="language active" data-language="en">English → Dollie English</button>
+        <button class="language" data-language="pl">Polski → Dollie Polish</button>
+      </div>
+
+      <label for="input" id="inputLabel">What did they say?</label>
+      <textarea id="input" placeholder="Paste the confusing message here…"></textarea>
+
+      <div class="mode-grid" role="group" aria-label="Translation mode">
+        <button class="mode active" data-mode="meaning">What do they mean?</button>
+        <button class="mode" data-mode="simple">Make it simpler</button>
+        <button class="mode" data-mode="steps">Give me steps</button>
+        <button class="mode" data-mode="action">What do I do?</button>
+      </div>
+
+      <div class="actions">
+        <button class="primary" id="translate">Translate to Dollie</button>
+        <button class="secondary" id="example">Try example</button>
+        <button class="secondary" id="clear">Clear</button>
+      </div>
+
+      <div class="result-wrap" id="resultWrap">
+        <div class="result-head">
+          <label id="resultLabel">In Dollie language</label>
+          <button class="secondary" id="copy">Copy</button>
+        </div>
+        <div class="result" id="result" aria-live="polite"></div>
+      </div>
+
+      <p class="tiny" id="privacy">Your text stays in this browser and is not uploaded anywhere.</p>
+    </section>
+  </main>
+
+  <script>
+    const input=document.querySelector('#input');
+    const result=document.querySelector('#result');
+    const resultWrap=document.querySelector('#resultWrap');
+    const modes=[...document.querySelectorAll('.mode')];
+    let currentMode='meaning';
+    let currentLanguage='en';
+
+    
+    const languages=[...document.querySelectorAll('.language')];
+    const ui={
+      en:{
+        inputLabel:'What did they say?',
+        placeholder:'Paste the confusing message here…',
+        modes:['What do they mean?','Make it simpler','Give me steps','What do I do?'],
+        translate:'Translate to Dollie', example:'Try example', clear:'Clear',
+        result:'In Dollie language', copy:'Copy',
+        privacy:'Your text stays in this browser and is not uploaded anywhere.',
+        empty:'Paste a message first, darling.'
+      },
+      pl:{
+        inputLabel:'Co oni powiedzieli?',
+        placeholder:'Wklej tutaj trudną albo zagmatwaną wiadomość…',
+        modes:['Co mają na myśli?','Uprość to','Rozpisz kroki','Co mam zrobić?'],
+        translate:'Przetłumacz na Dollie', example:'Pokaż przykład', clear:'Wyczyść',
+        result:'Po dolliowemu', copy:'Kopiuj',
+        privacy:'Twój tekst zostaje w tej przeglądarce i nie jest nigdzie wysyłany.',
+        empty:'Najpierw wklej wiadomość, kochanie.'
+      }
+    };
+
+    function applyLanguage(){
+      const t=ui[currentLanguage];
+      document.querySelector('#inputLabel').textContent=t.inputLabel;
+      input.placeholder=t.placeholder;
+      modes.forEach((button,index)=>button.textContent=t.modes[index]);
+      document.querySelector('#translate').textContent=t.translate;
+      document.querySelector('#example').textContent=t.example;
+      document.querySelector('#clear').textContent=t.clear;
+      document.querySelector('#resultLabel').textContent=t.result;
+      document.querySelector('#copy').textContent=t.copy;
+      document.querySelector('#privacy').textContent=t.privacy;
+    }
+
+    languages.forEach(button=>button.addEventListener('click',()=>{
+      languages.forEach(item=>item.classList.remove('active'));
+      button.classList.add('active');
+      currentLanguage=button.dataset.language;
+      applyLanguage();
+      resultWrap.classList.remove('visible');
+    }));
+
+modes.forEach(button=>button.addEventListener('click',()=>{
+      modes.forEach(item=>item.classList.remove('active'));
+      button.classList.add('active');
+      currentMode=button.dataset.mode;
+    }));
+
+    const replacements=[
+      [/\butilize\b/gi,'use'],[/\bapproximately\b/gi,'about'],[/\bsubsequently\b/gi,'later'],
+      [/\bprior to\b/gi,'before'],[/\bin order to\b/gi,'to'],[/\bwith regard to\b/gi,'about'],
+      [/\bcommence\b/gi,'start'],[/\bterminate\b/gi,'end'],[/\bretain\b/gi,'keep'],
+      [/\bverify\b/gi,'check'],[/\bfinalized\b/gi,'finished'],[/\badditional\b/gi,'extra'],
+      [/\bfunctionality\b/gi,'feature'],[/\bconfiguration\b/gi,'setup'],[/\brefrain from\b/gi,'please avoid']
+    ];
+
+    function cleanText(text){
+      let cleaned=text.replace(/\s+/g,' ').trim();
+      replacements.forEach(([pattern,replacement])=>cleaned=cleaned.replace(pattern,replacement));
+      return cleaned;
+    }
+
+    function sentences(text){
+      return cleanText(text)
+        .replace(/([.!?])\s+/g,'$1|')
+        .split('|')
+        .map(s=>s.trim())
+        .filter(Boolean);
+    }
+
+    function shorten(sentence){
+      return sentence
+        .replace(/\bI just make sure to let people know that\b/gi,'I tell people')
+        .replace(/\bif it'?s possible for them to\b/gi,'please')
+        .replace(/\bthat would greatly appreciated\b/gi,'I would appreciate that')
+        .replace(/\bI'?m not trying to dictate how you act\b/gi,'I am not trying to control you')
+        .replace(/\bdon'?t hesitate to mention it\b/gi,'please tell me')
+        .replace(/\bwhile around me\b/gi,'around me')
+        .trim();
+    }
+
+    function simplify(text){
+      return sentences(text)
+        .map(shorten)
+        .map(s=>s.charAt(0).toUpperCase()+s.slice(1))
+        .join('\n\n');
+    }
+
+    function detectInterpersonal(text){
+      const t=cleanText(text);
+      const hasBoundary=/(be mindful|please avoid|refrain|stop|don'?t|not comfortable|bothers me|upsets me|hard for me|around me)/i.test(t);
+      const hasReassurance=/(not trying to control|not trying to dictate|I understand|habits are hard|not blaming|not angry)/i.test(t);
+      const hasReciprocity=/(anything you need me to be mindful of|tell me too|let me know|don'?t hesitate to mention)/i.test(t);
+      const hasFriend=/(my friend|talking about .* like that)/i.test(t);
+
+      if(hasBoundary){
+        let lines=[];
+        if(hasFriend) lines.push('They care about their friend and feel protective when you talk about that friend in that way.');
+        else lines.push('Something you are doing or saying makes them uncomfortable.');
+
+        lines.push('They are asking you to avoid doing it around them, or at least be more careful about it.');
+
+        if(hasReassurance) lines.push('They are trying to say this gently. They are not trying to control you, and they understand habits can be hard to change.');
+        if(hasReciprocity) lines.push('They also want you to tell them if there is anything they should be more careful about.');
+
+        return 'They mean this:\n\n' + lines.join('\n\n') + '\n\nWhat they want from you:\n• Be mindful of how you talk about their friend.\n• Try not to use that kind of language around them.\n• Tell them about your own boundaries too.';
+      }
+      return null;
+    }
+
+    function toSteps(text){
+      const interpersonal=detectInterpersonal(text);
+      if(interpersonal){
+        return '1. Notice that they are setting a boundary.\n2. Avoid talking about their friend that way around them.\n3. Do not treat it like an attack; they are trying to ask gently.\n4. Tell them if you have a boundary you want them to respect too.';
+      }
+      const parts=sentences(text).map(shorten);
+      const cues=/(first|then|next|after|before|download|upload|save|copy|move|delete|open|check|add|remove|export|import|install|please|need to|have to|should)/i;
+      let useful=parts.filter(p=>cues.test(p));
+      if(!useful.length) useful=parts;
+      return useful.map((step,index)=>`${index+1}. ${step.replace(/^(and|then|next)\s+/i,'')}`).join('\n');
+    }
+
+    function actionOnly(text){
+      const interpersonal=detectInterpersonal(text);
+      if(interpersonal){
+        return 'What you need to do:\n\n• Be careful about how you speak about their friend.\n• Avoid that kind of comment around them.\n• You can also tell them about anything you want them to be mindful of.';
+      }
+      const parts=sentences(text).map(shorten);
+      const actions=parts.filter(p=>/(you|your|please|need to|have to|should|can|download|upload|save|copy|delete|check|add|remove|export|import)/i.test(p));
+      if(!actions.length) return 'There is no clear task for you in this message. They may only be explaining how they feel.';
+      return 'What you need to do:\n\n'+actions.map(a=>`• ${a.replace(/^(and|then|next)\s+/i,'')}`).join('\n');
+    }
+
+
+    function polishSimple(text){
+      return sentences(text).map(s=>s
+        .replace(/\bchciałabym jedynie zaznaczyć, że\b/gi,'chcę tylko powiedzieć, że')
+        .replace(/\bjeżeli byłaby taka możliwość\b/gi,'jeśli możesz')
+        .replace(/\bbyłabym bardzo wdzięczna\b/gi,'byłoby mi miło')
+        .replace(/\bnie mam zamiaru narzucać ci\b/gi,'nie chcę ci nic narzucać')
+        .replace(/\bproszę o zachowanie ostrożności\b/gi,'proszę, uważaj')
+        .replace(/\bproszę mieć na uwadze\b/gi,'pamiętaj')
+        .replace(/\bw związku z powyższym\b/gi,'dlatego')
+        .replace(/\bna chwilę obecną\b/gi,'teraz')
+        .replace(/\bw celu\b/gi,'żeby')
+        .replace(/\bdokonać\b/gi,'zrobić')
+        .replace(/\bzweryfikować\b/gi,'sprawdzić')
+        .replace(/\bniezwłocznie\b/gi,'od razu')
+      ).join('\n\n');
+    }
+
+    function polishMeaning(text){
+      const t=cleanText(text);
+      const boundary=/(uważaj|proszę.*nie|nie rób|przestań|nie czuję się|jest mi trudno|przeszkadza mi|w mojej obecności|przy mnie|nie mów tak)/i.test(t);
+      const friend=/(moja przyjaciółka|mój przyjaciel|moja znajoma|mój znajomy|o mojej przyjaciółce|o moim przyjacielu)/i.test(t);
+      const reassurance=/(nie chcę cię kontrolować|nie chcę nic narzucać|rozumiem, że|nawyki są trudne|nie mam pretensji)/i.test(t);
+      const reciprocity=/(powiedz mi też|daj mi znać|jeśli ja mam na coś uważać|jeśli jest coś, co powinnam)/i.test(t);
+
+      if(boundary){
+        const lines=[];
+        lines.push(friend
+          ? 'Ta osoba broni swojej bliskiej osoby i źle się czuje, kiedy mówisz o niej w taki sposób.'
+          : 'Coś, co mówisz albo robisz, sprawia tej osobie dyskomfort.');
+        lines.push('Prosi cię, żebyś tego nie robiła przy niej albo bardziej na to uważała.');
+        if(reassurance) lines.push('Nie próbuje cię kontrolować. Rozumie, że zmiana nawyków może być trudna.');
+        if(reciprocity) lines.push('Chce też, żebyś powiedziała jej o swoich granicach.');
+        return 'Po dolliowemu:\n\n'+lines.join('\n\n');
+      }
+      return 'Po dolliowemu:\n\n'+polishSimple(text);
+    }
+
+    function polishSteps(text){
+      if(/uważaj|proszę.*nie|nie rób|przestań|przeszkadza mi|przy mnie/i.test(text)){
+        return '1. Zauważ, że ta osoba stawia granicę.\n2. Nie rób tego przy niej.\n3. Nie traktuj tego jak ataku — próbuje powiedzieć to spokojnie.\n4. Powiedz jej też o swoich granicach.';
+      }
+      return sentences(polishSimple(text)).map((s,i)=>`${i+1}. ${s}`).join('\n');
+    }
+
+    function polishAction(text){
+      if(/uważaj|proszę.*nie|nie rób|przestań|przeszkadza mi|przy mnie/i.test(text)){
+        return 'Co masz zrobić:\n\n• Uważaj na to, o co prosi.\n• Nie rób tego przy niej.\n• Powiedz jej również o swoich granicach.';
+      }
+      const parts=sentences(polishSimple(text));
+      const actions=parts.filter(p=>/(musisz|powinnaś|powinieneś|proszę|zrób|sprawdź|pobierz|wyślij|zapisz|usuń|dodaj|otwórz)/i.test(p));
+      return actions.length
+        ? 'Co masz zrobić:\n\n'+actions.map(a=>'• '+a).join('\n')
+        : 'Nie ma tu jasnego zadania. Ta osoba może tylko tłumaczyć, jak się czuje.';
+    }
+
+    function meaning(text){
+      return detectInterpersonal(text) || `They mean this:\n\n${simplify(text)}`;
+    }
+
+    function translate(){
+      const text=input.value.trim();
+      if(!text){
+        result.textContent=ui[currentLanguage].empty;
+        resultWrap.classList.add('visible');
+        return;
+      }
+
+      const outputs=currentLanguage==='pl'
+        ? {meaning:polishMeaning(text),simple:polishSimple(text),steps:polishSteps(text),action:polishAction(text)}
+        : {meaning:meaning(text),simple:simplify(text),steps:toSteps(text),action:actionOnly(text)};
+
+      result.textContent=outputs[currentMode];
+      resultWrap.classList.add('visible');
+      resultWrap.scrollIntoView({behavior:'smooth',block:'nearest'});
+    }
+
+    document.querySelector('#translate').addEventListener('click',translate);
+
+    document.querySelector('#clear').addEventListener('click',()=>{
+      input.value='';
+      result.textContent='';
+      resultWrap.classList.remove('visible');
+      input.focus();
+    });
+
+    document.querySelector('#example').addEventListener('click',()=>{
+      input.value=currentLanguage==='pl'
+        ? 'Nie chcę ci nic narzucać, ale proszę, nie mów tak o mojej przyjaciółce przy mnie. Rozumiem, że czasami to nawyk i trudno go zmienić. Chcę tylko, żebyś bardziej na to uważała. Jeśli ja też robię coś, co ci przeszkadza, powiedz mi.'
+        : "It makes me wanna shake you with love and tell you to stop talking about my friend like that. I’m not trying to control you, just asking you to be mindful.";
+      translate();
+    });
+
+    document.querySelector('#copy').addEventListener('click',async event=>{
+      try{
+        await navigator.clipboard.writeText(result.textContent);
+        const old=event.target.textContent;
+        event.target.textContent=currentLanguage==='pl'?'Skopiowano':'Copied';
+        setTimeout(()=>event.target.textContent=old,1200);
+      }catch{
+        const range=document.createRange();
+        range.selectNodeContents(result);
+        const selection=window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+      }
+    });
+    applyLanguage();
+  </script>
+</body>
+</html>
