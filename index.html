@@ -3,8 +3,8 @@
 :root{--ink:#563947;--muted:#806976;--pink:#e8a9c1;--pink2:#f5cddd;--gold:#c99f5c;--cream:#fffaf8;--glass:rgba(255,255,255,.72);--line:rgba(103,67,85,.16);--shadow:0 22px 65px rgba(84,47,66,.13)}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
 body{margin:0;min-height:100vh;color:var(--ink);font:15px/1.55 Nunito,system-ui,sans-serif;background:radial-gradient(circle at 9% 5%,#fff,transparent 24%),radial-gradient(circle at 89% 9%,rgba(239,184,205,.58),transparent 31%),radial-gradient(circle at 45% 108%,rgba(232,207,169,.48),transparent 36%),linear-gradient(145deg,#fffafd,#f7e5ec,#f2e9df)}
-body:before,body:after{content:"✦ · ✧ ⋆ ✦ · ✧ ⋆";position:fixed;pointer-events:none;color:rgba(198,151,73,.38);letter-spacing:1.8rem;white-space:nowrap;animation:drift 15s ease-in-out infinite alternate}
-body:before{top:11%;left:-4%;transform:rotate(-8deg)}body:after{right:-9%;bottom:8%;transform:rotate(7deg);animation-delay:-7s}
+body:before,body:after{content:none}
+
 @keyframes drift{to{translate:34px -18px;opacity:.95}}@keyframes pop{from{opacity:0;transform:translateY(5px)}}
 header{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:13px;padding:13px 20px;background:rgba(255,250,252,.86);border-bottom:1px solid rgba(201,159,92,.27);backdrop-filter:blur(18px);box-shadow:0 8px 28px rgba(91,52,71,.07)}
 header h1{margin:0;font:500 1.4rem Georgia,serif}header span{color:var(--muted);font-size:.8rem}.headlink{margin-left:auto;text-decoration:none;color:var(--ink);padding:7px 13px;border:1px solid var(--line);border-radius:99px;background:#fff9}
@@ -20,9 +20,172 @@ details{border:1px solid var(--line);border-radius:16px;background:#fff7;padding
 .toast{position:fixed;bottom:22px;left:50%;translate:-50% 0;background:#513844;color:white;border-radius:99px;padding:9px 16px;opacity:0;pointer-events:none;transition:.2s;z-index:50}.toast.show{opacity:1}
 @media(max-width:720px){header span{display:none}.grid,.checks,.outputgrid{grid-template-columns:1fr}.full,.outputgrid .wide{grid-column:auto}.choices{grid-template-columns:1fr}.shell{width:min(100% - 18px,1050px)}.progress{gap:3px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important}}
-body{padding-bottom:60px}.home{width:min(980px,calc(100% - 24px));margin:35px auto;position:relative;z-index:1}.hero{padding:30px 0}.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:17px}.tool{display:block;text-decoration:none;color:var(--ink);background:var(--glass);border:1px solid #fff;border-radius:27px;padding:25px;box-shadow:var(--shadow);backdrop-filter:blur(15px);transition:.2s}.tool:hover{transform:translateY(-4px)}.tool h2{font:500 1.8rem Georgia,serif;margin:12px 0 8px}.tool p{color:var(--muted)}.tag{display:inline-block;background:linear-gradient(135deg,var(--pink2),#eedbb7);border-radius:99px;padding:5px 10px;font-size:.75rem;font-weight:850}@media(max-width:680px){.cards{grid-template-columns:1fr}}</style></head>
-<body><main class="home"><section class="hero"><div class="eyebrow">Softness, with teeth</div><h2>✦ Tools ✦</h2><p>Dollie’s helpers, with Killian holding the complicated parts quietly in the background.</p></section><section class="cards">
+body{padding-bottom:60px}.home{width:min(980px,calc(100% - 24px));margin:35px auto;position:relative;z-index:1}.hero{padding:30px 0}.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:17px}.tool{display:block;text-decoration:none;color:var(--ink);background:var(--glass);border:1px solid #fff;border-radius:27px;padding:25px;box-shadow:var(--shadow);backdrop-filter:blur(15px);transition:.2s}.tool:hover{transform:translateY(-4px)}.tool h2{font:500 1.8rem Georgia,serif;margin:12px 0 8px}.tool p{color:var(--muted)}.tag{display:inline-block;background:linear-gradient(135deg,var(--pink2),#eedbb7);border-radius:99px;padding:5px 10px;font-size:.75rem;font-weight:850}@media(max-width:680px){.cards{grid-template-columns:1fr}}
+/* Floating atmosphere */
+.atmosphere{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  overflow:hidden;
+  pointer-events:none;
+}
+.atmosphere .particle{
+  position:absolute;
+  top:-12vh;
+  left:var(--x);
+  width:var(--size);
+  height:var(--size);
+  opacity:0;
+  animation:
+    particleFall var(--fall) linear infinite,
+    particleSway var(--sway) ease-in-out infinite alternate,
+    particleFade var(--fade) ease-in-out infinite;
+  animation-delay:var(--delay);
+  will-change:transform,opacity;
+}
+.atmosphere.sparkles .particle::before,
+.atmosphere.sparkles .particle::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  margin:auto;
+  background:linear-gradient(180deg,rgba(255,255,255,.98),rgba(231,190,111,.9));
+  border-radius:999px;
+  box-shadow:0 0 9px rgba(255,236,188,.92),0 0 18px rgba(223,173,91,.42);
+}
+.atmosphere.sparkles .particle::before{
+  width:18%;
+  height:100%;
+}
+.atmosphere.sparkles .particle::after{
+  width:100%;
+  height:18%;
+}
+.atmosphere.petals .particle{
+  width:calc(var(--size) * .72);
+  height:var(--size);
+  border-radius:75% 18% 70% 24%;
+  background:
+    radial-gradient(circle at 35% 25%,rgba(255,255,255,.88),transparent 25%),
+    linear-gradient(145deg,rgba(255,227,237,.95),rgba(226,153,184,.83));
+  box-shadow:0 4px 12px rgba(154,86,117,.16);
+  transform-origin:50% 30%;
+}
+@keyframes particleFall{
+  from{translate:0 -14vh;rotate:0deg}
+  to{translate:0 120vh;rotate:540deg}
+}
+@keyframes particleSway{
+  from{margin-left:-28px}
+  to{margin-left:34px}
+}
+@keyframes particleFade{
+  0%,100%{opacity:0}
+  12%,78%{opacity:var(--opacity)}
+  88%{opacity:.15}
+}
+.atmosphere.off{display:none}
+
+.atmosphere-control{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  z-index:60;
+  display:flex;
+  align-items:center;
+  gap:0;
+  padding:4px;
+  border:1px solid rgba(110,72,91,.20);
+  border-radius:999px;
+  background:rgba(255,250,252,.88);
+  box-shadow:0 12px 34px rgba(79,43,61,.16);
+  backdrop-filter:blur(16px);
+}
+.atmosphere-control button{
+  width:38px;
+  height:38px;
+  display:grid;
+  place-items:center;
+  border:0;
+  border-radius:50%;
+  background:transparent;
+  color:var(--muted);
+  cursor:pointer;
+  font:700 1rem/1 Georgia,serif;
+  transition:background .15s,color .15s,transform .15s;
+}
+.atmosphere-control button:hover{
+  color:var(--ink);
+  transform:translateY(-1px);
+}
+.atmosphere-control button.active{
+  color:#fff;
+  background:linear-gradient(135deg,#d982a4,#c89d58);
+}
+.atmosphere-control button + button{
+  margin-left:2px;
+}
+
+header,.shell,.home{position:relative;z-index:2}
+@media(prefers-reduced-motion:reduce){
+  .atmosphere{display:none}
+}
+
+</style></head>
+<body>
+
+<div class="atmosphere petals" id="atmosphere" aria-hidden="true"></div>
+
+
+
+<main class="home"><section class="hero"><div class="eyebrow">Softness, with teeth</div><h2>✦ Tools ✦</h2><p>Dollie’s helpers, with Killian holding the complicated parts quietly in the background.</p></section><section class="cards">
 <a class="tool" href="bot-builder.html"><span class="tag">Dollie + Killian</span><h2>Gentle Bot Builder</h2><p>Seven short steps, autosave, advanced details hidden until needed, name generator, and four-field Tipsy export.</p></a>
 <a class="tool" href="omegaverse-bot-builder.html"><span class="tag">The Hunt</span><h2>Gentle Omegaverse Builder</h2><p>The same calm workflow with secondary genders, scents, cycles, suppressants, bonds, pack systems, and A/B/O trackers.</p></a>
 <a class="tool" href="translate-to-dollie.html"><span class="tag">Brain helper</span><h2>Translate to Dollie</h2><p>Turn complicated English or Polish messages into clearer language.</p></a>
-</section></main></body></html>
+</section></main><script>
+(function(){
+  const layer=document.getElementById('atmosphere');
+  if(!layer)return;
+  const saved=localStorage.getItem('dollieAtmosphere')||'petals';
+
+  function createParticles(){
+    layer.innerHTML='';
+    for(let i=0;i<34;i++){
+      const p=document.createElement('span');
+      p.className='particle';
+      p.style.setProperty('--x',(Math.random()*100).toFixed(2)+'vw');
+      p.style.setProperty('--size',(6+Math.random()*11).toFixed(1)+'px');
+      p.style.setProperty('--fall',(10+Math.random()*13).toFixed(1)+'s');
+      p.style.setProperty('--sway',(2.8+Math.random()*4.5).toFixed(1)+'s');
+      p.style.setProperty('--fade',(4+Math.random()*5).toFixed(1)+'s');
+      p.style.setProperty('--delay',(-Math.random()*22).toFixed(1)+'s');
+      p.style.setProperty('--opacity',(0.30+Math.random()*0.52).toFixed(2));
+      layer.appendChild(p);
+    }
+  }
+
+  function setAtmosphere(mode){
+    layer.className='atmosphere '+mode;
+    document.querySelectorAll('[data-atmosphere]').forEach(btn=>{
+      btn.classList.toggle('active',btn.dataset.atmosphere===mode);
+    });
+    localStorage.setItem('dollieAtmosphere',mode);
+    if(mode!=='off'&&!layer.children.length)createParticles();
+  }
+
+  document.querySelectorAll('[data-atmosphere]').forEach(btn=>{
+    btn.addEventListener('click',()=>setAtmosphere(btn.dataset.atmosphere));
+  });
+
+  createParticles();
+  setAtmosphere(saved);
+})();
+</script>
+
+<div class="atmosphere-control" aria-label="Page effects">
+  <button type="button" data-atmosphere="sparkles" aria-label="Falling sparkles" title="Falling sparkles">✦</button>
+  <button type="button" data-atmosphere="petals" aria-label="Falling cherry blossom petals" title="Falling cherry blossom petals">♡</button>
+  <button type="button" data-atmosphere="off" aria-label="Turn effects off" title="Turn effects off">×</button>
+</div>
+
+</body></html>
