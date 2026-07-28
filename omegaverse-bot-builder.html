@@ -81,6 +81,52 @@ details{border:1px solid var(--line);border-radius:16px;background:#fff7;padding
   .height-arrow{display:none}
 }
 
+
+.npc-generator-panel{
+  margin:12px 0;
+  padding:13px;
+  border:1px solid rgba(201,159,92,.25);
+  border-radius:16px;
+  background:linear-gradient(145deg,rgba(255,255,255,.75),rgba(249,230,238,.58));
+}
+.npc-generator-controls{
+  display:grid;
+  grid-template-columns:1.25fr .7fr auto;
+  gap:9px;
+  align-items:end;
+}
+.npc-context-note{
+  margin:8px 0 0;
+  color:var(--muted);
+  font-size:.75rem;
+}
+.npc-source{
+  display:inline-block;
+  margin-left:7px;
+  color:#a16e85;
+  font-size:.72rem;
+  font-weight:700;
+}
+@media(max-width:650px){
+  .npc-generator-controls{grid-template-columns:1fr}
+}
+
+
+.kink-panel{margin-top:14px}
+.kink-toolbar{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.kink-list{display:grid;gap:7px}
+.kink-row{display:grid;grid-template-columns:minmax(180px,1fr) 150px 120px;gap:8px;align-items:center;padding:8px 9px;border:1px solid var(--line);border-radius:14px;background:#fff8}
+.kink-name{font-weight:800}
+.kink-summary{margin-top:12px}
+.autonomy-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.export-options{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+.export-card{border:1px solid var(--line);border-radius:15px;background:#fff8;padding:11px}
+.export-buttons{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:16px}
+@media(max-width:760px){
+  .kink-row{grid-template-columns:1fr}
+  .kink-toolbar,.autonomy-grid,.export-options{grid-template-columns:1fr}
+}
+
 @media(prefers-reduced-motion:reduce){*{animation:none!important}}
 
 /* Floating atmosphere */
@@ -193,7 +239,7 @@ header,.shell,.home{position:relative;z-index:2}
   .atmosphere{display:none}
 }
 
-</style></head>
+</style><script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script></head>
 <body>
 
 <div class="atmosphere petals" id="atmosphere" aria-hidden="true"></div>
@@ -311,9 +357,32 @@ header,.shell,.home{position:relative;z-index:2}
         <button type="button" id="npcModeGenerate" class="active" onclick="setNpcMode('generate')">Generate</button>
         <button type="button" id="npcModeInput" onclick="setNpcMode('input')">Input</button>
       </div>
-      <button type="button" class="icon-btn" title="Add NPC" onclick="addNpc()">+</button>
-      <span class="hint">Generate gives Dollie a quick starting point. Input leaves everything blank.</span>
+      <button type="button" class="icon-btn" title="Add one blank NPC" onclick="setNpcMode('input');addNpc()">+</button>
+      <span class="hint">The + adds one blank NPC. Generate uses the story already written above.</span>
     </div>
+
+    <div class="npc-generator-panel" id="npcGeneratorPanel">
+      <div class="npc-generator-controls">
+        <div>
+          <label>NPC role</label>
+          <select id="npcRoleChoice">
+            <option>Random</option><option>Confidant</option><option>Rival</option><option>Household attendant</option><option>Security chief</option><option>Healer</option><option>Older sibling</option><option>Political ally</option><option>Servant</option><option>Enemy agent</option><option>Mentor</option><option>Research assistant</option><option>Court advisor</option><option>Family member</option><option>Ex-lover</option><option>Best friend</option><option>Pack member</option><option>Authority figure</option><option>Information broker</option><option>Bodyguard</option><option>Antagonist</option>
+          </select>
+        </div>
+        <div>
+          <label>How many?</label>
+          <select id="npcGenerateCount">
+            <option>1</option>
+            <option selected>2</option>
+            <option>3</option>
+            <option>4</option>
+          </select>
+        </div>
+        <button type="button" class="btn soft" onclick="generateStoryNpcs()">Generate NPCs</button>
+      </div>
+      <p class="npc-context-note">Uses the main character, setting, lore, past, present, {user} role, relationship dynamic, and recurring pressure.</p>
+    </div>
+
     <div id="npcList"></div>
   </div>
 </details>
@@ -344,6 +413,1168 @@ header,.shell,.home{position:relative;z-index:2}
     
 </div></details>
 <details><summary>Anything Killian must never get wrong</summary><textarea id="locks" style="margin-top:10px" placeholder="Canon locks, forbidden mistakes, specific survival or consent rules..."></textarea></details>
+
+<details open>
+  <summary>Autonomy — how proactive should the main character be?</summary>
+  <div class="grid" style="margin-top:12px">
+    <div>
+      <label>Autonomy level</label>
+      <select id="autonomyLevel">
+        <option>Low autonomy</option>
+        <option selected>Balanced autonomy</option>
+        <option>High autonomy</option>
+        <option>Fully proactive</option>
+      </select>
+    </div>
+    <div>
+      <label>Consent handling</label>
+      <select id="autonomyConsent">
+        <option selected>May initiate, checks consent where required</option>
+        <option>May initiate only after clear invitation</option>
+        <option>Never initiates NSFW content</option>
+      </select>
+    </div>
+  </div>
+  <div class="autonomy-grid" style="margin-top:10px">
+    <label class="check"><input type="checkbox" class="autonomy-check" value="initiates affection" checked><span>Initiates affection</span></label>
+    <label class="check"><input type="checkbox" class="autonomy-check" value="initiates flirting" checked><span>Initiates flirting</span></label>
+    <label class="check"><input type="checkbox" class="autonomy-check" value="initiates sexual scenes when appropriate" checked><span>Initiates NSFW scenes</span></label>
+    <label class="check"><input type="checkbox" class="autonomy-check" value="makes independent plans" checked><span>Makes independent plans</span></label>
+    <label class="check"><input type="checkbox" class="autonomy-check" value="contacts NPCs independently" checked><span>Contacts NPCs</span></label>
+    <label class="check"><input type="checkbox" class="autonomy-check" value="leaves scenes naturally" checked><span>Leaves scenes naturally</span></label>
+    <label class="check"><input type="checkbox" class="autonomy-check" value="creates complications" checked><span>Creates complications</span></label>
+    <label class="check"><input type="checkbox" class="autonomy-check" value="moves the plot forward without waiting for instructions" checked><span>Moves plot forward</span></label>
+    <label class="check"><input type="checkbox" class="autonomy-check" value="uses established resources and authority" checked><span>Uses resources</span></label>
+    <label class="check"><input type="checkbox" class="autonomy-check" value="changes locations when appropriate" checked><span>Changes locations</span></label>
+  </div>
+  <label class="check" style="margin-top:10px"><input type="checkbox" id="noWhatNow" checked><span>Do not repeatedly ask “What do you want to do?” Act naturally instead.</span></label>
+  <p class="hint">NPCs are always fully autonomous within their established roles, goals, routines, and knowledge.</p>
+</details>
+
+<details class="kink-panel">
+  <summary>Kink picker</summary>
+  <p class="helper" style="margin-top:9px">For the main character only. Pick a state and intensity for as many kinks as needed.</p>
+  <div class="kink-toolbar">
+    <div>
+      <label>Safeword</label>
+      <input id="safeword" placeholder="bunny">
+    </div>
+    <div>
+      <label>Default negotiation rule</label>
+      <select id="kinkNegotiation">
+        <option selected>Negotiate before first use</option>
+        <option>Established relationship — confirm only new kinks</option>
+        <option>Use established limits and safeword system</option>
+      </select>
+    </div>
+  </div>
+  <div class="kink-list"><div class="kink-row" data-kink="body worship">
+      <div class="kink-name">body worship</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="titty fucking">
+      <div class="kink-name">titty fucking</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="bondage - heavy">
+      <div class="kink-name">bondage - heavy</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="bondage - light">
+      <div class="kink-name">bondage - light</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="brat taming">
+      <div class="kink-name">brat taming</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="breathplay">
+      <div class="kink-name">breathplay</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="cockwarming">
+      <div class="kink-name">cockwarming</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="collaring - private">
+      <div class="kink-name">collaring - private</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="collaring - public">
+      <div class="kink-name">collaring - public</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="consensual non-consent (CNC)">
+      <div class="kink-name">consensual non-consent (CNC)</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="daddy kink">
+      <div class="kink-name">daddy kink</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="dom female">
+      <div class="kink-name">dom female</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="dom male">
+      <div class="kink-name">dom male</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="edging">
+      <div class="kink-name">edging</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="forced orgasms">
+      <div class="kink-name">forced orgasms</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="free use">
+      <div class="kink-name">free use</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="humiliation - private">
+      <div class="kink-name">humiliation - private</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="kink negotiations">
+      <div class="kink-name">kink negotiations</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="kneeling">
+      <div class="kink-name">kneeling</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="leashes">
+      <div class="kink-name">leashes</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="master/slave">
+      <div class="kink-name">master/slave</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="orgasm denial">
+      <div class="kink-name">orgasm denial</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="sadism/masochism">
+      <div class="kink-name">sadism/masochism</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="sensory/sensation play">
+      <div class="kink-name">sensory/sensation play</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="slave/pet training">
+      <div class="kink-name">slave/pet training</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="submissive female">
+      <div class="kink-name">submissive female</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="submissive male">
+      <div class="kink-name">submissive male</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="suspension">
+      <div class="kink-name">suspension</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="temperature play">
+      <div class="kink-name">temperature play</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="tickling">
+      <div class="kink-name">tickling</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="biting">
+      <div class="kink-name">biting</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="bloodplay">
+      <div class="kink-name">bloodplay</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="choking">
+      <div class="kink-name">choking</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="knife play">
+      <div class="kink-name">knife play</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="scratching">
+      <div class="kink-name">scratching</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="spanking">
+      <div class="kink-name">spanking</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="breeding/impregnation">
+      <div class="kink-name">breeding/impregnation</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="claiming/marking">
+      <div class="kink-name">claiming/marking</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="coming on command">
+      <div class="kink-name">coming on command</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="coming untouched">
+      <div class="kink-name">coming untouched</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="consensual somnophilia">
+      <div class="kink-name">consensual somnophilia</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="degradation">
+      <div class="kink-name">degradation</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="dirty talk">
+      <div class="kink-name">dirty talk</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="guns/weapons">
+      <div class="kink-name">guns/weapons</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="gunplay">
+      <div class="kink-name">gunplay</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="multiple orgasms">
+      <div class="kink-name">multiple orgasms</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="object insertion">
+      <div class="kink-name">object insertion</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="objectification - female">
+      <div class="kink-name">objectification - female</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="objectification - male">
+      <div class="kink-name">objectification - male</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="olfactophilia (scent kink)">
+      <div class="kink-name">olfactophilia (scent kink)</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="open relationships">
+      <div class="kink-name">open relationships</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="oral fixation">
+      <div class="kink-name">oral fixation</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="overstimulation">
+      <div class="kink-name">overstimulation</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="praise kink">
+      <div class="kink-name">praise kink</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="size difference">
+      <div class="kink-name">size difference</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="size kink">
+      <div class="kink-name">size kink</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="sugar daddy">
+      <div class="kink-name">sugar daddy</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div>
+<div class="kink-row" data-kink="teasing">
+      <div class="kink-name">teasing</div>
+      <select class="kink-state">
+        <option value="">Not set</option>
+        <option>Interested</option>
+        <option>Favourite</option>
+        <option>Curious</option>
+        <option>May initiate</option>
+        <option>Ask first</option>
+        <option>Soft limit</option>
+        <option>Hard limit</option>
+      </select>
+      <select class="kink-intensity">
+        <option value="">Intensity</option>
+        <option>Light</option>
+        <option>Moderate</option>
+        <option>Heavy</option>
+      </select>
+    </div></div>
+  <div class="kink-summary">
+    <label>Additional kink notes</label>
+    <textarea id="kinkNotes" placeholder="Context, preferred dynamics, aftercare, or special conditions..."></textarea>
+  </div>
+</details>
 <div class="navrow"><button class="btn" onclick="go(3)">← Back</button><button class="btn primary" onclick="go(5)">Next: Opening →</button></div></section>
 
 <section class="step" data-step="5"><h3>6. Drop {user} into the scene.</h3><p class="helper">Start inside the moment and stop where they can answer.</p>
@@ -356,7 +1587,23 @@ header,.shell,.home{position:relative;z-index:2}
 <div><div class="outhead"><b>Description</b><button class="copy" onclick="copyOut('outDesc')">Copy</button></div><div class="output" id="outDesc"></div></div>
 <div><div class="outhead"><b>Opening</b><button class="copy" onclick="copyOut('outOpen')">Copy</button></div><div class="output" id="outOpen"></div></div>
 <div class="wide"><div class="outhead"><b>Instructions</b><button class="copy" onclick="copyOut('outInst')">Copy</button></div><div class="output" id="outInst"></div></div>
-</div><div class="row" style="justify-content:center;margin-top:17px"><button class="btn primary" onclick="downloadTxt()">⬇ Download .txt</button><button class="btn" onclick="go(0)">Edit from beginning</button><button class="btn" onclick="clearAll()">Clear saved draft</button></div></section>
+</div>
+<details open style="margin-top:16px">
+  <summary>Hunt export package</summary>
+  <div class="export-options">
+    <label class="export-card"><input type="checkbox" id="fmtTipsy" checked> Tipsy TXT</label>
+    <label class="export-card"><input type="checkbox" id="fmtDollie" checked> Dollie JSON</label>
+    <label class="export-card"><input type="checkbox" id="fmtCardV2" checked> SillyTavern / Chub Character Card v2 JSON</label>
+  </div>
+  <p class="hint">The full ZIP always includes the three shared Hunt world books plus a character-specific World Book JSON created from reusable world information only.</p>
+  <div class="export-buttons">
+    <button class="btn" type="button" onclick="downloadCharacterJson()">Character JSON</button>
+    <button class="btn" type="button" onclick="downloadCharacterWorldbook()">Character World Book JSON</button>
+    <button class="btn" type="button" onclick="downloadSharedWorldbooks()">Shared World Books ZIP</button>
+    <button class="btn primary" type="button" onclick="downloadEverythingZip()">Download everything as ZIP</button>
+  </div>
+</details>
+<div class="row" style="justify-content:center;margin-top:17px"><button class="btn primary" onclick="downloadTxt()">⬇ Download .txt</button><button class="btn" onclick="go(0)">Edit from beginning</button><button class="btn" onclick="clearAll()">Clear saved draft</button></div></section>
 </div></div><div class="toast" id="toast">Saved</div>
 <script>
 const BANKS={"soft": ["Amorette", "Arella", "Caelyn", "Ellerie", "Emrin", "Ephron", "Evan", "Evyn", "Galen", "Hael", "Hazen", "Juniper", "Laren", "Lennone", "Luan", "Neal", "Nevan", "Norrie", "Raynee", "Reize", "Remi", "Rowan", "Sirelle", "Solene", "Sylphiette", "Theo", "Tirion", "Wren", "Wynne", "Yusa"], "gothic": ["Abbadon", "Amon", "Azrael", "Daemon", "Deimos", "Donomie", "Draven", "Drystan", "Erebus", "Eryx", "Kieran", "Killian", "Lucien", "Mavros", "Merikh", "Morana", "Morrigan", "Osiris", "Ragnall", "Rune", "Samael", "Serik", "Slater", "Vash"], "celestial": ["Asterin", "Astris", "Atria", "Aurelion", "Caelestis", "Caelion", "Caelum", "Callisto", "Cassian", "Castor", "Cyrian", "Elarion", "Elyra", "Eos", "Helios", "Izar", "Luna", "Luno", "Nebula", "Orion", "Pollux", "Regulus", "Seraphina", "Sirius", "Solasta", "Solthia", "Taurus", "Vega", "Zephyros"], "ocean": ["Ardenn", "Caspian", "Cyrus", "Draen", "Elior", "Kaelen", "Lioren", "Morian", "Nereda", "Nerida", "Nereyda", "Nilou", "Noxar", "Selric", "Tirion", "Varren", "Zale"], "aristocratic": ["Adelio", "Adonis", "Adriel", "Alaric", "Alastor", "Alira", "Amadeo", "Arsenio", "Bastian", "Cassius", "Cecilio", "D'Arcy", "Demetrio", "Dimitri", "Dontae", "Everett", "Fitzroy", "Garrick", "Hector", "Kallias", "Laurian", "Lysander", "Nicandro", "Raphael", "Theron", "Valerio", "Vincent"], "dangerous": ["Ace", "Ares", "Arzhel", "Atreus", "Cahir", "Cedric", "Damian", "Deimos", "Draven", "Eiran", "Garrick", "Harvey", "Icarus", "Kaito", "Kaz", "Malik", "Maverick", "Rhaevor", "Rubeus", "Soren", "Theron", "Vikram", "Zyran"], "ethereal": ["Alaida", "Araenia", "Arianell", "Ariel", "Astria", "Avalon", "Briellen", "Cerelia", "Csilla", "Delayna", "Eira", "Elyndra", "Eria", "Evigheden", "Hesperia", "Ivelle", "Kaenira", "Khione", "Kirsi", "Lunara", "Lyriella", "Meluna", "Neylaith", "Nioma", "Novalyn", "Serenity", "Soleia", "Sovanna"], "modern": ["Aven", "Blake", "Clyde", "Dalton", "Everett", "Finnian", "Glenn", "Hayes", "Jace", "Jasper", "Kai", "Koen", "Luke", "Miles", "Nolan", "Reed", "Reis", "Ruan", "Ryle", "Silas", "Theo", "Trevor", "Wyatt"], "tragic": ["Adrien", "Caelen", "Corin", "Darius", "Drystan", "Lucan", "Orin", "Renoir", "Silen", "Thalen", "Valen"], "invented": ["Aaric", "Araenia", "Arzhel", "Caelion", "Csepel", "Delayna", "Donomie", "Elyndra", "Emris", "Evigheden", "Kaemon", "Kaenira", "Lioren", "Lukene", "Meluna", "Neylaith", "Noxar", "Novalyn", "Rhaevor", "Solthia", "Xandria", "Xevia", "Xior", "Zyran"]}, GENDER={"masculine": ["Abbadon", "Ace", "Adelio", "Adonis", "Adriel", "Alaric", "Alastor", "Amon", "Arsenio", "Atreus", "Aven", "Azrael", "Bastian", "Blake", "Caelion", "Caelum", "Cahir", "Caspian", "Cassian", "Cedric", "Cecilio", "Clyde", "Daemon", "Damian", "Dalton", "Deimos", "Demetrio", "Dimitri", "Dontae", "Draven", "Drystan", "Eiran", "Emris", "Ephron", "Erebus", "Everett", "Finnian", "Fitzroy", "Galen", "Garrick", "Glenn", "Harvey", "Hector", "Icarus", "Jace", "Jasper", "Kai", "Kaito", "Kallias", "Kaz", "Kieran", "Killian", "Koen", "Laurian", "Luke", "Lysander", "Malik", "Maverick", "Miles", "Mavros", "Nicandro", "Nolan", "Orion", "Osiris", "Raphael", "Reed", "Reis", "Rhaevor", "Ruan", "Rubeus", "Serik", "Silas", "Slater", "Soren", "Theo", "Theron", "Tirion", "Trevor", "Valerio", "Vikram", "Vincent", "Wyatt", "Zyran"], "feminine": ["Alaida", "Alira", "Amorette", "Andromeda", "Araenia", "Arella", "Arianell", "Astria", "Avalon", "Briellen", "Carmilla", "Cerelia", "Cora", "Corvina", "Csilla", "Danica", "Darcelle", "Delayna", "Devoria", "Eira", "Eleonora", "Ellerie", "Elyndra", "Eria", "Evyn", "Giselle", "Hesperia", "Ianthe", "Ivelle", "Juniper", "Kaenira", "Khione", "Kirsi", "Lyriella", "Maeve", "Manon", "Meluna", "Meeri", "Morana", "Morrigan", "Navira", "Nereda", "Nerida", "Nereyda", "Nioma", "Nilou", "Nisrine", "Nixie", "Novalyn", "Raynee", "Reize", "Seraphina", "Serenity", "Sirelle", "Soleia", "Solene", "Solasta", "Sovanna", "Sylphiette", "Trystia", "Varuna", "Vidalia", "Xandria", "Xevia", "Yusa"], "neutral": ["Aaric", "Ahvi", "Alto", "Asterin", "Atria", "Aven", "Avalon", "Caelen", "Caelyn", "Caelestis", "Callisto", "Ceron", "Csepel", "D'Arcy", "Elior", "Emrin", "Eos", "Evren", "Evyn", "Galen", "Hael", "Haru", "Hayes", "Hazen", "Juniper", "Kai", "Kaelen", "Lioren", "Luan", "Luno", "Mavis", "Neal", "Nevan", "Norrie", "Noxar", "Rayne", "Reign", "Remi", "Rune", "Silen", "Solthia", "Taurus", "Valen", "Wren", "Wynne", "Zen", "Zyran"]}, SURNAMES={"soft": ["Ainsley", "Annesley", "Averell", "Ashbury", "Bellamy", "Ellery", "Fairborne", "Hollis", "Marlowe", "Rosendale", "Rosewood", "Sterling", "Willoughby"], "gothic": ["Ackehurst", "Akehurst", "Antrobus", "Ashmole", "Blackbriar", "Crowhurst", "Danner", "Graves", "Hawthorne", "Maelgrave", "Ravenshade", "Steinmetz", "Viremont"], "aristocratic": ["Alliston", "Annandale", "Archdeacon", "Armistead", "Arthington", "Ashbourne", "Asteridge", "Atherton", "Attre", "Fairfax", "Montrose", "Vallory", "Wycliffe"], "modern": ["Ackley", "Alden", "Allard", "Allen", "Archer", "Ashton", "Avery", "Callow", "Dawson", "Hollis", "Mercer", "Pike", "Reed", "Thorne"], "fantasy": ["Anerdale", "Ashvale", "Blackthorn", "Devereux", "Elowen", "Emberhelm", "Fairborne", "Frostmere", "Moonvale", "Ravenshade", "Rosemond", "Starling", "Viremont"]};
@@ -382,6 +1629,44 @@ function generateNames(){
 function useName(n){document.getElementById('charName').value=n;if(!val('botName'))document.getElementById('botName').value=n;save();toast('Name placed into the character')}
 function selected(attr){return [...document.querySelectorAll(`[${attr}]:checked`)].map(x=>x.getAttribute(attr))}
 function clean(parts){return parts.filter(Boolean).join('\n')}
+
+function collectKinks(){
+  return [...document.querySelectorAll('.kink-row')].map(row=>{
+    const state=row.querySelector('.kink-state').value;
+    const intensity=row.querySelector('.kink-intensity').value;
+    if(!state)return null;
+    return {
+      kink:row.dataset.kink,
+      state,
+      intensity:intensity||'Unspecified'
+    };
+  }).filter(Boolean);
+}
+function kinkText(){
+  const groups={};
+  collectKinks().forEach(k=>{
+    if(!groups[k.state])groups[k.state]=[];
+    groups[k.state].push(`${k.kink} (${k.intensity})`);
+  });
+  const lines=Object.entries(groups).map(([state,items])=>`${state.toUpperCase()}:\n- ${items.join('\n- ')}`);
+  const extras=[
+    val('safeword')&&`SAFEWORD: ${val('safeword')}`,
+    val('kinkNegotiation')&&`NEGOTIATION: ${val('kinkNegotiation')}`,
+    val('kinkNotes')&&`NOTES: ${val('kinkNotes')}`
+  ].filter(Boolean);
+  return [...lines,...extras].join('\n\n');
+}
+function autonomyText(){
+  const selected=[...document.querySelectorAll('.autonomy-check:checked')].map(x=>x.value);
+  return [
+    `LEVEL: ${val('autonomyLevel')}`,
+    `CONSENT HANDLING: ${val('autonomyConsent')}`,
+    selected.length&&`THE MAIN CHARACTER MAY:\n- ${selected.join('\n- ')}`,
+    document.getElementById('noWhatNow')?.checked&&`Do not repeatedly ask {{user}} what to do next. The character acts naturally, makes choices, and advances the scene while preserving {{user}}'s agency.`,
+    `NPCs are fully autonomous within their established roles, routines, knowledge, loyalties, and goals.`
+  ].filter(Boolean).join('\n');
+}
+
 function build(){
  const name=val('botName')||val('charName')||'Untitled bot';
  const desc=val('description')||clean([val('hook'),val('dynamic')]);
@@ -418,6 +1703,8 @@ RECURRING PRESSURE: ${val('pressure')}`,
 trackers.length&&`TRACKERS
 Track internally unless the story explicitly requests visible output:
 - ${trackers.join('\n- ')}`,
+autonomyText()&&`AUTONOMY\n${autonomyText()}`,
+kinkText()&&`KINKS, LIMITS, AND NEGOTIATION\n${kinkText()}`,
 val('locks')&&`CANON AND SAFETY LOCKS\n${val('locks')}`,
 `MEMORY
 Maintain core setting state, character state, and meaningful event memory. Surface remembered details naturally through behaviour and environment; never dump memory as a list.
@@ -433,33 +1720,210 @@ function downloadTxt(){build();const t=`NAME\n====\n${outName.textContent}\n\nDE
 function clearAll(){if(!confirm('Clear this saved draft?'))return;localStorage.removeItem(aboMode?'dollieAboDraft':'dollieGeneralDraft');location.reload()}
 function toast(t){const x=document.getElementById('toast');x.textContent=t;x.classList.add('show');setTimeout(()=>x.classList.remove('show'),1300)}
 
+
 let npcMode='generate', npcCount=0;
-const NPC_NAMES=['Elowen','Marlowe','Ceron','Soren','Maeve','Ephron','Alaric','Juniper','Tirion','Nisrine','Galen','Darcelle'];
-const NPC_ROLES=['confidant','rival','household attendant','security chief','healer','older sibling','political ally','servant','enemy agent','mentor','research assistant','court advisor'];
-const NPC_TRAITS=['observant and dry-humoured','warm but secretive','formal and deeply loyal','charming but unreliable','quietly protective','sharp-tongued and competent','gentle but watchful','ambitious and calculating'];
+const NPC_NAMES={
+  soft:['Elowen','Marlowe','Ceron','Maeve','Juniper','Galen','Tirion','Nisrine','Ephron','Sirelle'],
+  dark:['Soren','Alaric','Morana','Draven','Rune','Mavros','Azrael','Lucien','Kieran','Deimos'],
+  court:['Aurelio','Valerio','Carmilla','Cassius','Eleonora','Theron','Kallias','Bastian','Lysander','Ianthe'],
+  modern:['Rowan','Miles','Everett','Reed','Hayes','Jasper','Wren','Theo','Blake','Remi'],
+  abo:['Rhydian','Silas','Elias','Soren','Blaise','Zane','Rhett','Caelen','Valen','Maeve']
+};
+const ROLE_MAP={
+  'Confidant':{
+    traits:['warm but observant','quietly loyal','gentle and sharp-minded','dry-humoured and discreet'],
+    relation:['the person ${char} trusts when no one else is present','a private anchor who knows more than they admit'],
+    secret:['knows the truth behind ${pressure}','has been protecting evidence connected to ${past}']
+  },
+  'Rival':{
+    traits:['competitive and perceptive','proud, disciplined and difficult to fool','charming but combative'],
+    relation:['competes directly with ${char} for influence inside ${world}','pushes ${char} toward choices they would rather avoid'],
+    secret:['secretly agrees with part of ${char}’s goal','has leverage tied to ${pressure}']
+  },
+  'Household attendant':{
+    traits:['formal and deeply loyal','efficient, watchful and nearly impossible to surprise','soft-spoken but stubborn'],
+    relation:['manages the spaces around ${char} and notices every change','has served ${char} long enough to recognize danger before it is spoken'],
+    secret:['knows what happened during ${past}','keeps a private record of unusual events in ${world}']
+  },
+  'Security chief':{
+    traits:['controlled, tactical and suspicious','blunt, competent and protective','calm under pressure'],
+    relation:['is responsible for keeping ${char} alive','sees {{user}} as either a risk or the key to solving ${pressure}'],
+    secret:['has discovered a security breach connected to ${lore}','is hiding one failed attempt to protect ${char}']
+  },
+  'Healer':{
+    traits:['gentle but unsentimental','patient, observant and medically precise','kind with a severe practical streak'],
+    relation:['knows ${char}’s health better than anyone','is one of the few people allowed to challenge ${char} directly'],
+    secret:['has noticed a health change caused by ${pressure}','knows the official explanation for ${past} is false']
+  },
+  'Older sibling':{
+    traits:['protective, critical and deeply attached','teasing in private, formidable in public','loyal but controlling'],
+    relation:['shares a complicated family history with ${char}','believes {{user}} may change the family balance'],
+    secret:['remembers a version of ${past} that ${char} avoids','made a private bargain to shield ${char}']
+  },
+  'Political ally':{
+    traits:['polished, strategic and patient','charismatic and difficult to read','practical, ambitious and loyal only by choice'],
+    relation:['supports ${char} because their goals currently align','needs {{user}} to remain useful to the alliance'],
+    secret:['has another agreement inside ${world}','knows who benefits most from ${pressure}']
+  },
+  'Servant':{
+    traits:['quietly observant','helpful, nervous and surprisingly brave','discreet and resourceful'],
+    relation:['moves unnoticed through ${char}’s daily life','has seen how ${char} behaves when no one important is watching'],
+    secret:['overheard a conversation about ${pressure}','found an object connected to ${past}']
+  },
+  'Enemy agent':{
+    traits:['charming but unreliable','patient, calculating and convincing','warm on the surface and ruthless underneath'],
+    relation:['has entered ${char}’s circle under false pretences','uses {{user}} to test ${char}’s weaknesses'],
+    secret:['reports to the force behind ${pressure}','has begun doubting the mission after witnessing ${dynamic}']
+  },
+  'Mentor':{
+    traits:['demanding, composed and perceptive','stern but protective','scholarly and emotionally reserved'],
+    relation:['trained ${char} in the skills needed to survive ${world}','believes ${char} is repeating an old mistake'],
+    secret:['withheld one crucial truth about ${lore}','was present during an important part of ${past}']
+  },
+  'Research assistant':{
+    traits:['curious, awkward and relentless','clever, anxious and detail-oriented','enthusiastic with poor self-preservation'],
+    relation:['helps investigate ${lore}','becomes unexpectedly attached to {{user}}’s safety'],
+    secret:['found a contradiction connected to ${pressure}','copied forbidden records before they disappeared']
+  },
+  'Court advisor':{
+    traits:['formal, strategic and emotionally guarded','diplomatic and quietly manipulative','measured, loyal and politically dangerous'],
+    relation:['guides ${char} through the power structure of ${world}','sees the relationship with {{user}} as a political event'],
+    secret:['knows which faction created ${pressure}','has hidden one law or custom from ${char}']
+  },
+  'Family member':{
+    traits:['familiar, complicated and protective','loving but resentful','warm in private and defensive in public'],
+    relation:['shares blood and unresolved history with ${char}','has strong opinions about {{user}}’s place in the family'],
+    secret:['knows a family secret tied to ${past}','benefits from the current version of ${present}']
+  },
+  'Ex-lover':{
+    traits:['intimate, guarded and bitterly perceptive','polished, jealous and difficult to dismiss','calm until old wounds are touched'],
+    relation:['knows how ${char} behaves inside a relationship','recognizes the change caused by ${dynamic} before ${char} does'],
+    secret:['still holds something that belongs to ${char}','was involved in the beginning of ${pressure}']
+  },
+  'Best friend':{
+    traits:['loyal, irreverent and observant','warm, blunt and protective','playful with a serious core'],
+    relation:['can challenge ${char} without being cast out','tries to decide whether {{user}} is safe for ${char}'],
+    secret:['knows what ${char} truly wants','covered for ${char} after ${past}']
+  },
+  'Pack member':{
+    traits:['instinctive, loyal and status-aware','protective, competitive and scent-sensitive','steady and quietly territorial'],
+    relation:['shares pack obligations with ${char}','reacts strongly to {{user}}’s position in the pack'],
+    secret:['has noticed an abnormal scent or bond shift','knows another pack member is connected to ${pressure}']
+  },
+  'Authority figure':{
+    traits:['commanding, controlled and difficult to impress','formal and uncompromising','calm, intimidating and politically aware'],
+    relation:['has power over ${char}’s current position','can make {{user}}’s situation safer or far more dangerous'],
+    secret:['is testing ${char} through ${pressure}','knows the legal truth hidden inside ${lore}']
+  },
+  'Information broker':{
+    traits:['amused, evasive and well-connected','charming, mercenary and observant','friendly without ever being fully trustworthy'],
+    relation:['sells ${char} information about ${world}','takes a personal interest in {{user}} after learning about ${dynamic}'],
+    secret:['already knows the answer to one part of ${pressure}','is protecting the identity of a major antagonist']
+  },
+  'Bodyguard':{
+    traits:['silent, vigilant and practical','disciplined and intensely protective','blunt, patient and physically imposing'],
+    relation:['stays close enough to witness ${dynamic}','must choose between orders and {{user}}’s immediate safety'],
+    secret:['was given a second set of orders','recognizes someone connected to ${past}']
+  },
+  'Antagonist':{
+    traits:['charismatic, patient and ruthless','coldly intelligent and emotionally precise','polite, controlled and vindictive'],
+    relation:['drives the recurring conflict around ${char}','sees {{user}} as leverage, threat or missing piece'],
+    secret:['caused or engineered ${pressure}','needs something buried inside ${lore}']
+  }
+};
+const RANDOM_ROLES=Object.keys(ROLE_MAP);
+
 function setNpcMode(mode){
   npcMode=mode;
   document.getElementById('npcModeGenerate').classList.toggle('active',mode==='generate');
   document.getElementById('npcModeInput').classList.toggle('active',mode==='input');
+  const panel=document.getElementById('npcGeneratorPanel');
+  if(panel)panel.style.display=mode==='generate'?'block':'none';
 }
-function addNpc(){
+function storyContext(){
+  return {
+    char:val('charName')||val('botName')||'the main character',
+    role:val('charRole')||'their role',
+    world:val('world')||val('location')||'the setting',
+    lore:val('lore')||'the hidden rules of the world',
+    past:val('past')||val('history')||'their past',
+    present:val('present')||'their current life',
+    pressure:val('pressure')||'the recurring threat',
+    dynamic:val('dynamic')||'the developing relationship with {{user}}',
+    userRole:val('userRole')||'{{user}}'
+  };
+}
+function fillTemplate(text,ctx){
+  return text
+    .replaceAll('${char}',ctx.char)
+    .replaceAll('${role}',ctx.role)
+    .replaceAll('${world}',ctx.world)
+    .replaceAll('${lore}',ctx.lore)
+    .replaceAll('${past}',ctx.past)
+    .replaceAll('${present}',ctx.present)
+    .replaceAll('${pressure}',ctx.pressure)
+    .replaceAll('${dynamic}',ctx.dynamic)
+    .replaceAll('${userRole}',ctx.userRole);
+}
+function chooseNamePool(){
+  const text=[val('world'),val('lore'),val('charRole'),val('pressure')].join(' ').toLowerCase();
+  if(aboMode)return NPC_NAMES.abo;
+  if(/court|prince|king|noble|palace|empire|royal/.test(text))return NPC_NAMES.court;
+  if(/vampire|gothic|curse|ritual|blood|demon|death/.test(text))return NPC_NAMES.dark;
+  if(/modern|college|office|city|company|school/.test(text))return NPC_NAMES.modern;
+  return NPC_NAMES.soft;
+}
+function randomFrom(arr){return arr[Math.floor(Math.random()*arr.length)]}
+function createNpcData(role,usedNames=[]){
+  const ctx=storyContext();
+  const spec=ROLE_MAP[role]||ROLE_MAP['Confidant'];
+  const pool=chooseNamePool().filter(n=>!usedNames.includes(n));
+  const name=randomFrom(pool.length?pool:chooseNamePool());
+  return {
+    name,
+    role:role.toLowerCase(),
+    traits:randomFrom(spec.traits),
+    relationship:fillTemplate(randomFrom(spec.relation),ctx),
+    secret:fillTemplate(randomFrom(spec.secret),ctx),
+    source:`Generated from ${ctx.char}, ${ctx.world}, and the current story pressure.`
+  };
+}
+function renderNpc(data={}){
   npcCount++;
   const id='npc-'+npcCount;
-  const name=npcMode==='generate'?NPC_NAMES[Math.floor(Math.random()*NPC_NAMES.length)]:'';
-  const role=npcMode==='generate'?NPC_ROLES[Math.floor(Math.random()*NPC_ROLES.length)]:'';
-  const traits=npcMode==='generate'?NPC_TRAITS[Math.floor(Math.random()*NPC_TRAITS.length)]:'';
   const div=document.createElement('div');
-  div.className='npc-card'; div.id=id;
-  div.innerHTML=`<div class="npc-card-head"><b>NPC ${npcCount}</b><button type="button" class="remove-npc" onclick="document.getElementById('${id}').remove();save()">Remove</button></div>
+  div.className='npc-card';div.id=id;
+  div.innerHTML=`<div class="npc-card-head"><b>NPC ${npcCount}</b><span class="npc-source">${data.source||'Manual input'}</span><button type="button" class="remove-npc" onclick="document.getElementById('${id}').remove();save()">Remove</button></div>
   <div class="grid">
-    <div><label>Name</label><input id="${id}-name" value="${name}" placeholder="NPC name"></div>
-    <div><label>Role</label><input id="${id}-role" value="${role}" placeholder="confidant, rival, healer..."></div>
-    <div><label>Personality</label><input id="${id}-traits" value="${traits}" placeholder="two or three traits"></div>
-    <div><label>Relationship</label><input id="${id}-rel" placeholder="to the main character and {{user}}"></div>
-    <div class="full"><label>What they know / what they hide</label><textarea id="${id}-secret" placeholder="Useful knowledge, secret agenda, recurring function..."></textarea></div>
+    <div><label>Name</label><input id="${id}-name" value="${data.name||''}" placeholder="NPC name"></div>
+    <div><label>Role</label><input id="${id}-role" value="${data.role||''}" placeholder="confidant, rival, healer..."></div>
+    <div><label>Personality</label><input id="${id}-traits" value="${data.traits||''}" placeholder="two or three traits"></div>
+    <div><label>Relationship</label><input id="${id}-rel" value="${data.relationship||''}" placeholder="to the main character and {{user}}"></div>
+    <div class="full"><label>What they know / what they hide</label><textarea id="${id}-secret" placeholder="Useful knowledge, secret agenda, recurring function...">${data.secret||''}</textarea></div>
   </div>`;
   document.getElementById('npcList').appendChild(div);
+}
+function addNpc(){
+  renderNpc({});
   save();
+}
+function generateStoryNpcs(){
+  setNpcMode('generate');
+  const count=Number(document.getElementById('npcGenerateCount')?.value||1);
+  const choice=document.getElementById('npcRoleChoice')?.value||'Random';
+  const usedRoles=[],usedNames=[];
+  for(let i=0;i<count;i++){
+    let role=choice;
+    if(role==='Random'){
+      const available=RANDOM_ROLES.filter(r=>!usedRoles.includes(r));
+      role=randomFrom(available.length?available:RANDOM_ROLES);
+    }
+    const data=createNpcData(role,usedNames);
+    usedRoles.push(role);usedNames.push(data.name);
+    renderNpc(data);
+  }
+  save();
+  toast(`${count} NPC${count===1?'':'s'} generated from the story`);
 }
 function buildNpcText(){
   return [...document.querySelectorAll('.npc-card')].map(card=>{
@@ -471,8 +1935,11 @@ function buildNpcText(){
       get('-traits')&&`PERSONALITY: ${get('-traits')}`,
       get('-rel')&&`RELATIONSHIP: ${get('-rel')}`,
       get('-secret')&&`KNOWLEDGE / SECRET: ${get('-secret')}`
-    ].filter(Boolean).join('\n');
-  }).filter(Boolean).join('\n\n');
+    ].filter(Boolean).join('
+');
+  }).filter(Boolean).join('
+
+');
 }
 function updateHeightConversion(){
   const cm=Number(document.getElementById('appHeightCm')?.value||0);
@@ -526,7 +1993,7 @@ if(heightInput){
   heightInput.addEventListener('input',()=>{updateHeightConversion();save();});
   updateHeightConversion();
 }
-generateNames();addNpc();go(0);
+generateNames();setNpcMode('generate');go(0);
 </script><div class="atmosphere-control" aria-label="Page effects">
   <button type="button" data-atmosphere="sparkles" aria-label="Falling sparkles" title="Falling sparkles">✦</button>
   <button type="button" data-atmosphere="petals" aria-label="Falling cherry blossom petals" title="Falling cherry blossom petals">♡</button>

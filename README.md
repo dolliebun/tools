@@ -1,31 +1,22 @@
-# Dollie Tools v1.1
+# Dollie Tools v1.3
 
-Upload all files directly to the root of `dolliebun/tools`.
+## Added to both builders
+- Main-character kink picker
+- States: Interested, Favourite, Curious, May initiate, Ask first, Soft limit, Hard limit
+- Intensity: Light, Moderate, Heavy
+- Safeword input
+- Negotiation mode
+- Main-character autonomy level and individual proactive behaviours
+- NPCs remain fully autonomous
+- Rule preventing repeated “What do you want to do?” prompting
 
-## New in v1.1
+## Added to The Hunt builder
+- Tipsy TXT export
+- Dollie JSON export
+- SillyTavern / Chub Character Card v2 JSON export
+- Character-specific World Book JSON
+- Three supplied shared Hunt World Books bundled automatically
+- Individual download buttons
+- Full ZIP download
 
-### Branding
-- The browser/site icon is now a soft pink heart instead of the default world/globe icon.
-
-### Appearance builder
-- Exact height input in centimetres
-- Live automatic conversion to feet and inches
-- Expanded body-build choices
-- Expanded hair colours and styles
-- Expanded skin tones and eye colours
-- Age-appearance dropdown
-- Larger face, body, tattoo, scar, accessory, and supernatural tag banks
-- Clear-picks button
-- Final appearance remains editable
-
-### NSFW appearance
-- Separate collapsible NSFW appearance picker
-- Optional adult anatomy, chest, genital, body-hair, and intimate-presentation tags
-- Custom anatomical-detail input
-- Nothing is included unless selected
-
-Replace:
-- `index.html`
-- `bot-builder.html`
-- `omegaverse-bot-builder.html`
-- `translate-to-dollie.html`
+The character-specific World Book keeps reusable lore, locations, NPCs, organizations, factions, families, history, events, items, and power systems separate from main-character personality and roleplay rules.
