@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f4d5de">
+<title>Dollie Tools</title>
+<style>
+:root{--ink:#452f3b;--muted:#7d6671;--pink:#f3cdd9;--gold:#c6a267;--line:rgba(102,67,84,.18)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;padding:32px 16px 60px;color:var(--ink);font-family:Inter,system-ui,sans-serif;background:radial-gradient(circle at 12% 8%,#fff,transparent 26%),radial-gradient(circle at 88% 10%,#f2ccd8,transparent 30%),linear-gradient(145deg,#fffaf7,#f3d7df,#ead8ce)}
+main{width:min(980px,100%);margin:auto}
+header{text-align:center;padding:22px 0 30px}
+.eyebrow{text-transform:uppercase;letter-spacing:.22em;color:var(--gold);font-size:.72rem;font-weight:850}
+h1{font:500 clamp(3rem,9vw,6rem)/.95 Georgia;margin:10px 0}
+.sub{max-width:650px;margin:auto;color:var(--muted);line-height:1.65}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.tool{display:block;text-decoration:none;color:inherit;background:rgba(255,250,247,.8);border:1px solid rgba(255,255,255,.8);border-radius:26px;padding:25px;box-shadow:0 22px 58px rgba(81,45,63,.15);transition:.18s transform,.18s box-shadow}
+.tool:hover{transform:translateY(-3px);box-shadow:0 28px 68px rgba(81,45,63,.2)}
+.tag{display:inline-block;padding:6px 10px;border-radius:999px;background:var(--pink);border:1px solid var(--line);font-size:.75rem;font-weight:800}
+.tool h2{font:500 1.8rem Georgia;margin:14px 0 8px}
+.tool p{margin:0;color:var(--muted);line-height:1.55}
+.soon{opacity:.62;cursor:default}
+.arrow{display:block;margin-top:20px;font-weight:850}
+@media(max-width:700px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main>
+<header>
+<div class="eyebrow">Dollie's little helpers</div>
+<h1>Tools</h1>
+<p class="sub">Private browser helpers for understanding messages, building bots, and keeping Dollie's projects organised.</p>
+</header>
+
+<div class="grid">
+<a class="tool" href="dreams-bot-builder/">
+<span class="tag">The Dreams</span>
+<h2>Dreams Bot Builder</h2>
+<p>Build gothic fantasy, vampire, curse, ritual, supernatural bond, household NPC, tracker, and continuity systems using Prince Kyren's architecture.</p>
+<span class="arrow">Open builder →</span>
+</a>
+
+<div class="tool soon">
+<span class="tag">Coming next</span>
+<h2>Hunt Bot Builder</h2>
+<p>A/B/O houses, scent biology, political factions, resistance rules, relationship stages, rituals, and Asterfell continuity.</p>
+</div>
+
+<div class="tool soon">
+<span class="tag">Coming later</span>
+<h2>Blood Bot Builder</h2>
+<p>A dedicated structure for The Blood universe once its master reference bot is selected.</p>
+</div>
+
+<div class="tool soon">
+<span class="tag">Utility</span>
+<h2>Translate to Dollie</h2>
+<p>English and Polish messages rewritten into clearer Dollie language.</p>
+</div>
+</div>
+</main>
+</body>
+</html>
