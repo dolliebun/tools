@@ -1,26 +1,21 @@
-# Dollie Tools v0.9
+# Dollie Tools v1.0
 
-Upload all files directly to the root of `dolliebun/tools`.
+Upload these files directly to the root of `dolliebun/tools`.
 
-## New in v0.9
+## Fix in v1.0
 
-The page-effect selector is now one compact connected control fixed in the lower-right corner:
+The lower-right effect buttons now work correctly.
 
-- `✦` — falling sparkles
-- `♡` — falling cherry blossom petals
-- `×` — effects off
+Cause:
+- the buttons were inserted after the JavaScript had already searched for them
 
-The modes are mutually exclusive:
+Fix:
+- the control is now placed before the effect script
+- initialization waits for `DOMContentLoaded`
+- Sparkles, Petals, and Off remain mutually exclusive
+- the selected effect is still remembered in the browser
 
-- selecting Sparkles stops Petals
-- selecting Petals stops Sparkles
-- selecting Off removes all particles
-
-The choice is remembered in the browser.
-
-Files:
+Replace:
 - `index.html`
 - `bot-builder.html`
 - `omegaverse-bot-builder.html`
-- `translate-to-dollie.html`
-- `dreams-bot-builder.html`

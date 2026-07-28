@@ -142,8 +142,13 @@ header,.shell,.home{position:relative;z-index:2}
 <a class="tool" href="bot-builder.html"><span class="tag">Dollie + Killian</span><h2>Gentle Bot Builder</h2><p>Seven short steps, autosave, advanced details hidden until needed, name generator, and four-field Tipsy export.</p></a>
 <a class="tool" href="omegaverse-bot-builder.html"><span class="tag">The Hunt</span><h2>Gentle Omegaverse Builder</h2><p>The same calm workflow with secondary genders, scents, cycles, suppressants, bonds, pack systems, and A/B/O trackers.</p></a>
 <a class="tool" href="translate-to-dollie.html"><span class="tag">Brain helper</span><h2>Translate to Dollie</h2><p>Turn complicated English or Polish messages into clearer language.</p></a>
-</section></main><script>
-(function(){
+</section></main><div class="atmosphere-control" aria-label="Page effects">
+  <button type="button" data-atmosphere="sparkles" aria-label="Falling sparkles" title="Falling sparkles">✦</button>
+  <button type="button" data-atmosphere="petals" aria-label="Falling cherry blossom petals" title="Falling cherry blossom petals">♡</button>
+  <button type="button" data-atmosphere="off" aria-label="Turn effects off" title="Turn effects off">×</button>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
   const layer=document.getElementById('atmosphere');
   if(!layer)return;
   const saved=localStorage.getItem('dollieAtmosphere')||'petals';
@@ -179,13 +184,9 @@ header,.shell,.home{position:relative;z-index:2}
 
   createParticles();
   setAtmosphere(saved);
-})();
+});
 </script>
 
-<div class="atmosphere-control" aria-label="Page effects">
-  <button type="button" data-atmosphere="sparkles" aria-label="Falling sparkles" title="Falling sparkles">✦</button>
-  <button type="button" data-atmosphere="petals" aria-label="Falling cherry blossom petals" title="Falling cherry blossom petals">♡</button>
-  <button type="button" data-atmosphere="off" aria-label="Turn effects off" title="Turn effects off">×</button>
-</div>
+
 
 </body></html>

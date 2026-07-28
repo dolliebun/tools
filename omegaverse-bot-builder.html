@@ -403,8 +403,13 @@ document.addEventListener('click',e=>{
 });
 
 load();generateNames();addNpc();go(0);
-</script><script>
-(function(){
+</script><div class="atmosphere-control" aria-label="Page effects">
+  <button type="button" data-atmosphere="sparkles" aria-label="Falling sparkles" title="Falling sparkles">✦</button>
+  <button type="button" data-atmosphere="petals" aria-label="Falling cherry blossom petals" title="Falling cherry blossom petals">♡</button>
+  <button type="button" data-atmosphere="off" aria-label="Turn effects off" title="Turn effects off">×</button>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
   const layer=document.getElementById('atmosphere');
   if(!layer)return;
   const saved=localStorage.getItem('dollieAtmosphere')||'petals';
@@ -440,13 +445,9 @@ load();generateNames();addNpc();go(0);
 
   createParticles();
   setAtmosphere(saved);
-})();
+});
 </script>
 
-<div class="atmosphere-control" aria-label="Page effects">
-  <button type="button" data-atmosphere="sparkles" aria-label="Falling sparkles" title="Falling sparkles">✦</button>
-  <button type="button" data-atmosphere="petals" aria-label="Falling cherry blossom petals" title="Falling cherry blossom petals">♡</button>
-  <button type="button" data-atmosphere="off" aria-label="Turn effects off" title="Turn effects off">×</button>
-</div>
+
 
 </body></html>
