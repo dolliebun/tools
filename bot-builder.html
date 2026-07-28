@@ -1,5 +1,5 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Dollie Bot Builder</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"><style>
+<title>Dollie Bot Builder</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='%23efabc4' d='M32 56C27 51 8 38 8 22C8 12 20 7 28 15L32 20L36 15C44 7 56 12 56 22C56 38 37 51 32 56Z'/%3E%3C/svg%3E"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"><style>
 :root{--ink:#563947;--muted:#806976;--pink:#e8a9c1;--pink2:#f5cddd;--gold:#c99f5c;--cream:#fffaf8;--glass:rgba(255,255,255,.72);--line:rgba(103,67,85,.16);--shadow:0 22px 65px rgba(84,47,66,.13)}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
 body{margin:0;min-height:100vh;color:var(--ink);font:15px/1.55 Nunito,system-ui,sans-serif;background:radial-gradient(circle at 9% 5%,#fff,transparent 24%),radial-gradient(circle at 89% 9%,rgba(239,184,205,.58),transparent 31%),radial-gradient(circle at 45% 108%,rgba(232,207,169,.48),transparent 36%),linear-gradient(145deg,#fffafd,#f7e5ec,#f2e9df)}
@@ -34,6 +34,52 @@ details{border:1px solid var(--line);border-radius:16px;background:#fff7;padding
 .mode-tabs{display:inline-flex;border:1px solid var(--line);border-radius:99px;overflow:hidden;background:#fff}
 .mode-tabs button{border:0;background:transparent;padding:7px 12px;cursor:pointer;color:var(--muted)}
 .mode-tabs button.active{background:linear-gradient(135deg,var(--pink2),#eedbb7);color:var(--ink)}
+
+
+.height-converter{
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  gap:10px;
+  align-items:end;
+}
+.height-arrow{
+  padding-bottom:11px;
+  color:var(--gold);
+  font-weight:900;
+}
+.converted-height{
+  min-height:47px;
+  display:flex;
+  align-items:center;
+  border:1px solid var(--line);
+  border-radius:15px;
+  background:rgba(255,255,255,.68);
+  padding:10px 13px;
+  font-weight:800;
+}
+.appearance-section-title{
+  margin:15px 0 7px;
+  color:#a06c83;
+  font:700 .83rem Nunito,system-ui,sans-serif;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.nsfw-picker{
+  border-color:rgba(216,135,166,.28);
+  background:rgba(255,242,247,.66);
+}
+.nsfw-picker summary{
+  color:#a05878;
+}
+.nsfw-note{
+  color:var(--muted);
+  font-size:.76rem;
+  margin:7px 0 11px;
+}
+@media(max-width:600px){
+  .height-converter{grid-template-columns:1fr}
+  .height-arrow{display:none}
+}
 
 @media(prefers-reduced-motion:reduce){*{animation:none!important}}
 
@@ -168,31 +214,68 @@ header,.shell,.home{position:relative;z-index:2}
 
 <section class="step" data-step="1"><h3>2. Tell Killian who they are.</h3><p class="helper">The character’s stable core. Short answers are enough.</p>
 <div class="grid"><div><label>Name</label><input id="charName" placeholder="Kyren Steinmetz"></div><div><label>Role</label><input id="charRole" placeholder="Vampire prince, professor, biker..."></div><div class="full"><label>Appearance</label>
+
 <div class="appearance-builder">
+  <div class="height-converter">
+    <div>
+      <label for="appHeightCm">Height in centimetres</label>
+      <input type="number" id="appHeightCm" min="50" max="260" step="1" inputmode="numeric" placeholder="193">
+    </div>
+    <div class="height-arrow">→</div>
+    <div>
+      <label>Automatic conversion</label>
+      <div class="converted-height" id="appHeightImperial" aria-live="polite">— ft — in</div>
+    </div>
+  </div>
+
+  <div class="appearance-section-title">Body and colouring</div>
   <div class="grid">
-    <div><label>Height</label><select id="appHeight"><option value="">Choose</option><option>short</option><option>average height</option><option>tall</option><option>very tall</option></select></div>
-    <div><label>Build</label><select id="appBuild"><option value="">Choose</option><option>slender</option><option>lean</option><option>athletic</option><option>broad</option><option>muscular</option><option>soft-built</option><option>heavily muscular</option></select></div>
-    <div><label>Hair colour</label><select id="appHairColor"><option value="">Choose</option><option>black</option><option>dark brown</option><option>medium brown</option><option>light brown</option><option>dirty blond</option><option>blond</option><option>white</option><option>silver</option><option>red</option><option>pink</option></select></div>
-    <div><label>Hair style</label><select id="appHairStyle"><option value="">Choose</option><option>short and neat</option><option>cropped with a longer top</option><option>tousled</option><option>wavy</option><option>curly</option><option>straight over the forehead</option><option>shoulder-length</option><option>long</option></select></div>
-    <div><label>Skin</label><select id="appSkin"><option value="">Choose</option><option>very pale</option><option>pale</option><option>fair</option><option>light tan</option><option>warm beige</option><option>olive</option><option>golden brown</option><option>deep brown</option></select></div>
-    <div><label>Eyes</label><select id="appEyes"><option value="">Choose</option><option>brown</option><option>dark brown</option><option>hazel</option><option>amber</option><option>green</option><option>grey-green</option><option>grey</option><option>blue</option><option>dark pink</option></select></div>
+    <div><label>Build</label><select id="appBuild"><option value="">Choose</option><option>very slender</option><option>slender</option><option>lean</option><option>lean athletic</option><option>athletic</option><option>toned</option><option>compact muscular</option><option>broad-shouldered</option><option>muscular</option><option>heavily muscular</option><option>stocky</option><option>soft-built</option><option>curvy</option><option>voluptuous</option><option>plus-sized</option></select></div>
+    <div><label>Skin tone</label><select id="appSkin"><option value="">Choose</option><option>porcelain</option><option>very pale</option><option>pale</option><option>fair</option><option>light beige</option><option>warm beige</option><option>light tan</option><option>golden tan</option><option>olive</option><option>golden brown</option><option>medium brown</option><option>deep brown</option><option>dark brown</option><option>ebony</option></select></div>
+    <div><label>Hair colour</label><select id="appHairColor"><option value="">Choose</option><option>black</option><option>blue-black</option><option>dark brown</option><option>medium brown</option><option>light brown</option><option>chestnut</option><option>auburn</option><option>copper</option><option>ginger</option><option>strawberry blond</option><option>dirty blond</option><option>golden blond</option><option>platinum blond</option><option>white</option><option>silver</option><option>grey</option><option>pink</option><option>pastel pink</option><option>red</option><option>blue</option><option>green</option><option>purple</option><option>two-toned</option></select></div>
+    <div><label>Hair style</label><select id="appHairStyle"><option value="">Choose</option><option>buzzed</option><option>cropped</option><option>short and neat</option><option>cropped with a longer top</option><option>undercut</option><option>slicked back</option><option>tousled</option><option>messy layered</option><option>straight over the forehead</option><option>soft waves</option><option>wavy</option><option>tight curls</option><option>loose curls</option><option>chin-length</option><option>shoulder-length</option><option>mid-back length</option><option>waist-length</option><option>braided</option><option>locs</option><option>ponytail</option><option>half-up</option><option>bun</option></select></div>
+    <div><label>Eye colour</label><select id="appEyes"><option value="">Choose</option><option>black</option><option>dark brown</option><option>brown</option><option>honey brown</option><option>hazel</option><option>amber</option><option>gold</option><option>green</option><option>grey-green</option><option>grey</option><option>blue-grey</option><option>blue</option><option>ice blue</option><option>violet</option><option>dark pink</option><option>heterochromia</option></select></div>
+    <div><label>Age appearance</label><select id="appAgeLook"><option value="">Choose</option><option>teenage-looking</option><option>early twenties</option><option>mid-twenties</option><option>late twenties</option><option>early thirties</option><option>mature</option><option>ageless</option></select></div>
   </div>
-  <label style="margin-top:10px">Pick details</label>
-  <div class="tag-row" id="appearanceTags">
-    <button type="button" class="pick-tag" data-app="sharp angular face">sharp face</button>
-    <button type="button" class="pick-tag" data-app="soft features">soft features</button>
-    <button type="button" class="pick-tag" data-app="defined cheekbones">defined cheekbones</button>
-    <button type="button" class="pick-tag" data-app="full lips">full lips</button>
-    <button type="button" class="pick-tag" data-app="freckles">freckles</button>
-    <button type="button" class="pick-tag" data-app="scarred">scars</button>
-    <button type="button" class="pick-tag" data-app="tattooed arms">arm tattoos</button>
-    <button type="button" class="pick-tag" data-app="chest tattoo">chest tattoo</button>
-    <button type="button" class="pick-tag" data-app="rib tattoos">rib tattoos</button>
-    <button type="button" class="pick-tag" data-app="piercings">piercings</button>
-    <button type="button" class="pick-tag" data-app="glasses">glasses</button>
-    <button type="button" class="pick-tag" data-app="visible hand veins">visible veins</button>
+
+  <div class="appearance-section-title">Face</div>
+  <div class="tag-row"><button type="button" class="pick-tag" data-app="sharp angular face">sharp face</button><button type="button" class="pick-tag" data-app="soft rounded face">soft face</button><button type="button" class="pick-tag" data-app="heart-shaped face">heart-shaped face</button><button type="button" class="pick-tag" data-app="square jaw">square jaw</button><button type="button" class="pick-tag" data-app="defined jawline">defined jawline</button><button type="button" class="pick-tag" data-app="defined cheekbones">defined cheekbones</button><button type="button" class="pick-tag" data-app="full lips">full lips</button><button type="button" class="pick-tag" data-app="thin lips">thin lips</button><button type="button" class="pick-tag" data-app="straight nose">straight nose</button><button type="button" class="pick-tag" data-app="aquiline nose">aquiline nose</button><button type="button" class="pick-tag" data-app="button nose">button nose</button><button type="button" class="pick-tag" data-app="freckles">freckles</button><button type="button" class="pick-tag" data-app="beauty mark">beauty mark</button><button type="button" class="pick-tag" data-app="dimples">dimples</button><button type="button" class="pick-tag" data-app="dark circles">dark circles</button></div>
+
+  <div class="appearance-section-title">Body details</div>
+  <div class="tag-row"><button type="button" class="pick-tag" data-app="long legs">long legs</button><button type="button" class="pick-tag" data-app="short legs">short legs</button><button type="button" class="pick-tag" data-app="broad shoulders">broad shoulders</button><button type="button" class="pick-tag" data-app="narrow waist">narrow waist</button><button type="button" class="pick-tag" data-app="wide hips">wide hips</button><button type="button" class="pick-tag" data-app="slim hips">slim hips</button><button type="button" class="pick-tag" data-app="thick thighs">thick thighs</button><button type="button" class="pick-tag" data-app="lean thighs">lean thighs</button><button type="button" class="pick-tag" data-app="strong arms">strong arms</button><button type="button" class="pick-tag" data-app="delicate hands">delicate hands</button><button type="button" class="pick-tag" data-app="large hands">large hands</button><button type="button" class="pick-tag" data-app="visible hand veins">visible hand veins</button><button type="button" class="pick-tag" data-app="body hair">visible body hair</button><button type="button" class="pick-tag" data-app="little body hair">minimal body hair</button></div>
+
+  <div class="appearance-section-title">Marks and supernatural details</div>
+  <div class="tag-row"><button type="button" class="pick-tag" data-app="facial scars">facial scars</button><button type="button" class="pick-tag" data-app="body scars">body scars</button><button type="button" class="pick-tag" data-app="tattooed arms">arm tattoos</button><button type="button" class="pick-tag" data-app="chest tattoo">chest tattoo</button><button type="button" class="pick-tag" data-app="rib tattoos">rib tattoos</button><button type="button" class="pick-tag" data-app="back tattoo">back tattoo</button><button type="button" class="pick-tag" data-app="neck tattoo">neck tattoo</button><button type="button" class="pick-tag" data-app="hand tattoos">hand tattoos</button><button type="button" class="pick-tag" data-app="piercings">piercings</button><button type="button" class="pick-tag" data-app="earrings">earrings</button><button type="button" class="pick-tag" data-app="glasses">glasses</button><button type="button" class="pick-tag" data-app="fangs">fangs</button><button type="button" class="pick-tag" data-app="pointed ears">pointed ears</button><button type="button" class="pick-tag" data-app="claws">claws</button><button type="button" class="pick-tag" data-app="wings">wings</button><button type="button" class="pick-tag" data-app="tail">tail</button></div>
+
+  <details class="nsfw-picker">
+    <summary>NSFW appearance picker</summary>
+    <p class="nsfw-note">Optional adult anatomical details. These are added only when Dollie selects them.</p>
+    <div class="tag-row"><button type="button" class="pick-tag" data-app="broad chest">broad chest</button><button type="button" class="pick-tag" data-app="flat chest">flat chest</button><button type="button" class="pick-tag" data-app="small breasts">small breasts</button><button type="button" class="pick-tag" data-app="medium breasts">medium breasts</button><button type="button" class="pick-tag" data-app="large breasts">large breasts</button><button type="button" class="pick-tag" data-app="full breasts">full breasts</button><button type="button" class="pick-tag" data-app="visible cleavage">visible cleavage</button><button type="button" class="pick-tag" data-app="defined abdomen">defined abdomen</button><button type="button" class="pick-tag" data-app="soft abdomen">soft abdomen</button><button type="button" class="pick-tag" data-app="prominent hip bones">prominent hip bones</button><button type="button" class="pick-tag" data-app="rounded hips">rounded hips</button><button type="button" class="pick-tag" data-app="firm ass">firm ass</button><button type="button" class="pick-tag" data-app="round ass">round ass</button><button type="button" class="pick-tag" data-app="large ass">large ass</button><button type="button" class="pick-tag" data-app="small ass">small ass</button><button type="button" class="pick-tag" data-app="thick pubic hair">thick pubic hair</button><button type="button" class="pick-tag" data-app="trimmed pubic hair">trimmed pubic hair</button><button type="button" class="pick-tag" data-app="shaved pubic hair">shaved pubic hair</button><button type="button" class="pick-tag" data-app="circumcised penis">circumcised</button><button type="button" class="pick-tag" data-app="uncircumcised penis">uncircumcised</button><button type="button" class="pick-tag" data-app="small penis">small penis</button><button type="button" class="pick-tag" data-app="average penis">average penis</button><button type="button" class="pick-tag" data-app="large penis">large penis</button><button type="button" class="pick-tag" data-app="thick penis">thick penis</button><button type="button" class="pick-tag" data-app="prominent veins">prominent veins</button><button type="button" class="pick-tag" data-app="large testicles">large testicles</button><button type="button" class="pick-tag" data-app="small vulva">small vulva</button><button type="button" class="pick-tag" data-app="full vulva">full vulva</button><button type="button" class="pick-tag" data-app="prominent clitoris">prominent clitoris</button><button type="button" class="pick-tag" data-app="natural lubrication">natural lubrication</button></div>
+    <div class="grid" style="margin-top:12px">
+      <div>
+        <label>Chest / genital details not listed</label>
+        <input id="appNsfwCustom" placeholder="Optional custom anatomical detail">
+      </div>
+      <div>
+        <label>NSFW presentation</label>
+        <select id="appNsfwPresentation">
+          <option value="">Choose</option>
+          <option>delicate</option>
+          <option>soft</option>
+          <option>athletic</option>
+          <option>masculine</option>
+          <option>feminine</option>
+          <option>androgynous</option>
+          <option>imposing</option>
+        </select>
+      </div>
+    </div>
+  </details>
+
+  <div class="row" style="margin-top:12px">
+    <button type="button" class="btn soft" onclick="buildAppearance()">Build appearance</button>
+    <button type="button" class="btn" onclick="clearAppearanceTags()">Clear picks</button>
   </div>
-  <div class="row" style="margin-top:10px"><button type="button" class="btn soft" onclick="buildAppearance()">Build appearance</button></div>
   <textarea id="appearance" placeholder="Killian will assemble the selected traits here, and Dollie can edit anything."></textarea>
 </div></div><div><label>Personality</label><textarea id="personality" placeholder="Precise, restrained, quietly possessive..."></textarea></div><div><label>Voice</label><textarea id="voice" placeholder="Low, formal, sparse; never rambles..."></textarea></div><div><label>What they want</label><textarea id="goal" placeholder="Surface goal and the thing they secretly need..."></textarea></div></div>
 <div class="grid" style="margin-top:14px">
@@ -373,10 +456,45 @@ function buildNpcText(){
     ].filter(Boolean).join('\n');
   }).filter(Boolean).join('\n\n');
 }
+function updateHeightConversion(){
+  const cm=Number(document.getElementById('appHeightCm')?.value||0);
+  const out=document.getElementById('appHeightImperial');
+  if(!out)return;
+  if(!cm){out.textContent='— ft — in';return;}
+  const totalInches=cm/2.54;
+  const feet=Math.floor(totalInches/12);
+  let inches=Math.round(totalInches-feet*12);
+  let finalFeet=feet;
+  if(inches===12){finalFeet+=1;inches=0;}
+  out.textContent=`${finalFeet} ft ${inches} in`;
+}
 function buildAppearance(){
-  const bits=[val('appHeight'),val('appBuild'),val('appHairColor')&&`${val('appHairColor')} hair`,val('appHairStyle'),val('appSkin')&&`${val('appSkin')} skin`,val('appEyes')&&`${val('appEyes')} eyes`,...[...document.querySelectorAll('.pick-tag.on')].map(x=>x.dataset.app)];
+  const cm=val('appHeightCm');
+  const imperial=document.getElementById('appHeightImperial')?.textContent||'';
+  const height=cm?`${cm} cm (${imperial})`:'';
+  const bits=[
+    height,
+    val('appAgeLook')&&`appears ${val('appAgeLook')}`,
+    val('appBuild'),
+    val('appHairColor')&&`${val('appHairColor')} hair`,
+    val('appHairStyle'),
+    val('appSkin')&&`${val('appSkin')} skin`,
+    val('appEyes')&&`${val('appEyes')} eyes`,
+    ...[...document.querySelectorAll('.pick-tag.on')].map(x=>x.dataset.app),
+    val('appNsfwPresentation')&&`${val('appNsfwPresentation')} intimate presentation`,
+    val('appNsfwCustom')
+  ];
   document.getElementById('appearance').value=[...new Set(bits.filter(Boolean))].join(', ');
-  save(); toast('Appearance assembled');
+  save();toast('Appearance assembled');
+}
+function clearAppearanceTags(){
+  document.querySelectorAll('.pick-tag.on').forEach(x=>x.classList.remove('on'));
+  ['appBuild','appSkin','appHairColor','appHairStyle','appEyes','appAgeLook','appNsfwPresentation','appNsfwCustom'].forEach(id=>{
+    const el=document.getElementById(id);if(el)el.value='';
+  });
+  const cm=document.getElementById('appHeightCm');if(cm)cm.value='';
+  updateHeightConversion();
+  save();
 }
 document.addEventListener('click',e=>{
   const t=e.target.closest('.pick-tag');
@@ -384,7 +502,13 @@ document.addEventListener('click',e=>{
   t.classList.toggle('on');
 });
 
-load();generateNames();addNpc();go(0);
+load();
+const heightInput=document.getElementById('appHeightCm');
+if(heightInput){
+  heightInput.addEventListener('input',()=>{updateHeightConversion();save();});
+  updateHeightConversion();
+}
+generateNames();addNpc();go(0);
 </script><div class="atmosphere-control" aria-label="Page effects">
   <button type="button" data-atmosphere="sparkles" aria-label="Falling sparkles" title="Falling sparkles">✦</button>
   <button type="button" data-atmosphere="petals" aria-label="Falling cherry blossom petals" title="Falling cherry blossom petals">♡</button>

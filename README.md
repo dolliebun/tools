@@ -1,21 +1,31 @@
-# Dollie Tools v1.0
+# Dollie Tools v1.1
 
-Upload these files directly to the root of `dolliebun/tools`.
+Upload all files directly to the root of `dolliebun/tools`.
 
-## Fix in v1.0
+## New in v1.1
 
-The lower-right effect buttons now work correctly.
+### Branding
+- The browser/site icon is now a soft pink heart instead of the default world/globe icon.
 
-Cause:
-- the buttons were inserted after the JavaScript had already searched for them
+### Appearance builder
+- Exact height input in centimetres
+- Live automatic conversion to feet and inches
+- Expanded body-build choices
+- Expanded hair colours and styles
+- Expanded skin tones and eye colours
+- Age-appearance dropdown
+- Larger face, body, tattoo, scar, accessory, and supernatural tag banks
+- Clear-picks button
+- Final appearance remains editable
 
-Fix:
-- the control is now placed before the effect script
-- initialization waits for `DOMContentLoaded`
-- Sparkles, Petals, and Off remain mutually exclusive
-- the selected effect is still remembered in the browser
+### NSFW appearance
+- Separate collapsible NSFW appearance picker
+- Optional adult anatomy, chest, genital, body-hair, and intimate-presentation tags
+- Custom anatomical-detail input
+- Nothing is included unless selected
 
 Replace:
 - `index.html`
 - `bot-builder.html`
 - `omegaverse-bot-builder.html`
+- `translate-to-dollie.html`
