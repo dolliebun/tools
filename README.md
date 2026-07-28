@@ -1,21 +1,24 @@
-# Dollie Tools v0.7
+# Dollie Tools v0.9
 
 Upload all files directly to the root of `dolliebun/tools`.
 
-## New in v0.7
+## New in v0.9
 
-Both builders now include:
+The page-effect selector is now one compact connected control fixed in the lower-right corner:
 
-- Past, Present, and Health fields
-- Appearance builder with dropdowns and selectable detail tags
-- Editable assembled appearance text
-- NPC section with Generate / Input modes
-- Small `+` button for adding multiple NPCs
-- NPC name, role, personality, relationship, and secret/knowledge fields
-- NPCs included automatically in the exported Instructions
+- `✦` — falling sparkles
+- `♡` — falling cherry blossom petals
+- `×` — effects off
+
+The modes are mutually exclusive:
+
+- selecting Sparkles stops Petals
+- selecting Petals stops Sparkles
+- selecting Off removes all particles
+
+The choice is remembered in the browser.
 
 Files:
-
 - `index.html`
 - `bot-builder.html`
 - `omegaverse-bot-builder.html`
