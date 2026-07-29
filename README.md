@@ -1,33 +1,26 @@
-# Dollie Tools v1.4
+# Dollie Tools v1.4.1
 
-## Builder update
+## Picture Reader
+- Translate to Dollie can now read visible text from screenshots and photos.
+- Supports camera/photo-library selection on mobile, drag and drop on desktop, and pasted images.
+- English mode uses English OCR; Polish mode uses Polish OCR.
+- Images are processed in the browser. The OCR library and language files are downloaded from the Tesseract.js CDN when the reader is first used.
+- Large camera photos are resized in-browser before OCR to reduce mobile memory use.
+
+## Mobile optimisation
+- All pages use iPhone-safe viewport and safe-area spacing.
+- Inputs use mobile-safe text sizing to prevent unwanted iOS zoom.
+- Buttons and controls have larger touch targets.
+- Builder grids, navigation, exports, traits, kink controls, cards, and outputs collapse cleanly on narrow screens.
+- Translate controls and the new picture reader stack comfortably on mobile.
+- Particle count is reduced on mobile for smoother performance.
+- The Dreams redirect is now a complete responsive page with a manual fallback link.
+
+## Builder structure
 - Regular and Omegaverse builders remain separate.
 - v1.3 features are merged with the v1.4 production suite.
-- Soft floating sparkles are the default atmosphere; petals and off remain available.
+- Soft floating sparkles are the default atmosphere; petals and off remain available on the homepage, Translate to Dollie, and both builders.
 - Personality is built from the searchable trait library and behavior engine rather than a duplicate free-text field.
 - Surface Goal, Hidden Goal, and Backstory are separate clear fields.
 - Intimacy uses Dollie-friendly fields for feeling, likes, initiation, ask-first items, soft limits, hard limits, and aftercare.
 - Workbook, Role Card integration, opening images, stress testing, World Book generation, token hygiene, and production export appear in their appropriate steps.
-
-# Dollie Tools v1.3
-
-## Added to both builders
-- Main-character kink picker
-- States: Interested, Favourite, Curious, May initiate, Ask first, Soft limit, Hard limit
-- Intensity: Light, Moderate, Heavy
-- Safeword input
-- Negotiation mode
-- Main-character autonomy level and individual proactive behaviours
-- NPCs remain fully autonomous
-- Rule preventing repeated “What do you want to do?” prompting
-
-## Added to The Hunt builder
-- Tipsy TXT export
-- Dollie JSON export
-- SillyTavern / Chub Character Card v2 JSON export
-- Character-specific World Book JSON
-- Three supplied shared Hunt World Books bundled automatically
-- Individual download buttons
-- Full ZIP download
-
-The character-specific World Book keeps reusable lore, locations, NPCs, organizations, factions, families, history, events, items, and power systems separate from main-character personality and roleplay rules.

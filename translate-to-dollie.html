@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#f6d8df" />
   <title>Translate to Dollie</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='%23efabc4' d='M32 56C27 51 8 38 8 22C8 12 20 7 28 15L32 20L36 15C44 7 56 12 56 22C56 38 37 51 32 56Z'/%3E%3C/svg%3E">
   <style>
@@ -43,9 +43,219 @@
     .tiny{font-size:.8rem;color:var(--muted);margin-top:14px;text-align:center}
     .notice{margin:0 0 14px;padding:12px 14px;border:1px solid rgba(201,165,106,.35);border-radius:14px;background:rgba(255,248,228,.65);color:#6e5630;font-size:.88rem;line-height:1.45}
     @media(max-width:700px){.mode-grid{grid-template-columns:repeat(2,minmax(0,1fr))}body{padding-top:16px}.card{border-radius:22px}}
-  </style>
+
+/* Floating Dollie atmosphere */
+.atmosphere{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  overflow:hidden;
+  pointer-events:none;
+}
+.atmosphere .particle{
+  position:absolute;
+  top:-12vh;
+  left:var(--x);
+  width:var(--size);
+  height:var(--size);
+  opacity:0;
+  animation:
+    particleFall var(--fall) linear infinite,
+    particleSway var(--sway) ease-in-out infinite alternate,
+    particleFade var(--fade) ease-in-out infinite;
+  animation-delay:var(--delay);
+  will-change:transform,opacity;
+}
+/* Rounded, milky cross-sparkles based on Dollie's approved references. */
+.atmosphere.sparkles .particle{
+  filter:drop-shadow(0 0 5px rgba(255,255,255,.92)) drop-shadow(0 0 12px rgba(244,219,231,.38));
+}
+.atmosphere.sparkles .particle::before,
+.atmosphere.sparkles .particle::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  margin:auto;
+  border-radius:999px;
+  background:linear-gradient(180deg,rgba(255,255,255,.98),rgba(255,250,247,.80));
+  box-shadow:0 0 5px rgba(255,255,255,.92),0 0 14px rgba(248,222,234,.44);
+}
+.atmosphere.sparkles .particle::before{
+  width:34%;
+  height:100%;
+}
+.atmosphere.sparkles .particle::after{
+  width:100%;
+  height:34%;
+}
+.atmosphere.petals .particle{
+  width:calc(var(--size) * .72);
+  height:var(--size);
+  border-radius:75% 18% 70% 24%;
+  background:
+    radial-gradient(circle at 35% 25%,rgba(255,255,255,.88),transparent 25%),
+    linear-gradient(145deg,rgba(255,227,237,.95),rgba(226,153,184,.83));
+  box-shadow:0 4px 12px rgba(154,86,117,.16);
+  transform-origin:50% 30%;
+}
+@keyframes particleFall{
+  from{translate:0 -14vh;rotate:0deg}
+  to{translate:0 120vh;rotate:360deg}
+}
+@keyframes particleSway{
+  from{margin-left:-24px}
+  to{margin-left:29px}
+}
+@keyframes particleFade{
+  0%,100%{opacity:0}
+  15%,72%{opacity:var(--opacity)}
+  88%{opacity:.10}
+}
+.atmosphere.off{display:none}
+
+.atmosphere-control{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  z-index:60;
+  display:flex;
+  align-items:center;
+  gap:0;
+  padding:4px;
+  border:1px solid rgba(110,72,91,.20);
+  border-radius:999px;
+  background:rgba(255,250,252,.88);
+  box-shadow:0 12px 34px rgba(79,43,61,.16);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+}
+.atmosphere-control button{
+  width:38px;
+  height:38px;
+  display:grid;
+  place-items:center;
+  border:0;
+  border-radius:50%;
+  background:transparent;
+  color:var(--muted);
+  cursor:pointer;
+  font:700 1rem/1 Georgia,serif;
+  transition:background .15s,color .15s,transform .15s;
+}
+.atmosphere-control button:hover{
+  color:var(--ink);
+  transform:translateY(-1px);
+}
+.atmosphere-control button.active{
+  color:#fff;
+  background:linear-gradient(135deg,#d982a4,#c89d58);
+}
+.atmosphere-control button + button{margin-left:2px}
+header,.shell,.home{position:relative;z-index:2}
+@media(prefers-reduced-motion:reduce){.atmosphere{display:none}}
+  body{padding-bottom:88px}
+  
+/* Mobile optimisation v1.4.1 */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;overflow-x:hidden}
+body{overflow-x:hidden;padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}
+button,a,input,textarea,select,summary{-webkit-tap-highlight-color:transparent}
+button,.btn,.choice,.pick-tag,.mode-tabs button,.language,.mode,.tool,.headlink{touch-action:manipulation}
+input,textarea,select{max-width:100%}
+.output,.v14-output,.result{overflow-wrap:anywhere;word-break:break-word}
+@media(max-width:720px){
+  body{padding-bottom:calc(92px + env(safe-area-inset-bottom))}
+  header{padding:10px 12px;gap:8px;min-height:56px;flex-wrap:wrap}
+  header h1{font-size:1.08rem;line-height:1.15;min-width:0;overflow-wrap:anywhere}
+  header span{display:none}
+  .headlink{min-height:44px;display:inline-flex;align-items:center;justify-content:center;padding:8px 12px}
+  .shell{width:calc(100% - 16px);margin:16px auto 36px}
+  .hero{margin:4px auto 18px}
+  .hero h2{font-size:clamp(2rem,12vw,3.2rem)}
+  .card{border-radius:20px;padding:16px 13px}
+  .step h3{font-size:1.65rem;line-height:1.1}
+  .helper{margin-bottom:16px}
+  .grid,.checks,.outputgrid,.v14-grid,.intimacy-tone-grid{grid-template-columns:1fr!important}
+  .full,.outputgrid .wide,.v14-full{grid-column:auto!important}
+  input,textarea,select{font-size:16px;line-height:1.4;padding:12px 13px}
+  textarea{min-height:120px}
+  button,.btn,.choice,.language,.mode,.pick-tag,.mode-tabs button,.copy,.icon-btn{min-height:44px}
+  .navrow{flex-direction:column;align-items:stretch;gap:9px;margin-top:20px}
+  .navrow>.btn{width:100%;justify-content:center}
+  .row{align-items:stretch}
+  .row>.btn,.v14-toolbar>.btn,.export-buttons>.btn{flex:1 1 100%;width:100%}
+  .choices{grid-template-columns:1fr}
+  details{padding:9px 10px;border-radius:14px}
+  summary{min-height:44px;display:flex;align-items:center;line-height:1.25}
+  .killian{padding:12px;margin:12px 0 16px}
+  .namebox,.appearance-builder,.npc-card,.v14-box{padding:12px;border-radius:16px}
+  .name-result{font-size:2rem}
+  .progress{gap:3px;margin-bottom:12px}
+  .pip{height:6px}
+  .output,.v14-output{font-size:11px;max-height:55vh;padding:12px}
+  .outhead{gap:8px}.copy{padding:7px 12px}
+  .v14-toolbar,.export-buttons,.npc-toolbar{align-items:stretch}
+  .v14-tags{max-height:240px}
+  .atmosphere-control{right:max(10px,env(safe-area-inset-right));bottom:max(10px,env(safe-area-inset-bottom));padding:3px}
+  .atmosphere-control button{width:42px;height:42px}
+  .toast{bottom:calc(70px + env(safe-area-inset-bottom));max-width:calc(100% - 24px);text-align:center;white-space:normal}
+}
+@media(max-width:420px){
+  .shell{width:calc(100% - 10px)}
+  .card{padding:14px 10px}
+  .eyebrow{letter-spacing:.13em}
+}
+
+/* Translate page mobile polish */
+@media(max-width:700px){
+  body{padding-top:12px}
+  .shell{width:100%;max-width:none}
+  header{display:block;min-height:0;padding:0 4px;margin:6px 0 16px;background:none;border:0;box-shadow:none;backdrop-filter:none}
+  h1{font-size:clamp(2.25rem,14vw,3.35rem)}
+  .subtitle{font-size:.94rem;line-height:1.5}
+  .card{border-radius:20px;padding:16px 12px}
+  .language-grid{grid-template-columns:1fr;gap:8px;margin:12px 0}
+  .mode-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:13px 0}
+  .language,.mode{padding:11px 8px;font-size:.82rem}
+  .actions{display:grid;grid-template-columns:1fr;gap:8px}
+  .primary,.secondary{width:100%;min-width:0!important;min-height:46px}
+  .result-head{align-items:stretch}.result-head .secondary{width:auto;min-width:84px!important}
+  .result{padding:14px;min-height:110px}
+  .notice{font-size:.83rem;padding:10px 11px}
+}
+@media(max-width:390px){.mode-grid{grid-template-columns:1fr}}
+
+/* Picture reader */
+.picture-reader{margin:14px 0 4px;border-color:rgba(217,147,168,.3);background:linear-gradient(145deg,rgba(255,255,255,.72),rgba(249,229,237,.55))}
+.picture-reader summary{color:#8a5368}
+.picture-reader-body{padding:4px 2px 2px}
+.picture-help{margin:4px 0 12px;color:var(--muted);font-size:.84rem;line-height:1.45}
+.picture-dropzone{display:grid;place-items:center;min-height:132px;padding:15px;border:1.5px dashed rgba(151,91,116,.35);border-radius:17px;background:rgba(255,255,255,.55);text-align:center;color:var(--muted);cursor:pointer;transition:border-color .15s,background .15s,transform .15s}
+.picture-dropzone:hover,.picture-dropzone:focus-visible,.picture-dropzone.dragover{border-color:var(--pink-deep);background:rgba(255,247,251,.88);outline:none;transform:translateY(-1px)}
+.picture-dropzone strong{display:block;color:var(--ink);margin-bottom:3px}
+.picture-dropzone small{display:block;line-height:1.4}
+.picture-preview-wrap{display:none;margin-top:12px;border:1px solid var(--line);border-radius:17px;overflow:hidden;background:rgba(255,255,255,.7)}
+.picture-preview-wrap.visible{display:block}
+.picture-preview{display:block;width:100%;max-height:360px;object-fit:contain;background:#fff}
+.picture-meta{padding:8px 11px;color:var(--muted);font-size:.76rem;overflow-wrap:anywhere}
+.picture-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.picture-actions .primary{flex:1}
+.picture-actions .secondary{flex:0 1 auto}
+.ocr-progress-wrap{display:none;margin-top:11px}.ocr-progress-wrap.visible{display:block}
+.ocr-progress{display:block;width:100%;height:9px;border:0;border-radius:999px;overflow:hidden;accent-color:var(--pink-deep)}
+.ocr-status{margin:7px 0 0;color:var(--muted);font-size:.8rem;line-height:1.4}
+.ocr-status.error{color:#a44d61}.ocr-status.success{color:#6e6440}
+.picture-reader [disabled]{opacity:.48;cursor:not-allowed}
+@media(max-width:700px){
+  .picture-dropzone{min-height:112px;padding:13px 10px}
+  .picture-preview{max-height:46vh}
+  .picture-actions{display:grid;grid-template-columns:1fr}
+  .picture-actions .primary,.picture-actions .secondary{width:100%}
+}
+
+</style>
 </head>
 <body>
+  <div class="atmosphere sparkles" id="atmosphere" aria-hidden="true"></div>
   <main class="shell">
     <header>
       <div class="eyebrow">A little brain helper</div>
@@ -63,6 +273,29 @@
 
       <label for="input" id="inputLabel">What did they say?</label>
       <textarea id="input" placeholder="Paste the confusing message here…"></textarea>
+
+      <details class="picture-reader" id="pictureReader">
+        <summary id="pictureSummary">Read text from a picture</summary>
+        <div class="picture-reader-body">
+          <p class="picture-help" id="pictureHelp">Choose a screenshot or photo. The reader copies the visible text into the box above so you can translate it normally.</p>
+          <input id="pictureInput" type="file" accept="image/*" capture="environment" hidden>
+          <div class="picture-dropzone" id="pictureDropzone" role="button" tabindex="0" aria-controls="pictureInput">
+            <div><strong id="pictureDropTitle">Choose a picture or take a photo</strong><small id="pictureDropHint">You can also drop or paste an image here.</small></div>
+          </div>
+          <div class="picture-preview-wrap" id="picturePreviewWrap">
+            <img class="picture-preview" id="picturePreview" alt="Selected picture preview">
+            <div class="picture-meta" id="pictureMeta"></div>
+          </div>
+          <div class="picture-actions">
+            <button class="primary" type="button" id="readPicture" disabled>Read picture</button>
+            <button class="secondary" type="button" id="removePicture" disabled>Remove picture</button>
+          </div>
+          <div class="ocr-progress-wrap" id="ocrProgressWrap">
+            <progress class="ocr-progress" id="ocrProgress" max="1" value="0"></progress>
+            <p class="ocr-status" id="ocrStatus" aria-live="polite">No picture selected.</p>
+          </div>
+        </div>
+      </details>
 
       <div class="mode-grid" role="group" aria-label="Translation mode">
         <button class="mode active" data-mode="meaning">What do they mean?</button>
@@ -89,6 +322,12 @@
     </section>
   </main>
 
+  <div class="atmosphere-control" aria-label="Page effects">
+  <button type="button" data-atmosphere="sparkles" aria-label="Soft floating sparkles" title="Soft floating sparkles"><span aria-hidden="true">✧</span></button>
+  <button type="button" data-atmosphere="petals" aria-label="Falling cherry blossom petals" title="Falling cherry blossom petals">♡</button>
+  <button type="button" data-atmosphere="off" aria-label="Turn effects off" title="Turn effects off">×</button>
+</div>
+
   <script>
     const input=document.querySelector('#input');
     const result=document.querySelector('#result');
@@ -96,6 +335,143 @@
     const modes=[...document.querySelectorAll('.mode')];
     let currentMode='meaning';
     let currentLanguage='en';
+    let selectedPictureFile=null;
+    let selectedPictureUrl='';
+    let ocrWorker=null;
+    let ocrWorkerLanguage='';
+    let ocrBusy=false;
+    let ocrLibraryPromise=null;
+
+    const pictureInput=document.querySelector('#pictureInput');
+    const pictureDropzone=document.querySelector('#pictureDropzone');
+    const picturePreview=document.querySelector('#picturePreview');
+    const picturePreviewWrap=document.querySelector('#picturePreviewWrap');
+    const pictureMeta=document.querySelector('#pictureMeta');
+    const readPictureButton=document.querySelector('#readPicture');
+    const removePictureButton=document.querySelector('#removePicture');
+    const ocrProgressWrap=document.querySelector('#ocrProgressWrap');
+    const ocrProgress=document.querySelector('#ocrProgress');
+    const ocrStatus=document.querySelector('#ocrStatus');
+
+    function setOcrStatus(message,type=''){
+      ocrStatus.textContent=message;
+      ocrStatus.className='ocr-status'+(type?' '+type:'');
+    }
+
+    function formatBytes(bytes){
+      if(bytes<1024)return bytes+' B';
+      if(bytes<1024*1024)return (bytes/1024).toFixed(1)+' KB';
+      return (bytes/(1024*1024)).toFixed(1)+' MB';
+    }
+
+    function loadOcrLibrary(){
+      if(window.Tesseract)return Promise.resolve(window.Tesseract);
+      if(ocrLibraryPromise)return ocrLibraryPromise;
+      ocrLibraryPromise=new Promise((resolve,reject)=>{
+        const script=document.createElement('script');
+        script.src='https://cdn.jsdelivr.net/npm/tesseract.js@6.0.0/dist/tesseract.min.js';
+        script.async=true;
+        script.onload=()=>window.Tesseract?resolve(window.Tesseract):reject(new Error('OCR library unavailable'));
+        script.onerror=()=>reject(new Error('OCR library failed to load'));
+        document.head.appendChild(script);
+      });
+      return ocrLibraryPromise;
+    }
+
+    async function imageForOcr(file){
+      const url=URL.createObjectURL(file);
+      try{
+        const img=new Image();
+        img.decoding='async';
+        await new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=reject;img.src=url});
+        const maxSide=2800;
+        const scale=Math.min(1,maxSide/Math.max(img.naturalWidth,img.naturalHeight));
+        const browserFriendly=/^image\/(png|jpeg|webp|bmp)$/i.test(file.type);
+        if(scale===1&&browserFriendly)return file;
+        const canvas=document.createElement('canvas');
+        canvas.width=Math.max(1,Math.round(img.naturalWidth*scale));
+        canvas.height=Math.max(1,Math.round(img.naturalHeight*scale));
+        const context=canvas.getContext('2d',{alpha:false});
+        context.fillStyle='#fff';context.fillRect(0,0,canvas.width,canvas.height);
+        context.drawImage(img,0,0,canvas.width,canvas.height);
+        return await new Promise(resolve=>canvas.toBlob(blob=>resolve(blob||file),'image/jpeg',.94));
+      }finally{URL.revokeObjectURL(url)}
+    }
+
+    function clearPicture(){
+      if(selectedPictureUrl)URL.revokeObjectURL(selectedPictureUrl);
+      selectedPictureFile=null;selectedPictureUrl='';pictureInput.value='';
+      picturePreview.removeAttribute('src');picturePreviewWrap.classList.remove('visible');pictureMeta.textContent='';
+      readPictureButton.disabled=true;removePictureButton.disabled=true;
+      ocrProgress.value=0;ocrProgressWrap.classList.remove('visible');
+      setOcrStatus(ui[currentLanguage].noPicture);
+    }
+
+    function selectPicture(file){
+      const t=ui[currentLanguage];
+      if(!file||!file.type.startsWith('image/')){setOcrStatus(t.wrongFile,'error');ocrProgressWrap.classList.add('visible');return}
+      if(file.size>25*1024*1024){setOcrStatus(t.largeFile,'error');ocrProgressWrap.classList.add('visible');return}
+      if(selectedPictureUrl)URL.revokeObjectURL(selectedPictureUrl);
+      selectedPictureFile=file;selectedPictureUrl=URL.createObjectURL(file);
+      picturePreview.src=selectedPictureUrl;picturePreviewWrap.classList.add('visible');
+      pictureMeta.textContent=(file.name||'image')+' · '+formatBytes(file.size);
+      readPictureButton.disabled=false;removePictureButton.disabled=false;
+      ocrProgress.value=0;ocrProgressWrap.classList.add('visible');
+      setOcrStatus(t.selectedPicture);
+    }
+
+    async function getOcrWorker(language){
+      await loadOcrLibrary();
+      if(ocrWorker&&ocrWorkerLanguage===language)return ocrWorker;
+      if(ocrWorker){await ocrWorker.terminate();ocrWorker=null}
+      ocrWorkerLanguage=language;
+      ocrWorker=await window.Tesseract.createWorker(language,1,{logger:message=>{
+        if(typeof message.progress==='number'){ocrProgress.value=message.progress}
+        if(message.status&&ocrBusy){
+          const pct=typeof message.progress==='number'?' '+Math.round(message.progress*100)+'%':'';
+          setOcrStatus(ui[currentLanguage].readingPicture+pct);
+        }
+      }});
+      return ocrWorker;
+    }
+
+    async function readSelectedPicture(){
+      if(!selectedPictureFile||ocrBusy)return;
+      const t=ui[currentLanguage];
+      ocrBusy=true;readPictureButton.disabled=true;removePictureButton.disabled=true;
+      ocrProgressWrap.classList.add('visible');ocrProgress.value=0;setOcrStatus(t.loadingReader);
+      try{
+        const language=currentLanguage==='pl'?'pol':'eng';
+        const worker=await getOcrWorker(language);
+        const prepared=await imageForOcr(selectedPictureFile);
+        setOcrStatus(t.readingPicture);
+        const response=await worker.recognize(prepared);
+        const extracted=(response&&response.data&&response.data.text||'').replace(/\n{3,}/g,'\n\n').trim();
+        if(!extracted){setOcrStatus(t.noText,'error');return}
+        input.value=extracted;
+        input.dispatchEvent(new Event('input',{bubbles:true}));
+        setOcrStatus(t.pictureDone,'success');
+        input.scrollIntoView({behavior:'smooth',block:'center'});
+      }catch(error){
+        console.error(error);setOcrStatus(t.pictureError,'error');
+      }finally{
+        ocrBusy=false;readPictureButton.disabled=!selectedPictureFile;removePictureButton.disabled=!selectedPictureFile;
+      }
+    }
+
+    pictureDropzone.addEventListener('click',()=>pictureInput.click());
+    pictureDropzone.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();pictureInput.click()}});
+    pictureInput.addEventListener('change',()=>selectPicture(pictureInput.files&&pictureInput.files[0]));
+    ['dragenter','dragover'].forEach(type=>pictureDropzone.addEventListener(type,event=>{event.preventDefault();pictureDropzone.classList.add('dragover')}));
+    ['dragleave','drop'].forEach(type=>pictureDropzone.addEventListener(type,event=>{event.preventDefault();pictureDropzone.classList.remove('dragover')}));
+    pictureDropzone.addEventListener('drop',event=>selectPicture(event.dataTransfer&&event.dataTransfer.files&&event.dataTransfer.files[0]));
+    document.addEventListener('paste',event=>{
+      const item=[...(event.clipboardData&&event.clipboardData.items||[])].find(entry=>entry.type.startsWith('image/'));
+      if(item){const file=item.getAsFile();if(file){document.querySelector('#pictureReader').open=true;selectPicture(file)}}
+    });
+    readPictureButton.addEventListener('click',readSelectedPicture);
+    removePictureButton.addEventListener('click',clearPicture);
+    window.addEventListener('beforeunload',()=>{if(ocrWorker)ocrWorker.terminate();if(selectedPictureUrl)URL.revokeObjectURL(selectedPictureUrl)});
 
     
     const languages=[...document.querySelectorAll('.language')];
@@ -106,8 +482,18 @@
         modes:['What do they mean?','Make it simpler','Give me steps','What do I do?'],
         translate:'Translate to Dollie', example:'Try example', clear:'Clear',
         result:'In Dollie language', copy:'Copy',
-        privacy:'Your text stays in this browser and is not uploaded anywhere.',
-        empty:'Paste a message first, darling.'
+        privacy:'Your text and picture stay in this browser. The picture reader downloads its OCR files when you use it, then reads the image on your device.',
+        empty:'Paste a message first, darling.',
+        pictureSummary:'Read text from a picture',
+        pictureHelp:'Choose a screenshot or photo. The reader copies the visible text into the box above so you can translate it normally.',
+        pictureDropTitle:'Choose a picture or take a photo',
+        pictureDropHint:'You can also drop or paste an image here.',
+        readPicture:'Read picture', removePicture:'Remove picture',
+        noPicture:'No picture selected.', selectedPicture:'Picture ready. Tap Read picture.',
+        loadingReader:'Loading the picture reader…', readingPicture:'Reading picture…',
+        pictureDone:'Text copied into the message box.', noText:'I could not find readable text in that picture.',
+        pictureError:'The picture could not be read. Try a clearer or more tightly cropped image.',
+        wrongFile:'Please choose an image file.', largeFile:'That picture is too large. Please choose one under 25 MB.'
       },
       pl:{
         inputLabel:'Co oni powiedzieli?',
@@ -115,8 +501,18 @@
         modes:['Co mają na myśli?','Uprość to','Rozpisz kroki','Co mam zrobić?'],
         translate:'Przetłumacz na Dollie', example:'Pokaż przykład', clear:'Wyczyść',
         result:'Po dolliowemu', copy:'Kopiuj',
-        privacy:'Twój tekst zostaje w tej przeglądarce i nie jest nigdzie wysyłany.',
-        empty:'Najpierw wklej wiadomość, kochanie.'
+        privacy:'Twój tekst i zdjęcie zostają w tej przeglądarce. Czytnik pobiera pliki OCR, kiedy go używasz, a potem odczytuje obraz na twoim urządzeniu.',
+        empty:'Najpierw wklej wiadomość, kochanie.',
+        pictureSummary:'Odczytaj tekst ze zdjęcia',
+        pictureHelp:'Wybierz zrzut ekranu albo zdjęcie. Czytnik skopiuje widoczny tekst do pola wyżej, żeby można go było normalnie przetłumaczyć.',
+        pictureDropTitle:'Wybierz zdjęcie albo zrób zdjęcie',
+        pictureDropHint:'Możesz też przeciągnąć lub wkleić obraz tutaj.',
+        readPicture:'Odczytaj zdjęcie', removePicture:'Usuń zdjęcie',
+        noPicture:'Nie wybrano zdjęcia.', selectedPicture:'Zdjęcie gotowe. Naciśnij Odczytaj zdjęcie.',
+        loadingReader:'Ładuję czytnik zdjęć…', readingPicture:'Odczytuję zdjęcie…',
+        pictureDone:'Tekst został skopiowany do pola wiadomości.', noText:'Nie znalazłam czytelnego tekstu na tym zdjęciu.',
+        pictureError:'Nie udało się odczytać zdjęcia. Spróbuj wyraźniejszego albo mocniej przyciętego obrazu.',
+        wrongFile:'Wybierz plik obrazu.', largeFile:'To zdjęcie jest za duże. Wybierz plik mniejszy niż 25 MB.'
       }
     };
 
@@ -131,6 +527,14 @@
       document.querySelector('#resultLabel').textContent=t.result;
       document.querySelector('#copy').textContent=t.copy;
       document.querySelector('#privacy').textContent=t.privacy;
+      document.querySelector('#pictureSummary').textContent=t.pictureSummary;
+      document.querySelector('#pictureHelp').textContent=t.pictureHelp;
+      document.querySelector('#pictureDropTitle').textContent=t.pictureDropTitle;
+      document.querySelector('#pictureDropHint').textContent=t.pictureDropHint;
+      document.querySelector('#readPicture').textContent=t.readPicture;
+      document.querySelector('#removePicture').textContent=t.removePicture;
+      if(!selectedPictureFile) setOcrStatus(t.noPicture);
+      else if(!ocrBusy) setOcrStatus(t.selectedPicture);
     }
 
     languages.forEach(button=>button.addEventListener('click',()=>{
@@ -315,6 +719,7 @@ modes.forEach(button=>button.addEventListener('click',()=>{
       input.value='';
       result.textContent='';
       resultWrap.classList.remove('visible');
+      clearPicture();
       input.focus();
     });
 
@@ -341,5 +746,45 @@ modes.forEach(button=>button.addEventListener('click',()=>{
     });
     applyLanguage();
   </script>
+  <script>
+document.addEventListener('DOMContentLoaded', function(){
+  const layer=document.getElementById('atmosphere');
+  if(!layer)return;
+  const saved=localStorage.getItem('dollieAtmosphere')||'sparkles';
+
+  function createParticles(){
+    layer.innerHTML='';
+    const particleCount=window.matchMedia('(max-width:720px)').matches?14:24;
+    for(let i=0;i<particleCount;i++){
+      const p=document.createElement('span');
+      p.className='particle';
+      p.style.setProperty('--x',(Math.random()*100).toFixed(2)+'vw');
+      p.style.setProperty('--size',(5+Math.random()*10).toFixed(1)+'px');
+      p.style.setProperty('--fall',(14+Math.random()*15).toFixed(1)+'s');
+      p.style.setProperty('--sway',(2.8+Math.random()*4.5).toFixed(1)+'s');
+      p.style.setProperty('--fade',(4+Math.random()*5).toFixed(1)+'s');
+      p.style.setProperty('--delay',(-Math.random()*22).toFixed(1)+'s');
+      p.style.setProperty('--opacity',(0.18+Math.random()*0.42).toFixed(2));
+      layer.appendChild(p);
+    }
+  }
+
+  function setAtmosphere(mode){
+    layer.className='atmosphere '+mode;
+    document.querySelectorAll('[data-atmosphere]').forEach(btn=>{
+      btn.classList.toggle('active',btn.dataset.atmosphere===mode);
+    });
+    localStorage.setItem('dollieAtmosphere',mode);
+    if(mode!=='off'&&!layer.children.length)createParticles();
+  }
+
+  document.querySelectorAll('[data-atmosphere]').forEach(btn=>{
+    btn.addEventListener('click',()=>setAtmosphere(btn.dataset.atmosphere));
+  });
+
+  createParticles();
+  setAtmosphere(saved);
+});
+</script>
 </body>
 </html>

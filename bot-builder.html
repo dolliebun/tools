@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Dollie Bot Builder v1.4</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='%23efabc4' d='M32 56C27 51 8 38 8 22C8 12 20 7 28 15L32 20L36 15C44 7 56 12 56 22C56 38 37 51 32 56Z'/%3E%3C/svg%3E"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"><style>
 :root{--ink:#563947;--muted:#806976;--pink:#e8a9c1;--pink2:#f5cddd;--gold:#c99f5c;--cream:#fffaf8;--glass:rgba(255,255,255,.72);--line:rgba(103,67,85,.16);--shadow:0 22px 65px rgba(84,47,66,.13)}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
@@ -244,6 +244,57 @@ details{border:1px solid var(--line);border-radius:16px;background:#fff7;padding
 header,.shell,.home{position:relative;z-index:2}
 @media(prefers-reduced-motion:reduce){
   .atmosphere{display:none}
+}
+
+
+/* Mobile optimisation v1.4.1 */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;overflow-x:hidden}
+body{overflow-x:hidden;padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}
+button,a,input,textarea,select,summary{-webkit-tap-highlight-color:transparent}
+button,.btn,.choice,.pick-tag,.mode-tabs button,.language,.mode,.tool,.headlink{touch-action:manipulation}
+input,textarea,select{max-width:100%}
+.output,.v14-output,.result{overflow-wrap:anywhere;word-break:break-word}
+@media(max-width:720px){
+  body{padding-bottom:calc(92px + env(safe-area-inset-bottom))}
+  header{padding:10px 12px;gap:8px;min-height:56px;flex-wrap:wrap}
+  header h1{font-size:1.08rem;line-height:1.15;min-width:0;overflow-wrap:anywhere}
+  header span{display:none}
+  .headlink{min-height:44px;display:inline-flex;align-items:center;justify-content:center;padding:8px 12px}
+  .shell{width:calc(100% - 16px);margin:16px auto 36px}
+  .hero{margin:4px auto 18px}
+  .hero h2{font-size:clamp(2rem,12vw,3.2rem)}
+  .card{border-radius:20px;padding:16px 13px}
+  .step h3{font-size:1.65rem;line-height:1.1}
+  .helper{margin-bottom:16px}
+  .grid,.checks,.outputgrid,.v14-grid,.intimacy-tone-grid{grid-template-columns:1fr!important}
+  .full,.outputgrid .wide,.v14-full{grid-column:auto!important}
+  input,textarea,select{font-size:16px;line-height:1.4;padding:12px 13px}
+  textarea{min-height:120px}
+  button,.btn,.choice,.language,.mode,.pick-tag,.mode-tabs button,.copy,.icon-btn{min-height:44px}
+  .navrow{flex-direction:column;align-items:stretch;gap:9px;margin-top:20px}
+  .navrow>.btn{width:100%;justify-content:center}
+  .row{align-items:stretch}
+  .row>.btn,.v14-toolbar>.btn,.export-buttons>.btn{flex:1 1 100%;width:100%}
+  .choices{grid-template-columns:1fr}
+  details{padding:9px 10px;border-radius:14px}
+  summary{min-height:44px;display:flex;align-items:center;line-height:1.25}
+  .killian{padding:12px;margin:12px 0 16px}
+  .namebox,.appearance-builder,.npc-card,.v14-box{padding:12px;border-radius:16px}
+  .name-result{font-size:2rem}
+  .progress{gap:3px;margin-bottom:12px}
+  .pip{height:6px}
+  .output,.v14-output{font-size:11px;max-height:55vh;padding:12px}
+  .outhead{gap:8px}.copy{padding:7px 12px}
+  .v14-toolbar,.export-buttons,.npc-toolbar{align-items:stretch}
+  .v14-tags{max-height:240px}
+  .atmosphere-control{right:max(10px,env(safe-area-inset-right));bottom:max(10px,env(safe-area-inset-bottom));padding:3px}
+  .atmosphere-control button{width:42px;height:42px}
+  .toast{bottom:calc(70px + env(safe-area-inset-bottom));max-width:calc(100% - 24px);text-align:center;white-space:normal}
+}
+@media(max-width:420px){
+  .shell{width:calc(100% - 10px)}
+  .card{padding:14px 10px}
+  .eyebrow{letter-spacing:.13em}
 }
 
 </style><script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
@@ -2092,7 +2143,8 @@ document.addEventListener('DOMContentLoaded', function(){
 
   function createParticles(){
     layer.innerHTML='';
-    for(let i=0;i<24;i++){
+    const particleCount=window.matchMedia('(max-width:720px)').matches?14:24;
+    for(let i=0;i<particleCount;i++){
       const p=document.createElement('span');
       p.className='particle';
       p.style.setProperty('--x',(Math.random()*100).toFixed(2)+'vw');
