@@ -9,7 +9,7 @@
   <meta name="application-name" content="Dollie Tools">
   <meta name="copyright" content="© 2026 Dollie. All rights reserved.">
   <meta name="color-scheme" content="light dark">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src data: blob:; style-src 'unsafe-inline'; script-src 'unsafe-inline'; form-action 'none'; base-uri 'none'; object-src 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src data: blob: https://raw.githubusercontent.com; style-src 'unsafe-inline'; script-src 'unsafe-inline'; connect-src https://api.github.com https://raw.githubusercontent.com; form-action 'none'; base-uri 'none'; object-src 'none'">
   <script>
     (() => {
       const key = 'dollieTools.botCopyright.theme';
@@ -567,13 +567,496 @@
     .home-link:hover { transform:translateY(-1px); border-color:var(--accent); }
     @media print { .repo-nav { display:none!important; } }
 
-  </style>
+  
+/* Dollie Tools shared navigation */
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:80;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  width:min(1080px,calc(100% - 24px));
+  margin:12px auto 0;
+  padding:10px 12px 10px 15px;
+  border:1px solid rgba(255,255,255,.86);
+  border-radius:999px;
+  background:rgba(255,250,252,.83);
+  box-shadow:0 12px 38px rgba(84,47,66,.10);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+}
+.site-brand{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  min-width:0;
+  color:var(--ink);
+  text-decoration:none;
+  font:600 1.12rem/1 Georgia,serif;
+}
+.site-brand-mark{
+  width:34px;
+  height:34px;
+  flex:0 0 auto;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  color:#fff;
+  background:linear-gradient(135deg,#d982a4,#c89d58);
+  box-shadow:0 7px 18px rgba(178,103,137,.23);
+}
+.site-nav{
+  display:flex;
+  align-items:center;
+  gap:4px;
+}
+.site-nav a{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:38px;
+  padding:7px 13px;
+  border-radius:999px;
+  color:var(--muted);
+  text-decoration:none;
+  font-weight:800;
+  font-size:.82rem;
+}
+.site-nav a:hover,
+.site-nav a:focus-visible{
+  color:var(--ink);
+  background:rgba(255,255,255,.66);
+  outline:none;
+}
+.site-nav a.active{
+  color:#fff;
+  background:linear-gradient(135deg,#d982a4,#c89d58);
+  box-shadow:0 7px 18px rgba(178,103,137,.19);
+}
+@media(max-width:560px){
+  .site-header{
+    width:calc(100% - 16px);
+    border-radius:22px;
+    align-items:stretch;
+    flex-direction:column;
+    gap:7px;
+  }
+  .site-brand{justify-content:center}
+  .site-nav{display:grid;grid-template-columns:1fr 1fr}
+  .site-nav a{width:100%}
+}
+
+
+/* Shared Dollie atmosphere */
+.atmosphere{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  overflow:hidden;
+  pointer-events:none;
+}
+.atmosphere .particle{
+  position:absolute;
+  top:-12vh;
+  left:var(--x);
+  width:var(--size);
+  height:var(--size);
+  opacity:0;
+  animation:
+    particleFall var(--fall) linear infinite,
+    particleSway var(--sway) ease-in-out infinite alternate,
+    particleFade var(--fade) ease-in-out infinite;
+  animation-delay:var(--delay);
+  will-change:transform,opacity;
+}
+.atmosphere.sparkles .particle{
+  filter:drop-shadow(0 0 5px rgba(255,255,255,.92))
+         drop-shadow(0 0 12px rgba(244,219,231,.38));
+}
+.atmosphere.sparkles .particle::before,
+.atmosphere.sparkles .particle::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  margin:auto;
+  border-radius:999px;
+  background:linear-gradient(180deg,rgba(255,255,255,.98),rgba(255,250,247,.80));
+  box-shadow:0 0 5px rgba(255,255,255,.92),0 0 14px rgba(248,222,234,.44);
+}
+.atmosphere.sparkles .particle::before{width:34%;height:100%}
+.atmosphere.sparkles .particle::after{width:100%;height:34%}
+.atmosphere.petals .particle{
+  width:calc(var(--size) * .72);
+  height:var(--size);
+  border-radius:75% 18% 70% 24%;
+  background:
+    radial-gradient(circle at 35% 25%,rgba(255,255,255,.88),transparent 25%),
+    linear-gradient(145deg,rgba(255,227,237,.95),rgba(226,153,184,.83));
+  box-shadow:0 4px 12px rgba(154,86,117,.16);
+  transform-origin:50% 30%;
+}
+.atmosphere.off{display:none}
+@keyframes particleFall{
+  from{translate:0 -14vh;rotate:0deg}
+  to{translate:0 120vh;rotate:360deg}
+}
+@keyframes particleSway{
+  from{margin-left:-24px}
+  to{margin-left:29px}
+}
+@keyframes particleFade{
+  0%,100%{opacity:0}
+  15%,72%{opacity:var(--opacity)}
+  88%{opacity:.10}
+}
+.atmosphere-control{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  z-index:90;
+  display:flex;
+  align-items:center;
+  padding:4px;
+  border:1px solid rgba(110,72,91,.20);
+  border-radius:999px;
+  background:rgba(255,250,252,.88);
+  box-shadow:0 12px 34px rgba(79,43,61,.16);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+}
+.atmosphere-control button{
+  width:38px;
+  height:38px;
+  display:grid;
+  place-items:center;
+  border:0;
+  border-radius:50%;
+  background:transparent;
+  color:var(--muted);
+  cursor:pointer;
+  font:700 1rem/1 Georgia,serif;
+  transition:background .15s,color .15s,transform .15s;
+}
+.atmosphere-control button:hover{color:var(--ink);transform:translateY(-1px)}
+.atmosphere-control button.active{
+  color:#fff;
+  background:linear-gradient(135deg,#d982a4,#c89d58);
+}
+.atmosphere-control button + button{margin-left:2px}
+@media(max-width:720px){
+  .atmosphere-control{
+    right:max(10px,env(safe-area-inset-right));
+    bottom:max(10px,env(safe-area-inset-bottom));
+    padding:3px;
+  }
+  .atmosphere-control button{width:42px;height:42px}
+}
+@media(prefers-reduced-motion:reduce){.atmosphere{display:none}}
+
+
+/* Dollie Tools visual alignment */
+:root{
+  --bg:#fffafd;
+  --panel:rgba(255,255,255,.72);
+  --panel-solid:#fffafc;
+  --ink:#563947;
+  --muted:#806976;
+  --line:rgba(103,67,85,.16);
+  --accent:#d982a4;
+  --accent-strong:#a65378;
+  --accent-soft:#f5cddd;
+  --good:#2f745c;
+  --warn:#9a5a1f;
+  --danger:#9d3542;
+  --gold:#c99f5c;
+  --shadow:0 22px 65px rgba(84,47,66,.13);
+  --radius:24px;
+}
+html[data-theme="night"],
+#themeSwitch:checked ~ .app-shell{
+  --bg:#2a1321;
+  --panel:rgba(69,30,49,.80);
+  --panel-solid:#4a2035;
+  --ink:#fff3f8;
+  --muted:#e5bed0;
+  --line:rgba(255,210,229,.18);
+  --accent:#ff9fc7;
+  --accent-strong:#ffd0e3;
+  --accent-soft:#6b2c4b;
+  --good:#9ad7bd;
+  --warn:#f1c184;
+  --danger:#ff9faa;
+  --gold:#e3bb79;
+  --shadow:0 24px 70px rgba(10,0,7,.35);
+}
+body{
+  overflow-x:hidden;
+  background:
+    radial-gradient(circle at 9% 5%,#fff,transparent 24%),
+    radial-gradient(circle at 89% 9%,rgba(239,184,205,.58),transparent 31%),
+    radial-gradient(circle at 45% 108%,rgba(232,207,169,.48),transparent 36%),
+    linear-gradient(145deg,#fffafd,#f7e5ec,#f2e9df);
+}
+html[data-theme="night"] body{
+  background:
+    radial-gradient(circle at 12% 0%,rgba(242,118,171,.22),transparent 30%),
+    radial-gradient(circle at 88% 6%,rgba(172,66,118,.22),transparent 32%),
+    linear-gradient(145deg,#21101b,#321625,#25111d);
+}
+.app-shell{
+  position:relative;
+  z-index:2;
+  background:transparent;
+  font:15px/1.55 Nunito,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+.shell{width:min(1050px,calc(100% - 28px));margin:24px auto 80px}
+.hero{
+  text-align:center;
+  padding:clamp(26px,5vw,48px);
+  border:1px solid rgba(255,255,255,.87);
+  border-radius:28px;
+  background:var(--panel);
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+}
+html[data-theme="night"] .hero,
+#themeSwitch:checked ~ .app-shell .hero{
+  background:var(--panel);
+}
+.hero::after{opacity:.55}
+.hero h1,
+.card h2,
+.card h3,
+.brand-name{
+  font-family:Georgia,serif;
+  font-weight:500;
+}
+.hero h1{
+  max-width:none;
+  margin:10px auto 12px;
+}
+.lede{margin-left:auto;margin-right:auto}
+.brand-lockup{justify-content:center}
+.brand-orb{
+  background:linear-gradient(135deg,#d982a4,#c89d58);
+  box-shadow:0 8px 22px rgba(178,103,137,.22);
+}
+.creator-credit,
+.privacy-badge,
+.theme-toggle,
+.notice,
+.warning-box,
+.danger-box{
+  border-color:var(--line);
+}
+.card{
+  border:1px solid rgba(255,255,255,.87);
+  border-radius:28px;
+  background:var(--panel);
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+}
+input,textarea,select{
+  border-color:rgba(114,74,94,.22);
+  border-radius:15px;
+  background:rgba(255,255,255,.82);
+}
+html[data-theme="night"] input,
+html[data-theme="night"] textarea,
+html[data-theme="night"] select,
+#themeSwitch:checked ~ .app-shell input,
+#themeSwitch:checked ~ .app-shell textarea,
+#themeSwitch:checked ~ .app-shell select{
+  background:rgba(35,14,27,.72);
+  color:var(--ink);
+  border-color:var(--line);
+}
+.btn-primary{
+  background:linear-gradient(135deg,#d982a4,#c89d58);
+  box-shadow:0 9px 22px rgba(183,105,139,.20);
+}
+.btn-secondary,.btn-ghost,.theme-toggle{
+  background:rgba(255,255,255,.64);
+}
+html[data-theme="night"] .btn-secondary,
+html[data-theme="night"] .btn-ghost,
+html[data-theme="night"] .theme-toggle,
+#themeSwitch:checked ~ .app-shell .btn-secondary,
+#themeSwitch:checked ~ .app-shell .btn-ghost,
+#themeSwitch:checked ~ .app-shell .theme-toggle{
+  background:rgba(255,231,242,.08);
+}
+.step{background:linear-gradient(135deg,#d982a4,#c89d58)}
+.repo-nav{display:none!important}
+.site-header{position:sticky}
+.site-header,.shell{position:relative;z-index:2}
+html[data-theme="night"] .site-header,
+#themeSwitch:checked ~ .app-shell .site-header{
+  background:rgba(54,22,39,.88);
+  border-color:rgba(255,210,229,.18);
+}
+html[data-theme="night"] .site-nav a:hover,
+#themeSwitch:checked ~ .app-shell .site-nav a:hover{
+  background:rgba(255,255,255,.08);
+}
+@media(max-width:720px){
+  .shell{width:calc(100% - 16px)}
+  .hero{border-radius:22px;padding:24px 16px}
+  .card{border-radius:22px}
+}
+@media print{
+  .site-header,.atmosphere,.atmosphere-control{display:none!important}
+}
+
+
+/* Linked Library + private GitHub case vault */
+.vault-card{
+  margin-top:20px;
+  border:1px solid rgba(255,255,255,.87);
+  border-radius:28px;
+  background:var(--panel);
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  overflow:hidden;
+}
+.vault-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:16px;
+  padding:24px 26px 16px;
+}
+.vault-head h2{margin:0 0 6px}
+.vault-head p{margin:0;color:var(--muted)}
+.vault-status{
+  flex:0 0 auto;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 11px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  color:var(--muted);
+  background:rgba(255,255,255,.56);
+  font-size:.78rem;
+  font-weight:850;
+}
+.vault-status::before{
+  content:"";
+  width:8px;height:8px;border-radius:50%;
+  background:var(--warn);
+  box-shadow:0 0 0 4px rgba(154,90,31,.10);
+}
+.vault-status.connected{color:var(--good)}
+.vault-status.connected::before{
+  background:var(--good);
+  box-shadow:0 0 0 4px rgba(47,116,92,.11);
+}
+.vault-body{padding:0 26px 26px}
+.vault-grid{
+  display:grid;
+  grid-template-columns:repeat(12,minmax(0,1fr));
+  gap:12px;
+}
+.vault-field{grid-column:span 3}
+.vault-field.repo{grid-column:span 4}
+.vault-field.token{grid-column:span 5}
+.vault-field label{display:block;margin:0 0 5px;font-size:.8rem;font-weight:850}
+.vault-field input{
+  width:100%;min-height:43px;padding:10px 12px;
+  border:1px solid var(--line);border-radius:13px;
+  color:var(--ink);background:var(--panel-solid);
+}
+.vault-actions{
+  display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px;
+}
+.vault-actions .spacer{flex:1}
+.token-choice{
+  display:flex;align-items:center;gap:8px;color:var(--muted);font-size:.8rem;
+}
+.token-choice input{accent-color:var(--accent)}
+.vault-warning{
+  margin-top:14px;padding:12px 14px;border:1px solid rgba(154,90,31,.30);
+  border-radius:14px;background:rgba(154,90,31,.07);color:var(--muted);font-size:.84rem;
+}
+.case-shelf{
+  margin-top:17px;padding-top:17px;border-top:1px solid var(--line);
+}
+.case-shelf-head{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px;
+}
+.case-shelf-head h3{margin:0}
+.case-search{
+  width:min(310px,100%);min-height:40px;padding:9px 12px;border:1px solid var(--line);
+  border-radius:999px;color:var(--ink);background:var(--panel-solid);
+}
+.case-list{display:grid;gap:9px}
+.case-row{
+  display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;
+  padding:12px 13px;border:1px solid var(--line);border-radius:15px;
+  background:rgba(255,255,255,.38);
+}
+.case-row-title{font-weight:900}
+.case-row-meta{margin-top:2px;color:var(--muted);font-size:.78rem}
+.case-row-actions{display:flex;flex-wrap:wrap;gap:7px}
+.case-empty{
+  padding:17px;border:1px dashed var(--line);border-radius:15px;
+  color:var(--muted);text-align:center;
+}
+.linked-bot-help{
+  display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:7px;
+}
+.linked-bot-chip{
+  display:inline-flex;padding:4px 9px;border-radius:999px;background:var(--accent-soft);
+  color:var(--accent-strong);font-size:.74rem;font-weight:850;
+}
+.restored-evidence{
+  margin-top:10px;padding:12px;border:1px solid var(--line);border-radius:13px;
+  background:rgba(255,255,255,.32);
+}
+.restored-evidence ul{margin:7px 0 0;padding-left:20px}
+.vault-current{
+  margin-top:12px;padding:10px 12px;border-left:3px solid var(--accent);
+  border-radius:6px 13px 13px 6px;background:var(--accent-soft);
+  color:var(--accent-strong);font-size:.82rem;font-weight:800;
+}
+@media(max-width:850px){
+  .vault-field,.vault-field.repo,.vault-field.token{grid-column:span 6}
+}
+@media(max-width:620px){
+  .vault-head{flex-direction:column;padding:20px 17px 13px}
+  .vault-body{padding:0 17px 20px}
+  .vault-field,.vault-field.repo,.vault-field.token{grid-column:span 12}
+  .case-row{grid-template-columns:1fr}
+  .case-shelf-head{align-items:stretch;flex-direction:column}
+  .case-search{width:100%}
+}
+@media print{.vault-card{display:none!important}}
+
+</style>
 </head>
 <body>
+  <div class="atmosphere sparkles" id="atmosphere" aria-hidden="true"></div>
   <input class="theme-switch-input" type="checkbox" id="themeSwitch" aria-label="Use night theme">
   <div class="app-shell">
+
+<header class="site-header no-print">
+  <a class="site-brand" href="index.html">
+    <span class="site-brand-mark" aria-hidden="true">♥</span>
+    <span>Dollie Tools</span>
+  </a>
+  <nav class="site-nav" aria-label="Dollie Tools pages">
+    <a class="active" href="index.html">Tools</a>
+    <a href="library.html">Library</a>
+  </nav>
+</header>
+
   <main class="shell">
-    <nav class="repo-nav no-print" aria-label="Dollie Tools navigation"><a class="home-link" href="index.html">← All Dollie Tools</a></nav>
     <section class="hero">
       <div class="hero-toolbar">
         <span class="privacy-badge">Privacy-first — evidence stays in your browser</span>
@@ -601,6 +1084,48 @@
       <div class="creator-credit"><span aria-hidden="true">♥</span> Created by <strong>Dollie</strong> <span aria-hidden="true">•</span> © 2026 Dollie</div>
     </section>
 
+
+    <section class="vault-card no-print" aria-labelledby="vaultHeading">
+      <div class="vault-head">
+        <div>
+          <div class="eyebrow">Owner-only workspace</div>
+          <h2 id="vaultHeading">Private GitHub case vault</h2>
+          <p>Keep an editable case list in a separate private repository. The public Dollie Tools repository never receives the case data.</p>
+        </div>
+        <span class="vault-status" id="vaultStatus">Not connected</span>
+      </div>
+      <div class="vault-body">
+        <div class="vault-grid">
+          <div class="vault-field"><label for="vaultOwner">GitHub owner</label><input id="vaultOwner" value="dolliebun" autocomplete="username"></div>
+          <div class="vault-field repo"><label for="vaultRepo">Private repository</label><input id="vaultRepo" placeholder="dollie-evidence-vault"></div>
+          <div class="vault-field"><label for="vaultBranch">Branch</label><input id="vaultBranch" value="main"></div>
+          <div class="vault-field token"><label for="vaultToken">Fine-grained token</label><input id="vaultToken" type="password" autocomplete="off" placeholder="github_pat_…"></div>
+        </div>
+        <div class="vault-actions">
+          <label class="token-choice"><input id="rememberVaultToken" type="checkbox"> Remember token on this device</label>
+          <button type="button" class="btn-primary small" id="connectVault">Connect / refresh</button>
+          <button type="button" class="btn-secondary small" id="saveGithubCase">Save current case to GitHub</button>
+          <button type="button" class="btn-ghost small" id="newGithubCase">New case</button>
+          <button type="button" class="btn-danger small" id="deleteGithubCase">Delete current case</button>
+          <span class="spacer"></span>
+          <button type="button" class="btn-ghost small" id="openVaultRepo">Open repository ↗</button>
+          <button type="button" class="btn-ghost small" id="disconnectVault">Disconnect</button>
+        </div>
+        <div class="vault-warning">
+          Use a <strong>fine-grained personal access token</strong> restricted to one private vault repository, with repository <strong>Contents: read and write</strong>. The default is session-only storage. Remembering the token keeps it in this browser’s local storage, so only enable that on a trusted personal device.
+        </div>
+        <div class="vault-current" id="currentVaultCase">Current form is not linked to a saved GitHub case.</div>
+        <div class="case-shelf">
+          <div class="case-shelf-head">
+            <div><h3>GitHub case shelf</h3><div class="helper" id="vaultCaseCount">Connect the vault to load cases.</div></div>
+            <input class="case-search" id="vaultCaseSearch" type="search" placeholder="Search saved cases…">
+          </div>
+          <div class="case-list" id="vaultCaseList"><div class="case-empty">The private case shelf is locked.</div></div>
+        </div>
+      </div>
+    </section>
+
+
     <form id="caseForm" autocomplete="off">
       <div class="grid">
         <section class="card">
@@ -612,6 +1137,10 @@
             <div class="field third"><label for="targetPlatform">Target platform or service <span class="required-marker">*</span></label><input id="targetPlatform" name="targetPlatform" required placeholder="App or website receiving the report"></div>
             <div class="field third"><label for="creatorCountry">Creator country</label><input id="creatorCountry" name="creatorCountry" placeholder="Country of residence"></div>
             <div class="field third"><label for="outputType">Primary output</label><select id="outputType" name="outputType"><option>Evidence package only</option><option>Platform copyright report</option><option>DMCA notice draft</option><option>Direct removal request</option></select></div>
+
+            <div class="field half"><label for="linkedBotId">Linked Library bot</label><select id="linkedBotId" name="linkedBotId"><option value="">Not linked to a Library bot</option></select><div class="linked-bot-help"><button type="button" class="btn-secondary small" id="useLinkedBot">Use selected bot details</button><a class="linked-bot-chip" id="openLinkedBot" href="library.html">Open Library</a></div></div>
+            <div class="field quarter"><label for="caseStatus">Case status</label><select id="caseStatus" name="caseStatus"><option>Draft</option><option>Collecting evidence</option><option>Ready to report</option><option>Submitted</option><option>Resolved</option><option>Archived</option></select></div>
+            <div class="field quarter"><label for="casePriority">Priority</label><select id="casePriority" name="casePriority"><option>Normal</option><option>Low</option><option>High</option><option>Urgent</option></select></div>
             <div class="field"><label for="caseSummary">Brief case summary</label><textarea id="caseSummary" name="caseSummary" placeholder="Describe what was copied, where it appeared, and why you believe the material came from your original bot."></textarea></div>
           </div>
         </section>
@@ -674,7 +1203,7 @@
           <div class="fields">
             <div class="field"><label for="evidenceFiles">Select screenshots, exports, source files, recordings, receipts, or correspondence</label><input id="evidenceFiles" type="file" multiple></div>
             <div class="field"><div class="warning-box"><strong>Preserve originals:</strong> keep untouched files separately. Add annotations only to copies. A hash can help identify a file but does not by itself prove authorship or the creation date.</div></div>
-            <div class="field"><div id="fileTablePlaceholder" class="helper">No evidence files selected.</div><div id="fileTableWrap" class="table-wrap hidden"><table><thead><tr><th>#</th><th>Preview</th><th>Filename</th><th>Type / size</th><th>SHA-256</th><th>Description</th><th></th></tr></thead><tbody id="fileTableBody"></tbody></table></div></div>
+            <div class="field"><div id="fileTablePlaceholder" class="helper">No evidence files selected.</div><div id="restoredEvidenceBox" class="restored-evidence hidden"></div><div id="fileTableWrap" class="table-wrap hidden"><table><thead><tr><th>#</th><th>Preview</th><th>Filename</th><th>Type / size</th><th>SHA-256</th><th>Description</th><th></th></tr></thead><tbody id="fileTableBody"></tbody></table></div></div>
           </div>
         </section>
 
@@ -721,8 +1250,8 @@
 
         <section class="card">
           <div class="card-header"><div class="step">?</div><div class="header-copy"><h2>How this GitHub edition handles privacy</h2></div></div>
-          <details open><summary>No evidence uploads</summary><p>The GitHub-hosted page contains no analytics, remote fonts, external libraries, advertising, account system, or upload endpoint. After the page loads, the tool does not send your form entries or selected evidence anywhere. Selected evidence stays in the current browser session unless you deliberately generate or save a file.</p></details>
-          <details><summary>Browser storage</summary><p>“Save locally” stores form text in this browser’s local storage. Evidence-file contents are not stored there. Clearing browser data or moving to another browser removes that saved form copy.</p></details>
+          <details open><summary>No evidence uploads</summary><p>The GitHub-hosted page contains no analytics, remote fonts, external libraries, advertising, account system, or upload endpoint. By default, the tool does not send your form entries or selected evidence anywhere. Network access occurs only when you deliberately refresh the public Library records or connect the optional private GitHub vault. Selected evidence-file contents are never uploaded by the vault feature.</p></details>
+          <details><summary>Browser storage</summary><p>“Save locally” stores form text in this browser’s local storage. The optional GitHub vault stores editable case text and evidence metadata in the private repository you choose. Evidence-file contents are not stored in either location.</p></details>
           <details><summary>Generated documents</summary><p>The evidence report and case backup are generated in your browser and downloaded to your device. Image evidence may be embedded in the report when practical. Other evidence is indexed by filename, description, size, type, and hash; keep the original attachments in your own case folder.</p></details>
           <details><summary>Legal scope</summary><p>Copyright usually protects original expression rather than ideas, systems, titles, names, or short phrases. Rules, platform procedures, and applicable law vary. Review the receiving service’s current policy and obtain professional advice when the stakes justify it.</p></details>
         </section>
@@ -734,6 +1263,7 @@
         <button type="button" class="btn-ghost" id="exportJson">Export case backup</button>
         <label class="btn-ghost" style="display:inline-flex;align-items:center;cursor:pointer">Import backup<input type="file" id="importJson" accept="application/json,.json" hidden></label>
         <span class="spacer"></span>
+        <button type="button" class="btn-secondary" id="saveGithubCaseSticky">Save to GitHub vault</button>
         <button type="button" class="btn-ghost" id="saveLocal">Save locally</button>
         <button type="button" class="btn-ghost" id="loadLocal">Load saved</button>
         <button type="button" class="btn-danger" id="clearCase">Clear</button>
@@ -744,7 +1274,7 @@
     <div class="footer">
       <strong>Dollie Tools — Created by Dollie</strong> • © 2026 Dollie. All rights reserved.<br>
       Copyright covers this tool’s original code, design, and wording. Creators retain ownership of the content and evidence they enter.<br>
-      Dollie Tools • tools repository edition • Version 2.1 • Generated files should be reviewed before submission
+      Dollie Tools • tools repository edition • Version 2.2 • Generated files should be reviewed before submission
     </div>
   </main>
 
@@ -790,6 +1320,21 @@
   const files = [];
   const MAX_EMBED_BYTES = 8 * 1024 * 1024;
   const THEME_KEY = 'dollieTools.botCopyright.theme';
+
+  const BOT_REGISTRY_FALLBACK = [{"id": "elias-thorne", "name": "Elias Thorne", "meta": "Solas archive · Beta / Alpha", "description": "A deceptively easygoing Head of Security: loyal, observant and dangerous the moment the joke stops. His connection to the dormant House remains a restricted record.", "image": "https://raw.githubusercontent.com/dolliebun/the-library/main/assets/characters/elias-thorne.png", "tags": ["non-human", "male"], "record": "https://dolliebun.github.io/the-library/house-solas.html", "chat": "https://tipsy.chat/chat/1784030890796980014"}, {"id": "silas-viremont", "name": "Silas Viremont", "meta": "Viremont · Alpha", "description": "A ruthless young CEO with impeccable control, expensive taste and a private capacity for devotion he would rather weaponise than confess.", "image": "https://raw.githubusercontent.com/dolliebun/the-library/main/assets/characters/silas-viremont.png", "tags": ["non-human", "male"], "record": "https://dolliebun.github.io/the-library/house-viremont.html", "chat": "https://tipsy.chat/chat/1784485189181860062"}, {"id": "rhydian-blackbriar", "name": "Rhydian Blackbriar", "meta": "Blackbriar · Alpha King", "description": "The reigning Alpha King: severe, strategic and built to carry the hidden society without flinching—until the person he loves steps into the room.", "image": "https://raw.githubusercontent.com/dolliebun/the-library/main/assets/characters/rhydian-blackbriar.png", "tags": ["non-human", "male"], "record": "https://dolliebun.github.io/the-library/house-blackbriar.html", "chat": "https://tipsy.chat/chat/1783242123794632455"}, {"id": "dr-kairos-adebisi", "name": "Dr. Kairos Adebisi", "meta": "Fairborne · Alpha", "description": "A brilliant, emotionally constipated Alpha whose clinical precision conceals old blood, dangerous questions and a future balanced on recognition.", "image": "https://raw.githubusercontent.com/dolliebun/the-library/main/assets/characters/kairos-adebisi.png", "tags": ["non-human", "male"], "record": "https://dolliebun.github.io/the-library/house-fairborne.html", "chat": ""}];
+  const BOT_SOURCE_RAW = 'https://raw.githubusercontent.com/dolliebun/the-library/main/characters.html';
+  const BOT_PAGE_BASE = 'https://dolliebun.github.io/the-library/';
+  const BOT_RAW_BASE = 'https://raw.githubusercontent.com/dolliebun/the-library/main/';
+  const VAULT_SETTINGS_KEY = 'dollieTools.evidenceVault.settings';
+  const VAULT_TOKEN_LOCAL_KEY = 'dollieTools.evidenceVault.token';
+  const VAULT_TOKEN_SESSION_KEY = 'dollieTools.evidenceVault.sessionToken';
+  const VAULT_FILE = 'cases.json';
+  let botRegistry = [...BOT_REGISTRY_FALLBACK];
+  let currentCaseId = '';
+  let restoredEvidence = [];
+  let pendingCaseId = new URLSearchParams(location.search).get('case') || '';
+  let vaultState = { connected:false, sha:null, cases:[] };
+
 
   const setStatus = (message, type='') => {
     statusEl.textContent = message;
@@ -880,7 +1425,7 @@
     data.accuracyAuthority = $('#accuracyAuthority').checked;
     data.copies = serializeRepeat('.copy-item');
     data.comparisons = serializeRepeat('.comparison-item');
-    data.evidence = files.map(({file, hash, description, dataUrl}) => ({
+    const selectedEvidence = files.map(({file, hash, description, dataUrl}) => ({
       name: file.name,
       type: file.type || 'Unknown',
       size: file.size,
@@ -889,13 +1434,19 @@
       description,
       ...(includeFileData && dataUrl ? {dataUrl} : {})
     }));
-    data.toolVersion = '2.0-github';
+    data.evidence = selectedEvidence.length ? selectedEvidence : restoredEvidence.map(item => ({...item}));
+    data.caseId = currentCaseId || data.caseId || '';
+    const linkedBot = botRegistry.find(bot => bot.id === data.linkedBotId);
+    data.linkedBotName = linkedBot?.name || data.linkedBotName || '';
+    data.toolVersion = '2.2-github-vault';
     data.preferredTheme = document.documentElement.dataset.theme === 'night' ? 'night' : 'day';
     data.exportedAt = new Date().toISOString();
     return data;
   }
 
   function applyCase(data) {
+    currentCaseId = data.caseId || '';
+    restoredEvidence = Array.isArray(data.evidence) ? data.evidence.map(item => ({...item, dataUrl:''})) : [];
     $$('input[name], select[name], textarea[name]', form).forEach(el => {
       if (data[el.name] !== undefined) el.value = data[el.name];
     });
@@ -909,10 +1460,12 @@
     (data.copies?.length ? data.copies : [{}]).forEach(x => addRepeatItem('copy', x));
     (data.comparisons?.length ? data.comparisons : [{}]).forEach(x => addRepeatItem('comparison', x));
     files.length = 0;
-    if (Array.isArray(data.evidence) && data.evidence.length) {
-      setStatus('Backup loaded. Evidence-file metadata was restored, but original file contents must be selected again.', 'ok');
+    if (restoredEvidence.length) {
+      setStatus('Case loaded. Evidence-file metadata was restored, but original file contents remain on your device.', 'ok');
     }
     renderFiles();
+    updateCurrentCaseLabel();
+    updateLinkedBotLink();
   }
 
   async function sha256(file) {
@@ -968,7 +1521,409 @@
     });
     $$('.file-description', body).forEach(input => input.addEventListener('input', e => { files[Number(e.target.dataset.index)].description = e.target.value; }));
     $$('.remove-file', body).forEach(btn => btn.addEventListener('click', e => { files.splice(Number(e.target.dataset.index),1); renderFiles(); }));
+    const restoredBox = $('#restoredEvidenceBox');
+    if (restoredBox) {
+      restoredBox.classList.toggle('hidden', !restoredEvidence.length || files.length > 0);
+      restoredBox.innerHTML = restoredEvidence.length && files.length === 0
+        ? `<strong>${restoredEvidence.length} saved evidence record${restoredEvidence.length === 1 ? '' : 's'}</strong><div class="helper">Metadata and hashes are preserved in this case. Re-select original files only when you need fresh previews or verification.</div><ul>${restoredEvidence.map(item => `<li>${escapeHtml(item.name || 'Unnamed file')} — ${escapeHtml(item.hash || 'No hash')}</li>`).join('')}</ul>`
+        : '';
+    }
   }
+
+
+  function slugify(value='') {
+    return String(value).toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'')
+      .replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+  }
+
+  function resolveBotPage(value='') {
+    if (!value) return '';
+    if (/^https?:/i.test(value)) return value;
+    return BOT_PAGE_BASE + value.replace(/^\.?\//,'');
+  }
+
+  function resolveBotAsset(value='') {
+    if (!value) return '';
+    if (/^https?:/i.test(value)) return value;
+    return BOT_RAW_BASE + value.replace(/^\.?\//,'');
+  }
+
+  function parseBotRegistry(html) {
+    const doc = new DOMParser().parseFromString(html,'text/html');
+    const knownChats = Object.fromEntries(BOT_REGISTRY_FALLBACK.map(bot => [bot.name, bot.chat]));
+    return [...doc.querySelectorAll('.character-card')].map(card => {
+      const name = card.querySelector('h2')?.textContent.trim();
+      if (!name) return null;
+      const links = [...card.querySelectorAll('.character-links a')];
+      const chatLink = links.find(link => /tipsy|chat/i.test(link.textContent))?.getAttribute('href') || knownChats[name] || '';
+      const recordLink = links.find(link => !/tipsy|chat/i.test(link.textContent))?.getAttribute('href') || '';
+      return {
+        id: slugify(name),
+        name,
+        meta: card.querySelector('.character-info > p')?.textContent.trim() || '',
+        description: card.querySelector('.character-info > span')?.textContent.trim() || '',
+        image: resolveBotAsset(card.querySelector('img')?.getAttribute('src') || ''),
+        tags: (card.dataset.tags || '').split(/\s+/).filter(Boolean),
+        record: resolveBotPage(recordLink),
+        chat: chatLink
+      };
+    }).filter(Boolean);
+  }
+
+  async function loadBotRegistry() {
+    try {
+      const response = await fetch(BOT_SOURCE_RAW, {cache:'no-store'});
+      if (!response.ok) throw new Error(`Library returned ${response.status}`);
+      const parsed = parseBotRegistry(await response.text());
+      if (parsed.length) botRegistry = parsed;
+    } catch {
+      botRegistry = [...BOT_REGISTRY_FALLBACK];
+    }
+    // Dollie's supplied Silas link is authoritative even if the source archive has not been updated yet.
+    const silas = botRegistry.find(bot => bot.name === 'Silas Viremont' || bot.id === 'silas-viremont');
+    if (silas) silas.chat = 'https://tipsy.chat/chat/1784485189181860062';
+    populateBotSelect();
+  }
+
+  function populateBotSelect() {
+    const select = $('#linkedBotId');
+    if (!select) return;
+    const selected = select.value || new URLSearchParams(location.search).get('bot') || '';
+    select.innerHTML = '<option value="">Not linked to a Library bot</option>' +
+      botRegistry.map(bot => `<option value="${escapeHtml(bot.id)}">${escapeHtml(bot.name)} — ${escapeHtml(bot.meta)}</option>`).join('');
+    if ([...select.options].some(option => option.value === selected)) select.value = selected;
+    updateLinkedBotLink();
+    if (new URLSearchParams(location.search).get('bot') && !$('#originalTitle').value.trim()) useLinkedBotDetails();
+  }
+
+  function updateLinkedBotLink() {
+    const bot = botRegistry.find(item => item.id === $('#linkedBotId')?.value);
+    const link = $('#openLinkedBot');
+    if (!link) return;
+    link.href = bot ? `library.html?bot=${encodeURIComponent(bot.id)}` : 'library.html';
+    link.textContent = bot ? `Open ${bot.name} in Library` : 'Open Library';
+  }
+
+  function useLinkedBotDetails() {
+    const bot = botRegistry.find(item => item.id === $('#linkedBotId')?.value);
+    if (!bot) return setStatus('Choose a Library bot first.', 'error');
+    $('#originalTitle').value = bot.name;
+    if (!$('#originalPlatform').value.trim()) $('#originalPlatform').value = bot.chat ? 'Tipsy' : 'Library of Dreams';
+    if (bot.chat) $('#originalUrl').value = bot.chat;
+    if (!$('#caseTitle').value.trim()) $('#caseTitle').value = `${bot.name} copyright evidence`;
+    updateLinkedBotLink();
+    setStatus(`${bot.name} linked to the current case.`, 'ok');
+  }
+
+  function vaultSettingsFromInputs() {
+    return {
+      owner: $('#vaultOwner').value.trim(),
+      repo: $('#vaultRepo').value.trim(),
+      branch: $('#vaultBranch').value.trim() || 'main'
+    };
+  }
+
+  function saveVaultSettings() {
+    const settings = vaultSettingsFromInputs();
+    try { localStorage.setItem(VAULT_SETTINGS_KEY, JSON.stringify(settings)); } catch {}
+    return settings;
+  }
+
+  function loadVaultSettings() {
+    try {
+      const settings = JSON.parse(localStorage.getItem(VAULT_SETTINGS_KEY) || '{}');
+      if (settings.owner) $('#vaultOwner').value = settings.owner;
+      if (settings.repo) $('#vaultRepo').value = settings.repo;
+      if (settings.branch) $('#vaultBranch').value = settings.branch;
+    } catch {}
+    let token = '';
+    try {
+      token = sessionStorage.getItem(VAULT_TOKEN_SESSION_KEY) || localStorage.getItem(VAULT_TOKEN_LOCAL_KEY) || '';
+      $('#rememberVaultToken').checked = Boolean(localStorage.getItem(VAULT_TOKEN_LOCAL_KEY));
+    } catch {}
+    if (token) $('#vaultToken').value = token;
+  }
+
+  function saveVaultToken() {
+    const token = $('#vaultToken').value.trim();
+    try {
+      if ($('#rememberVaultToken').checked) {
+        localStorage.setItem(VAULT_TOKEN_LOCAL_KEY, token);
+        sessionStorage.removeItem(VAULT_TOKEN_SESSION_KEY);
+      } else {
+        sessionStorage.setItem(VAULT_TOKEN_SESSION_KEY, token);
+        localStorage.removeItem(VAULT_TOKEN_LOCAL_KEY);
+      }
+    } catch {}
+    return token;
+  }
+
+  function getVaultToken() {
+    return $('#vaultToken').value.trim();
+  }
+
+  function setVaultConnected(connected, text='') {
+    vaultState.connected = connected;
+    const badge = $('#vaultStatus');
+    badge.classList.toggle('connected', connected);
+    badge.textContent = text || (connected ? 'Connected' : 'Not connected');
+  }
+
+  function encodeUtf8Base64(value) {
+    const bytes = new TextEncoder().encode(value);
+    let binary = '';
+    const chunk = 0x8000;
+    for (let i=0; i<bytes.length; i+=chunk) binary += String.fromCharCode(...bytes.subarray(i,i+chunk));
+    return btoa(binary);
+  }
+
+  function decodeUtf8Base64(value) {
+    const clean = String(value || '').replace(/\n/g,'');
+    const binary = atob(clean);
+    const bytes = Uint8Array.from(binary, char => char.charCodeAt(0));
+    return new TextDecoder().decode(bytes);
+  }
+
+  async function githubRequest(path, options={}) {
+    const token = getVaultToken();
+    if (!token) throw new Error('Enter a GitHub token.');
+    const response = await fetch(`https://api.github.com${path}`, {
+      ...options,
+      headers: {
+        'Accept':'application/vnd.github+json',
+        'Authorization':`Bearer ${token}`,
+        'X-GitHub-Api-Version':'2022-11-28',
+        ...(options.headers || {})
+      }
+    });
+    const text = await response.text();
+    let data = {};
+    try { data = text ? JSON.parse(text) : {}; } catch { data = {message:text}; }
+    if (!response.ok) {
+      const error = new Error(data.message || `GitHub returned ${response.status}`);
+      error.status = response.status;
+      throw error;
+    }
+    return data;
+  }
+
+  function repoPath(settings) {
+    return `/repos/${encodeURIComponent(settings.owner)}/${encodeURIComponent(settings.repo)}`;
+  }
+
+  async function connectVault({quiet=false}={}) {
+    const settings = saveVaultSettings();
+    saveVaultToken();
+    if (!settings.owner || !settings.repo) {
+      if (!quiet) setStatus('Enter the private GitHub repository owner and name.', 'error');
+      return false;
+    }
+    setVaultConnected(false, 'Connecting…');
+    try {
+      await githubRequest(repoPath(settings));
+      let file;
+      try {
+        file = await githubRequest(`${repoPath(settings)}/contents/${VAULT_FILE}?ref=${encodeURIComponent(settings.branch)}`);
+      } catch (error) {
+        if (error.status !== 404) throw error;
+        file = null;
+      }
+      if (file?.content) {
+        const parsed = JSON.parse(decodeUtf8Base64(file.content));
+        vaultState.cases = Array.isArray(parsed.cases) ? parsed.cases : [];
+        vaultState.sha = file.sha || null;
+      } else {
+        vaultState.cases = [];
+        vaultState.sha = null;
+      }
+      setVaultConnected(true, `${vaultState.cases.length} case${vaultState.cases.length === 1 ? '' : 's'}`);
+      renderVaultCases();
+      if (pendingCaseId) {
+        const pending = pendingCaseId;
+        pendingCaseId = '';
+        loadVaultCase(pending);
+      }
+      if (!quiet) setStatus('Private GitHub case vault connected.', 'ok');
+      return true;
+    } catch (error) {
+      vaultState = {connected:false, sha:null, cases:[]};
+      setVaultConnected(false, 'Connection failed');
+      renderVaultCases();
+      if (!quiet) setStatus(`GitHub vault connection failed: ${error.message}`, 'error');
+      return false;
+    }
+  }
+
+  function makeCaseId() {
+    return `case-${Date.now()}-${Math.random().toString(36).slice(2,8)}`;
+  }
+
+  function caseSummaryRecord(data) {
+    const bot = botRegistry.find(item => item.id === data.linkedBotId);
+    return {
+      id: data.caseId,
+      botId: data.linkedBotId || '',
+      botName: bot?.name || data.linkedBotName || '',
+      title: data.caseTitle || 'Untitled case',
+      reference: data.caseReference || '',
+      status: data.caseStatus || 'Draft',
+      priority: data.casePriority || 'Normal',
+      targetPlatform: data.targetPlatform || '',
+      updatedAt: new Date().toISOString(),
+      data
+    };
+  }
+
+  async function writeVault(nextCases, message) {
+    const settings = vaultSettingsFromInputs();
+    const documentData = {
+      schemaVersion:1,
+      updatedAt:new Date().toISOString(),
+      cases:nextCases
+    };
+    const payload = {
+      message,
+      content:encodeUtf8Base64(JSON.stringify(documentData,null,2)),
+      branch:settings.branch
+    };
+    if (vaultState.sha) payload.sha = vaultState.sha;
+    const result = await githubRequest(`${repoPath(settings)}/contents/${VAULT_FILE}`, {
+      method:'PUT',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(payload)
+    });
+    vaultState.sha = result.content?.sha || null;
+    vaultState.cases = nextCases;
+    setVaultConnected(true, `${nextCases.length} case${nextCases.length === 1 ? '' : 's'}`);
+    renderVaultCases();
+  }
+
+  async function saveCurrentCaseToGithub() {
+    if (!vaultState.connected && !(await connectVault())) return;
+    currentCaseId ||= makeCaseId();
+    const data = collectCase(false);
+    data.caseId = currentCaseId;
+    data.vaultUpdatedAt = new Date().toISOString();
+    const record = caseSummaryRecord(data);
+    const next = [...vaultState.cases];
+    const index = next.findIndex(item => item.id === currentCaseId);
+    if (index >= 0) next[index] = record; else next.unshift(record);
+    setStatus('Saving case to the private GitHub vault…');
+    try {
+      await writeVault(next, `${index >= 0 ? 'Update' : 'Add'} evidence case: ${data.caseReference || data.caseTitle || currentCaseId}`);
+      updateCurrentCaseLabel();
+      setStatus('Case saved to the private GitHub vault. Evidence-file contents were not uploaded.', 'ok');
+    } catch (error) {
+      setStatus(`Could not save the GitHub case: ${error.message}`, 'error');
+    }
+  }
+
+  function loadVaultCase(id) {
+    const record = vaultState.cases.find(item => item.id === id);
+    if (!record) return setStatus('That GitHub case was not found.', 'error');
+    applyCase({...record.data, caseId:record.id});
+    currentCaseId = record.id;
+    updateCurrentCaseLabel();
+    history.replaceState(null,'',`?case=${encodeURIComponent(record.id)}${record.botId ? `&bot=${encodeURIComponent(record.botId)}` : ''}`);
+    window.scrollTo({top:$('#caseForm').offsetTop - 20, behavior:'smooth'});
+    setStatus(`Loaded ${record.title} from GitHub.`, 'ok');
+  }
+
+  async function deleteCurrentGithubCase() {
+    if (!currentCaseId) return setStatus('The current form is not linked to a GitHub case.', 'error');
+    const record = vaultState.cases.find(item => item.id === currentCaseId);
+    if (!record) return setStatus('The linked GitHub case is no longer in the loaded vault.', 'error');
+    if (!confirm(`Delete "${record.title}" from the private GitHub vault? This creates a Git commit and cannot be undone from this page.`)) return;
+    const next = vaultState.cases.filter(item => item.id !== currentCaseId);
+    try {
+      await writeVault(next, `Delete evidence case: ${record.reference || record.title}`);
+      currentCaseId = '';
+      updateCurrentCaseLabel();
+      setStatus('Case removed from the private GitHub vault.', 'ok');
+    } catch (error) {
+      setStatus(`Could not delete the GitHub case: ${error.message}`, 'error');
+    }
+  }
+
+  function newGithubCase() {
+    currentCaseId = '';
+    restoredEvidence = [];
+    form.reset();
+    files.length = 0;
+    $('#copiesList').innerHTML = '';
+    $('#comparisonsList').innerHTML = '';
+    addRepeatItem('copy');
+    addRepeatItem('comparison');
+    initializeDefaults();
+    populateBotSelect();
+    renderFiles();
+    updateCurrentCaseLabel();
+    history.replaceState(null,'',location.pathname);
+    setStatus('Started a new unsaved case.', 'ok');
+    window.scrollTo({top:$('#caseForm').offsetTop - 20, behavior:'smooth'});
+  }
+
+  function updateCurrentCaseLabel() {
+    const box = $('#currentVaultCase');
+    if (!box) return;
+    const record = vaultState.cases.find(item => item.id === currentCaseId);
+    box.textContent = record
+      ? `Editing GitHub case: ${record.reference || record.title} • ${record.botName || 'Unlinked bot'}`
+      : 'Current form is not linked to a saved GitHub case.';
+  }
+
+  function renderVaultCases() {
+    const list = $('#vaultCaseList');
+    const count = $('#vaultCaseCount');
+    if (!list || !count) return;
+    if (!vaultState.connected) {
+      count.textContent = 'Connect the vault to load cases.';
+      list.innerHTML = '<div class="case-empty">The private case shelf is locked.</div>';
+      return;
+    }
+    const query = ($('#vaultCaseSearch')?.value || '').trim().toLowerCase();
+    const cases = [...vaultState.cases]
+      .sort((a,b) => String(b.updatedAt || '').localeCompare(String(a.updatedAt || '')))
+      .filter(record => [record.title,record.reference,record.botName,record.status,record.targetPlatform].join(' ').toLowerCase().includes(query));
+    count.textContent = `${cases.length} of ${vaultState.cases.length} saved case${vaultState.cases.length === 1 ? '' : 's'}`;
+    if (!cases.length) {
+      list.innerHTML = '<div class="case-empty">No saved cases match this search.</div>';
+      return;
+    }
+    list.innerHTML = cases.map(record => `
+      <article class="case-row">
+        <div>
+          <div class="case-row-title">${escapeHtml(record.title || 'Untitled case')}</div>
+          <div class="case-row-meta">${escapeHtml(record.reference || 'No reference')} • ${escapeHtml(record.botName || 'Unlinked bot')} • ${escapeHtml(record.status || 'Draft')} • Updated ${escapeHtml(record.updatedAt ? new Date(record.updatedAt).toLocaleString() : 'unknown')}</div>
+        </div>
+        <div class="case-row-actions">
+          <button type="button" class="btn-secondary small load-vault-case" data-case-id="${escapeHtml(record.id)}">Edit</button>
+          ${record.botId ? `<a class="btn-ghost small" href="library.html?bot=${encodeURIComponent(record.botId)}">Library</a>` : ''}
+        </div>
+      </article>`).join('');
+    $$('.load-vault-case', list).forEach(button => button.addEventListener('click', () => loadVaultCase(button.dataset.caseId)));
+    updateCurrentCaseLabel();
+  }
+
+  function disconnectVault() {
+    try {
+      sessionStorage.removeItem(VAULT_TOKEN_SESSION_KEY);
+      localStorage.removeItem(VAULT_TOKEN_LOCAL_KEY);
+    } catch {}
+    $('#vaultToken').value = '';
+    $('#rememberVaultToken').checked = false;
+    vaultState = {connected:false, sha:null, cases:[]};
+    setVaultConnected(false);
+    renderVaultCases();
+    setStatus('Private GitHub vault disconnected. Repository settings were kept.', 'ok');
+  }
+
+  function openVaultRepository() {
+    const settings = vaultSettingsFromInputs();
+    if (!settings.owner || !settings.repo) return setStatus('Enter the vault owner and repository first.', 'error');
+    window.open(`https://github.com/${encodeURIComponent(settings.owner)}/${encodeURIComponent(settings.repo)}`, '_blank', 'noopener');
+  }
+
 
   function validateCore() {
     const required = ['caseTitle','targetPlatform','creatorHandle','originalTitle','originalPlatform'];
@@ -1033,7 +1988,7 @@
     ` : `
       ${section('Executive summary', `<p>${nl2br(data.caseSummary) || '<span class="empty">No summary supplied.</span>'}</p>`)}
       ${section('Case information', fieldRows([
-        ['Case title',data.caseTitle],['Case reference',data.caseReference],['Prepared date',data.createdDate],['Target platform',data.targetPlatform],['Creator country',data.creatorCountry],['Intended output',data.outputType]
+        ['Case title',data.caseTitle],['Case reference',data.caseReference],['Linked Library bot',data.linkedBotName],['Case status',data.caseStatus],['Priority',data.casePriority],['Prepared date',data.createdDate],['Target platform',data.targetPlatform],['Creator country',data.creatorCountry],['Intended output',data.outputType]
       ]))}
       ${section('Creator and ownership', fieldRows([
         ['Public creator name',data.creatorHandle],['Legal name',data.legalName],['Contact email',data.contactEmail],['Telephone',data.contactPhone],['Postal address',data.postalAddress],['Authority',data.ownershipBasis],['Collaborators or co-authors',data.collaborators],['Ownership and license notes',data.ownershipNotes]
@@ -1052,7 +2007,8 @@
     const reportTheme = data.preferredTheme === 'night' ? 'night' : 'day';
     return `<!doctype html><html lang="en" data-theme="${reportTheme}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark"><title>${escapeHtml(title)} — ${escapeHtml(data.caseReference)}</title><style>
       :root{color-scheme:light;--ink:#4b1732;--muted:#8d5874;--line:#efb8d4;--accent:#bd2b72;--soft:#ffdeef;--bg:#fff0f8;--page:#fffafd;--toolbar:#fff5fb;--shadow:0 16px 46px rgba(190,43,113,.15);--draft-bg:#ffe2f0;--draft-line:#dc5a99}html[data-theme=night]{color-scheme:dark;--ink:#fff0f8;--muted:#e4abc8;--line:#8d3764;--accent:#ffb1d6;--soft:#5b1739;--bg:#210713;--page:#3a0d27;--toolbar:#470f30;--shadow:0 18px 52px rgba(0,0,0,.38);--draft-bg:#5e173b;--draft-line:#ff78b8}*{box-sizing:border-box}body{margin:0;color:var(--ink);font:15px/1.5 Arial,sans-serif;background:var(--bg)}.page{width:min(980px,calc(100% - 24px));margin:24px auto;background:var(--page);padding:52px;box-shadow:var(--shadow)}header{border-bottom:3px solid var(--accent);padding-bottom:18px;margin-bottom:28px}h1{font-size:32px;margin:0 0 8px}h2{font-size:21px;margin:0 0 14px;color:var(--accent)}h3{font-size:17px;margin:0 0 10px}h4{margin:0 0 8px}.meta{color:var(--muted)}section{padding:20px 0;border-bottom:1px solid var(--line);break-inside:avoid}.draft{padding:10px 14px;background:var(--draft-bg);border:1px solid var(--draft-line);font-weight:bold;margin-bottom:18px}dl{margin:0}dl>div{display:grid;grid-template-columns:220px 1fr;gap:15px;padding:7px 0;border-bottom:1px dotted var(--line)}dt{font-weight:bold}dd{margin:0}.entry{padding:14px;border:1px solid var(--line);border-radius:10px;margin:12px 0;break-inside:avoid}.compare{display:grid;grid-template-columns:1fr 1fr;gap:14px}.compare>div{min-width:0}blockquote{margin:0;padding:12px;background:var(--soft);border-left:3px solid var(--accent);white-space:normal;overflow-wrap:anywhere}.empty{color:var(--muted);font-style:italic}table{width:100%;border-collapse:collapse;font-size:12px}th,td{padding:8px;border:1px solid var(--line);vertical-align:top;text-align:left}th{background:var(--soft)}td img{max-width:240px;max-height:240px;display:block;margin-top:8px;border:1px solid var(--line)}.hash{font-family:monospace;word-break:break-all}.toolbar{position:sticky;top:0;z-index:10;display:flex;justify-content:center;gap:9px;background:var(--toolbar);padding:12px;border-bottom:1px solid var(--line)}.toolbar button{padding:9px 13px;border:1px solid var(--line);border-radius:999px;background:linear-gradient(135deg,#e94b99,#b51d66);color:#fff;font-weight:bold;cursor:pointer;box-shadow:0 8px 22px rgba(188,35,105,.20)}.toolbar .secondary{background:var(--soft);color:var(--accent)}.tool-credit{margin-top:28px;padding-top:14px;border-top:1px solid var(--line);color:var(--muted);font-size:12px;text-align:center}.tool-credit strong{color:var(--accent)}@media(max-width:700px){.page{padding:24px}.compare{grid-template-columns:1fr}dl>div{grid-template-columns:1fr;gap:3px}.toolbar{flex-wrap:wrap}}@media print{:root,html[data-theme=night]{color-scheme:light;--ink:#2d1421;--muted:#65505c;--line:#e0b5ca;--accent:#a51f61;--soft:#fde8f2;--bg:#fff;--page:#fff;--toolbar:#fff;--shadow:none;--draft-bg:#fde8f2;--draft-line:#cf4b8a}body{background:#fff}.toolbar{display:none}.page{width:100%;margin:0;padding:20mm;box-shadow:none}section{break-inside:auto}.entry,table,tr,img{break-inside:avoid}}
-    </style></head><body><div class="toolbar"><button type="button" id="printButton">Print / Save as PDF</button><button type="button" class="secondary" id="reportThemeToggle">${reportTheme === 'night' ? '☀ Day theme' : '☾ Night theme'}</button></div><main class="page"><header>${draft}<h1>${escapeHtml(title)}</h1><div class="meta">Case ${escapeHtml(data.caseReference || '—')} • Prepared ${escapeHtml(data.createdDate || nowDate())}</div></header>${dmcaBody}<section><h2>Important notice</h2><p>This document is a draft compiled from user-provided information. Review all facts, URLs, declarations, signatures, and the receiving platform’s current requirements before submission. Obtain qualified legal advice when appropriate.</p></section><footer class="tool-credit">♥ Generated with <strong>Dollie Tools</strong> — Bot Copyright Evidence Builder • Created by Dollie • © 2026 Dollie<br>User-provided report content and evidence remain the property of their respective creator or rights holder.</footer></main><script>(function(){var root=document.documentElement;var button=document.getElementById('reportThemeToggle');var key='dollieTools.botCopyright.reportTheme';try{var saved=localStorage.getItem(key);if(saved==='day'||saved==='night'){root.dataset.theme=saved;}}catch(e){}function refresh(){var night=root.dataset.theme==='night';button.textContent=night?'☀ Day theme':'☾ Night theme';button.setAttribute('aria-label',night?'Switch to day theme':'Switch to night theme');}button.addEventListener('click',function(){root.dataset.theme=root.dataset.theme==='night'?'day':'night';try{localStorage.setItem(key,root.dataset.theme);}catch(e){}refresh();});document.getElementById('printButton').addEventListener('click',function(){window.print();});refresh();})();<\/script></body></html>`;
+    </style></head><body><div class="toolbar"><button type="button" id="printButton">Print / Save as PDF</button><button type="button" class="secondary" id="reportThemeToggle">${reportTheme === 'night' ? '☀ Day theme' : '☾ Night theme'}</button></div><main class="page"><header>${draft}<h1>${escapeHtml(title)}</h1><div class="meta">Case ${escapeHtml(data.caseReference || '—')} • Prepared ${escapeHtml(data.createdDate || nowDate())}</div></header>${dmcaBody}<section><h2>Important notice</h2><p>This document is a draft compiled from user-provided information. Review all facts, URLs, declarations, signatures, and the receiving platform’s current requirements before submission. Obtain qualified legal advice when appropriate.</p></section><footer class="tool-credit">♥ Generated with <strong>Dollie Tools</strong> — Bot Copyright Evidence Builder • Created by Dollie • © 2026 Dollie<br>User-provided report content and evidence remain the property of their respective creator or rights holder.</footer></main><script>(function(){var root=document.documentElement;var button=document.getElementById('reportThemeToggle');var key='dollieTools.botCopyright.reportTheme';try{var saved=localStorage.getItem(key);if(saved==='day'||saved==='night'){root.dataset.theme=saved;}}catch(e){}function refresh(){var night=root.dataset.theme==='night';button.textContent=night?'☀ Day theme':'☾ Night theme';button.setAttribute('aria-label',night?'Switch to day theme':'Switch to night theme');}button.addEventListener('click',function(){root.dataset.theme=root.dataset.theme==='night'?'day':'night';try{localStorage.setItem(key,root.dataset.theme);}catch(e){}refresh();});document.getElementById('printButton').addEventListener('click',function(){window.print();});refresh();})();<\/script>
+</body></html>`;
   }
 
   function download(name, content, mime='text/html;charset=utf-8') {
@@ -1124,11 +2080,23 @@
     } catch { setStatus('The saved case could not be loaded.', 'error'); }
   });
 
+
+  $('#linkedBotId').addEventListener('change', updateLinkedBotLink);
+  $('#useLinkedBot').addEventListener('click', useLinkedBotDetails);
+  $('#connectVault').addEventListener('click', () => connectVault());
+  $('#saveGithubCase').addEventListener('click', saveCurrentCaseToGithub);
+  $('#saveGithubCaseSticky').addEventListener('click', saveCurrentCaseToGithub);
+  $('#newGithubCase').addEventListener('click', newGithubCase);
+  $('#deleteGithubCase').addEventListener('click', deleteCurrentGithubCase);
+  $('#disconnectVault').addEventListener('click', disconnectVault);
+  $('#openVaultRepo').addEventListener('click', openVaultRepository);
+  $('#vaultCaseSearch').addEventListener('input', renderVaultCases);
+
   $('#clearCase').addEventListener('click', () => {
     if (!confirm('Clear the current form and evidence-file list? This does not delete files already downloaded to your device.')) return;
-    form.reset(); files.length = 0; renderFiles();
+    form.reset(); files.length = 0; restoredEvidence = []; currentCaseId = ''; renderFiles();
     $('#copiesList').innerHTML = ''; $('#comparisonsList').innerHTML = '';
-    addRepeatItem('copy'); addRepeatItem('comparison'); initializeDefaults();
+    addRepeatItem('copy'); addRepeatItem('comparison'); initializeDefaults(); populateBotSelect(); updateCurrentCaseLabel();
     setStatus('Current case cleared.', 'ok');
   });
 
@@ -1136,7 +2104,65 @@
   addRepeatItem('comparison');
   applyTheme(document.documentElement.dataset.theme || 'day', false);
   initializeDefaults();
+  loadVaultSettings();
+  loadBotRegistry().then(() => {
+    const requestedBot = new URLSearchParams(location.search).get('bot');
+    if (requestedBot && [...$('#linkedBotId').options].some(option => option.value === requestedBot)) {
+      $('#linkedBotId').value = requestedBot;
+      updateLinkedBotLink();
+      if (!pendingCaseId) useLinkedBotDetails();
+    }
+  });
+  updateCurrentCaseLabel();
+  renderVaultCases();
+  if (getVaultToken() && $('#vaultOwner').value.trim() && $('#vaultRepo').value.trim()) connectVault({quiet:true});
 })();
 </script>
+
+<div class="atmosphere-control no-print" aria-label="Page effects">
+  <button type="button" data-atmosphere="sparkles" aria-label="Soft floating sparkles" title="Soft floating sparkles"><span aria-hidden="true">✧</span></button>
+  <button type="button" data-atmosphere="petals" aria-label="Falling cherry blossom petals" title="Falling cherry blossom petals"><span aria-hidden="true">♡</span></button>
+  <button type="button" data-atmosphere="off" aria-label="Turn effects off" title="Turn effects off"><span aria-hidden="true">×</span></button>
+</div>
+
+
+<script>
+document.addEventListener("DOMContentLoaded",function(){
+  const layer=document.getElementById("atmosphere");
+  if(!layer)return;
+  let saved="sparkles";
+  try{saved=localStorage.getItem("dollieAtmosphere")||"sparkles"}catch(_){}
+  function createParticles(){
+    layer.innerHTML="";
+    const count=window.matchMedia("(max-width:720px)").matches?14:24;
+    for(let i=0;i<count;i++){
+      const p=document.createElement("span");
+      p.className="particle";
+      p.style.setProperty("--x",(Math.random()*100).toFixed(2)+"vw");
+      p.style.setProperty("--size",(5+Math.random()*10).toFixed(1)+"px");
+      p.style.setProperty("--fall",(14+Math.random()*15).toFixed(1)+"s");
+      p.style.setProperty("--sway",(2.8+Math.random()*4.5).toFixed(1)+"s");
+      p.style.setProperty("--fade",(4+Math.random()*5).toFixed(1)+"s");
+      p.style.setProperty("--delay",(-Math.random()*22).toFixed(1)+"s");
+      p.style.setProperty("--opacity",(0.18+Math.random()*0.42).toFixed(2));
+      layer.appendChild(p);
+    }
+  }
+  function setAtmosphere(mode){
+    layer.className="atmosphere "+mode;
+    document.querySelectorAll("[data-atmosphere]").forEach(btn=>{
+      btn.classList.toggle("active",btn.dataset.atmosphere===mode);
+    });
+    try{localStorage.setItem("dollieAtmosphere",mode)}catch(_){}
+    if(mode!=="off"&&!layer.children.length)createParticles();
+  }
+  document.querySelectorAll("[data-atmosphere]").forEach(btn=>{
+    btn.addEventListener("click",()=>setAtmosphere(btn.dataset.atmosphere));
+  });
+  createParticles();
+  setAtmosphere(["sparkles","petals","off"].includes(saved)?saved:"sparkles");
+});
+</script>
+
 </body>
 </html>

@@ -221,10 +221,104 @@ button,a{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
   .atmosphere{display:none}
   *{animation:none!important}
 }
+
+/* Dollie Tools shared navigation */
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:80;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  width:min(1080px,calc(100% - 24px));
+  margin:12px auto 0;
+  padding:10px 12px 10px 15px;
+  border:1px solid rgba(255,255,255,.86);
+  border-radius:999px;
+  background:rgba(255,250,252,.83);
+  box-shadow:0 12px 38px rgba(84,47,66,.10);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+}
+.site-brand{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  min-width:0;
+  color:var(--ink);
+  text-decoration:none;
+  font:600 1.12rem/1 Georgia,serif;
+}
+.site-brand-mark{
+  width:34px;
+  height:34px;
+  flex:0 0 auto;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  color:#fff;
+  background:linear-gradient(135deg,#d982a4,#c89d58);
+  box-shadow:0 7px 18px rgba(178,103,137,.23);
+}
+.site-nav{
+  display:flex;
+  align-items:center;
+  gap:4px;
+}
+.site-nav a{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:38px;
+  padding:7px 13px;
+  border-radius:999px;
+  color:var(--muted);
+  text-decoration:none;
+  font-weight:800;
+  font-size:.82rem;
+}
+.site-nav a:hover,
+.site-nav a:focus-visible{
+  color:var(--ink);
+  background:rgba(255,255,255,.66);
+  outline:none;
+}
+.site-nav a.active{
+  color:#fff;
+  background:linear-gradient(135deg,#d982a4,#c89d58);
+  box-shadow:0 7px 18px rgba(178,103,137,.19);
+}
+@media(max-width:560px){
+  .site-header{
+    width:calc(100% - 16px);
+    border-radius:22px;
+    align-items:stretch;
+    flex-direction:column;
+    gap:7px;
+  }
+  .site-brand{justify-content:center}
+  .site-nav{display:grid;grid-template-columns:1fr 1fr}
+  .site-nav a{width:100%}
+}
+
 </style>
 </head>
 <body>
 <div class="atmosphere sparkles" id="atmosphere" aria-hidden="true"></div>
+
+
+<header class="site-header">
+  <a class="site-brand" href="index.html">
+    <span class="site-brand-mark" aria-hidden="true">♥</span>
+    <span>Dollie Tools</span>
+  </a>
+  <nav class="site-nav" aria-label="Dollie Tools pages">
+    <a class="active" href="index.html">Tools</a>
+    <a href="library.html">Library</a>
+  </nav>
+</header>
+
 
 <main class="home">
   <section class="hero">
@@ -256,6 +350,12 @@ button,a{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
       <span class="tag">Creator protection</span>
       <h2>Copyright Evidence Builder</h2>
       <p>Compile links, dates, comparison excerpts, screenshots, and evidence into a private local report or editable DMCA-style draft.</p>
+    </a>
+
+    <a class="tool" href="library.html">
+      <span class="tag">Bot archive</span>
+      <h2>Dollie’s Library</h2>
+      <p>Browse and search Dollie’s bot records synced from the public Library repository, with artwork, archive records, GitHub sources, and available chat links.</p>
     </a>
   </section>
 </main>

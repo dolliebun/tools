@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Dollie's public bot library with an optional owner-only private GitHub case shelf.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src data: https://raw.githubusercontent.com; style-src 'unsafe-inline'; script-src 'unsafe-inline'; connect-src https://api.github.com https://raw.githubusercontent.com; form-action 'none'; base-uri 'none'; object-src 'none'">
+<title>Dollie’s Library — Dollie Tools</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='%23efabc4' d='M32 56C27 51 8 38 8 22C8 12 20 7 28 15L32 20L36 15C44 7 56 12 56 22C56 38 37 51 32 56Z'/%3E%3C/svg%3E">
+<style>
+:root{--ink:#563947;--muted:#806976;--pink:#e8a9c1;--pink2:#f5cddd;--gold:#c99f5c;--glass:rgba(255,255,255,.72);--line:rgba(103,67,85,.16);--shadow:0 22px 65px rgba(84,47,66,.13);--good:#2f745c;--warn:#9a5a1f}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%;overflow-x:hidden}
+body{margin:0;min-height:100vh;overflow-x:hidden;padding:0 env(safe-area-inset-right) 82px env(safe-area-inset-left);color:var(--ink);font:15px/1.55 Nunito,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at 9% 5%,#fff,transparent 24%),radial-gradient(circle at 89% 9%,rgba(239,184,205,.58),transparent 31%),radial-gradient(circle at 45% 108%,rgba(232,207,169,.48),transparent 36%),linear-gradient(145deg,#fffafd,#f7e5ec,#f2e9df)}
+button,a,input{-webkit-tap-highlight-color:transparent;touch-action:manipulation;font:inherit}
+.site-header{position:sticky;top:0;z-index:80;display:flex;align-items:center;justify-content:space-between;gap:16px;width:min(1080px,calc(100% - 24px));margin:12px auto 0;padding:10px 12px 10px 15px;border:1px solid rgba(255,255,255,.86);border-radius:999px;background:rgba(255,250,252,.83);box-shadow:0 12px 38px rgba(84,47,66,.10);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.site-brand{display:flex;align-items:center;gap:9px;min-width:0;color:var(--ink);text-decoration:none;font:600 1.12rem/1 Georgia,serif}
+.site-brand-mark{width:34px;height:34px;flex:0 0 auto;display:grid;place-items:center;border-radius:50%;color:#fff;background:linear-gradient(135deg,#d982a4,#c89d58);box-shadow:0 7px 18px rgba(178,103,137,.23)}
+.site-nav{display:flex;align-items:center;gap:4px}
+.site-nav a{display:inline-flex;align-items:center;justify-content:center;min-height:38px;padding:7px 13px;border-radius:999px;color:var(--muted);text-decoration:none;font-weight:800;font-size:.82rem}
+.site-nav a:hover{color:var(--ink);background:rgba(255,255,255,.66)}
+.site-nav a.active{color:#fff;background:linear-gradient(135deg,#d982a4,#c89d58);box-shadow:0 7px 18px rgba(178,103,137,.19)}
+.shell{width:min(1080px,calc(100% - 24px));margin:28px auto 0;position:relative;z-index:2}
+.hero{text-align:center;padding:28px 10px 22px}
+.eyebrow{letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:800;font-size:.7rem}
+.hero h1{margin:8px 0;font:500 clamp(2.7rem,8vw,5.3rem)/.95 Georgia,serif}
+.hero p{max-width:760px;margin:auto;color:var(--muted)}
+.panel{margin:0 0 17px;padding:18px;border:1px solid rgba(255,255,255,.88);border-radius:25px;background:var(--glass);box-shadow:var(--shadow);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.public-tools{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center}
+.search{position:relative}
+.search input{width:100%;min-height:46px;padding:11px 15px 11px 42px;border:1px solid rgba(114,74,94,.22);border-radius:999px;color:var(--ink);background:rgba(255,255,255,.82);outline:none}
+.search span{position:absolute;left:16px;top:50%;translate:0 -50%;color:var(--muted)}
+.primary-button,.soft-button,.ghost-button,.danger-button{min-height:42px;padding:9px 14px;border:0;border-radius:999px;font-weight:850;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.primary-button{color:#fff;background:linear-gradient(135deg,#d982a4,#c89d58);box-shadow:0 9px 22px rgba(183,105,139,.20)}
+.soft-button{color:var(--ink);background:linear-gradient(135deg,var(--pink2),#eedbb7)}
+.ghost-button{color:var(--ink);background:rgba(255,255,255,.64);border:1px solid var(--line)}
+.danger-button{color:#9d3542;background:rgba(157,53,66,.06);border:1px solid rgba(157,53,66,.28)}
+.filter-row{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 17px}
+.filter{min-height:38px;padding:7px 13px;border:1px solid var(--line);border-radius:999px;color:var(--muted);background:rgba(255,255,255,.62);font-weight:800;cursor:pointer}
+.filter.active{color:#fff;border-color:transparent;background:linear-gradient(135deg,#d982a4,#c89d58)}
+.vault-head{display:flex;align-items:flex-start;justify-content:space-between;gap:15px;margin-bottom:13px}
+.vault-head h2{margin:0 0 4px;font:500 1.8rem Georgia,serif}
+.vault-head p{margin:0;color:var(--muted)}
+.vault-status{display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-size:.76rem;font-weight:850}
+.vault-status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--warn)}
+.vault-status.connected{color:var(--good)}.vault-status.connected::before{background:var(--good)}
+.vault-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:10px}
+.vault-field{grid-column:span 3}.vault-field.repo{grid-column:span 4}.vault-field.token{grid-column:span 5}
+.vault-field label{display:block;margin:0 0 5px;font-size:.78rem;font-weight:850}
+.vault-field input{width:100%;min-height:43px;padding:10px 12px;border:1px solid var(--line);border-radius:13px;color:var(--ink);background:rgba(255,255,255,.82)}
+.vault-actions{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-top:11px}
+.remember{display:flex;gap:8px;align-items:center;color:var(--muted);font-size:.8rem}.remember input{accent-color:var(--pink)}
+.vault-note{margin-top:11px;color:var(--muted);font-size:.8rem}
+.case-shelf{margin-top:15px;padding-top:15px;border-top:1px solid var(--line)}
+.case-shelf-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:9px}
+.case-shelf-head h3{margin:0;font:500 1.35rem Georgia,serif}
+.case-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.case-item{padding:12px;border:1px solid var(--line);border-radius:15px;background:rgba(255,255,255,.38)}
+.case-item strong{display:block}.case-meta{margin:3px 0 9px;color:var(--muted);font-size:.76rem}
+.locked{padding:15px;border:1px dashed var(--line);border-radius:15px;color:var(--muted);text-align:center;grid-column:1/-1}
+.sync-note{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin:0 0 17px;padding:13px 15px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.55);color:var(--muted)}
+.sync-note strong{color:var(--ink)}.sync-dot{width:9px;height:9px;flex:0 0 auto;margin-top:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 5px rgba(201,159,92,.12)}.sync-dot.live{background:#61a981;box-shadow:0 0 0 5px rgba(97,169,129,.13)}
+.bot-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}
+.bot-card{min-width:0;overflow:hidden;display:grid;grid-template-columns:180px minmax(0,1fr);border:1px solid rgba(255,255,255,.88);border-radius:27px;background:var(--glass);box-shadow:var(--shadow);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px)}
+.bot-card.focused{outline:3px solid rgba(217,130,164,.45);outline-offset:3px}
+.bot-image{min-height:280px;background:linear-gradient(145deg,#f8d6e3,#edc1d4)}.bot-image img{width:100%;height:100%;display:block;object-fit:cover;object-position:center top}
+.bot-info{min-width:0;display:flex;flex-direction:column;padding:21px}
+.bot-meta{margin:0 0 5px;color:var(--gold);font-size:.72rem;font-weight:850;letter-spacing:.08em;text-transform:uppercase}
+.bot-info h2{margin:0 0 9px;font:500 1.85rem/1.05 Georgia,serif}.bot-info p{margin:0;color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0}.tag{display:inline-flex;padding:4px 9px;border-radius:999px;background:linear-gradient(135deg,var(--pink2),#eedbb7);font-size:.7rem;font-weight:850}
+.card-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:12px}
+.card-links a{min-height:38px;padding:7px 12px;border:1px solid var(--line);border-radius:999px;color:var(--ink);background:rgba(255,255,255,.66);text-decoration:none;font-size:.76rem;font-weight:850;display:inline-flex;align-items:center}
+.card-links a.primary{color:#fff;border-color:transparent;background:linear-gradient(135deg,#d982a4,#c89d58)}
+.bot-cases{margin-top:13px;padding-top:12px;border-top:1px solid var(--line)}.bot-cases-title{font-size:.76rem;font-weight:900;color:var(--muted)}.bot-case-link{display:block;margin-top:6px;padding:8px 10px;border-radius:11px;background:rgba(255,255,255,.45);color:var(--ink);text-decoration:none;font-size:.76rem}.bot-case-link span{display:block;color:var(--muted);font-size:.7rem}
+.empty{grid-column:1/-1;padding:42px 20px;border:1px dashed rgba(103,67,85,.25);border-radius:24px;text-align:center;color:var(--muted);background:rgba(255,255,255,.45)}
+.footer{margin:30px 0 0;text-align:center;color:var(--muted);font-size:.78rem}
+.atmosphere{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}.atmosphere .particle{position:absolute;top:-12vh;left:var(--x);width:var(--size);height:var(--size);opacity:0;animation:particleFall var(--fall) linear infinite,particleSway var(--sway) ease-in-out infinite alternate,particleFade var(--fade) ease-in-out infinite;animation-delay:var(--delay)}.atmosphere.sparkles .particle{filter:drop-shadow(0 0 5px rgba(255,255,255,.92)) drop-shadow(0 0 12px rgba(244,219,231,.38))}.atmosphere.sparkles .particle::before,.atmosphere.sparkles .particle::after{content:"";position:absolute;inset:0;margin:auto;border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,.98),rgba(255,250,247,.80));box-shadow:0 0 5px rgba(255,255,255,.92),0 0 14px rgba(248,222,234,.44)}.atmosphere.sparkles .particle::before{width:34%;height:100%}.atmosphere.sparkles .particle::after{width:100%;height:34%}.atmosphere.petals .particle{width:calc(var(--size)*.72);height:var(--size);border-radius:75% 18% 70% 24%;background:radial-gradient(circle at 35% 25%,rgba(255,255,255,.88),transparent 25%),linear-gradient(145deg,rgba(255,227,237,.95),rgba(226,153,184,.83));box-shadow:0 4px 12px rgba(154,86,117,.16)}.atmosphere.off{display:none}@keyframes particleFall{from{translate:0 -14vh;rotate:0deg}to{translate:0 120vh;rotate:360deg}}@keyframes particleSway{from{margin-left:-24px}to{margin-left:29px}}@keyframes particleFade{0%,100%{opacity:0}15%,72%{opacity:var(--opacity)}88%{opacity:.10}}
+.atmosphere-control{position:fixed;right:18px;bottom:18px;z-index:90;display:flex;padding:4px;border:1px solid rgba(110,72,91,.20);border-radius:999px;background:rgba(255,250,252,.88);box-shadow:0 12px 34px rgba(79,43,61,.16);backdrop-filter:blur(16px)}.atmosphere-control button{width:38px;height:38px;display:grid;place-items:center;border:0;border-radius:50%;background:transparent;color:var(--muted);cursor:pointer}.atmosphere-control button.active{color:#fff;background:linear-gradient(135deg,#d982a4,#c89d58)}
+@media(max-width:850px){.bot-grid{grid-template-columns:1fr}.vault-field,.vault-field.repo,.vault-field.token{grid-column:span 6}}
+@media(max-width:600px){.site-header{width:calc(100% - 16px);border-radius:22px;align-items:stretch;flex-direction:column;gap:7px}.site-brand{justify-content:center}.site-nav{display:grid;grid-template-columns:1fr 1fr}.shell{width:calc(100% - 16px);margin-top:18px}.public-tools{grid-template-columns:1fr}.bot-card{grid-template-columns:1fr}.bot-image{min-height:340px;max-height:480px}.bot-info{padding:18px}.vault-head{flex-direction:column}.vault-field,.vault-field.repo,.vault-field.token{grid-column:span 12}.case-list{grid-template-columns:1fr}.case-shelf-head{align-items:stretch;flex-direction:column}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}.atmosphere{display:none}}
+</style>
+</head>
+<body>
+<div class="atmosphere sparkles" id="atmosphere" aria-hidden="true"></div>
+<header class="site-header"><a class="site-brand" href="index.html"><span class="site-brand-mark">♥</span><span>Dollie Tools</span></a><nav class="site-nav"><a href="index.html">Tools</a><a class="active" href="library.html">Library</a></nav></header>
+<main class="shell">
+<section class="hero"><div class="eyebrow">Restricted bot records</div><h1>✦ Library ✦</h1><p>Your public bot archive, connected to an owner-only private evidence shelf. Visitors can browse bots; only Dollie can unlock and edit linked cases.</p></section>
+
+<section class="panel public-tools"><label class="search"><span>⌕</span><input id="searchInput" type="search" placeholder="Search names, houses, descriptions, or tags…"></label><button class="primary-button" id="refreshBots" type="button">Refresh bots from GitHub</button></section>
+<div class="filter-row"><button class="filter active" data-filter="all">All</button><button class="filter" data-filter="non-human">Non-human</button><button class="filter" data-filter="human">Human</button><button class="filter" data-filter="female">Female</button><button class="filter" data-filter="male">Male</button></div>
+
+<section class="panel" aria-labelledby="privateShelfHeading">
+  <div class="vault-head"><div><div class="eyebrow">Dollie-only shelf</div><h2 id="privateShelfHeading">Private evidence cases</h2><p>Connect the separate private GitHub repository to display cases beneath their linked bots.</p></div><span class="vault-status" id="vaultStatus">Locked</span></div>
+  <div class="vault-grid">
+    <div class="vault-field"><label for="vaultOwner">GitHub owner</label><input id="vaultOwner" value="dolliebun"></div>
+    <div class="vault-field repo"><label for="vaultRepo">Private repository</label><input id="vaultRepo" placeholder="dollie-evidence-vault"></div>
+    <div class="vault-field"><label for="vaultBranch">Branch</label><input id="vaultBranch" value="main"></div>
+    <div class="vault-field token"><label for="vaultToken">Fine-grained token</label><input id="vaultToken" type="password" autocomplete="off" placeholder="github_pat_…"></div>
+  </div>
+  <div class="vault-actions"><label class="remember"><input id="rememberVaultToken" type="checkbox"> Remember token on this device</label><button class="primary-button" id="connectVault" type="button">Unlock / refresh cases</button><button class="ghost-button" id="openVaultRepo" type="button">Open repository ↗</button><button class="ghost-button" id="disconnectVault" type="button">Lock shelf</button></div>
+  <div class="vault-note">The token is not part of the page or case files. Use a fine-grained token limited to the private vault repository with Contents read/write. Actual screenshots and attachments stay off GitHub.</div>
+  <div class="case-shelf"><div class="case-shelf-head"><div><h3>All cases</h3><div id="vaultCaseCount" class="case-meta">Unlock the shelf to load cases.</div></div><a class="soft-button" href="copyright-evidence-builder.html">Open Evidence Builder</a></div><div class="case-list" id="allCaseList"><div class="locked">Private case shelf locked.</div></div></div>
+</section>
+
+<div class="sync-note"><div style="display:flex;gap:12px"><span class="sync-dot" id="syncDot"></span><div><strong id="syncTitle">Opening the archive…</strong><br><span id="syncText">Loading public bot records.</span></div></div><span id="resultCount"></span></div>
+<section class="bot-grid" id="botGrid" aria-live="polite"></section>
+<footer class="footer">Created by Dollie • © 2026 Dollie • Bot records: dolliebun/the-library • Private cases: Dollie’s chosen private vault repository.</footer>
+</main>
+<div class="atmosphere-control"><button data-atmosphere="sparkles" title="Sparkles">✧</button><button data-atmosphere="petals" title="Petals">♡</button><button data-atmosphere="off" title="Effects off">×</button></div>
+
+<script>
+const BOT_FALLBACK=[{"id": "elias-thorne", "name": "Elias Thorne", "meta": "Solas archive · Beta / Alpha", "description": "A deceptively easygoing Head of Security: loyal, observant and dangerous the moment the joke stops. His connection to the dormant House remains a restricted record.", "image": "https://raw.githubusercontent.com/dolliebun/the-library/main/assets/characters/elias-thorne.png", "tags": ["non-human", "male"], "record": "https://dolliebun.github.io/the-library/house-solas.html", "chat": "https://tipsy.chat/chat/1784030890796980014"}, {"id": "silas-viremont", "name": "Silas Viremont", "meta": "Viremont · Alpha", "description": "A ruthless young CEO with impeccable control, expensive taste and a private capacity for devotion he would rather weaponise than confess.", "image": "https://raw.githubusercontent.com/dolliebun/the-library/main/assets/characters/silas-viremont.png", "tags": ["non-human", "male"], "record": "https://dolliebun.github.io/the-library/house-viremont.html", "chat": "https://tipsy.chat/chat/1784485189181860062"}, {"id": "rhydian-blackbriar", "name": "Rhydian Blackbriar", "meta": "Blackbriar · Alpha King", "description": "The reigning Alpha King: severe, strategic and built to carry the hidden society without flinching—until the person he loves steps into the room.", "image": "https://raw.githubusercontent.com/dolliebun/the-library/main/assets/characters/rhydian-blackbriar.png", "tags": ["non-human", "male"], "record": "https://dolliebun.github.io/the-library/house-blackbriar.html", "chat": "https://tipsy.chat/chat/1783242123794632455"}, {"id": "dr-kairos-adebisi", "name": "Dr. Kairos Adebisi", "meta": "Fairborne · Alpha", "description": "A brilliant, emotionally constipated Alpha whose clinical precision conceals old blood, dangerous questions and a future balanced on recognition.", "image": "https://raw.githubusercontent.com/dolliebun/the-library/main/assets/characters/kairos-adebisi.png", "tags": ["non-human", "male"], "record": "https://dolliebun.github.io/the-library/house-fairborne.html", "chat": ""}];
+const BOT_SOURCE='https://raw.githubusercontent.com/dolliebun/the-library/main/characters.html';
+const PAGE_BASE='https://dolliebun.github.io/the-library/';
+const RAW_BASE='https://raw.githubusercontent.com/dolliebun/the-library/main/';
+const SOURCE_GITHUB='https://github.com/dolliebun/the-library/blob/main/characters.html';
+const SETTINGS_KEY='dollieTools.evidenceVault.settings';
+const TOKEN_LOCAL_KEY='dollieTools.evidenceVault.token';
+const TOKEN_SESSION_KEY='dollieTools.evidenceVault.sessionToken';
+const VAULT_FILE='cases.json';
+let bots=[...BOT_FALLBACK], cases=[], vaultSha=null, vaultConnected=false, activeFilter='all';
+
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const esc=(v='')=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+const slug=v=>String(v||'').toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+const safeUrl=v=>{try{const u=new URL(v,location.href);return ['http:','https:'].includes(u.protocol)?u.href:'#'}catch{return '#'}};
+const pageUrl=v=>!v?'':(/^https?:/i.test(v)?v:PAGE_BASE+v.replace(/^\.?\//,''));
+const assetUrl=v=>!v?'':(/^https?:/i.test(v)?v:RAW_BASE+v.replace(/^\.?\//,''));
+
+function parseBots(html){
+  const doc=new DOMParser().parseFromString(html,'text/html');
+  const known=Object.fromEntries(BOT_FALLBACK.map(bot=>[bot.name,bot.chat]));
+  return [...doc.querySelectorAll('.character-card')].map(card=>{
+    const name=card.querySelector('h2')?.textContent.trim(); if(!name)return null;
+    const links=[...card.querySelectorAll('.character-links a')];
+    const chat=links.find(a=>/tipsy|chat/i.test(a.textContent))?.getAttribute('href')||known[name]||'';
+    const record=links.find(a=>!/tipsy|chat/i.test(a.textContent))?.getAttribute('href')||'';
+    return {id:slug(name),name,meta:card.querySelector('.character-info > p')?.textContent.trim()||'',description:card.querySelector('.character-info > span')?.textContent.trim()||'',image:assetUrl(card.querySelector('img')?.getAttribute('src')||''),tags:(card.dataset.tags||'').split(/\s+/).filter(Boolean),record:pageUrl(record),chat};
+  }).filter(Boolean);
+}
+
+async function refreshBots(){
+  $('#refreshBots').disabled=true; $('#refreshBots').textContent='Refreshing…';
+  try{const r=await fetch(BOT_SOURCE,{cache:'no-store'});if(!r.ok)throw new Error();const parsed=parseBots(await r.text());if(parsed.length)bots=parsed;$('#syncTitle').textContent='Live archive connected';$('#syncText').textContent='Public bot records loaded from dolliebun/the-library.';$('#syncDot').classList.add('live')}catch{bots=[...BOT_FALLBACK];$('#syncTitle').textContent='Showing built-in archive copy';$('#syncText').textContent='The public GitHub archive could not be reached just now.';$('#syncDot').classList.remove('live')}finally{const silas=bots.find(b=>b.name==='Silas Viremont'||b.id==='silas-viremont');if(silas)silas.chat='https://tipsy.chat/chat/1784485189181860062';$('#refreshBots').disabled=false;$('#refreshBots').textContent='Refresh bots from GitHub';renderBots();}}
+
+function linkedCases(botId){return cases.filter(item=>item.botId===botId).sort((a,b)=>String(b.updatedAt||'').localeCompare(String(a.updatedAt||'')))}
+function renderBots(){
+  const q=$('#searchInput').value.trim().toLowerCase();
+  const shown=bots.filter(bot=>(activeFilter==='all'||bot.tags.includes(activeFilter))&&(!q||[bot.name,bot.meta,bot.description,...bot.tags].join(' ').toLowerCase().includes(q)));
+  $('#resultCount').textContent=`${shown.length} ${shown.length===1?'record':'records'}`;
+  const requested=new URLSearchParams(location.search).get('bot');
+  $('#botGrid').innerHTML=shown.length?shown.map(bot=>{
+    const botCases=linkedCases(bot.id);
+    return `<article class="bot-card ${requested===bot.id?'focused':''}" id="bot-${esc(bot.id)}"><div class="bot-image"><img src="${safeUrl(bot.image)}" alt="${esc(bot.name)}" loading="lazy"></div><div class="bot-info"><p class="bot-meta">${esc(bot.meta)}</p><h2>${esc(bot.name)}</h2><p>${esc(bot.description)}</p><div class="tags">${bot.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div><div class="card-links">${bot.chat?`<a class="primary" href="${safeUrl(bot.chat)}" target="_blank" rel="noopener">Chat on Tipsy ↗</a>`:''}${bot.record?`<a href="${safeUrl(bot.record)}" target="_blank" rel="noopener">Character record ↗</a>`:''}<a href="copyright-evidence-builder.html?bot=${encodeURIComponent(bot.id)}">Start evidence case</a><a href="${SOURCE_GITHUB}" target="_blank" rel="noopener">GitHub source ↗</a></div>${vaultConnected?`<div class="bot-cases"><div class="bot-cases-title">${botCases.length} linked evidence case${botCases.length===1?'':'s'}</div>${botCases.length?botCases.map(c=>`<a class="bot-case-link" href="copyright-evidence-builder.html?case=${encodeURIComponent(c.id)}&bot=${encodeURIComponent(bot.id)}">${esc(c.title||'Untitled case')}<span>${esc(c.reference||'No reference')} • ${esc(c.status||'Draft')}</span></a>`).join(''):'<div class="case-meta">No cases linked yet.</div>'}</div>`:''}</div></article>`;
+  }).join(''):'<div class="empty">No records found on this shelf.</div>';
+  if(requested)setTimeout(()=>document.getElementById(`bot-${requested}`)?.scrollIntoView({behavior:'smooth',block:'center'}),60);
+}
+
+function settings(){return {owner:$('#vaultOwner').value.trim(),repo:$('#vaultRepo').value.trim(),branch:$('#vaultBranch').value.trim()||'main'}}
+function loadSettings(){try{const s=JSON.parse(localStorage.getItem(SETTINGS_KEY)||'{}');if(s.owner)$('#vaultOwner').value=s.owner;if(s.repo)$('#vaultRepo').value=s.repo;if(s.branch)$('#vaultBranch').value=s.branch;const local=localStorage.getItem(TOKEN_LOCAL_KEY)||'';const session=sessionStorage.getItem(TOKEN_SESSION_KEY)||'';$('#vaultToken').value=session||local;$('#rememberVaultToken').checked=Boolean(local)}catch{}}
+function saveCredentials(){const s=settings();try{localStorage.setItem(SETTINGS_KEY,JSON.stringify(s));const token=$('#vaultToken').value.trim();if($('#rememberVaultToken').checked){localStorage.setItem(TOKEN_LOCAL_KEY,token);sessionStorage.removeItem(TOKEN_SESSION_KEY)}else{sessionStorage.setItem(TOKEN_SESSION_KEY,token);localStorage.removeItem(TOKEN_LOCAL_KEY)}}catch{}return s}
+function encode64(v){const bytes=new TextEncoder().encode(v);let binary='';for(let i=0;i<bytes.length;i+=32768)binary+=String.fromCharCode(...bytes.subarray(i,i+32768));return btoa(binary)}
+function decode64(v){const binary=atob(String(v||'').replace(/\n/g,''));return new TextDecoder().decode(Uint8Array.from(binary,c=>c.charCodeAt(0)))}
+async function gh(path,options={}){const token=$('#vaultToken').value.trim();if(!token)throw new Error('Enter a GitHub token.');const r=await fetch(`https://api.github.com${path}`,{...options,headers:{Accept:'application/vnd.github+json',Authorization:`Bearer ${token}`,'X-GitHub-Api-Version':'2022-11-28',...(options.headers||{})}});const text=await r.text();let data={};try{data=text?JSON.parse(text):{}}catch{data={message:text}}if(!r.ok){const e=new Error(data.message||`GitHub returned ${r.status}`);e.status=r.status;throw e}return data}
+const repoPath=s=>`/repos/${encodeURIComponent(s.owner)}/${encodeURIComponent(s.repo)}`;
+function setConnected(ok,text=''){vaultConnected=ok;$('#vaultStatus').classList.toggle('connected',ok);$('#vaultStatus').textContent=text||(ok?'Unlocked':'Locked');renderBots();renderCaseShelf()}
+async function connectVault({quiet=false}={}){const s=saveCredentials();if(!s.owner||!s.repo){if(!quiet)alert('Enter the private repository owner and name.');return}$('#vaultStatus').textContent='Connecting…';try{await gh(repoPath(s));let file;try{file=await gh(`${repoPath(s)}/contents/${VAULT_FILE}?ref=${encodeURIComponent(s.branch)}`)}catch(e){if(e.status!==404)throw e;file=null}if(file?.content){const doc=JSON.parse(decode64(file.content));cases=Array.isArray(doc.cases)?doc.cases:[];vaultSha=file.sha||null}else{cases=[];vaultSha=null}setConnected(true,`${cases.length} case${cases.length===1?'':'s'}`)}catch(e){cases=[];vaultSha=null;setConnected(false,'Connection failed');if(!quiet)alert(`Could not unlock the private case shelf: ${e.message}`)}}
+function renderCaseShelf(){const list=$('#allCaseList');if(!vaultConnected){$('#vaultCaseCount').textContent='Unlock the shelf to load cases.';list.innerHTML='<div class="locked">Private case shelf locked.</div>';return}const ordered=[...cases].sort((a,b)=>String(b.updatedAt||'').localeCompare(String(a.updatedAt||'')));$('#vaultCaseCount').textContent=`${ordered.length} saved case${ordered.length===1?'':'s'}`;list.innerHTML=ordered.length?ordered.map(c=>`<article class="case-item"><strong>${esc(c.title||'Untitled case')}</strong><div class="case-meta">${esc(c.reference||'No reference')} • ${esc(c.botName||'Unlinked bot')} • ${esc(c.status||'Draft')}</div><a class="soft-button" href="copyright-evidence-builder.html?case=${encodeURIComponent(c.id)}${c.botId?`&bot=${encodeURIComponent(c.botId)}`:''}">Edit case</a></article>`).join(''):'<div class="locked">The vault is connected and contains no cases yet.</div>'}
+function disconnect(){try{sessionStorage.removeItem(TOKEN_SESSION_KEY);localStorage.removeItem(TOKEN_LOCAL_KEY)}catch{}$('#vaultToken').value='';$('#rememberVaultToken').checked=false;cases=[];vaultSha=null;setConnected(false)}
+function openRepo(){const s=settings();if(!s.owner||!s.repo)return alert('Enter the private repository first.');window.open(`https://github.com/${encodeURIComponent(s.owner)}/${encodeURIComponent(s.repo)}`,'_blank','noopener')}
+
+$$('.filter').forEach(b=>b.addEventListener('click',()=>{activeFilter=b.dataset.filter;$$('.filter').forEach(x=>x.classList.toggle('active',x===b));renderBots()}));
+$('#searchInput').addEventListener('input',renderBots);$('#refreshBots').addEventListener('click',refreshBots);$('#connectVault').addEventListener('click',()=>connectVault());$('#disconnectVault').addEventListener('click',disconnect);$('#openVaultRepo').addEventListener('click',openRepo);
+loadSettings();renderBots();refreshBots();if($('#vaultToken').value.trim()&&$('#vaultRepo').value.trim())connectVault({quiet:true});
+
+document.addEventListener('DOMContentLoaded',()=>{const layer=$('#atmosphere');let saved='sparkles';try{saved=localStorage.getItem('dollieAtmosphere')||'sparkles'}catch{}function particles(){layer.innerHTML='';const count=matchMedia('(max-width:720px)').matches?14:24;for(let i=0;i<count;i++){const p=document.createElement('span');p.className='particle';p.style.setProperty('--x',(Math.random()*100).toFixed(2)+'vw');p.style.setProperty('--size',(5+Math.random()*10).toFixed(1)+'px');p.style.setProperty('--fall',(14+Math.random()*15).toFixed(1)+'s');p.style.setProperty('--sway',(2.8+Math.random()*4.5).toFixed(1)+'s');p.style.setProperty('--fade',(4+Math.random()*5).toFixed(1)+'s');p.style.setProperty('--delay',(-Math.random()*22).toFixed(1)+'s');p.style.setProperty('--opacity',(0.18+Math.random()*.42).toFixed(2));layer.appendChild(p)}}function set(mode){layer.className='atmosphere '+mode;$$('[data-atmosphere]').forEach(b=>b.classList.toggle('active',b.dataset.atmosphere===mode));try{localStorage.setItem('dollieAtmosphere',mode)}catch{}if(mode!=='off'&&!layer.children.length)particles()}$$('[data-atmosphere]').forEach(b=>b.addEventListener('click',()=>set(b.dataset.atmosphere)));particles();set(['sparkles','petals','off'].includes(saved)?saved:'sparkles')})
+</script>
+</body>
+</html>
