@@ -1,27 +1,109 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Dollie Tools</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='%23efabc4' d='M32 56C27 51 8 38 8 22C8 12 20 7 28 15L32 20L36 15C44 7 56 12 56 22C56 38 37 51 32 56Z'/%3E%3C/svg%3E">
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Dollie Tools</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='%23efabc4' d='M32 56C27 51 8 38 8 22C8 12 20 7 28 15L32 20L36 15C44 7 56 12 56 22C56 38 37 51 32 56Z'/%3E%3C/svg%3E">
 <style>
-:root{--ink:#563947;--muted:#806976;--pink:#e8a9c1;--pink2:#f5cddd;--gold:#c99f5c;--cream:#fffaf8;--glass:rgba(255,255,255,.72);--line:rgba(103,67,85,.16);--shadow:0 22px 65px rgba(84,47,66,.13)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}
-body{margin:0;min-height:100vh;color:var(--ink);font:15px/1.55 Nunito,system-ui,sans-serif;background:radial-gradient(circle at 9% 5%,#fff,transparent 24%),radial-gradient(circle at 89% 9%,rgba(239,184,205,.58),transparent 31%),radial-gradient(circle at 45% 108%,rgba(232,207,169,.48),transparent 36%),linear-gradient(145deg,#fffafd,#f7e5ec,#f2e9df)}
-body:before,body:after{content:none}
-
-@keyframes drift{to{translate:34px -18px;opacity:.95}}@keyframes pop{from{opacity:0;transform:translateY(5px)}}
-header{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:13px;padding:13px 20px;background:rgba(255,250,252,.86);border-bottom:1px solid rgba(201,159,92,.27);backdrop-filter:blur(18px);box-shadow:0 8px 28px rgba(91,52,71,.07)}
-header h1{margin:0;font:500 1.4rem Georgia,serif}header span{color:var(--muted);font-size:.8rem}.headlink{margin-left:auto;text-decoration:none;color:var(--ink);padding:7px 13px;border:1px solid var(--line);border-radius:99px;background:#fff9}
-.shell{width:min(1050px,calc(100% - 28px));margin:28px auto 60px;position:relative;z-index:1}.hero{text-align:center;margin:8px auto 28px}.eyebrow{letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:800;font-size:.7rem}.hero h2{margin:8px 0 7px;font:500 clamp(2.5rem,7vw,4.7rem)/1 Georgia,serif}.hero p{max-width:650px;margin:auto;color:var(--muted)}
-.progress{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin:0 0 18px}.pip{height:7px;border-radius:99px;background:#fff9;border:1px solid var(--line)}.pip.on{background:linear-gradient(90deg,var(--pink),var(--gold));border-color:transparent}
-.card{background:var(--glass);border:1px solid rgba(255,255,255,.87);border-radius:28px;padding:clamp(20px,4vw,38px);box-shadow:var(--shadow);backdrop-filter:blur(16px);animation:pop .22s ease-out}.step{display:none}.step.active{display:block}.step h3{font:500 clamp(1.65rem,4vw,2.35rem) Georgia,serif;margin:0 0 5px}.helper{color:var(--muted);margin:0 0 22px}.killian{padding:13px 15px;border-left:3px solid var(--gold);background:rgba(255,255,255,.55);border-radius:5px 15px 15px 5px;margin:14px 0 22px;color:#6c5360}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.full{grid-column:1/-1}label{display:block;font-weight:800;font-size:.82rem;margin:0 0 5px}.hint{display:block;color:var(--muted);font-weight:400;font-size:.75rem;margin-top:2px}
-input,textarea,select{width:100%;border:1px solid rgba(114,74,94,.22);border-radius:15px;background:rgba(255,255,255,.82);padding:11px 13px;color:var(--ink);font:inherit;outline:none}textarea{min-height:110px;resize:vertical}input:focus,textarea:focus,select:focus{border-color:var(--pink);box-shadow:0 0 0 4px rgba(232,169,193,.13)}
-.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.navrow{display:flex;justify-content:space-between;gap:10px;margin-top:24px}.btn{border:0;border-radius:99px;padding:10px 18px;font-weight:850;cursor:pointer;color:var(--ink);background:#fff;border:1px solid var(--line)}.btn.primary{color:white;background:linear-gradient(135deg,#d785a5,#c89d58);box-shadow:0 9px 22px rgba(183,105,139,.2)}.btn.soft{background:linear-gradient(135deg,#f3bfd1,#ecd9b6)}.btn:disabled{opacity:.4;cursor:not-allowed}
-details{border:1px solid var(--line);border-radius:16px;background:#fff7;padding:10px 13px;margin-top:14px}summary{cursor:pointer;font-weight:850;color:#7a5668}.checks{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.check{display:flex;gap:8px;align-items:flex-start;background:#fff7;padding:9px 10px;border-radius:13px}.check input{width:auto;margin-top:4px;accent-color:var(--pink)}
-.namebox{background:linear-gradient(145deg,rgba(255,255,255,.83),rgba(249,229,237,.72));border:1px solid rgba(202,157,90,.25);border-radius:22px;padding:18px;margin:15px 0}.name-result{font:500 clamp(2rem,6vw,3.2rem) Georgia,serif;text-align:center;margin:13px 0}.choices{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.choice{background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px;text-align:center;cursor:pointer}.choice:hover{border-color:var(--gold)}
-.output{white-space:pre-wrap;background:#4e3440;color:#fff9f8;border-radius:18px;padding:16px;max-height:310px;overflow:auto;font:12px/1.65 ui-monospace,monospace}.outputgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.outputgrid .wide{grid-column:1/-1}.outhead{display:flex;align-items:center;margin:0 0 5px}.outhead b{font-size:.8rem}.copy{margin-left:auto;border:0;border-radius:99px;padding:4px 10px;cursor:pointer}
-.toast{position:fixed;bottom:22px;left:50%;translate:-50% 0;background:#513844;color:white;border-radius:99px;padding:9px 16px;opacity:0;pointer-events:none;transition:.2s;z-index:50}.toast.show{opacity:1}
-@media(max-width:720px){header span{display:none}.grid,.checks,.outputgrid{grid-template-columns:1fr}.full,.outputgrid .wide{grid-column:auto}.choices{grid-template-columns:1fr}.shell{width:min(100% - 18px,1050px)}.progress{gap:3px}}
-@media(prefers-reduced-motion:reduce){*{animation:none!important}}
-body{padding-bottom:60px}.home{width:min(980px,calc(100% - 24px));margin:35px auto;position:relative;z-index:1}.hero{padding:30px 0}.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:17px}.tool{display:block;text-decoration:none;color:var(--ink);background:var(--glass);border:1px solid #fff;border-radius:27px;padding:25px;box-shadow:var(--shadow);backdrop-filter:blur(15px);transition:.2s}.tool:hover{transform:translateY(-4px)}.tool h2{font:500 1.8rem Georgia,serif;margin:12px 0 8px}.tool p{color:var(--muted)}.tag{display:inline-block;background:linear-gradient(135deg,var(--pink2),#eedbb7);border-radius:99px;padding:5px 10px;font-size:.75rem;font-weight:850}@media(max-width:680px){.cards{grid-template-columns:1fr}}
-/* Floating Dollie atmosphere */
+:root{
+  --ink:#563947;
+  --muted:#806976;
+  --pink:#e8a9c1;
+  --pink2:#f5cddd;
+  --gold:#c99f5c;
+  --glass:rgba(255,255,255,.72);
+  --line:rgba(103,67,85,.16);
+  --shadow:0 22px 65px rgba(84,47,66,.13);
+}
+*{box-sizing:border-box}
+html{
+  scroll-behavior:smooth;
+  -webkit-text-size-adjust:100%;
+  text-size-adjust:100%;
+  overflow-x:hidden;
+}
+body{
+  margin:0;
+  min-height:100vh;
+  overflow-x:hidden;
+  padding:0 env(safe-area-inset-right) 60px env(safe-area-inset-left);
+  color:var(--ink);
+  font:15px/1.55 Nunito,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:
+    radial-gradient(circle at 9% 5%,#fff,transparent 24%),
+    radial-gradient(circle at 89% 9%,rgba(239,184,205,.58),transparent 31%),
+    radial-gradient(circle at 45% 108%,rgba(232,207,169,.48),transparent 36%),
+    linear-gradient(145deg,#fffafd,#f7e5ec,#f2e9df);
+}
+button,a{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.home{
+  width:min(980px,calc(100% - 24px));
+  margin:35px auto;
+  position:relative;
+  z-index:2;
+}
+.hero{
+  padding:30px 0;
+  text-align:center;
+}
+.eyebrow{
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--gold);
+  font-weight:800;
+  font-size:.7rem;
+}
+.hero h1{
+  margin:8px 0 7px;
+  font:500 clamp(2.5rem,7vw,4.7rem)/1 Georgia,serif;
+}
+.hero p{
+  max-width:650px;
+  margin:auto;
+  color:var(--muted);
+}
+.cards{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:17px;
+}
+.tool{
+  display:block;
+  min-width:0;
+  text-decoration:none;
+  color:var(--ink);
+  background:var(--glass);
+  border:1px solid #fff;
+  border-radius:27px;
+  padding:25px;
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(15px);
+  -webkit-backdrop-filter:blur(15px);
+  transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;
+}
+.tool:hover,.tool:focus-visible{
+  transform:translateY(-4px);
+  border-color:rgba(232,169,193,.65);
+  box-shadow:0 26px 72px rgba(84,47,66,.17);
+  outline:none;
+}
+.tool h2{
+  font:500 1.8rem/1.15 Georgia,serif;
+  margin:12px 0 8px;
+}
+.tool p{
+  margin:0;
+  color:var(--muted);
+}
+.tag{
+  display:inline-block;
+  background:linear-gradient(135deg,var(--pink2),#eedbb7);
+  border-radius:99px;
+  padding:5px 10px;
+  font-size:.75rem;
+  font-weight:850;
+}
 .atmosphere{
   position:fixed;
   inset:0;
@@ -43,9 +125,10 @@ body{padding-bottom:60px}.home{width:min(980px,calc(100% - 24px));margin:35px au
   animation-delay:var(--delay);
   will-change:transform,opacity;
 }
-/* Rounded, milky cross-sparkles based on Dollie's approved references. */
 .atmosphere.sparkles .particle{
-  filter:drop-shadow(0 0 5px rgba(255,255,255,.92)) drop-shadow(0 0 12px rgba(244,219,231,.38));
+  filter:
+    drop-shadow(0 0 5px rgba(255,255,255,.92))
+    drop-shadow(0 0 12px rgba(244,219,231,.38));
 }
 .atmosphere.sparkles .particle::before,
 .atmosphere.sparkles .particle::after{
@@ -55,16 +138,12 @@ body{padding-bottom:60px}.home{width:min(980px,calc(100% - 24px));margin:35px au
   margin:auto;
   border-radius:999px;
   background:linear-gradient(180deg,rgba(255,255,255,.98),rgba(255,250,247,.80));
-  box-shadow:0 0 5px rgba(255,255,255,.92),0 0 14px rgba(248,222,234,.44);
+  box-shadow:
+    0 0 5px rgba(255,255,255,.92),
+    0 0 14px rgba(248,222,234,.44);
 }
-.atmosphere.sparkles .particle::before{
-  width:34%;
-  height:100%;
-}
-.atmosphere.sparkles .particle::after{
-  width:100%;
-  height:34%;
-}
+.atmosphere.sparkles .particle::before{width:34%;height:100%}
+.atmosphere.sparkles .particle::after{width:100%;height:34%}
 .atmosphere.petals .particle{
   width:calc(var(--size) * .72);
   height:var(--size);
@@ -75,6 +154,7 @@ body{padding-bottom:60px}.home{width:min(980px,calc(100% - 24px));margin:35px au
   box-shadow:0 4px 12px rgba(154,86,117,.16);
   transform-origin:50% 30%;
 }
+.atmosphere.off{display:none}
 @keyframes particleFall{
   from{translate:0 -14vh;rotate:0deg}
   to{translate:0 120vh;rotate:360deg}
@@ -88,8 +168,6 @@ body{padding-bottom:60px}.home{width:min(980px,calc(100% - 24px));margin:35px au
   15%,72%{opacity:var(--opacity)}
   88%{opacity:.10}
 }
-.atmosphere.off{display:none}
-
 .atmosphere-control{
   position:fixed;
   right:18px;
@@ -97,7 +175,6 @@ body{padding-bottom:60px}.home{width:min(980px,calc(100% - 24px));margin:35px au
   z-index:60;
   display:flex;
   align-items:center;
-  gap:0;
   padding:4px;
   border:1px solid rgba(110,72,91,.20);
   border-radius:999px;
@@ -119,137 +196,117 @@ body{padding-bottom:60px}.home{width:min(980px,calc(100% - 24px));margin:35px au
   font:700 1rem/1 Georgia,serif;
   transition:background .15s,color .15s,transform .15s;
 }
-.atmosphere-control button:hover{
-  color:var(--ink);
-  transform:translateY(-1px);
-}
+.atmosphere-control button:hover{color:var(--ink);transform:translateY(-1px)}
 .atmosphere-control button.active{
   color:#fff;
   background:linear-gradient(135deg,#d982a4,#c89d58);
 }
 .atmosphere-control button + button{margin-left:2px}
-header,.shell,.home{position:relative;z-index:2}
-@media(prefers-reduced-motion:reduce){.atmosphere{display:none}}
-
-
-/* Mobile optimisation v1.4.1 */
-html{-webkit-text-size-adjust:100%;text-size-adjust:100%;overflow-x:hidden}
-body{overflow-x:hidden;padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}
-button,a,input,textarea,select,summary{-webkit-tap-highlight-color:transparent}
-button,.btn,.choice,.pick-tag,.mode-tabs button,.language,.mode,.tool,.headlink{touch-action:manipulation}
-input,textarea,select{max-width:100%}
-.output,.v14-output,.result{overflow-wrap:anywhere;word-break:break-word}
 @media(max-width:720px){
   body{padding-bottom:calc(92px + env(safe-area-inset-bottom))}
-  header{padding:10px 12px;gap:8px;min-height:56px;flex-wrap:wrap}
-  header h1{font-size:1.08rem;line-height:1.15;min-width:0;overflow-wrap:anywhere}
-  header span{display:none}
-  .headlink{min-height:44px;display:inline-flex;align-items:center;justify-content:center;padding:8px 12px}
-  .shell{width:calc(100% - 16px);margin:16px auto 36px}
-  .hero{margin:4px auto 18px}
-  .hero h2{font-size:clamp(2rem,12vw,3.2rem)}
-  .card{border-radius:20px;padding:16px 13px}
-  .step h3{font-size:1.65rem;line-height:1.1}
-  .helper{margin-bottom:16px}
-  .grid,.checks,.outputgrid,.v14-grid,.intimacy-tone-grid{grid-template-columns:1fr!important}
-  .full,.outputgrid .wide,.v14-full{grid-column:auto!important}
-  input,textarea,select{font-size:16px;line-height:1.4;padding:12px 13px}
-  textarea{min-height:120px}
-  button,.btn,.choice,.language,.mode,.pick-tag,.mode-tabs button,.copy,.icon-btn{min-height:44px}
-  .navrow{flex-direction:column;align-items:stretch;gap:9px;margin-top:20px}
-  .navrow>.btn{width:100%;justify-content:center}
-  .row{align-items:stretch}
-  .row>.btn,.v14-toolbar>.btn,.export-buttons>.btn{flex:1 1 100%;width:100%}
-  .choices{grid-template-columns:1fr}
-  details{padding:9px 10px;border-radius:14px}
-  summary{min-height:44px;display:flex;align-items:center;line-height:1.25}
-  .killian{padding:12px;margin:12px 0 16px}
-  .namebox,.appearance-builder,.npc-card,.v14-box{padding:12px;border-radius:16px}
-  .name-result{font-size:2rem}
-  .progress{gap:3px;margin-bottom:12px}
-  .pip{height:6px}
-  .output,.v14-output{font-size:11px;max-height:55vh;padding:12px}
-  .outhead{gap:8px}.copy{padding:7px 12px}
-  .v14-toolbar,.export-buttons,.npc-toolbar{align-items:stretch}
-  .v14-tags{max-height:240px}
-  .atmosphere-control{right:max(10px,env(safe-area-inset-right));bottom:max(10px,env(safe-area-inset-bottom));padding:3px}
-  .atmosphere-control button{width:42px;height:42px}
-  .toast{bottom:calc(70px + env(safe-area-inset-bottom));max-width:calc(100% - 24px);text-align:center;white-space:normal}
-}
-@media(max-width:420px){
-  .shell{width:calc(100% - 10px)}
-  .card{padding:14px 10px}
-  .eyebrow{letter-spacing:.13em}
-}
-
-/* Homepage mobile polish */
-@media(max-width:720px){
   .home{width:calc(100% - 16px);margin:16px auto 36px}
   .hero{padding:20px 4px 15px}
-  .hero h2{font-size:clamp(2.2rem,16vw,3.4rem)}
+  .hero h1{font-size:clamp(2.2rem,16vw,3.4rem)}
   .cards{grid-template-columns:1fr;gap:12px}
-  .tool{border-radius:20px;padding:20px 17px;min-height:0}
-  .tool h2{font-size:1.55rem;line-height:1.15;margin:10px 0 7px}
-  .tool p{margin-bottom:0}
+  .tool{border-radius:20px;padding:20px 17px}
+  .tool h2{font-size:1.55rem;margin:10px 0 7px}
+  .atmosphere-control{
+    right:max(10px,env(safe-area-inset-right));
+    bottom:max(10px,env(safe-area-inset-bottom));
+    padding:3px;
+  }
+  .atmosphere-control button{width:42px;height:42px}
 }
-
-</style></head>
+@media(prefers-reduced-motion:reduce){
+  .atmosphere{display:none}
+  *{animation:none!important}
+}
+</style>
+</head>
 <body>
-
 <div class="atmosphere sparkles" id="atmosphere" aria-hidden="true"></div>
 
+<main class="home">
+  <section class="hero">
+    <div class="eyebrow">Softness, with teeth</div>
+    <h1>✦ Tools ✦</h1>
+    <p>Dollie’s helpers, with Killian holding the complicated parts quietly in the background.</p>
+  </section>
 
+  <section class="cards" aria-label="Dollie Tools">
+    <a class="tool" href="bot-builder.html">
+      <span class="tag">Dollie + Killian</span>
+      <h2>Gentle Bot Builder</h2>
+      <p>Seven gentle steps with traits, workbook, images, Role Card integration, stress testing, World Book tools, and compact production export.</p>
+    </a>
 
-<main class="home"><section class="hero"><div class="eyebrow">Softness, with teeth</div><h2>✦ Tools ✦</h2><p>Dollie’s helpers, with Killian holding the complicated parts quietly in the background.</p></section><section class="cards">
-<a class="tool" href="bot-builder.html"><span class="tag">Dollie + Killian</span><h2>Gentle Bot Builder</h2><p>Seven gentle steps with traits, workbook, images, Role Card integration, stress testing, World Book tools, and compact production export.</p></a>
-<a class="tool" href="omegaverse-bot-builder.html"><span class="tag">The Hunt</span><h2>Gentle Omegaverse Builder</h2><p>The complete production workflow plus secondary genders, scents, cycles, suppressants, bonds, pack systems, Hunt World Books, and A/B/O exports.</p></a>
-<a class="tool" href="translate-to-dollie.html"><span class="tag">Brain helper</span><h2>Translate to Dollie</h2><p>Turn complicated English or Polish messages into clearer language.</p></a>
-</section></main><div class="atmosphere-control" aria-label="Page effects">
+    <a class="tool" href="omegaverse-bot-builder.html">
+      <span class="tag">The Hunt</span>
+      <h2>Gentle Omegaverse Builder</h2>
+      <p>The complete production workflow plus secondary genders, scents, cycles, suppressants, bonds, pack systems, Hunt World Books, and A/B/O exports.</p>
+    </a>
+
+    <a class="tool" href="translate-to-dollie.html">
+      <span class="tag">Brain helper</span>
+      <h2>Translate to Dollie</h2>
+      <p>Turn complicated English or Polish messages into clearer language.</p>
+    </a>
+
+    <a class="tool" href="copyright-evidence-builder.html">
+      <span class="tag">Creator protection</span>
+      <h2>Copyright Evidence Builder</h2>
+      <p>Compile links, dates, comparison excerpts, screenshots, and evidence into a private local report or editable DMCA-style draft.</p>
+    </a>
+  </section>
+</main>
+
+<div class="atmosphere-control" aria-label="Page effects">
   <button type="button" data-atmosphere="sparkles" aria-label="Soft floating sparkles" title="Soft floating sparkles"><span aria-hidden="true">✧</span></button>
-  <button type="button" data-atmosphere="petals" aria-label="Falling cherry blossom petals" title="Falling cherry blossom petals">♡</button>
-  <button type="button" data-atmosphere="off" aria-label="Turn effects off" title="Turn effects off">×</button>
+  <button type="button" data-atmosphere="petals" aria-label="Falling cherry blossom petals" title="Falling cherry blossom petals"><span aria-hidden="true">♡</span></button>
+  <button type="button" data-atmosphere="off" aria-label="Turn effects off" title="Turn effects off"><span aria-hidden="true">×</span></button>
 </div>
+
 <script>
-document.addEventListener('DOMContentLoaded', function(){
-  const layer=document.getElementById('atmosphere');
+document.addEventListener("DOMContentLoaded",function(){
+  const layer=document.getElementById("atmosphere");
   if(!layer)return;
-  const saved=localStorage.getItem('dollieAtmosphere')||'sparkles';
+
+  let saved="sparkles";
+  try{saved=localStorage.getItem("dollieAtmosphere")||"sparkles"}catch(_){}
 
   function createParticles(){
-    layer.innerHTML='';
-    const particleCount=window.matchMedia('(max-width:720px)').matches?14:24;
+    layer.innerHTML="";
+    const particleCount=window.matchMedia("(max-width:720px)").matches?14:24;
     for(let i=0;i<particleCount;i++){
-      const p=document.createElement('span');
-      p.className='particle';
-      p.style.setProperty('--x',(Math.random()*100).toFixed(2)+'vw');
-      p.style.setProperty('--size',(5+Math.random()*10).toFixed(1)+'px');
-      p.style.setProperty('--fall',(14+Math.random()*15).toFixed(1)+'s');
-      p.style.setProperty('--sway',(2.8+Math.random()*4.5).toFixed(1)+'s');
-      p.style.setProperty('--fade',(4+Math.random()*5).toFixed(1)+'s');
-      p.style.setProperty('--delay',(-Math.random()*22).toFixed(1)+'s');
-      p.style.setProperty('--opacity',(0.18+Math.random()*0.42).toFixed(2));
+      const p=document.createElement("span");
+      p.className="particle";
+      p.style.setProperty("--x",(Math.random()*100).toFixed(2)+"vw");
+      p.style.setProperty("--size",(5+Math.random()*10).toFixed(1)+"px");
+      p.style.setProperty("--fall",(14+Math.random()*15).toFixed(1)+"s");
+      p.style.setProperty("--sway",(2.8+Math.random()*4.5).toFixed(1)+"s");
+      p.style.setProperty("--fade",(4+Math.random()*5).toFixed(1)+"s");
+      p.style.setProperty("--delay",(-Math.random()*22).toFixed(1)+"s");
+      p.style.setProperty("--opacity",(0.18+Math.random()*0.42).toFixed(2));
       layer.appendChild(p);
     }
   }
 
   function setAtmosphere(mode){
-    layer.className='atmosphere '+mode;
-    document.querySelectorAll('[data-atmosphere]').forEach(btn=>{
-      btn.classList.toggle('active',btn.dataset.atmosphere===mode);
+    layer.className="atmosphere "+mode;
+    document.querySelectorAll("[data-atmosphere]").forEach(btn=>{
+      btn.classList.toggle("active",btn.dataset.atmosphere===mode);
     });
-    localStorage.setItem('dollieAtmosphere',mode);
-    if(mode!=='off'&&!layer.children.length)createParticles();
+    try{localStorage.setItem("dollieAtmosphere",mode)}catch(_){}
+    if(mode!=="off"&&!layer.children.length)createParticles();
   }
 
-  document.querySelectorAll('[data-atmosphere]').forEach(btn=>{
-    btn.addEventListener('click',()=>setAtmosphere(btn.dataset.atmosphere));
+  document.querySelectorAll("[data-atmosphere]").forEach(btn=>{
+    btn.addEventListener("click",()=>setAtmosphere(btn.dataset.atmosphere));
   });
 
   createParticles();
-  setAtmosphere(saved);
+  setAtmosphere(["sparkles","petals","off"].includes(saved)?saved:"sparkles");
 });
 </script>
-
-
-
-</body></html>
+</body>
+</html>
