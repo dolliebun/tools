@@ -1,0 +1,1142 @@
+<!doctype html>
+<!-- Dollie Tools — Bot Copyright Evidence Builder © 2026 Dollie. All rights reserved. -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Dollie">
+  <meta name="description" content="Dollie Tools: a privacy-first, browser-only bot copyright evidence builder.">
+  <meta name="application-name" content="Dollie Tools">
+  <meta name="copyright" content="© 2026 Dollie. All rights reserved.">
+  <meta name="color-scheme" content="light dark">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src data: blob:; style-src 'unsafe-inline'; script-src 'unsafe-inline'; form-action 'none'; base-uri 'none'; object-src 'none'">
+  <script>
+    (() => {
+      const key = 'dollieTools.botCopyright.theme';
+      let theme = 'day';
+      try {
+        const saved = localStorage.getItem(key);
+        theme = saved === 'day' || saved === 'night'
+          ? saved
+          : (matchMedia('(prefers-color-scheme: dark)').matches ? 'night' : 'day');
+      } catch {
+        theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'night' : 'day';
+      }
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
+  <title>Dollie Tools — Bot Copyright Evidence Builder</title>
+  <style>
+    :root {
+      --bg: #f8f3f7;
+      --panel: rgba(255,255,255,.86);
+      --panel-solid: #ffffff;
+      --ink: #2c2430;
+      --muted: #6f6470;
+      --line: #ddcfd9;
+      --accent: #a34f79;
+      --accent-strong: #7c3158;
+      --accent-soft: #f3dce8;
+      --good: #2f745c;
+      --warn: #9a5a1f;
+      --danger: #9d3542;
+      --shadow: 0 16px 45px rgba(70, 37, 57, .10);
+      --radius: 18px;
+    }
+    html[data-theme="day"] { color-scheme: light; }
+    html[data-theme="night"],
+    #themeSwitch:checked ~ .app-shell {
+      color-scheme: dark;
+      --bg: #171216;
+      --panel: rgba(35,27,33,.94);
+      --panel-solid: #231b21;
+      --ink: #f6edf3;
+      --muted: #c5b7c1;
+      --line: #493842;
+      --accent: #e192b7;
+      --accent-strong: #f1b5d0;
+      --accent-soft: #472c3a;
+      --good: #82c6aa;
+      --warn: #e8b071;
+      --danger: #ef9099;
+      --shadow: 0 18px 55px rgba(0,0,0,.28);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #f8f3f7; }
+    .app-shell {
+      min-height: 100vh;
+      padding-top: .1px;
+      background:
+        radial-gradient(circle at 8% 2%, rgba(207,116,158,.16), transparent 31rem),
+        radial-gradient(circle at 96% 8%, rgba(139,88,151,.12), transparent 28rem),
+        var(--bg);
+      color: var(--ink);
+      font: 16px/1.55 ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    .theme-switch-input {
+      position: fixed;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
+    a { color: var(--accent-strong); }
+    .shell { width: min(1180px, calc(100% - 28px)); margin: 24px auto 80px; }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(28px, 6vw, 62px);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: linear-gradient(145deg, var(--panel), rgba(255,255,255,.55));
+      box-shadow: var(--shadow);
+    }
+    html[data-theme="night"] .hero, #themeSwitch:checked ~ .app-shell .hero { background: linear-gradient(145deg, var(--panel), rgba(65,39,53,.62)); }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -8rem -10rem auto;
+      width: 26rem;
+      height: 26rem;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(219,112,163,.22), transparent 66%);
+      pointer-events: none;
+    }
+    h1, h2, h3 { line-height: 1.18; letter-spacing: -.025em; }
+    h1 { margin: 10px 0 12px; font-size: clamp(2.1rem, 5vw, 4.5rem); max-width: 900px; }
+    h2 { margin: 0 0 8px; font-size: clamp(1.45rem, 3vw, 2rem); }
+    h3 { margin: 0 0 8px; font-size: 1.05rem; }
+    p { margin: .55rem 0; }
+    .eyebrow { font-size: .78rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; color: var(--accent-strong); }
+    .lede { max-width: 800px; font-size: 1.08rem; color: var(--muted); }
+    .hero-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      position: relative;
+      z-index: 2;
+    }
+    .privacy-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 9px 13px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+      font-weight: 800;
+      font-size: .88rem;
+    }
+    .privacy-badge::before { content: "●"; color: var(--good); }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 42px;
+      padding: 9px 13px;
+      color: var(--accent-strong);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--panel-solid) 82%, transparent);
+      box-shadow: 0 6px 20px rgba(50,25,40,.08);
+      white-space: nowrap;
+    }
+    .theme-toggle:hover { background: var(--accent-soft); }
+    .theme-icon { width: 1.15em; text-align: center; font-size: 1.05rem; }
+    .theme-toggle .theme-when-night { display: none; }
+    #themeSwitch:checked ~ .app-shell .theme-toggle .theme-when-day { display: none; }
+    #themeSwitch:checked ~ .app-shell .theme-toggle .theme-when-night { display: inline; }
+    .notice {
+      margin-top: 22px;
+      padding: 16px 18px;
+      border-left: 4px solid var(--accent);
+      border-radius: 12px;
+      background: var(--accent-soft);
+    }
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; margin-top: 20px; }
+    .card {
+      grid-column: span 12;
+      padding: clamp(20px, 3vw, 30px);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      box-shadow: 0 8px 30px rgba(62,35,51,.06);
+      backdrop-filter: blur(10px);
+    }
+    .card-header { display:flex; gap:16px; align-items:flex-start; justify-content:space-between; margin-bottom:18px; }
+    .step {
+      flex: 0 0 auto;
+      display:grid;
+      place-items:center;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+      font-weight: 900;
+    }
+    .header-copy { flex:1; }
+    .helper { color: var(--muted); font-size: .93rem; }
+    .fields { display:grid; grid-template-columns: repeat(12, minmax(0,1fr)); gap: 14px; }
+    .field { grid-column: span 12; }
+    .field.half { grid-column: span 6; }
+    .field.third { grid-column: span 4; }
+    .field.quarter { grid-column: span 3; }
+    @media (max-width: 760px) {
+      .field.half, .field.third, .field.quarter { grid-column: span 12; }
+      .shell { width: min(100% - 18px, 1180px); margin-top: 9px; }
+      .hero { border-radius: 20px; }
+      .hero-toolbar { align-items: stretch; flex-direction: column; }
+      .privacy-badge, .theme-toggle { width: 100%; justify-content: center; }
+    }
+    label { display:block; margin-bottom: 6px; font-weight: 760; font-size: .93rem; }
+    .optional { color: var(--muted); font-weight: 500; }
+    input, select, textarea, button { font: inherit; }
+    input[type="text"], input[type="email"], input[type="url"], input[type="tel"], input[type="date"], input[type="datetime-local"], select, textarea {
+      width: 100%;
+      padding: 11px 12px;
+      color: var(--ink);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--panel-solid);
+      outline: none;
+    }
+    textarea { min-height: 100px; resize: vertical; }
+    input:focus, select:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(163,79,121,.14); }
+    input[type="file"] { width: 100%; padding: 16px; border: 1px dashed var(--accent); border-radius: 12px; background: var(--accent-soft); }
+    .checks { display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 9px 16px; }
+    @media (max-width: 650px) { .checks { grid-template-columns: 1fr; } }
+    .check { display:flex; gap:10px; align-items:flex-start; padding: 8px 0; }
+    .check input { margin-top: 4px; transform: scale(1.15); accent-color: var(--accent); }
+    .check label { margin: 0; font-weight: 580; }
+    .repeat-list { display:grid; gap:14px; }
+    .repeat-item { padding:16px; border:1px solid var(--line); border-radius:14px; background:rgba(255,255,255,.35); }
+    html[data-theme="night"] .repeat-item, #themeSwitch:checked ~ .app-shell .repeat-item { background:rgba(0,0,0,.12); }
+    .repeat-toolbar { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:12px; }
+    .repeat-title { font-weight:850; }
+    button {
+      border: 0;
+      border-radius: 10px;
+      padding: 10px 14px;
+      cursor: pointer;
+      font-weight: 780;
+      transition: transform .12s ease, opacity .12s ease, background .12s ease;
+    }
+    button:hover { transform: translateY(-1px); }
+    button:active { transform: translateY(0); }
+    .btn-primary { background: var(--accent-strong); color: #fff; }
+    .btn-secondary { background: var(--accent-soft); color: var(--accent-strong); border:1px solid var(--line); }
+    .btn-ghost { background: transparent; color: var(--ink); border:1px solid var(--line); }
+    .btn-danger { background: transparent; color: var(--danger); border:1px solid rgba(157,53,66,.35); }
+    .small { padding: 7px 10px; font-size: .84rem; }
+    .actions {
+      position: sticky;
+      bottom: 12px;
+      z-index: 10;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:20px;
+      padding:14px;
+      border:1px solid var(--line);
+      border-radius:16px;
+      background: color-mix(in srgb, var(--panel-solid) 92%, transparent);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+    .actions .spacer { flex:1; }
+    .status { margin-top:12px; min-height:24px; color:var(--muted); font-weight:650; }
+    .status.ok { color:var(--good); }
+    .status.error { color:var(--danger); }
+    .table-wrap { overflow:auto; border:1px solid var(--line); border-radius:12px; }
+    table { width:100%; border-collapse:collapse; min-width:760px; }
+    th, td { padding:10px 11px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; font-size:.88rem; }
+    th { background:var(--accent-soft); color:var(--accent-strong); }
+    tr:last-child td { border-bottom:0; }
+    code.hash { font-size:.76rem; word-break:break-all; color:var(--muted); }
+    .preview { width:72px; height:72px; object-fit:cover; border-radius:8px; border:1px solid var(--line); }
+    details { border:1px solid var(--line); border-radius:12px; padding:12px 14px; }
+    details + details { margin-top:10px; }
+    summary { cursor:pointer; font-weight:820; }
+    .creator-credit {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 18px;
+      padding: 7px 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--panel-solid) 80%, transparent);
+      color: var(--muted);
+      font-size: .84rem;
+      font-weight: 700;
+    }
+    .creator-credit strong { color: var(--accent-strong); }
+    .footer { margin-top:30px; color:var(--muted); font-size:.86rem; text-align:center; }
+    .footer strong { color: var(--accent-strong); }
+    .warning-box { border:1px solid rgba(154,90,31,.35); background:rgba(154,90,31,.08); padding:14px; border-radius:12px; }
+    .danger-box { border:1px solid rgba(157,53,66,.35); background:rgba(157,53,66,.08); padding:14px; border-radius:12px; }
+    .hidden { display:none !important; }
+    .required-marker { color:var(--danger); }
+    .pill { display:inline-block; padding:3px 8px; border-radius:999px; background:var(--accent-soft); color:var(--accent-strong); font-size:.76rem; font-weight:780; }
+    @media print {
+      body, .app-shell { background:#fff; color:#111; }
+      .hero, .card { box-shadow:none; background:#fff; }
+      .actions, .no-print, button { display:none !important; }
+      .shell { width:100%; margin:0; }
+    }
+
+
+    /* ============================================================
+       DOLLIE TOOLS — FULLY PINK GITHUB EDITION
+       Presentation layer only; evidence processing remains local.
+       ============================================================ */
+    :root {
+      --bg: #fff0f8;
+      --panel: rgba(255, 248, 252, .91);
+      --panel-solid: #fffafd;
+      --ink: #4b1732;
+      --muted: #8d5874;
+      --line: #efb8d4;
+      --accent: #ed6caf;
+      --accent-strong: #bd2b72;
+      --accent-soft: #ffdeef;
+      --good: #d84f91;
+      --warn: #d96f9b;
+      --danger: #b61e5d;
+      --shadow: 0 20px 58px rgba(190, 43, 113, .16);
+      --pink-glow: 0 0 0 1px rgba(255,255,255,.7), 0 16px 50px rgba(230,74,146,.18);
+    }
+    html[data-theme="night"],
+    #themeSwitch:checked ~ .app-shell {
+      --bg: #210713;
+      --panel: rgba(60, 10, 39, .93);
+      --panel-solid: #3a0d27;
+      --ink: #fff0f8;
+      --muted: #e4abc8;
+      --line: #8d3764;
+      --accent: #ff69b3;
+      --accent-strong: #ffb1d6;
+      --accent-soft: #5b1739;
+      --good: #ff88c3;
+      --warn: #ff9abf;
+      --danger: #ff5b9d;
+      --shadow: 0 24px 70px rgba(0, 0, 0, .42);
+      --pink-glow: 0 0 0 1px rgba(255,150,201,.13), 0 18px 60px rgba(255,60,153,.19);
+    }
+    body { background: var(--bg); }
+    .app-shell {
+      background:
+        radial-gradient(circle at 8% 0%, rgba(255, 125, 188, .33), transparent 27rem),
+        radial-gradient(circle at 94% 7%, rgba(255, 75, 164, .20), transparent 30rem),
+        radial-gradient(circle at 52% 45%, rgba(255, 206, 232, .26), transparent 38rem),
+        linear-gradient(135deg, rgba(255,255,255,.18) 25%, transparent 25%) 0 0 / 34px 34px,
+        linear-gradient(225deg, rgba(255,255,255,.13) 25%, transparent 25%) 0 0 / 34px 34px,
+        var(--bg);
+    }
+    html[data-theme="night"] .app-shell,
+    #themeSwitch:checked ~ .app-shell {
+      background:
+        radial-gradient(circle at 8% 0%, rgba(255, 87, 169, .20), transparent 29rem),
+        radial-gradient(circle at 94% 8%, rgba(205, 39, 120, .22), transparent 32rem),
+        radial-gradient(circle at 52% 42%, rgba(147, 24, 87, .17), transparent 38rem),
+        linear-gradient(135deg, rgba(255,105,180,.035) 25%, transparent 25%) 0 0 / 34px 34px,
+        linear-gradient(225deg, rgba(255,105,180,.03) 25%, transparent 25%) 0 0 / 34px 34px,
+        var(--bg);
+    }
+    .shell { width: min(1220px, calc(100% - 28px)); }
+    .hero {
+      border: 1px solid rgba(239, 126, 183, .55);
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.88), rgba(255,221,239,.75)),
+        var(--panel);
+      box-shadow: var(--pink-glow);
+    }
+    html[data-theme="night"] .hero,
+    #themeSwitch:checked ~ .app-shell .hero {
+      background:
+        linear-gradient(135deg, rgba(86,15,55,.95), rgba(47,7,30,.92)),
+        var(--panel);
+    }
+    .hero::before {
+      content: "✦  ♥  ✦";
+      position: absolute;
+      top: 22px;
+      right: 28px;
+      color: rgba(190,43,113,.34);
+      font-size: clamp(1.4rem, 3vw, 2.4rem);
+      letter-spacing: .35em;
+      pointer-events: none;
+    }
+    html[data-theme="night"] .hero::before,
+    #themeSwitch:checked ~ .app-shell .hero::before { color: rgba(255,177,214,.26); }
+    .hero::after {
+      width: 34rem;
+      height: 34rem;
+      inset: auto -11rem -14rem auto;
+      background: radial-gradient(circle, rgba(255,91,166,.34), transparent 68%);
+    }
+    .brand-lockup {
+      position: relative;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 24px;
+      margin-bottom: 18px;
+      padding: 10px 14px 10px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--panel-solid) 84%, transparent);
+      box-shadow: 0 9px 28px rgba(190,43,113,.13);
+    }
+    .brand-orb {
+      display: grid;
+      place-items: center;
+      width: 43px;
+      height: 43px;
+      border-radius: 50%;
+      color: #fff;
+      font: 900 .83rem/1 ui-sans-serif, system-ui, sans-serif;
+      letter-spacing: .06em;
+      background: linear-gradient(145deg, #ff9dcc, #d72d7f 70%);
+      box-shadow: inset 0 0 0 2px rgba(255,255,255,.43), 0 8px 24px rgba(200,42,118,.28);
+    }
+    .brand-name {
+      color: var(--accent-strong);
+      font-size: 1.05rem;
+      line-height: 1.05;
+      font-weight: 900;
+      letter-spacing: -.015em;
+    }
+    .brand-edition {
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: .72rem;
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    h1 {
+      position: relative;
+      z-index: 1;
+      color: var(--accent-strong);
+      background: linear-gradient(105deg, #9e1f5e 5%, #e64697 48%, #b82972 92%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 8px 34px rgba(204,41,118,.12);
+    }
+    html[data-theme="night"] h1,
+    #themeSwitch:checked ~ .app-shell h1 {
+      background: linear-gradient(105deg, #ffd2e8 5%, #ff80bd 48%, #ffc1de 92%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .eyebrow { color: var(--accent-strong); }
+    .privacy-badge::before { content: "♥"; color: var(--accent); }
+    .privacy-badge,
+    .notice,
+    .pill,
+    .step,
+    th { background: linear-gradient(135deg, var(--accent-soft), color-mix(in srgb, var(--accent-soft) 64%, white)); }
+    html[data-theme="night"] .privacy-badge,
+    html[data-theme="night"] .notice,
+    html[data-theme="night"] .pill,
+    html[data-theme="night"] .step,
+    html[data-theme="night"] th,
+    #themeSwitch:checked ~ .app-shell .privacy-badge,
+    #themeSwitch:checked ~ .app-shell .notice,
+    #themeSwitch:checked ~ .app-shell .pill,
+    #themeSwitch:checked ~ .app-shell .step,
+    #themeSwitch:checked ~ .app-shell th {
+      background: linear-gradient(135deg, var(--accent-soft), #4a102f);
+    }
+    .theme-toggle,
+    .creator-credit {
+      border-color: rgba(232,93,159,.38);
+      box-shadow: 0 8px 25px rgba(193,43,113,.11);
+    }
+    .card {
+      border-color: rgba(235, 120, 176, .48);
+      background:
+        linear-gradient(150deg, color-mix(in srgb, var(--panel) 94%, white), color-mix(in srgb, var(--panel) 95%, var(--accent-soft)));
+      box-shadow: var(--pink-glow);
+    }
+    html[data-theme="night"] .card,
+    #themeSwitch:checked ~ .app-shell .card {
+      background: linear-gradient(150deg, rgba(67,12,43,.96), rgba(47,7,30,.94));
+    }
+    .card-header h2 { color: var(--accent-strong); }
+    .step {
+      border: 1px solid rgba(231,91,157,.34);
+      box-shadow: inset 0 0 0 2px rgba(255,255,255,.35);
+    }
+    input[type="text"], input[type="email"], input[type="url"], input[type="tel"], input[type="date"], input[type="datetime-local"], select, textarea {
+      border-color: color-mix(in srgb, var(--line) 84%, var(--accent));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.45);
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(239, 103, 173, .18), 0 9px 22px rgba(211,44,124,.10);
+    }
+    input[type="file"] {
+      border-color: var(--accent);
+      background: linear-gradient(135deg, var(--accent-soft), color-mix(in srgb, var(--accent-soft) 72%, white));
+    }
+    html[data-theme="night"] input[type="file"],
+    #themeSwitch:checked ~ .app-shell input[type="file"] {
+      background: linear-gradient(135deg, #5b1739, #3d0b29);
+    }
+    .repeat-item {
+      border-color: rgba(231, 91, 157, .45);
+      background: rgba(255, 222, 239, .38);
+    }
+    html[data-theme="night"] .repeat-item,
+    #themeSwitch:checked ~ .app-shell .repeat-item { background: rgba(255, 87, 169, .06); }
+    .btn-primary {
+      color: white;
+      background: linear-gradient(135deg, #e94b99, #b51d66);
+      box-shadow: 0 9px 24px rgba(188,35,105,.25);
+    }
+    .btn-secondary {
+      background: linear-gradient(135deg, var(--accent-soft), color-mix(in srgb, var(--accent-soft) 72%, white));
+      border-color: rgba(228,85,153,.4);
+    }
+    html[data-theme="night"] .btn-secondary,
+    #themeSwitch:checked ~ .app-shell .btn-secondary {
+      background: linear-gradient(135deg, #5b1739, #3d0b29);
+    }
+    .btn-ghost { border-color: rgba(226,87,153,.38); }
+    .btn-danger { color: var(--danger); border-color: rgba(232,74,139,.46); }
+    .actions {
+      border-color: rgba(231, 91, 157, .52);
+      background: color-mix(in srgb, var(--panel-solid) 92%, transparent);
+      box-shadow: 0 18px 52px rgba(181,29,102,.20);
+    }
+    .warning-box {
+      border-color: rgba(224, 102, 151, .48);
+      background: rgba(255, 185, 215, .20);
+    }
+    .danger-box {
+      border-color: rgba(211, 54, 119, .48);
+      background: rgba(255, 126, 182, .16);
+    }
+    .footer::before {
+      content: "♥  Dollie Tools  ♥";
+      display: block;
+      margin-bottom: 7px;
+      color: var(--accent-strong);
+      font-weight: 900;
+      letter-spacing: .08em;
+    }
+    @media (max-width: 760px) {
+      .brand-lockup { margin-top: 18px; }
+      .hero::before { display: none; }
+    }
+    @media print {
+      h1 { color: #a51f61; -webkit-text-fill-color: #a51f61; text-shadow: none; }
+      .brand-lockup { border: 1px solid #e6b2cc; box-shadow: none; }
+      .brand-orb { background: #c82f79; box-shadow: none; }
+    }
+
+    .repo-nav {
+      display:flex;
+      justify-content:flex-start;
+      margin:0 0 14px;
+    }
+    .home-link {
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      min-height:42px;
+      padding:9px 14px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      color:var(--accent-strong);
+      background:var(--panel);
+      text-decoration:none;
+      font-weight:850;
+      box-shadow:0 8px 22px rgba(151,32,91,.10);
+    }
+    .home-link:hover { transform:translateY(-1px); border-color:var(--accent); }
+    @media print { .repo-nav { display:none!important; } }
+
+  </style>
+</head>
+<body>
+  <input class="theme-switch-input" type="checkbox" id="themeSwitch" aria-label="Use night theme">
+  <div class="app-shell">
+  <main class="shell">
+    <nav class="repo-nav no-print" aria-label="Dollie Tools navigation"><a class="home-link" href="index.html">← All Dollie Tools</a></nav>
+    <section class="hero">
+      <div class="hero-toolbar">
+        <span class="privacy-badge">Privacy-first — evidence stays in your browser</span>
+        <label class="theme-toggle no-print" id="themeToggle" for="themeSwitch" title="Switch color theme">
+          <span class="theme-icon theme-when-day" aria-hidden="true">☾</span>
+          <span class="theme-icon theme-when-night" aria-hidden="true">☀</span>
+          <span class="theme-when-day">Night theme</span>
+          <span class="theme-when-night">Day theme</span>
+        </label>
+      </div>
+      <div class="brand-lockup" aria-label="Dollie Tools repository edition">
+        <div class="brand-orb" aria-hidden="true">DT</div>
+        <div>
+          <div class="brand-name">Dollie Tools</div>
+          <div class="brand-edition">tools repository edition</div>
+        </div>
+      </div>
+      <div class="eyebrow">Creator protection toolkit</div>
+      <h1>Bot Copyright Evidence Builder</h1>
+      <p class="lede">A fully pink, privacy-first Dollie Tools workspace for collecting original-publication details, copied links, side-by-side passages, screenshots, dates, and file hashes—then compiling them into a self-contained evidence report or editable DMCA-style notice draft.</p>
+      <div class="notice">
+        <strong>Before you publish a bot:</strong> keep an original export, drafts or revision history, source artwork and licenses, screenshots showing your profile and listing URL, and a record of the publication date and timezone. Save a new copy after substantial updates. Evidence is strongest when it exists before a dispute begins.
+      </div>
+      <p class="helper" style="margin-top:16px">This tool organizes information. It does not decide whether infringement occurred, submit anything, contact a platform, or provide legal advice.</p>
+      <div class="creator-credit"><span aria-hidden="true">♥</span> Created by <strong>Dollie</strong> <span aria-hidden="true">•</span> © 2026 Dollie</div>
+    </section>
+
+    <form id="caseForm" autocomplete="off">
+      <div class="grid">
+        <section class="card">
+          <div class="card-header"><div class="step">1</div><div class="header-copy"><h2>Case information</h2><p class="helper">Create a private reference for this incident and identify the intended output.</p></div></div>
+          <div class="fields">
+            <div class="field half"><label for="caseTitle">Case title <span class="required-marker">*</span></label><input id="caseTitle" name="caseTitle" required placeholder="Example: Copied character bot on ExampleApp"></div>
+            <div class="field quarter"><label for="caseReference">Case reference</label><input id="caseReference" name="caseReference" placeholder="AUTO-2026-001"></div>
+            <div class="field quarter"><label for="createdDate">Prepared date</label><input id="createdDate" name="createdDate" type="date"></div>
+            <div class="field third"><label for="targetPlatform">Target platform or service <span class="required-marker">*</span></label><input id="targetPlatform" name="targetPlatform" required placeholder="App or website receiving the report"></div>
+            <div class="field third"><label for="creatorCountry">Creator country</label><input id="creatorCountry" name="creatorCountry" placeholder="Country of residence"></div>
+            <div class="field third"><label for="outputType">Primary output</label><select id="outputType" name="outputType"><option>Evidence package only</option><option>Platform copyright report</option><option>DMCA notice draft</option><option>Direct removal request</option></select></div>
+            <div class="field"><label for="caseSummary">Brief case summary</label><textarea id="caseSummary" name="caseSummary" placeholder="Describe what was copied, where it appeared, and why you believe the material came from your original bot."></textarea></div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card-header"><div class="step">2</div><div class="header-copy"><h2>Creator and ownership</h2><p class="helper">Public identity can be kept separate from legal contact details. DMCA notices may require personal contact information.</p></div></div>
+          <div class="fields">
+            <div class="field half"><label for="creatorHandle">Public creator name or handle <span class="required-marker">*</span></label><input id="creatorHandle" name="creatorHandle" required></div>
+            <div class="field half"><label for="legalName">Legal name <span class="optional">(only where required)</span></label><input id="legalName" name="legalName"></div>
+            <div class="field half"><label for="contactEmail">Contact email</label><input id="contactEmail" name="contactEmail" type="email"></div>
+            <div class="field half"><label for="contactPhone">Telephone <span class="optional">(optional)</span></label><input id="contactPhone" name="contactPhone" type="tel"></div>
+            <div class="field"><label for="postalAddress">Postal address <span class="optional">(only where required)</span></label><textarea id="postalAddress" name="postalAddress" style="min-height:72px"></textarea></div>
+            <div class="field half"><label for="ownershipBasis">Authority</label><select id="ownershipBasis" name="ownershipBasis"><option>I am the copyright owner</option><option>I am authorized to act for the owner</option><option>I am a co-author or joint rights holder</option><option>Other — explain below</option></select></div>
+            <div class="field half"><label for="collaborators">Collaborators or co-authors</label><input id="collaborators" name="collaborators" placeholder="Names, handles, and roles"></div>
+            <div class="field"><label for="ownershipNotes">Ownership, commissions, licenses, or authorization notes</label><textarea id="ownershipNotes" name="ownershipNotes" placeholder="Explain commissioned artwork, source files, written agreements, platform licenses, or who owns each part."></textarea></div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card-header"><div class="step">3</div><div class="header-copy"><h2>Original bot</h2><p class="helper">Identify the original work and the parts you personally created.</p></div></div>
+          <div class="fields">
+            <div class="field half"><label for="originalTitle">Original bot title <span class="required-marker">*</span></label><input id="originalTitle" name="originalTitle" required></div>
+            <div class="field half"><label for="originalPlatform">Original platform <span class="required-marker">*</span></label><input id="originalPlatform" name="originalPlatform" required></div>
+            <div class="field half"><label for="originalUrl">Original public URL</label><input id="originalUrl" name="originalUrl" type="url" placeholder="https://..."></div>
+            <div class="field half"><label for="creatorProfileUrl">Creator profile URL</label><input id="creatorProfileUrl" name="creatorProfileUrl" type="url" placeholder="https://..."></div>
+            <div class="field third"><label for="publishedAt">First publication</label><input id="publishedAt" name="publishedAt" type="datetime-local"></div>
+            <div class="field third"><label for="publicationTimezone">Publication timezone</label><input id="publicationTimezone" name="publicationTimezone" placeholder="Example: Europe/Warsaw"></div>
+            <div class="field third"><label for="lastUpdated">Last substantial update</label><input id="lastUpdated" name="lastUpdated" type="date"></div>
+            <div class="field"><label>Human-created contributions</label><div class="checks" data-check-group="humanContributions">
+              <div class="check"><input type="checkbox" id="hc-profile" value="Character profile"><label for="hc-profile">Character profile</label></div>
+              <div class="check"><input type="checkbox" id="hc-personality" value="Personality definition"><label for="hc-personality">Personality definition</label></div>
+              <div class="check"><input type="checkbox" id="hc-scenario" value="Scenario"><label for="hc-scenario">Scenario</label></div>
+              <div class="check"><input type="checkbox" id="hc-greeting" value="Opening message or greeting"><label for="hc-greeting">Opening message or greeting</label></div>
+              <div class="check"><input type="checkbox" id="hc-dialogue" value="Example dialogue"><label for="hc-dialogue">Example dialogue</label></div>
+              <div class="check"><input type="checkbox" id="hc-world" value="Worldbuilding or lore"><label for="hc-world">Worldbuilding or lore</label></div>
+              <div class="check"><input type="checkbox" id="hc-structure" value="Creative selection and arrangement"><label for="hc-structure">Creative selection and arrangement</label></div>
+              <div class="check"><input type="checkbox" id="hc-art" value="Artwork or visual assets"><label for="hc-art">Artwork or visual assets</label></div>
+              <div class="check"><input type="checkbox" id="hc-code" value="Original code or configuration"><label for="hc-code">Original code or configuration</label></div>
+              <div class="check"><input type="checkbox" id="hc-other" value="Other original expression"><label for="hc-other">Other original expression</label></div>
+            </div></div>
+            <div class="field"><label for="originalDescription">Description of the original expression</label><textarea id="originalDescription" name="originalDescription" placeholder="Describe the specific writing, artwork, dialogue, lore, arrangement, or configuration you created. Avoid relying only on an idea, trope, title, or short phrase."></textarea></div>
+            <div class="field half"><label for="aiAssistance">AI assistance</label><select id="aiAssistance" name="aiAssistance"><option>No generative AI was used</option><option>AI assisted, with substantial human writing or editing</option><option>Mixed human and AI-generated material</option><option>Unknown or not relevant</option></select></div>
+            <div class="field half"><label for="aiNotes">Human authorship notes</label><input id="aiNotes" name="aiNotes" placeholder="What did the creator write, select, arrange, or substantially modify?"></div>
+            <div class="field"><label for="originalNotice">Usage or copyright notice shown on the listing</label><textarea id="originalNotice" name="originalNotice" placeholder="Paste the notice, license, or permitted-use statement shown with the original bot."></textarea></div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card-header"><div class="step">4</div><div class="header-copy"><h2>Alleged copies</h2><p class="helper">Add a separate entry for every copied listing or distribution location.</p></div><button type="button" class="btn-secondary small no-print" id="addCopy">+ Add copy</button></div>
+          <div id="copiesList" class="repeat-list"></div>
+        </section>
+
+        <section class="card">
+          <div class="card-header"><div class="step">5</div><div class="header-copy"><h2>Side-by-side comparison</h2><p class="helper">Use exact excerpts and locations. This section organizes evidence; it does not calculate a legal similarity score.</p></div><button type="button" class="btn-secondary small no-print" id="addComparison">+ Add comparison</button></div>
+          <div id="comparisonsList" class="repeat-list"></div>
+        </section>
+
+        <section class="card">
+          <div class="card-header"><div class="step">6</div><div class="header-copy"><h2>Evidence files</h2><p class="helper">Files remain in this browser session. The tool calculates SHA-256 hashes locally when supported. Image previews may be embedded in the generated report.</p></div></div>
+          <div class="fields">
+            <div class="field"><label for="evidenceFiles">Select screenshots, exports, source files, recordings, receipts, or correspondence</label><input id="evidenceFiles" type="file" multiple></div>
+            <div class="field"><div class="warning-box"><strong>Preserve originals:</strong> keep untouched files separately. Add annotations only to copies. A hash can help identify a file but does not by itself prove authorship or the creation date.</div></div>
+            <div class="field"><div id="fileTablePlaceholder" class="helper">No evidence files selected.</div><div id="fileTableWrap" class="table-wrap hidden"><table><thead><tr><th>#</th><th>Preview</th><th>Filename</th><th>Type / size</th><th>SHA-256</th><th>Description</th><th></th></tr></thead><tbody id="fileTableBody"></tbody></table></div></div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card-header"><div class="step">7</div><div class="header-copy"><h2>Authorization and context check</h2><p class="helper">Answer honestly before generating a legal notice.</p></div></div>
+          <div class="checks" data-check-group="contextChecks">
+            <div class="check"><input type="checkbox" id="ctx-noauth" value="I did not authorize this use"><label for="ctx-noauth">I did not authorize this use.</label></div>
+            <div class="check"><input type="checkbox" id="ctx-license" value="I reviewed any license or reuse permission"><label for="ctx-license">I reviewed any license or reuse permission attached to my work.</label></div>
+            <div class="check"><input type="checkbox" id="ctx-collab" value="I considered collaborators and other rights holders"><label for="ctx-collab">I considered collaborators and other rights holders.</label></div>
+            <div class="check"><input type="checkbox" id="ctx-expression" value="My claim identifies copied expression, not only an idea, trope, title, or name"><label for="ctx-expression">My claim identifies copied expression, not only an idea, trope, title, or name.</label></div>
+            <div class="check"><input type="checkbox" id="ctx-permitted" value="I considered whether the use may be permitted by law or platform rules"><label for="ctx-permitted">I considered whether the use may be permitted by law or platform rules.</label></div>
+            <div class="check"><input type="checkbox" id="ctx-accurate" value="The URLs, dates, excerpts, and statements are accurate to the best of my knowledge"><label for="ctx-accurate">The URLs, dates, excerpts, and statements are accurate to the best of my knowledge.</label></div>
+          </div>
+          <div class="fields" style="margin-top:12px">
+            <div class="field half"><label for="priorContact">Prior contact with uploader</label><select id="priorContact" name="priorContact"><option>No contact</option><option>Removal requested — no response</option><option>Removal requested — refused</option><option>Uploader removed some material</option><option>Other</option></select></div>
+            <div class="field half"><label for="priorReport">Prior platform report</label><input id="priorReport" name="priorReport" placeholder="Report number, date, or result"></div>
+            <div class="field"><label for="contactHistory">Contact and response history</label><textarea id="contactHistory" name="contactHistory"></textarea></div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card-header"><div class="step">8</div><div class="header-copy"><h2>Requested action</h2><p class="helper">Choose only remedies related to the material you identified.</p></div></div>
+          <div class="checks" data-check-group="requestedActions">
+            <div class="check"><input type="checkbox" id="act-listing" value="Remove or disable access to the specified bot listing"><label for="act-listing">Remove or disable access to the specified bot listing.</label></div>
+            <div class="check"><input type="checkbox" id="act-text" value="Remove the identified copied text"><label for="act-text">Remove the identified copied text.</label></div>
+            <div class="check"><input type="checkbox" id="act-art" value="Remove the identified unauthorized artwork"><label for="act-art">Remove the identified unauthorized artwork.</label></div>
+            <div class="check"><input type="checkbox" id="act-distribution" value="Stop distribution of the identified copied bot file"><label for="act-distribution">Stop distribution of the identified copied bot file.</label></div>
+            <div class="check"><input type="checkbox" id="act-duplicates" value="Review the specifically identified duplicate listings"><label for="act-duplicates">Review the specifically identified duplicate listings.</label></div>
+            <div class="check"><input type="checkbox" id="act-contact" value="Contact me regarding resolution"><label for="act-contact">Contact me regarding resolution.</label></div>
+          </div>
+          <div class="fields" style="margin-top:12px"><div class="field"><label for="requestedActionNotes">Additional requested-action notes</label><textarea id="requestedActionNotes" name="requestedActionNotes"></textarea></div></div>
+        </section>
+
+        <section class="card" id="dmcaSection">
+          <div class="card-header"><div class="step">9</div><div class="header-copy"><h2>DMCA-style declaration</h2><p class="helper">Required only when generating the DMCA-style notice draft. Review the receiving platform’s current requirements before sending.</p></div></div>
+          <div class="danger-box"><strong>Legal warning:</strong> a DMCA notice is a legal communication. It usually includes statements made under penalty of perjury and may expose contact information to the recipient or affected uploader. Do not send a notice you know is inaccurate or materially misleading.</div>
+          <div class="fields" style="margin-top:14px">
+            <div class="field half"><label for="signatureName">Electronic signature / typed full name</label><input id="signatureName" name="signatureName"></div>
+            <div class="field half"><label for="signatureDate">Signature date</label><input id="signatureDate" name="signatureDate" type="date"></div>
+            <div class="field"><div class="check"><input type="checkbox" id="goodFaith"><label for="goodFaith">I have a good-faith belief that the disputed use is not authorized by the copyright owner, its agent, or the law.</label></div></div>
+            <div class="field"><div class="check"><input type="checkbox" id="accuracyAuthority"><label for="accuracyAuthority">I state that the information in this notice is accurate and, under penalty of perjury, that I am the owner or am authorized to act on behalf of the owner of an exclusive right allegedly infringed.</label></div></div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card-header"><div class="step">?</div><div class="header-copy"><h2>How this GitHub edition handles privacy</h2></div></div>
+          <details open><summary>No evidence uploads</summary><p>The GitHub-hosted page contains no analytics, remote fonts, external libraries, advertising, account system, or upload endpoint. After the page loads, the tool does not send your form entries or selected evidence anywhere. Selected evidence stays in the current browser session unless you deliberately generate or save a file.</p></details>
+          <details><summary>Browser storage</summary><p>“Save locally” stores form text in this browser’s local storage. Evidence-file contents are not stored there. Clearing browser data or moving to another browser removes that saved form copy.</p></details>
+          <details><summary>Generated documents</summary><p>The evidence report and case backup are generated in your browser and downloaded to your device. Image evidence may be embedded in the report when practical. Other evidence is indexed by filename, description, size, type, and hash; keep the original attachments in your own case folder.</p></details>
+          <details><summary>Legal scope</summary><p>Copyright usually protects original expression rather than ideas, systems, titles, names, or short phrases. Rules, platform procedures, and applicable law vary. Review the receiving service’s current policy and obtain professional advice when the stakes justify it.</p></details>
+        </section>
+      </div>
+
+      <div class="actions no-print">
+        <button type="button" class="btn-primary" id="generateReport">Generate evidence report</button>
+        <button type="button" class="btn-secondary" id="generateDmca">Generate DMCA draft</button>
+        <button type="button" class="btn-ghost" id="exportJson">Export case backup</button>
+        <label class="btn-ghost" style="display:inline-flex;align-items:center;cursor:pointer">Import backup<input type="file" id="importJson" accept="application/json,.json" hidden></label>
+        <span class="spacer"></span>
+        <button type="button" class="btn-ghost" id="saveLocal">Save locally</button>
+        <button type="button" class="btn-ghost" id="loadLocal">Load saved</button>
+        <button type="button" class="btn-danger" id="clearCase">Clear</button>
+      </div>
+      <div id="status" class="status" aria-live="polite"></div>
+    </form>
+
+    <div class="footer">
+      <strong>Dollie Tools — Created by Dollie</strong> • © 2026 Dollie. All rights reserved.<br>
+      Copyright covers this tool’s original code, design, and wording. Creators retain ownership of the content and evidence they enter.<br>
+      Dollie Tools • tools repository edition • Version 2.1 • Generated files should be reviewed before submission
+    </div>
+  </main>
+
+  <template id="copyTemplate">
+    <div class="repeat-item copy-item">
+      <div class="repeat-toolbar"><span class="repeat-title">Copied location <span class="item-number"></span></span><button type="button" class="btn-danger small remove-item">Remove</button></div>
+      <div class="fields">
+        <div class="field third"><label>Platform or app <span class="required-marker">*</span></label><input data-key="platform" required></div>
+        <div class="field third"><label>Uploader username</label><input data-key="username"></div>
+        <div class="field third"><label>Copied bot title</label><input data-key="title"></div>
+        <div class="field half"><label>Direct copied-content URL <span class="required-marker">*</span></label><input data-key="url" type="url" required placeholder="https://..."></div>
+        <div class="field half"><label>Uploader profile URL</label><input data-key="profileUrl" type="url" placeholder="https://..."></div>
+        <div class="field third"><label>Date discovered</label><input data-key="discoveredAt" type="datetime-local"></div>
+        <div class="field third"><label>Apparent posting date</label><input data-key="postedAt" type="datetime-local"></div>
+        <div class="field third"><label>Commercial use</label><select data-key="monetized"><option>Unknown</option><option>Appears monetized</option><option>Not monetized</option><option>Paid access or subscription</option></select></div>
+        <div class="field"><label>What appears to have been copied?</label><textarea data-key="copiedMaterial" placeholder="Description, scenario, greeting, dialogue, lore, artwork, configuration, or complete bot export."></textarea></div>
+        <div class="field"><label>Notes and access conditions</label><textarea data-key="notes" placeholder="Is an account required? Was attribution removed? Was the title changed? Record anything visible on the listing."></textarea></div>
+      </div>
+    </div>
+  </template>
+
+  <template id="comparisonTemplate">
+    <div class="repeat-item comparison-item">
+      <div class="repeat-toolbar"><span class="repeat-title">Comparison <span class="item-number"></span></span><button type="button" class="btn-danger small remove-item">Remove</button></div>
+      <div class="fields">
+        <div class="field half"><label>Original excerpt or description</label><textarea data-key="originalExcerpt"></textarea></div>
+        <div class="field half"><label>Copied excerpt or description</label><textarea data-key="copiedExcerpt"></textarea></div>
+        <div class="field half"><label>Original source location</label><input data-key="originalLocation" placeholder="URL, section, screenshot filename, export field"></div>
+        <div class="field half"><label>Copied source location</label><input data-key="copiedLocation" placeholder="URL, section, screenshot filename, export field"></div>
+        <div class="field"><label>Why this comparison is significant</label><textarea data-key="explanation" placeholder="Example: same wording, punctuation, invented details, sequence, unusual errors, or creative arrangement."></textarea></div>
+      </div>
+    </div>
+  </template>
+  </div>
+
+<script>
+(() => {
+  'use strict';
+  const $ = (s, r=document) => r.querySelector(s);
+  const $$ = (s, r=document) => [...r.querySelectorAll(s)];
+  const form = $('#caseForm');
+  const statusEl = $('#status');
+  const files = [];
+  const MAX_EMBED_BYTES = 8 * 1024 * 1024;
+  const THEME_KEY = 'dollieTools.botCopyright.theme';
+
+  const setStatus = (message, type='') => {
+    statusEl.textContent = message;
+    statusEl.className = 'status' + (type ? ' ' + type : '');
+  };
+
+  const escapeHtml = (value='') => String(value)
+    .replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')
+    .replaceAll('"','&quot;').replaceAll("'",'&#039;');
+
+  const nl2br = (value='') => escapeHtml(value).replace(/\n/g,'<br>');
+  const humanBytes = bytes => {
+    if (!Number.isFinite(bytes)) return '';
+    const units = ['B','KB','MB','GB'];
+    let i=0, n=bytes;
+    while (n >= 1024 && i < units.length-1) { n/=1024; i++; }
+    return `${n.toFixed(i ? 1 : 0)} ${units[i]}`;
+  };
+  const nowDate = () => new Date().toISOString().slice(0,10);
+  const safeFilename = value => (value || 'copyright-case').trim().replace(/[^a-z0-9._-]+/gi,'-').replace(/^-+|-+$/g,'').slice(0,80) || 'copyright-case';
+
+  function applyTheme(theme, persist=true) {
+    const normalized = theme === 'night' ? 'night' : 'day';
+    const isNight = normalized === 'night';
+    document.documentElement.dataset.theme = normalized;
+    const switchControl = $('#themeSwitch');
+    if (switchControl) {
+      switchControl.checked = isNight;
+      switchControl.setAttribute('aria-label', isNight ? 'Use day theme' : 'Use night theme');
+    }
+    const toggle = $('#themeToggle');
+    if (toggle) toggle.title = isNight ? 'Switch to day theme' : 'Switch to night theme';
+    if (persist) {
+      try { localStorage.setItem(THEME_KEY, normalized); } catch {}
+    }
+  }
+
+  function initializeDefaults() {
+    $('#createdDate').value ||= nowDate();
+    $('#signatureDate').value ||= nowDate();
+    $('#caseReference').value ||= `BOT-${new Date().getFullYear()}-${String(Math.floor(Math.random()*900)+100)}`;
+    try { $('#publicationTimezone').value ||= Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch {}
+  }
+
+  function addRepeatItem(type, data={}) {
+    const list = type === 'copy' ? $('#copiesList') : $('#comparisonsList');
+    const template = type === 'copy' ? $('#copyTemplate') : $('#comparisonTemplate');
+    const fragment = template.content.cloneNode(true);
+    const item = fragment.firstElementChild;
+    $$('[data-key]', item).forEach(el => {
+      const key = el.dataset.key;
+      if (data[key] !== undefined && data[key] !== null) el.value = data[key];
+    });
+    $('.remove-item', item).addEventListener('click', () => { item.remove(); renumber(type); });
+    list.appendChild(item);
+    renumber(type);
+  }
+
+  function renumber(type) {
+    const selector = type === 'copy' ? '.copy-item' : '.comparison-item';
+    $$(selector).forEach((item, i) => $('.item-number', item).textContent = i + 1);
+  }
+
+  function serializeRepeat(selector) {
+    return $$(selector).map(item => {
+      const out = {};
+      $$('[data-key]', item).forEach(el => out[el.dataset.key] = el.value.trim());
+      return out;
+    });
+  }
+
+  function collectChecks(group) {
+    return $$(`[data-check-group="${group}"] input[type="checkbox"]:checked`).map(x => x.value);
+  }
+
+  function setChecks(group, values=[]) {
+    const set = new Set(values);
+    $$(`[data-check-group="${group}"] input[type="checkbox"]`).forEach(x => x.checked = set.has(x.value));
+  }
+
+  function collectCase(includeFileData=false) {
+    const data = {};
+    $$('input[name], select[name], textarea[name]', form).forEach(el => data[el.name] = el.value);
+    data.humanContributions = collectChecks('humanContributions');
+    data.contextChecks = collectChecks('contextChecks');
+    data.requestedActions = collectChecks('requestedActions');
+    data.goodFaith = $('#goodFaith').checked;
+    data.accuracyAuthority = $('#accuracyAuthority').checked;
+    data.copies = serializeRepeat('.copy-item');
+    data.comparisons = serializeRepeat('.comparison-item');
+    data.evidence = files.map(({file, hash, description, dataUrl}) => ({
+      name: file.name,
+      type: file.type || 'Unknown',
+      size: file.size,
+      lastModified: file.lastModified,
+      hash,
+      description,
+      ...(includeFileData && dataUrl ? {dataUrl} : {})
+    }));
+    data.toolVersion = '2.0-github';
+    data.preferredTheme = document.documentElement.dataset.theme === 'night' ? 'night' : 'day';
+    data.exportedAt = new Date().toISOString();
+    return data;
+  }
+
+  function applyCase(data) {
+    $$('input[name], select[name], textarea[name]', form).forEach(el => {
+      if (data[el.name] !== undefined) el.value = data[el.name];
+    });
+    setChecks('humanContributions', data.humanContributions);
+    setChecks('contextChecks', data.contextChecks);
+    setChecks('requestedActions', data.requestedActions);
+    $('#goodFaith').checked = Boolean(data.goodFaith);
+    $('#accuracyAuthority').checked = Boolean(data.accuracyAuthority);
+    $('#copiesList').innerHTML = '';
+    $('#comparisonsList').innerHTML = '';
+    (data.copies?.length ? data.copies : [{}]).forEach(x => addRepeatItem('copy', x));
+    (data.comparisons?.length ? data.comparisons : [{}]).forEach(x => addRepeatItem('comparison', x));
+    files.length = 0;
+    if (Array.isArray(data.evidence) && data.evidence.length) {
+      setStatus('Backup loaded. Evidence-file metadata was restored, but original file contents must be selected again.', 'ok');
+    }
+    renderFiles();
+  }
+
+  async function sha256(file) {
+    if (!globalThis.crypto?.subtle) return 'Unavailable in this browser context';
+    try {
+      const buffer = await file.arrayBuffer();
+      const digest = await crypto.subtle.digest('SHA-256', buffer);
+      return [...new Uint8Array(digest)].map(b => b.toString(16).padStart(2,'0')).join('');
+    } catch { return 'Unable to calculate'; }
+  }
+
+  function readDataUrl(file) {
+    return new Promise(resolve => {
+      if (!file.type.startsWith('image/') || file.size > MAX_EMBED_BYTES) return resolve('');
+      const reader = new FileReader();
+      reader.onload = () => resolve(typeof reader.result === 'string' ? reader.result : '');
+      reader.onerror = () => resolve('');
+      reader.readAsDataURL(file);
+    });
+  }
+
+  async function addEvidenceFiles(fileList) {
+    const incoming = [...fileList];
+    if (!incoming.length) return;
+    setStatus(`Processing ${incoming.length} evidence file${incoming.length === 1 ? '' : 's'} locally…`);
+    for (const file of incoming) {
+      const key = `${file.name}|${file.size}|${file.lastModified}`;
+      if (files.some(x => x.key === key)) continue;
+      const [hash, dataUrl] = await Promise.all([sha256(file), readDataUrl(file)]);
+      files.push({ key, file, hash, dataUrl, description: '' });
+    }
+    renderFiles();
+    $('#evidenceFiles').value = '';
+    setStatus(`${files.length} evidence file${files.length === 1 ? '' : 's'} indexed.`, 'ok');
+  }
+
+  function renderFiles() {
+    const body = $('#fileTableBody');
+    body.innerHTML = '';
+    $('#fileTablePlaceholder').classList.toggle('hidden', files.length > 0);
+    $('#fileTableWrap').classList.toggle('hidden', files.length === 0);
+    files.forEach((entry, i) => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${i+1}</td>
+        <td>${entry.dataUrl ? `<img class="preview" alt="Evidence preview" src="${entry.dataUrl}">` : '<span class="pill">Indexed</span>'}</td>
+        <td>${escapeHtml(entry.file.name)}<br><span class="helper">Modified: ${new Date(entry.file.lastModified).toLocaleString()}</span></td>
+        <td>${escapeHtml(entry.file.type || 'Unknown')}<br>${humanBytes(entry.file.size)}</td>
+        <td><code class="hash">${escapeHtml(entry.hash)}</code></td>
+        <td><input type="text" class="file-description" data-index="${i}" value="${escapeHtml(entry.description)}" placeholder="What does this file show?"></td>
+        <td><button type="button" class="btn-danger small remove-file" data-index="${i}">Remove</button></td>`;
+      body.appendChild(tr);
+    });
+    $$('.file-description', body).forEach(input => input.addEventListener('input', e => { files[Number(e.target.dataset.index)].description = e.target.value; }));
+    $$('.remove-file', body).forEach(btn => btn.addEventListener('click', e => { files.splice(Number(e.target.dataset.index),1); renderFiles(); }));
+  }
+
+  function validateCore() {
+    const required = ['caseTitle','targetPlatform','creatorHandle','originalTitle','originalPlatform'];
+    const missing = required.filter(id => !$('#'+id).value.trim());
+    const copies = serializeRepeat('.copy-item');
+    copies.forEach((c, i) => {
+      if (!c.platform || !c.url) missing.push(`copied location ${i+1}`);
+    });
+    if (missing.length) {
+      setStatus(`Complete the required information: ${missing.join(', ')}.`, 'error');
+      return false;
+    }
+    return true;
+  }
+
+  function section(title, content) {
+    return `<section><h2>${escapeHtml(title)}</h2>${content || '<p class="empty">Not provided.</p>'}</section>`;
+  }
+
+  function list(items) {
+    return items?.length ? `<ul>${items.map(x => `<li>${escapeHtml(x)}</li>`).join('')}</ul>` : '<p class="empty">None recorded.</p>';
+  }
+
+  function fieldRows(pairs) {
+    return `<dl>${pairs.filter(([,v]) => v !== undefined && v !== null && String(v).trim() !== '').map(([k,v]) => `<div><dt>${escapeHtml(k)}</dt><dd>${nl2br(v)}</dd></div>`).join('')}</dl>`;
+  }
+
+  function copiesHtml(data) {
+    if (!data.copies.length) return '<p class="empty">No copied locations recorded.</p>';
+    return data.copies.map((c,i) => `<article class="entry"><h3>Copied location ${i+1}</h3>${fieldRows([
+      ['Platform or app',c.platform],['Uploader',c.username],['Copied title',c.title],['Direct URL',c.url],['Uploader profile',c.profileUrl],['Date discovered',c.discoveredAt],['Apparent posting date',c.postedAt],['Commercial use',c.monetized],['Material identified',c.copiedMaterial],['Notes',c.notes]
+    ])}</article>`).join('');
+  }
+
+  function comparisonsHtml(data) {
+    if (!data.comparisons.length) return '<p class="empty">No comparisons recorded.</p>';
+    return data.comparisons.map((c,i) => `<article class="entry"><h3>Comparison ${i+1}</h3><div class="compare"><div><h4>Original</h4><blockquote>${nl2br(c.originalExcerpt) || '<span class="empty">Not provided.</span>'}</blockquote><p><strong>Location:</strong> ${escapeHtml(c.originalLocation || 'Not provided')}</p></div><div><h4>Alleged copy</h4><blockquote>${nl2br(c.copiedExcerpt) || '<span class="empty">Not provided.</span>'}</blockquote><p><strong>Location:</strong> ${escapeHtml(c.copiedLocation || 'Not provided')}</p></div></div><p><strong>Significance:</strong><br>${nl2br(c.explanation) || '<span class="empty">Not provided.</span>'}</p></article>`).join('');
+  }
+
+  function evidenceHtml(data) {
+    if (!data.evidence.length) return '<p class="empty">No evidence files were indexed in this session.</p>';
+    return `<table><thead><tr><th>#</th><th>File</th><th>Description</th><th>Type / size</th><th>SHA-256</th></tr></thead><tbody>${data.evidence.map((e,i) => `<tr><td>${i+1}</td><td>${escapeHtml(e.name)}${e.dataUrl ? `<div><img src="${e.dataUrl}" alt="Evidence ${i+1}"></div>` : ''}</td><td>${nl2br(e.description) || '—'}</td><td>${escapeHtml(e.type)}<br>${humanBytes(e.size)}</td><td class="hash">${escapeHtml(e.hash)}</td></tr>`).join('')}</tbody></table>`;
+  }
+
+  function reportDocument(data, dmca=false) {
+    const title = dmca ? 'DMCA Takedown Notice Draft' : 'Copyright Infringement Evidence Report';
+    const draft = dmca ? '<div class="draft">DRAFT — REVIEW BEFORE SENDING</div>' : '';
+    const dmcaBody = dmca ? `
+      ${section('Notice recipient', fieldRows([['Platform or service', data.targetPlatform]]))}
+      ${section('Identification of copyrighted work', fieldRows([
+        ['Title',data.originalTitle],['Original platform',data.originalPlatform],['Original URL',data.originalUrl],['Creator profile',data.creatorProfileUrl],['First publication',data.publishedAt],['Timezone',data.publicationTimezone],['Description of protected expression',data.originalDescription]
+      ]))}
+      ${section('Identification and location of allegedly infringing material', copiesHtml(data))}
+      ${section('Good-faith statement', `<p>${data.goodFaith ? 'I have a good-faith belief that the disputed use is not authorized by the copyright owner, its agent, or the law.' : '<strong>NOT CONFIRMED:</strong> The good-faith declaration has not been checked in the source form.'}</p>`)}
+      ${section('Accuracy and authority statement', `<p>${data.accuracyAuthority ? 'I state that the information in this notice is accurate and, under penalty of perjury, that I am the owner or am authorized to act on behalf of the owner of an exclusive right allegedly infringed.' : '<strong>NOT CONFIRMED:</strong> The accuracy and authority declaration has not been checked in the source form.'}</p>`)}
+      ${section('Contact information and signature', fieldRows([
+        ['Legal name',data.legalName],['Public creator name',data.creatorHandle],['Email',data.contactEmail],['Telephone',data.contactPhone],['Postal address',data.postalAddress],['Electronic signature',data.signatureName],['Date',data.signatureDate]
+      ]))}
+      ${section('Requested action', list(data.requestedActions) + (data.requestedActionNotes ? `<p>${nl2br(data.requestedActionNotes)}</p>` : ''))}
+      ${section('Supporting comparison', comparisonsHtml(data))}
+      ${section('Evidence index', evidenceHtml(data))}
+    ` : `
+      ${section('Executive summary', `<p>${nl2br(data.caseSummary) || '<span class="empty">No summary supplied.</span>'}</p>`)}
+      ${section('Case information', fieldRows([
+        ['Case title',data.caseTitle],['Case reference',data.caseReference],['Prepared date',data.createdDate],['Target platform',data.targetPlatform],['Creator country',data.creatorCountry],['Intended output',data.outputType]
+      ]))}
+      ${section('Creator and ownership', fieldRows([
+        ['Public creator name',data.creatorHandle],['Legal name',data.legalName],['Contact email',data.contactEmail],['Telephone',data.contactPhone],['Postal address',data.postalAddress],['Authority',data.ownershipBasis],['Collaborators or co-authors',data.collaborators],['Ownership and license notes',data.ownershipNotes]
+      ]))}
+      ${section('Original work', fieldRows([
+        ['Bot title',data.originalTitle],['Original platform',data.originalPlatform],['Original URL',data.originalUrl],['Creator profile URL',data.creatorProfileUrl],['First publication',data.publishedAt],['Publication timezone',data.publicationTimezone],['Last substantial update',data.lastUpdated],['AI assistance',data.aiAssistance],['Human-authorship notes',data.aiNotes],['Original-expression description',data.originalDescription],['Usage or copyright notice',data.originalNotice]
+      ]) + '<h3>Identified human-created contributions</h3>' + list(data.humanContributions))}
+      ${section('Alleged copies', copiesHtml(data))}
+      ${section('Side-by-side comparison', comparisonsHtml(data))}
+      ${section('Authorization and context review', list(data.contextChecks) + fieldRows([['Prior contact',data.priorContact],['Prior platform report',data.priorReport],['Contact history',data.contactHistory]]))}
+      ${section('Requested action', list(data.requestedActions) + (data.requestedActionNotes ? `<p>${nl2br(data.requestedActionNotes)}</p>` : ''))}
+      ${section('Evidence index', evidenceHtml(data))}
+      ${section('Creator declaration', `<p>This report was prepared from information supplied by the creator. It organizes evidence and does not constitute a legal determination of infringement.</p>${fieldRows([['Prepared by',data.creatorHandle],['Signature name',data.signatureName],['Signature date',data.signatureDate]])}`)}
+    `;
+
+    const reportTheme = data.preferredTheme === 'night' ? 'night' : 'day';
+    return `<!doctype html><html lang="en" data-theme="${reportTheme}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark"><title>${escapeHtml(title)} — ${escapeHtml(data.caseReference)}</title><style>
+      :root{color-scheme:light;--ink:#4b1732;--muted:#8d5874;--line:#efb8d4;--accent:#bd2b72;--soft:#ffdeef;--bg:#fff0f8;--page:#fffafd;--toolbar:#fff5fb;--shadow:0 16px 46px rgba(190,43,113,.15);--draft-bg:#ffe2f0;--draft-line:#dc5a99}html[data-theme=night]{color-scheme:dark;--ink:#fff0f8;--muted:#e4abc8;--line:#8d3764;--accent:#ffb1d6;--soft:#5b1739;--bg:#210713;--page:#3a0d27;--toolbar:#470f30;--shadow:0 18px 52px rgba(0,0,0,.38);--draft-bg:#5e173b;--draft-line:#ff78b8}*{box-sizing:border-box}body{margin:0;color:var(--ink);font:15px/1.5 Arial,sans-serif;background:var(--bg)}.page{width:min(980px,calc(100% - 24px));margin:24px auto;background:var(--page);padding:52px;box-shadow:var(--shadow)}header{border-bottom:3px solid var(--accent);padding-bottom:18px;margin-bottom:28px}h1{font-size:32px;margin:0 0 8px}h2{font-size:21px;margin:0 0 14px;color:var(--accent)}h3{font-size:17px;margin:0 0 10px}h4{margin:0 0 8px}.meta{color:var(--muted)}section{padding:20px 0;border-bottom:1px solid var(--line);break-inside:avoid}.draft{padding:10px 14px;background:var(--draft-bg);border:1px solid var(--draft-line);font-weight:bold;margin-bottom:18px}dl{margin:0}dl>div{display:grid;grid-template-columns:220px 1fr;gap:15px;padding:7px 0;border-bottom:1px dotted var(--line)}dt{font-weight:bold}dd{margin:0}.entry{padding:14px;border:1px solid var(--line);border-radius:10px;margin:12px 0;break-inside:avoid}.compare{display:grid;grid-template-columns:1fr 1fr;gap:14px}.compare>div{min-width:0}blockquote{margin:0;padding:12px;background:var(--soft);border-left:3px solid var(--accent);white-space:normal;overflow-wrap:anywhere}.empty{color:var(--muted);font-style:italic}table{width:100%;border-collapse:collapse;font-size:12px}th,td{padding:8px;border:1px solid var(--line);vertical-align:top;text-align:left}th{background:var(--soft)}td img{max-width:240px;max-height:240px;display:block;margin-top:8px;border:1px solid var(--line)}.hash{font-family:monospace;word-break:break-all}.toolbar{position:sticky;top:0;z-index:10;display:flex;justify-content:center;gap:9px;background:var(--toolbar);padding:12px;border-bottom:1px solid var(--line)}.toolbar button{padding:9px 13px;border:1px solid var(--line);border-radius:999px;background:linear-gradient(135deg,#e94b99,#b51d66);color:#fff;font-weight:bold;cursor:pointer;box-shadow:0 8px 22px rgba(188,35,105,.20)}.toolbar .secondary{background:var(--soft);color:var(--accent)}.tool-credit{margin-top:28px;padding-top:14px;border-top:1px solid var(--line);color:var(--muted);font-size:12px;text-align:center}.tool-credit strong{color:var(--accent)}@media(max-width:700px){.page{padding:24px}.compare{grid-template-columns:1fr}dl>div{grid-template-columns:1fr;gap:3px}.toolbar{flex-wrap:wrap}}@media print{:root,html[data-theme=night]{color-scheme:light;--ink:#2d1421;--muted:#65505c;--line:#e0b5ca;--accent:#a51f61;--soft:#fde8f2;--bg:#fff;--page:#fff;--toolbar:#fff;--shadow:none;--draft-bg:#fde8f2;--draft-line:#cf4b8a}body{background:#fff}.toolbar{display:none}.page{width:100%;margin:0;padding:20mm;box-shadow:none}section{break-inside:auto}.entry,table,tr,img{break-inside:avoid}}
+    </style></head><body><div class="toolbar"><button type="button" id="printButton">Print / Save as PDF</button><button type="button" class="secondary" id="reportThemeToggle">${reportTheme === 'night' ? '☀ Day theme' : '☾ Night theme'}</button></div><main class="page"><header>${draft}<h1>${escapeHtml(title)}</h1><div class="meta">Case ${escapeHtml(data.caseReference || '—')} • Prepared ${escapeHtml(data.createdDate || nowDate())}</div></header>${dmcaBody}<section><h2>Important notice</h2><p>This document is a draft compiled from user-provided information. Review all facts, URLs, declarations, signatures, and the receiving platform’s current requirements before submission. Obtain qualified legal advice when appropriate.</p></section><footer class="tool-credit">♥ Generated with <strong>Dollie Tools</strong> — Bot Copyright Evidence Builder • Created by Dollie • © 2026 Dollie<br>User-provided report content and evidence remain the property of their respective creator or rights holder.</footer></main><script>(function(){var root=document.documentElement;var button=document.getElementById('reportThemeToggle');var key='dollieTools.botCopyright.reportTheme';try{var saved=localStorage.getItem(key);if(saved==='day'||saved==='night'){root.dataset.theme=saved;}}catch(e){}function refresh(){var night=root.dataset.theme==='night';button.textContent=night?'☀ Day theme':'☾ Night theme';button.setAttribute('aria-label',night?'Switch to day theme':'Switch to night theme');}button.addEventListener('click',function(){root.dataset.theme=root.dataset.theme==='night'?'day':'night';try{localStorage.setItem(key,root.dataset.theme);}catch(e){}refresh();});document.getElementById('printButton').addEventListener('click',function(){window.print();});refresh();})();<\/script></body></html>`;
+  }
+
+  function download(name, content, mime='text/html;charset=utf-8') {
+    const blob = new Blob([content], {type:mime});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1500);
+  }
+
+  $('#themeSwitch').addEventListener('change', event => {
+    applyTheme(event.target.checked ? 'night' : 'day');
+  });
+
+  $('#addCopy').addEventListener('click', () => addRepeatItem('copy'));
+  $('#addComparison').addEventListener('click', () => addRepeatItem('comparison'));
+  $('#evidenceFiles').addEventListener('change', e => addEvidenceFiles(e.target.files));
+
+  $('#generateReport').addEventListener('click', () => {
+    if (!validateCore()) return;
+    const data = collectCase(true);
+    download(`${safeFilename(data.caseReference || data.caseTitle)}-evidence-report.html`, reportDocument(data, false));
+    setStatus('Evidence report downloaded. Open it and use “Print / Save as PDF” when needed.', 'ok');
+  });
+
+  $('#generateDmca').addEventListener('click', () => {
+    if (!validateCore()) return;
+    const missing = [];
+    ['legalName','contactEmail','postalAddress','signatureName','signatureDate'].forEach(id => { if (!$('#'+id).value.trim()) missing.push(id); });
+    if (!$('#goodFaith').checked) missing.push('good-faith declaration');
+    if (!$('#accuracyAuthority').checked) missing.push('accuracy and authority declaration');
+    if (missing.length && !confirm(`The DMCA draft is missing or has not confirmed: ${missing.join(', ')}. Generate an incomplete draft anyway?`)) return;
+    const data = collectCase(true);
+    download(`${safeFilename(data.caseReference || data.caseTitle)}-dmca-draft.html`, reportDocument(data, true));
+    setStatus('DMCA-style draft downloaded. It is marked as a draft and must be reviewed before sending.', 'ok');
+  });
+
+  $('#exportJson').addEventListener('click', () => {
+    const data = collectCase(false);
+    download(`${safeFilename(data.caseReference || data.caseTitle)}-case-backup.json`, JSON.stringify(data,null,2), 'application/json;charset=utf-8');
+    setStatus('Case backup downloaded. Original evidence-file contents are not included.', 'ok');
+  });
+
+  $('#importJson').addEventListener('change', async e => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    try {
+      const data = JSON.parse(await file.text());
+      applyCase(data);
+      setStatus('Case backup imported. Re-select original evidence files to calculate hashes and embed previews.', 'ok');
+    } catch {
+      setStatus('That file could not be read as a valid case backup.', 'error');
+    } finally { e.target.value = ''; }
+  });
+
+  $('#saveLocal').addEventListener('click', () => {
+    try {
+      localStorage.setItem('dollieTools.botCopyright.case', JSON.stringify(collectCase(false)));
+      setStatus('Form text saved in this browser. Evidence-file contents were not stored.', 'ok');
+    } catch { setStatus('The browser could not save this case locally.', 'error'); }
+  });
+
+  $('#loadLocal').addEventListener('click', () => {
+    try {
+      const raw = localStorage.getItem('dollieTools.botCopyright.case');
+      if (!raw) return setStatus('No locally saved case was found in this browser.', 'error');
+      applyCase(JSON.parse(raw));
+      setStatus('Locally saved form text loaded. Re-select evidence files.', 'ok');
+    } catch { setStatus('The saved case could not be loaded.', 'error'); }
+  });
+
+  $('#clearCase').addEventListener('click', () => {
+    if (!confirm('Clear the current form and evidence-file list? This does not delete files already downloaded to your device.')) return;
+    form.reset(); files.length = 0; renderFiles();
+    $('#copiesList').innerHTML = ''; $('#comparisonsList').innerHTML = '';
+    addRepeatItem('copy'); addRepeatItem('comparison'); initializeDefaults();
+    setStatus('Current case cleared.', 'ok');
+  });
+
+  addRepeatItem('copy');
+  addRepeatItem('comparison');
+  applyTheme(document.documentElement.dataset.theme || 'day', false);
+  initializeDefaults();
+})();
+</script>
+</body>
+</html>
