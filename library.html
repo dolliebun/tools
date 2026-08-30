@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="Dollie's public bot library with an optional owner-only private GitHub case shelf.">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src data: https://raw.githubusercontent.com; style-src 'unsafe-inline'; script-src 'unsafe-inline'; connect-src https://api.github.com https://raw.githubusercontent.com; form-action 'none'; base-uri 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data: https://raw.githubusercontent.com; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src https://api.github.com https://raw.githubusercontent.com; form-action 'none'; base-uri 'none'; object-src 'none'">
 <title>Dollie’s Library — Dollie Tools</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='%23efabc4' d='M32 56C27 51 8 38 8 22C8 12 20 7 28 15L32 20L36 15C44 7 56 12 56 22C56 38 37 51 32 56Z'/%3E%3C/svg%3E">
+<link rel="icon" href="assets/favicon.png"><link rel="stylesheet" href="dollie-brand.css">
 <style>
 :root{--ink:#563947;--muted:#806976;--pink:#e8a9c1;--pink2:#f5cddd;--gold:#c99f5c;--glass:rgba(255,255,255,.72);--line:rgba(103,67,85,.16);--shadow:0 22px 65px rgba(84,47,66,.13);--good:#2f745c;--warn:#9a5a1f}
 *{box-sizing:border-box}
@@ -176,5 +176,5 @@ loadSettings();renderBots();refreshBots();if($('#vaultToken').value.trim()&&$('#
 
 document.addEventListener('DOMContentLoaded',()=>{const layer=$('#atmosphere');let saved='sparkles';try{saved=localStorage.getItem('dollieAtmosphere')||'sparkles'}catch{}function particles(){layer.innerHTML='';const count=matchMedia('(max-width:720px)').matches?14:24;for(let i=0;i<count;i++){const p=document.createElement('span');p.className='particle';p.style.setProperty('--x',(Math.random()*100).toFixed(2)+'vw');p.style.setProperty('--size',(5+Math.random()*10).toFixed(1)+'px');p.style.setProperty('--fall',(14+Math.random()*15).toFixed(1)+'s');p.style.setProperty('--sway',(2.8+Math.random()*4.5).toFixed(1)+'s');p.style.setProperty('--fade',(4+Math.random()*5).toFixed(1)+'s');p.style.setProperty('--delay',(-Math.random()*22).toFixed(1)+'s');p.style.setProperty('--opacity',(0.18+Math.random()*.42).toFixed(2));layer.appendChild(p)}}function set(mode){layer.className='atmosphere '+mode;$$('[data-atmosphere]').forEach(b=>b.classList.toggle('active',b.dataset.atmosphere===mode));try{localStorage.setItem('dollieAtmosphere',mode)}catch{}if(mode!=='off'&&!layer.children.length)particles()}$$('[data-atmosphere]').forEach(b=>b.addEventListener('click',()=>set(b.dataset.atmosphere)));particles();set(['sparkles','petals','off'].includes(saved)?saved:'sparkles')})
 </script>
-</body>
+<script src="dollie-brand.js"></script></body>
 </html>

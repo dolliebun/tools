@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Dollie Tools</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='%23efabc4' d='M32 56C27 51 8 38 8 22C8 12 20 7 28 15L32 20L36 15C44 7 56 12 56 22C56 38 37 51 32 56Z'/%3E%3C/svg%3E">
+<link rel="icon" href="assets/favicon.png">
+<link rel="stylesheet" href="dollie-brand.css">
 <style>
 :root{
   --ink:#563947;
@@ -321,6 +322,7 @@ button,a{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 
 
 <main class="home">
+  <img class="dollie-home-banner" src="assets/dollie-banner.gif" alt="Animated Dollie banner in a candlelit bedroom">
   <section class="hero">
     <div class="eyebrow">Softness, with teeth</div>
     <h1>✦ Tools ✦</h1>
@@ -357,6 +359,12 @@ button,a{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
       <h2>Dollie’s Library</h2>
       <p>Browse and search Dollie’s bot records synced from the public Library repository, with artwork, archive records, GitHub sources, and available chat links.</p>
     </a>
+
+    <a class="tool" href="bot-ledger.html">
+      <span class="tag">Mav → Dollie</span>
+      <h2>Bot Ledger</h2>
+      <p>Track every character from first idea to release with stages, priorities, checklists, notes, linked bots, board view, archives, and private backups.</p>
+    </a>
   </section>
 </main>
 
@@ -366,6 +374,7 @@ button,a{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
   <button type="button" data-atmosphere="off" aria-label="Turn effects off" title="Turn effects off"><span aria-hidden="true">×</span></button>
 </div>
 
+<script src="dollie-brand.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded",function(){
   const layer=document.getElementById("atmosphere");

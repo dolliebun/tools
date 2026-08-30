@@ -1,4 +1,15 @@
-# Dollie Tools v1.4.1
+# Dollie Tools v1.5
+
+## Shared Dollie identity
+- Every page now uses the same animated Dollie portrait, compact creator-room navigation, glossy pink pixel typography, heart favicon, and pink interaction language.
+- The homepage uses Dollie's animated neon bedroom banner.
+- Tool-specific controls and saved browser data are preserved.
+
+## Bot Ledger
+- Mav's starter ledger has been adapted into a self-contained GitHub Pages tool at `bot-ledger.html`.
+- Tracks concept, visual, prompt, testing, refinement, promo, and complete stages.
+- Includes priorities, platform labels, collabs, linked bots, checklists, update notes, list/board layouts, archive, search, sorting, printing, JSON export/import, and a replaceable banner.
+- Ledger content is private to the current browser and never uploaded by the page. Export a JSON backup when moving devices or clearing browser data.
 
 ## Picture Reader
 - Translate to Dollie can now read visible text from screenshots and photos.
