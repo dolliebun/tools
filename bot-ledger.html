@@ -420,6 +420,15 @@ body.dollie-branded::before,body.dollie-branded::after{display:none!important;co
 .nav-count,.cbar-lbl,.bump,.badge,.tag,.mc,.linked-row .lbl,.lchip,.notes-toggle,.note-ts,.col-name,.col-count,.col-empty,.savechip{font-size:12px}
 .sel,.btn-q,.view-tab{font-size:14px}
 
+/* Utility controls stay readable: Cambridge is display-only. */
+.sel,.savechip,.presencechip{
+  font-family:var(--font)!important;
+  font-weight:500!important;
+  letter-spacing:.015em!important;
+}
+.sel{text-transform:none!important;font-size:12px!important}
+.savechip,.presencechip{font-size:10px!important}
+
 .stat-card,.bot,.arc,.col,.kcard,.form-wrap,.add-form{background:linear-gradient(145deg,rgba(18,18,20,.98),rgba(7,7,8,.99))!important;border-color:rgba(255,255,255,.085)!important;box-shadow:inset 0 1px rgba(255,255,255,.02),0 15px 34px rgba(0,0,0,.34)!important}
 .stat-card:hover,.bot:hover,.arc:hover,.kcard:hover{border-color:rgba(184,40,49,.3)!important;box-shadow:0 18px 38px rgba(0,0,0,.42),0 0 22px rgba(145,17,26,.07)!important}
 .btn-add,.btn-save,.btn-primary{font-family:'Cambridge','Times New Roman',serif!important;font-size:16px!important;font-weight:400!important;letter-spacing:.02em;background:linear-gradient(110deg,#711017,#a4242d)!important;color:#fff!important}
