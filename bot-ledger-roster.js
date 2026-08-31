@@ -56,7 +56,7 @@
     if(document.getElementById('killian-roster-links'))return;
     const s=document.createElement('style');
     s.id='killian-roster-links';
-    s.textContent='.ext-row{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px;align-items:center}.ext-row .lbl{font-family:var(--font);font-size:11px;color:var(--dim);letter-spacing:.04em}.ext-link{font-family:var(--font);font-size:11.5px;padding:4px 10px;border-radius:99px;border:1px solid rgba(179,22,37,.45);background:rgba(179,22,37,.08);color:var(--cream);text-decoration:none;transition:all .15s}.ext-link:hover{border-color:var(--alarm);background:rgba(179,22,37,.16);color:#fff}';
+    s.textContent='.ext-row{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px;align-items:center}.ext-row .lbl{font-family:var(--font);font-size:11px;color:var(--dim);letter-spacing:.04em}.ext-link{font-family:var(--font);font-size:11.5px;padding:4px 10px;border-radius:99px;border:1px solid rgba(179,22,37,.45);background:rgba(179,22,37,.08);color:var(--cream);text-decoration:none;transition:all .15s}.ext-link:hover{border-color:var(--alarm);background:rgba(179,22,37,.16);color:#fff}.linked-row .lbl,.linked-row .lchip,.bot-meta .tag,.tag{font-family:var(--font)!important;font-weight:500!important;font-style:normal!important;letter-spacing:.015em!important}.linked-row .lbl{font-size:11px!important}.linked-row .lchip,.bot-meta .tag,.tag{font-size:12px!important;line-height:1.25!important}';
     document.head.appendChild(s);
   }
 
