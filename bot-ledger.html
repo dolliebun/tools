@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dollie's Bot Ledger</title>
+<title>Killian's Organised Archives</title>
 <link rel="icon" href="assets/favicon.png">
 <link rel="stylesheet" href="dollie-brand.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -376,14 +376,29 @@ body{background:radial-gradient(circle at 12% 8%,rgba(255,79,154,.16),transparen
 @media(max-width:900px){.hero img{height:190px;max-height:190px}.ledger-header{display:flex!important;position:static!important}.toolbar{display:grid!important;grid-template-columns:1fr 1fr}.toolbar>*{grid-row:auto!important}.toolbar .search-wrap{grid-column:1/-1}.toolbar #addBtn{grid-column:1/-1;justify-content:center}.toolbar .lay-toggle{justify-self:stretch}.toolbar .lay-btn{flex:1}.content{padding:1rem}.content-head{display:grid!important}}
 @media(max-width:560px){.toolbar{grid-template-columns:1fr}.toolbar .search-wrap,.toolbar #addBtn{grid-column:auto}.header-right{width:100%;justify-content:space-between}.view-tabs{flex:1}.view-tab{flex:1}.hero{display:none}}
 
+
+/* Killian's Organised Archives — monochrome archive skin */
+:root{--void:#050506;--coal:#0b0b0d;--slab:#111114;--slab2:#18181c;--slab3:#242429;--line:rgba(255,255,255,.08);--line2:rgba(255,255,255,.16);--line-hot:rgba(164,24,35,.48);--cream:#f3f1ed;--mute:#aaa6a6;--dim:#6c696b;--hot:#8f1019;--hot2:#d1373f;--blush:#d9d5d1;--hot-dim:rgba(143,16,25,.15);--font:'Outfit',system-ui,sans-serif;--disp:'Bodoni Moda',Georgia,serif;--mono:'Space Mono',ui-monospace,monospace}
+html{background:#050506}.dollie-branded{background:radial-gradient(circle at 82% 5%,rgba(117,13,21,.12),transparent 32rem),linear-gradient(145deg,#050506,#0b0b0d 55%,#040405)!important;color:var(--cream)}
+body.dollie-branded{cursor:auto}.dollie-branded a,.dollie-branded button,.dollie-branded [role="button"],.dollie-branded input[type="checkbox"],.dollie-branded select{cursor:pointer}
+.hero{background:#050506;border-bottom-color:rgba(255,255,255,.08)}.hero img{height:clamp(250px,31vw,440px);max-height:440px;object-fit:cover;object-position:center}.hero::after{background:linear-gradient(180deg,transparent 68%,rgba(5,5,6,.78) 92%,#050506)}.hero-cap{display:none}.hero-toggle{color:#dedbd7;background:rgba(5,5,6,.68);border-color:rgba(255,255,255,.16)}.hero-toggle:hover{color:#fff;border-color:rgba(209,55,63,.55)}
+.ledger-header{background:rgba(7,7,8,.92)!important;border-bottom-color:rgba(255,255,255,.08)!important;box-shadow:0 16px 45px rgba(0,0,0,.38)!important}.logo-text,.content-title,.bot-name,.kname,.arc-name,.empty h2{font-family:'Bodoni Moda',Georgia,serif!important;letter-spacing:.01em}.logo-text{font-size:22px}.logo-text em{color:#c42d36!important;background:none!important;-webkit-text-fill-color:initial!important;font-weight:600}
+.logo-mark{filter:grayscale(1) contrast(1.12) drop-shadow(0 0 8px rgba(172,22,31,.22))}.sidebar{background:linear-gradient(180deg,rgba(13,13,15,.9),rgba(6,6,7,.82))!important;border-right-color:rgba(255,255,255,.08)!important}.sb-title,.stat-lbl,.flabel{color:#7d797a!important}
+.stat-card,.bot,.arc,.col,.kcard,.form-wrap,.add-form{background:linear-gradient(145deg,rgba(24,24,27,.96),rgba(10,10,12,.98))!important;border-color:rgba(255,255,255,.09)!important;box-shadow:inset 0 1px rgba(255,255,255,.025),0 15px 34px rgba(0,0,0,.24)!important}.stat-card:hover,.bot:hover,.arc:hover,.kcard:hover{border-color:rgba(193,45,54,.28)!important;box-shadow:0 18px 38px rgba(0,0,0,.34),0 0 22px rgba(150,18,28,.06)!important}
+.btn-add,.btn-save,.btn-primary{background:linear-gradient(110deg,#7d1018,#b52b34)!important;color:#fff!important}.btn-q:hover,.btn-note:hover,.lay-btn.active,.view-tab.active{color:#f5f2ee!important;border-color:rgba(190,42,52,.38)!important;background:rgba(132,17,26,.18)!important}.nav-item.active,.collab-item.active,.grp-head.active{color:#e85a61!important;background:rgba(132,17,26,.15)!important}.nav-item.active .nav-count{color:#e85a61!important;background:rgba(132,17,26,.18)!important}.cbar i{background:linear-gradient(90deg,#771018,#bd3038)!important}
+.finput,.fsel,.ftext,.search-input,.sel{background:#0c0c0e!important;border-color:rgba(255,255,255,.1)!important;color:#e8e5e1!important}.finput:focus,.fsel:focus,.ftext:focus,.search-input:focus,.sel:focus{border-color:rgba(195,44,54,.55)!important;box-shadow:0 0 0 3px rgba(143,16,25,.09)!important}
+.dollie-credit{color:#676465!important;border-top-color:rgba(255,255,255,.07)!important;background:#050506!important}
+body.dollie-branded .dollie-brandbar{background:linear-gradient(115deg,rgba(10,10,12,.96),rgba(22,22,25,.94))!important;border-color:rgba(255,255,255,.12)!important;box-shadow:0 15px 44px rgba(0,0,0,.34)!important}body.dollie-branded .dollie-brandbar::before{background:linear-gradient(100deg,rgba(255,255,255,.035),transparent 48%,rgba(133,15,24,.08))!important}body.dollie-branded .dollie-brand-avatar{filter:grayscale(1) contrast(.9);border-color:rgba(255,255,255,.22)!important;box-shadow:0 0 0 2px rgba(137,16,25,.16),0 7px 18px rgba(0,0,0,.34)!important}body.dollie-branded .dollie-brand-name strong{font-family:'Bodoni Moda',Georgia,serif!important;color:#f0ede9!important;text-shadow:none!important;font-size:1rem!important}body.dollie-branded .dollie-brand-name small{font-family:'Space Mono',monospace!important;color:#827f80!important}body.dollie-branded .dollie-brand-scene{filter:grayscale(1) brightness(.45);border-color:rgba(255,255,255,.08)!important;background-color:#09090a!important}body.dollie-branded .dollie-brand-nav a{font-family:'Space Mono',monospace!important;color:#999596!important}body.dollie-branded .dollie-brand-nav a:hover,body.dollie-branded .dollie-brand-nav a.active{color:#f3f1ed!important;border-color:rgba(190,42,52,.28)!important;background:rgba(132,17,26,.12)!important}
+@media(max-width:900px){.hero img{height:190px;max-height:190px}}@media(max-width:560px){.hero{display:none}}
+
 </style>
 </head>
 <body>
 
 <div class="hero" id="hero">
-  <img id="heroImg" src="assets/dollie-banner.gif" alt="Animated Dollie banner">
+  <img id="heroImg" src="assets/killian-organised-archives.webp" alt="Killian’s Organised Archives banner">
   <button class="hero-toggle" id="heroToggle">shrink</button>
-  <div class="hero-cap" id="heroCap">where unfinished worlds wait</div>
+  <div class="hero-cap" id="heroCap">Catalogued by Killian. Disturb at your own risk.</div>
 </div>
 
 <header class="site-header ledger-header">
@@ -396,7 +411,7 @@ body{background:radial-gradient(circle at 12% 8%,rgba(255,79,154,.16),transparen
       <circle cx="26" cy="24" r="7" fill="#0B0509" stroke="url(#lg)" stroke-width="1.4"/>
       <path d="M23 24.2l2.2 2.2 4-4.6" stroke="#FF6BA3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
     </svg>
-    <div class="logo-text">Dollie's <em>bot</em> ledger</div>
+    <div class="logo-text">Killian's <em>Organised Archives</em></div>
   </div>
   <div class="header-right">
     <div class="view-tabs">
@@ -530,7 +545,7 @@ body{background:radial-gradient(circle at 12% 8%,rgba(255,79,154,.16),transparen
   </main>
 </div>
 
-<footer class="dollie-credit">Starter concept by Mav · remade for Dollie’s private creator room ♡</footer>
+<footer class="dollie-credit">Starter concept by Mav · organised for Dollie by Killian</footer>
 <div class="toast" id="toast"></div>
 
 <script src="dollie-brand.js"></script>
