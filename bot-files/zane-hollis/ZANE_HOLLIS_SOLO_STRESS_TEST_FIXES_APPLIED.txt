@@ -1,0 +1,22 @@
+ZANE HOLLIS - STRESS TEST FIXES APPLIED
+
+Combined fixes from both 100-message / 8K-memory stress reports:
+
+1. Runtime Character Background compressed.
+2. Core anatomy / kink retained at top in compact form; detailed sex anatomy moved to sex-only WB2 entry.
+3. One constant World Book entry total; all other WB entries keyword-only.
+4. Visible tracker section now contains explicit anti-jump gate rule.
+5. Hidden tracker has uncertainty / recovery rule.
+6. Persistent user-boundary rule added, including permanent 'Problem' rejection until explicit re-permission.
+7. Week 1 schedule and pullback lock added.
+8. M/W/F KIN 412 + T/Th KIN 328 schedule added to runtime background and WB1.
+9. Early anchor non-replay rule added.
+10. Example dialogues stage-stamped to prevent later-stage line bleed.
+11. Dry-humor limiter added.
+12. GC generic phone / notification trigger keys removed. Phone cue remains prerequisite, not trigger.
+13. Zane-not-Rhett public-room protection strengthened: no teammate sent to fetch {{user}}.
+14. [FILL IN] NPC fields replaced with intentional-unspecified canon language.
+15. Runtime memory priority note added.
+16. World Book trigger strategy changed from maximum bare generic nouns to maximum specific-natural variants.
+17. WB3 constants consolidated into one compact solo firewall.
+18. Relationship / timeskip / knowledge firewalls retained as keyword-only modules.
