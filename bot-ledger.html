@@ -364,11 +364,17 @@ html{background:var(--void)}
 body{background:radial-gradient(circle at 12% 8%,rgba(255,79,154,.16),transparent 31rem),radial-gradient(circle at 88% 18%,rgba(153,33,84,.18),transparent 34rem),linear-gradient(145deg,#16070e 0%,#260c19 48%,#12060c 100%)}
 .hero img{height:clamp(250px,31vw,450px);max-height:450px;object-position:center}
 .hero::after{background:linear-gradient(180deg,transparent,rgba(22,7,14,.52) 55%,var(--void))}
-.ledger-header{top:76px;background:rgba(28,8,18,.9)}
+.ledger-header{position:static;top:auto;background:rgba(28,8,18,.9)}
+.ledger-header .presencechip{display:none}
+.content-head{display:grid;grid-template-columns:1fr;align-items:start}
+.toolbar{display:grid;grid-template-columns:minmax(220px,1fr) 180px auto repeat(4,max-content);width:100%;align-items:center}
+.toolbar .search-wrap,.toolbar .search-input{width:100%}
 .logo-text,.content-title,.bot-name,.kname,.arc-name,.empty h2{font-family:'Dollie Pixel',var(--disp)}
 .btn-add,.btn-save{background:linear-gradient(110deg,#ff4f9a,#ff86b7);color:#3a0b20}
 .bot,.arc,.col,.kcard,.stat-card,.add-form{background:linear-gradient(145deg,rgba(69,24,44,.92),rgba(36,13,24,.94));border-color:rgba(255,205,227,.14)}
-@media(max-width:900px){.ledger-header{top:132px}.hero img{height:190px;max-height:190px}}
+@media(max-width:1380px){.toolbar{grid-template-columns:minmax(220px,1fr) 180px auto repeat(2,max-content)}.toolbar #bannerBtn,.toolbar #printBtn{grid-row:2}.toolbar #exportBtn,.toolbar #importBtn,.toolbar #addBtn{grid-row:2}}
+@media(max-width:900px){.hero img{height:190px;max-height:190px}.ledger-header{display:flex!important;position:static!important}.toolbar{display:grid!important;grid-template-columns:1fr 1fr}.toolbar>*{grid-row:auto!important}.toolbar .search-wrap{grid-column:1/-1}.toolbar #addBtn{grid-column:1/-1;justify-content:center}.toolbar .lay-toggle{justify-self:stretch}.toolbar .lay-btn{flex:1}.content{padding:1rem}.content-head{display:grid!important}}
+@media(max-width:560px){.toolbar{grid-template-columns:1fr}.toolbar .search-wrap,.toolbar #addBtn{grid-column:auto}.header-right{width:100%;justify-content:space-between}.view-tabs{flex:1}.view-tab{flex:1}.hero{display:none}}
 
 </style>
 </head>

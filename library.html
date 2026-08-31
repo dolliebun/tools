@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Dollie's public bot library with an optional owner-only private GitHub case shelf.">
+<meta name="description" content="Dollie's private working bot library and evidence shelf.">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data: https://raw.githubusercontent.com; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src https://api.github.com https://raw.githubusercontent.com; form-action 'none'; base-uri 'none'; object-src 'none'">
 <title>Dollie’s Library — Dollie Tools</title>
 <link rel="icon" href="assets/favicon.png"><link rel="stylesheet" href="dollie-brand.css">
@@ -85,7 +85,7 @@ button,a,input{-webkit-tap-highlight-color:transparent;touch-action:manipulation
 <div class="atmosphere sparkles" id="atmosphere" aria-hidden="true"></div>
 <header class="site-header"><a class="site-brand" href="index.html"><span class="site-brand-mark">♥</span><span>Dollie Tools</span></a><nav class="site-nav"><a href="index.html">Tools</a><a class="active" href="library.html">Library</a></nav></header>
 <main class="shell">
-<section class="hero"><div class="eyebrow">Restricted bot records</div><h1>✦ Library ✦</h1><p>Your public bot archive, connected to an owner-only private evidence shelf. Visitors can browse bots; only Dollie can unlock and edit linked cases.</p></section>
+<section class="hero"><div class="eyebrow">Dollie’s working records</div><h1>✦ Library ✦</h1><p>Your personal bot archive and evidence shelf, gathered in one place for creating, checking and protecting your characters.</p></section>
 
 <section class="panel public-tools"><label class="search"><span>⌕</span><input id="searchInput" type="search" placeholder="Search names, houses, descriptions, or tags…"></label><button class="primary-button" id="refreshBots" type="button">Refresh bots from GitHub</button></section>
 <div class="filter-row"><button class="filter active" data-filter="all">All</button><button class="filter" data-filter="non-human">Non-human</button><button class="filter" data-filter="human">Human</button><button class="filter" data-filter="female">Female</button><button class="filter" data-filter="male">Male</button></div>
@@ -103,7 +103,7 @@ button,a,input{-webkit-tap-highlight-color:transparent;touch-action:manipulation
   <div class="case-shelf"><div class="case-shelf-head"><div><h3>All cases</h3><div id="vaultCaseCount" class="case-meta">Unlock the shelf to load cases.</div></div><a class="soft-button" href="copyright-evidence-builder.html">Open Evidence Builder</a></div><div class="case-list" id="allCaseList"><div class="locked">Private case shelf locked.</div></div></div>
 </section>
 
-<div class="sync-note"><div style="display:flex;gap:12px"><span class="sync-dot" id="syncDot"></span><div><strong id="syncTitle">Opening the archive…</strong><br><span id="syncText">Loading public bot records.</span></div></div><span id="resultCount"></span></div>
+<div class="sync-note"><div style="display:flex;gap:12px"><span class="sync-dot" id="syncDot"></span><div><strong id="syncTitle">Opening the archive…</strong><br><span id="syncText">Loading Dollie’s bot records.</span></div></div><span id="resultCount"></span></div>
 <section class="bot-grid" id="botGrid" aria-live="polite"></section>
 <footer class="footer">Created by Dollie • © 2026 Dollie • Bot records: dolliebun/the-library • Private cases: Dollie’s chosen private vault repository.</footer>
 </main>
@@ -142,7 +142,7 @@ function parseBots(html){
 
 async function refreshBots(){
   $('#refreshBots').disabled=true; $('#refreshBots').textContent='Refreshing…';
-  try{const r=await fetch(BOT_SOURCE,{cache:'no-store'});if(!r.ok)throw new Error();const parsed=parseBots(await r.text());if(parsed.length)bots=parsed;$('#syncTitle').textContent='Live archive connected';$('#syncText').textContent='Public bot records loaded from dolliebun/the-library.';$('#syncDot').classList.add('live')}catch{bots=[...BOT_FALLBACK];$('#syncTitle').textContent='Showing built-in archive copy';$('#syncText').textContent='The public GitHub archive could not be reached just now.';$('#syncDot').classList.remove('live')}finally{const silas=bots.find(b=>b.name==='Silas Viremont'||b.id==='silas-viremont');if(silas)silas.chat='https://tipsy.chat/chat/1784485189181860062';$('#refreshBots').disabled=false;$('#refreshBots').textContent='Refresh bots from GitHub';renderBots();}}
+  try{const r=await fetch(BOT_SOURCE,{cache:'no-store'});if(!r.ok)throw new Error();const parsed=parseBots(await r.text());if(parsed.length)bots=parsed;$('#syncTitle').textContent='Working archive connected';$('#syncText').textContent='Dollie’s bot records loaded from the Library repository.';$('#syncDot').classList.add('live')}catch{bots=[...BOT_FALLBACK];$('#syncTitle').textContent='Showing built-in archive copy';$('#syncText').textContent='The Library repository could not be reached just now.';$('#syncDot').classList.remove('live')}finally{const silas=bots.find(b=>b.name==='Silas Viremont'||b.id==='silas-viremont');if(silas)silas.chat='https://tipsy.chat/chat/1784485189181860062';$('#refreshBots').disabled=false;$('#refreshBots').textContent='Refresh bots from GitHub';renderBots();}}
 
 function linkedCases(botId){return cases.filter(item=>item.botId===botId).sort((a,b)=>String(b.updatedAt||'').localeCompare(String(a.updatedAt||'')))}
 function renderBots(){
