@@ -27,6 +27,14 @@
         if(!existing.externalLinks.length&&seed.externalLinks.length){existing.externalLinks=seed.externalLinks.map(x=>({...x}));changed=true}
         if(!Array.isArray(existing.links))existing.links=[];
         if(!existing.links.length&&seed.links.length){existing.links=[...seed.links];changed=true}
+        if(seed.force){
+          if(Object.prototype.hasOwnProperty.call(seed.force,'collab')&&existing.collab!==seed.force.collab){existing.collab=seed.force.collab;changed=true}
+          if(Object.prototype.hasOwnProperty.call(seed.force,'stage')&&existing.stage!==seed.force.stage){existing.stage=seed.force.stage;changed=true}
+          if(seed.force.complete){
+            if(!Array.isArray(existing.checklist)||!existing.checklist.length){existing.checklist=seedChecks('Complete');changed=true}
+            else if(existing.checklist.some(c=>!c.done)){existing.checklist.forEach(c=>c.done=true);changed=true}
+          }
+        }
         return;
       }
       list.push(JSON.parse(JSON.stringify(seed)));added++;changed=true;
