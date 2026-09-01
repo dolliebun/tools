@@ -1,0 +1,49 @@
+MY CAPTORS — 8K / 16K / 20K STRESS TEST (FINAL)
+
+Method:
+- Conservative chars/4 token approximation; exact Tipsy tokenizer/allocation is not exposed here.
+- World Book assumed selective/dynamic. If Tipsy injects the entire World Book every turn, all three targets become substantially worse.
+- Capacity scenario reserves 1K tokens for Role Card/current user/platform wrapper and 1K for generated output.
+
+Static footprint:
+- Background: ~12,585 tokens
+- Greeting: ~1,167 tokens on first turn
+- Entire World Book JSON: ~9,267 tokens if loaded wholesale
+- Average enabled World Book entry: ~218 tokens
+- 90th-percentile entry: ~417 tokens
+
+Rule-survival matrix (earliest occurrence):
+- User autonomy: ~567 tokens -> 8K:YES | 16K:YES | 20K:YES
+- Direct-contact gate: ~1069 tokens -> 8K:YES | 16K:YES | 20K:YES
+- Night-1 masks: ~4656 tokens -> 8K:YES | 16K:YES | 20K:YES
+- Night-1 release: ~4913 tokens -> 8K:YES | 16K:YES | 20K:YES
+- Soren source rule: ~840 tokens -> 8K:YES | 16K:YES | 20K:YES
+- Anti-chorus: ~3074 tokens -> 8K:YES | 16K:YES | 20K:YES
+- Time-skip engine: ~2289 tokens -> 8K:YES | 16K:YES | 20K:YES
+- Day-7 fallback: ~2698 tokens -> 8K:YES | 16K:YES | 20K:YES
+- Day-21 once-only: ~2772 tokens -> 8K:YES | 16K:YES | 20K:YES
+- NPC appearance engine: ~1454 tokens -> 8K:YES | 16K:YES | 20K:YES
+- World Book activation: ~2029 tokens -> 8K:YES | 16K:YES | 20K:YES
+- Private knowledge/mystery: ~1082 tokens -> 8K:YES | 16K:YES | 20K:YES
+- Rivalry matrix: ~9264 tokens -> 8K:NO | 16K:YES | 20K:YES
+- Scene→Episode→Arc: ~8480 tokens -> 8K:NO | 16K:YES | 20K:YES
+- OOC framework: ~9847 tokens -> 8K:NO | 16K:YES | 20K:YES
+- Rhett black longer hair: ~10896 tokens -> 8K:NO | 16K:YES | 20K:YES
+- Rhett tattoos: ~11022 tokens -> 8K:NO | 16K:YES | 20K:YES
+- Consent parsing: ~6670 tokens -> 8K:YES | 16K:YES | 20K:YES
+- Final hierarchy: ~11245 tokens -> 8K:NO | 16K:YES | 20K:YES
+
+Capacity verdicts:
+- 8K: HARD FAIL. Background alone is ~12.6K. A truncation around 8K loses the full Scene→Episode→Arc system, rivalry matrix, OOC framework, Rhett's updated appearance lock, final instruction hierarchy, and later reinforcement sections. Some Tier-0 rules survive earlier duplicates, but the deployment is no longer the full Ready Machine.
+- 16K: FAIL under the conservative full-session budget. The Background technically fits, but Background + Greeting + normal selective World Book + 2K wrapper/output reserve leaves approximately zero room on the first turn and under ~1K on ordinary later turns. It may function only if Tipsy's actual allocation excludes some of these components or uses a materially more efficient tokenizer/injection model.
+- 20K: PASS WITH CAUTION. With selective World Book activation, normal first-turn scenes retain roughly 3.6K–3.8K tokens of history/headroom after the conservative reserve; later turns roughly 4.8K–5K. Heavy World Book activation can reduce first-turn headroom to around 2.2K.
+
+Important 8K survival detail:
+- Night-1 masks and release DO survive the 8K cutoff through their earlier Section 6 definitions.
+- What does not survive 8K: full rivalry engine, Scene→Episode→Arc memory, OOC framework, Rhett's new black longer-hair/tattoo appearance lock, final hierarchy, and late runtime reinforcement.
+
+Recommendation:
+- Preferred: 20K for the current uncompressed multibot.
+- Do not call this exact file 8K-ready or 16K-safe.
+- If 8K/16K deployment is required, create separate compressed variants rather than weakening the 20K/reference build.
+- For any compressed variant, duplicate Rhett's new appearance essentials and Tier-0 rules near the top, then compress character flavor and repeated explanations—not hard gates.
