@@ -16,6 +16,11 @@
     data.onload=()=>{
       const helper=document.createElement('script');
       helper.src='bot-ledger-roster.js';helper.async=false;helper.dataset.killianRosterLoader='helper';
+      helper.onload=()=>{
+        const visuals=document.createElement('script');
+        visuals.src='bot-ledger-visuals.js';visuals.async=false;visuals.dataset.killianRosterLoader='visuals';
+        document.body.appendChild(visuals);
+      };
       document.body.appendChild(helper);
     };
     document.body.appendChild(data);
