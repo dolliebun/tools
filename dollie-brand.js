@@ -19,6 +19,11 @@
       helper.onload=()=>{
         const visuals=document.createElement('script');
         visuals.src='bot-ledger-visuals.js';visuals.async=false;visuals.dataset.killianRosterLoader='visuals';
+        visuals.onload=()=>{
+          const meta=document.createElement('script');
+          meta.src='bot-ledger-readable-meta.js';meta.async=false;meta.dataset.killianRosterLoader='meta';
+          document.body.appendChild(meta);
+        };
         document.body.appendChild(visuals);
       };
       document.body.appendChild(helper);
