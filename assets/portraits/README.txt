@@ -1,0 +1,1 @@
+Archive portrait assets in this directory are real image files. The bot ledger renders them as independent <img> elements rather than sprite-sheet background positions.
