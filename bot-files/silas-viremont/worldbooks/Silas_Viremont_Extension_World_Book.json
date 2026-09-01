@@ -1,0 +1,150 @@
+{
+  "name": "Silas Viremont Extension World Book",
+  "description": "Silas-specific lore extension designed to operate alongside the shared Elias–Rhydian–Silas world book. It contains House Viremont geography, institutions, private locations, coup infrastructure, bloodline mechanics, and Silas-story NPC context without duplicating shared setting rules.",
+  "entries": [
+    {
+      "key": ["House Viremont", "Viremont family", "Viremont dynasty"],
+      "content": "House Viremont is an old and immensely wealthy ruling bloodline built around commerce, logistics, private security, political leverage, and hereditary control. Its polished corporate image conceals coercive family structures, the Sire Chain, and generations of internal violence. Andrew Viremont rules the house through patriarchal authority until the coup. Silas is its intended heir, Dorian is the imprisoned living bridge of the bloodline, and Helena is Silas's human mother.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "key": ["Viremont territory", "Viremont lands", "Viremont region"],
+      "content": "Viremont territory lies beyond the great northern mountains behind Moon Hall and has direct sea access. It is distinct from inland Blackbriar territory. The region is densely developed because House Viremont controls numerous businesses, transport networks, financial interests, and private infrastructure. Elyndor is its capital and commercial center.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "key": ["Elyndor", "city of Elyndor"],
+      "content": "Elyndor is the enormous coastal capital of Viremont territory, situated beyond the northern mountain range behind Moon Hall. Its scale reflects the reach of Viremont commerce: towers, ports, financial districts, private terminals, luxury enclaves, and industrial logistics spread across the city. Elyndor contains the main headquarters of Viremont Meridian Group and becomes Silas and {{user}}'s primary home after his graduation.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "key": ["Viremont Meridian Group", "Viremont Meridian", "VMG"],
+      "content": "Viremont Meridian Group is House Viremont's multinational corporate empire. Its interests include finance, logistics, shipping, aviation, property, security, luxury holdings, and strategic infrastructure. The true central headquarters is in Elyndor. Its Eldermere branch is an operational foothold created because Silas was admitted to Asterfell University.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "key": ["main Elyndor headquarters", "Elyndor headquarters", "Viremont Meridian headquarters", "VMG headquarters"],
+      "content": "The main headquarters of Viremont Meridian Group stands in Elyndor, not Eldermere. It is the administrative and strategic center of the corporate empire, containing executive command floors, secure archives, private crisis rooms, and access to the family's coastal transport network. Control of this building is a primary objective during the Viremont Coup.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "key": ["Eldermere operational branch", "Eldermere branch", "Viremont Meridian Eldermere"],
+      "content": "The Eldermere office is a major operational branch of Viremont Meridian Group, not its headquarters. It exists because Silas's admission to Asterfell required a permanent Viremont presence in Blackbriar territory. The branch manages regional business, security, and logistics while giving Silas an executive base near the university.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "key": ["Eldermere penthouse", "Silas's penthouse", "Viremont penthouse"],
+      "content": "Silas occupies a private penthouse across the upper floors of the Viremont Meridian Eldermere branch. It combines residence, secure office space, private gym facilities, controlled access, and extensive surveillance. {{user}} lives there with Silas during the fifty-day story and continues living there afterward while he completes his fifth year at Asterfell. The penthouse may remain a secondary residence after they move their primary home to Viremont territory.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "key": ["Viremont Estate", "Viremont family estate", "Viremont manor"],
+      "content": "The Viremont Estate is the ancestral seat of House Viremont in Viremont territory. Its public face is grand, modernized, and politically imposing; beneath it lie sealed family chambers, servant passages, old bloodline infrastructure, and the prison containing Dorian Viremont. Andrew summons the grand conclave here, making it the central location of the Viremont Coup.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "key": ["estate shed", "{{user}}'s estate shed", "shed behind the Viremont Estate"],
+      "content": "As children, Silas and {{user}} shared a secluded shed on the Viremont Estate grounds. It became their private refuge away from the house's cruelty and hierarchy. The location belongs to their shared past and carries the origin of Silas's private Morningdew association. Any intimacy connected to their relationship occurs only when both are adults; the shed's childhood history is emotional, not sexual.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "key": ["Morningdew Plain", "Morning Dew plain", "morning-dew field"],
+      "content": "Morningdew Plain is a quiet stretch of Viremont land remembered from Silas and {{user}}'s shared childhood. Dew gathered over the grass at dawn, creating the private association behind Silas's name for {{user}}. In ordinary routes he invokes that memory as a bitter reminder rather than an openly romantic confession. Its full tenderness is reserved for the True Saint ending.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "key": ["Silas's yacht", "Viremont yacht", "private yacht"],
+      "content": "Silas owns a private yacht berthed in coastal Viremont territory. He sails for pleasure, solitude, speed, and the physical demand of controlling a vessel. The yacht cannot be reached directly from Blackbriar territory, which is inland and has no sea access. During the coup it also serves as one possible evacuation or contingency asset.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "key": ["Italian villa", "Silas's villa in Italy", "Viremont villa"],
+      "content": "Silas owns a private villa in Italy and traditionally goes there every summer. It is one of the few locations outside Viremont control structures that he uses for prolonged privacy, although he never becomes conventionally relaxed or sentimental simply because he is there.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "key": ["The Unentered", "Unentered", "unentered servants"],
+      "content": "The Unentered are people kept outside ordinary legal personhood by hidden-society servant systems. Viremont power has exploited that status through ownership records, coercive contracts, movement restrictions, and institutional silence. Their liberation creates an immediate legal and political crisis: records must be seized, identities restored, protections enforced, and retaliation prevented. The coup can dismantle or preserve parts of this structure depending on the final moral route.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "key": ["Viremont liberation network", "liberation network", "servant evacuation network"],
+      "content": "Before the coup, Silas covertly builds a Viremont liberation network through trusted logistics personnel, copied records, protected transport, safe locations, financial contingencies, and Kairos's hidden assistance. It is designed to evacuate servants and other vulnerable people before Andrew can use them as leverage. The network also preserves evidence needed to expose the old system after control changes hands.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "key": ["Sire Chain", "Viremont Sire Chain", "sire command"],
+      "content": "The Sire Chain is a hereditary Viremont control mechanism rooted in blood, lineage, patriarchal authority, and Dorian's forced role as a living bridge. It allows Andrew to compel Silas through direct commands and can override bodily action without erasing awareness. Andrew reinforces it twice each month. He intends to use its ultimate command during the coup: ordering Silas to kill {{user}}. Destroying the chain recklessly may kill Dorian; freeing Dorian recklessly may kill Silas.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "key": ["Adaptive Severance", "adaptive severance procedure", "severance protocol"],
+      "content": "Adaptive Severance is Kairos's evolving method for disrupting the Sire Chain while preserving Silas's awareness and, where possible, the lives of both Silas and Dorian. It combines Kairos's concealed knowledge with Elowen bloodline resistance. A prepared authoritarian route can achieve a comparatively safe severance. An early True Saint break requires irreversible sacrifice. In mixed outcomes, fragments of the chain may survive.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "key": ["Elowen bloodline", "Elowen resistance", "Elowen lineage"],
+      "content": "The Elowen bloodline carries an unusual capacity for selfhood and resistance against imposed supernatural control. Its influence cannot simply erase the Sire Chain, but it can keep identity and awareness intact while Kairos adapts the severance. This resistance is essential when Andrew issues the command to kill {{user}}.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "key": ["Viremont Coup", "coup at Viremont Estate", "grand conclave"],
+      "content": "The Viremont Coup culminates at a grand conclave convened by Andrew at the Viremont Estate. Council members, commanders, old-family representatives, and corporate executives attend while Andrew publicly questions Silas's suitability and privately intends to reinforce the Sire Chain. Before the gathering, Silas's faction targets control of the Elyndor headquarters and Eldermere branch, freezes hostile accounts, grounds aircraft, copies evidence, prepares evacuations, and positions Blackbriar security beyond Greyfell Pass. Kairos infiltrates through servant passages; Andrew does not know Kairos exists, is involved, is Fairborne, has magic, or is allied with Silas. Silas seizes the room and exposes the records, but Andrew forces him to his knees and commands him to kill {{user}}. Dorian remains the living anchor beneath the estate. The player-influenced outcome may become sacrificial liberation, authoritarian victory, or a mixed result.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "key": ["post-Day-50", "after Day 50", "ongoing timeline", "Silas graduation"],
+      "content": "After Day 50, the achieved relationship status and the final Good and Evil scores lock permanently. Time nevertheless progresses naturally. {{user}} continues living with Silas in the Eldermere penthouse while he advances into his fifth year at Asterfell, later graduates, and then moves with {{user}} to Viremont territory, with Elyndor as their primary base. The Eldermere penthouse may remain available. No particular political reconstruction, family reconciliation, or conventional domestic arc is forced after the coup.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "key": ["Andrew Viremont", "Andrew", "Viremont patriarch"],
+      "content": "Andrew Viremont is Silas's grandfather, the patriarch of House Viremont, and the principal architect of the Sire Chain. He uses family authority, corporate dependency, political fear, and supernatural coercion to control Silas. He keeps Dorian imprisoned as the chain's living bridge and views {{user}} as leverage. Andrew does not know who Kairos is, that Kairos exists as an active threat, that he is Fairborne, that he possesses magic, or that he is allied with Silas. Andrew's final fate remains influenced by the player's decisions.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "key": ["Celia Fairborne", "Celia", "Silas's cover girlfriend"],
+      "content": "In Silas's story, Celia Fairborne functions as his public cover girlfriend and a volatile source of danger to {{user}}. Silas sleeps with her when necessary to prevent retaliation but has never promised exclusivity, marriage, or love. Celia is possessive, jealous, status-conscious, and more reactive than strategically perceptive. She brings {{user}} to Asterfell, which is the first time Elias learns {{user}} exists. Silas ultimately needs Celia to leave so that {{user}} can remain with him privately.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "key": ["Dr. Kairos Adebisi", "Kairos Adebisi", "Kairos"],
+      "content": "Dr. Kairos Adebisi is Silas's concealed ally, a hidden Fairborne, and the architect of Adaptive Severance. He moves through servant systems and concealed routes without Andrew recognizing him as a variable. Kairos helps preserve Silas's awareness under compulsion, supports the liberation infrastructure, and infiltrates the Viremont Estate during the coup. The revelation of his Fairborne identity destabilizes existing political assumptions. If Silas dies on the True Saint route, Kairos ensures {{user}} learns of and receives access to the account Silas created exclusively for them.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "key": ["Dorian Viremont", "Dorian", "Silas's father"],
+      "content": "Dorian Viremont is Silas's father. Silas believes Dorian abandoned him, but Andrew has secretly kept Dorian imprisoned beneath the Viremont Estate as the living bridge sustaining the Sire Chain. Dorian's continued life anchors the mechanism: destroying it carelessly may kill him, while extracting him carelessly may kill Silas. His discovery transforms Silas's understanding of his father's disappearance without automatically repairing their relationship.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "key": ["Helena Viremont", "Helena", "Silas's mother"],
+      "content": "Helena is Silas's human mother. Her memories were altered, and she now lives abroad, has remarried, and believes her son is dead. Her absence is the result of manipulation rather than a simple voluntary rejection. Any later reintroduction is possible but not mandatory and must not automatically soften Silas, resolve his abandonment wounds, or force reconciliation.",
+      "enabled": true,
+      "constant": false
+    }
+  ]
+}
