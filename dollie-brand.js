@@ -12,17 +12,22 @@
 
   if(section==='ledger'&&!document.querySelector('script[data-killian-roster-loader]')){
     const data=document.createElement('script');
-    data.src='bot-ledger-roster-data.js';data.async=false;data.dataset.killianRosterLoader='data';
+    data.src='bot-ledger-roster-data.js?v=3';data.async=false;data.dataset.killianRosterLoader='data';
     data.onload=()=>{
       const helper=document.createElement('script');
-      helper.src='bot-ledger-roster.js';helper.async=false;helper.dataset.killianRosterLoader='helper';
+      helper.src='bot-ledger-roster.js?v=3';helper.async=false;helper.dataset.killianRosterLoader='helper';
       helper.onload=()=>{
         const visuals=document.createElement('script');
-        visuals.src='bot-ledger-visuals.js';visuals.async=false;visuals.dataset.killianRosterLoader='visuals';
+        visuals.src='bot-ledger-visuals.js?v=4';visuals.async=false;visuals.dataset.killianRosterLoader='visuals';
         visuals.onload=()=>{
-          const meta=document.createElement('script');
-          meta.src='bot-ledger-readable-meta.js';meta.async=false;meta.dataset.killianRosterLoader='meta';
-          document.body.appendChild(meta);
+          const portraits=document.createElement('script');
+          portraits.src='bot-ledger-direct-portraits.js?v=3';portraits.async=false;portraits.dataset.killianRosterLoader='portraits';
+          portraits.onload=()=>{
+            const meta=document.createElement('script');
+            meta.src='bot-ledger-readable-meta.js?v=3';meta.async=false;meta.dataset.killianRosterLoader='meta';
+            document.body.appendChild(meta);
+          };
+          document.body.appendChild(portraits);
         };
         document.body.appendChild(visuals);
       };
