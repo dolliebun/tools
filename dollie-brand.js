@@ -23,9 +23,14 @@
           const portraits=document.createElement('script');
           portraits.src='bot-ledger-direct-portraits.js?v=3';portraits.async=false;portraits.dataset.killianRosterLoader='portraits';
           portraits.onload=()=>{
-            const meta=document.createElement('script');
-            meta.src='bot-ledger-readable-meta.js?v=3';meta.async=false;meta.dataset.killianRosterLoader='meta';
-            document.body.appendChild(meta);
+            const folders=document.createElement('script');
+            folders.src='bot-ledger-folders.js?v=1';folders.async=false;folders.dataset.killianRosterLoader='folders';
+            folders.onload=()=>{
+              const meta=document.createElement('script');
+              meta.src='bot-ledger-readable-meta.js?v=3';meta.async=false;meta.dataset.killianRosterLoader='meta';
+              document.body.appendChild(meta);
+            };
+            document.body.appendChild(folders);
           };
           document.body.appendChild(portraits);
         };
