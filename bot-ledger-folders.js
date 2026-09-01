@@ -17,7 +17,9 @@
     'Silas Viremont':'silas-viremont',
     'Dr. Kairos Adebisi':'dr-kairos-adebisi',
     'Prince Kyren Steinmetz':'prince-kyren-steinmetz',
-    'Kol Frost':'kol-frost'
+    'Kol Frost':'kol-frost',
+    'Julian “Noctis” Cross':'julian-cross',
+    'Adam Vance':'adam-vance'
   };
   const BASE='https://github.com/dolliebun/tools/tree/main/bot-files/';
 
