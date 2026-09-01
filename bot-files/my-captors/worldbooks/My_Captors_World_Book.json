@@ -1,0 +1,154 @@
+{
+  "name": "My Captors — World Book",
+  "description": "Reusable world information for My Captors. Contains setting, locations, NPCs, organizations, family/network lore, and items only. Character personalities, voices, relationship engines, trackers, consent/autonomy rules, scene-selection rules, plot-outline mechanics, and runtime instructions remain in the Character Card / Background.",
+  "entries": [
+    {
+      "key": [
+        "global world vitality",
+        "living world"
+      ],
+      "content": "Global World Vitality:\nThe world is alive and continues moving beyond the immediate scene.\nNPCs have routines, obligations, relationships, and goals of their own.\nNPCs may appear naturally when the current location, schedule, organization, or established relationship makes their presence appropriate.\nLocations are populated and reactive rather than empty sets.\nMinor setting-appropriate background events may occur without becoming the main plot.\nUniversity life continues independently through classes, athletics, student organizations, social activity, and ordinary obligations.\nThe four primary characters remain the narrative focus. NPCs and background activity support the story rather than replacing them.\nDo not invent major new lore, named recurring NPCs, organizations, family members, or history when canon has not established them; use [FILL IN] until defined.",
+      "enabled": true,
+      "constant": true
+    },
+    {
+      "key": [
+        "campus",
+        "university campus",
+        "the university",
+        "university"
+      ],
+      "content": "Name: [FILL IN — university name]\nType: University campus / primary public setting\nDescription: The university is the central public setting of My Captors. Campus remains the primary public sandbox after Night 1, and ordinary university obligations continue in the background.\nAtmosphere: [FILL IN — architecture, region, campus visual identity, scale, and distinctive landmarks]\nWho may appear there: Students and setting-appropriate university NPCs; Rhett Callow, Zane Hollis, Soren Pike, Blaise Danner, Britney, and other named NPCs when their established schedules or roles make their presence appropriate.\nDynamic Usage: Use the campus for classes, crossings, organization activity, athletics, practice, social encounters, public observation, gossip, and other established university-life scenes. Keep it populated and reactive. Do not invent a specific campus building, landmark, school tradition, or university policy unless it has been established in roleplay or later canon.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "key": [
+        "shared house",
+        "off-campus house",
+        "their house",
+        "their place",
+        "the guys' house"
+      ],
+      "content": "Name: Shared Off-Campus House\nType: Private residence / group base\nDescription: A large, upscale off-campus house shared by Rhett Callow, Zane Hollis, Soren Pike, and Blaise Danner. It functions as their private base. Known sublocations include Zane's garage/bike workshop and Soren's quiet, private locked room. Other rooms, architecture, decor, address, neighborhood, security, and property details are [FILL IN].\nAtmosphere: [FILL IN]\nWho may appear there: Rhett Callow, Zane Hollis, Soren Pike, and Blaise Danner. Other occupants, guests, staff, neighbors, or recurring visitors are [FILL IN] unless established later.\nDynamic Usage: Use for private domestic or group scenes only when the story has legitimately reached the property. At Night 1, {{user}} has not been brought inside, onto, or knowingly adjacent to this property. After release it remains private until encountered naturally in roleplay. Do not invent prior knowledge of its layout, address, or interior for {{user}}.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "key": [
+        "Zane's garage",
+        "Zane's bike workshop",
+        "bike workshop",
+        "motorcycle workshop"
+      ],
+      "content": "Name: Zane's Garage / Bike Workshop\nType: Private garage and motorcycle workspace within the shared off-campus house\nDescription: Zane Hollis has a garage/bike workshop at the shared house. Specific tools, equipment, layout, decor, storage, additional vehicles, and mechanical projects are [FILL IN].\nAtmosphere: [FILL IN]\nWho may appear there: Zane Hollis. Access and habits of Rhett, Soren, Blaise, {{user}}, or other NPCs are [FILL IN] until established.\nDynamic Usage: Use when a scene legitimately involves Zane's motorcycle, maintenance, the shared house garage, arrivals/departures, or later-established activity in the workshop. Do not invent technical equipment, projects, or vehicle specifications that have not been established.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "key": [
+        "Soren's room",
+        "Soren's locked room",
+        "Soren's private room"
+      ],
+      "content": "Name: Soren's Private Locked Room\nType: Private room within the shared off-campus house\nDescription: Soren Pike has a quiet, private locked room in the shared house. Its layout, contents, computers, devices, surveillance equipment, furniture, decor, and security measures are [FILL IN] unless specifically established elsewhere.\nAtmosphere: Quiet and private; all further sensory or visual detail is [FILL IN].\nWho may appear there: Soren Pike. Access by Rhett, Zane, Blaise, {{user}}, or other NPCs is [FILL IN] until established.\nDynamic Usage: Use only when the room is naturally reached in roleplay. Never use the existence of this room to invent equipment, stored information, recordings, access, or knowledge that canon has not established.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "key": [
+        "practice location",
+        "practice facility",
+        "practice corridor",
+        "practice building",
+        "glass doors"
+      ],
+      "content": "Name: Practice Facility / Corridor\nType: University practice-area building or corridor\nDescription: The exact building name and practice type are [FILL IN]. A known corridor has glass doors opening toward exterior concrete stairs and a nearby parking area. During the opening, the corridor is warmer than the cool night air outside. Practice can run late.\nAtmosphere: Late-night campus lighting, an interior corridor, glass separating the warmer building from the cooler exterior; additional daytime atmosphere and building design are [FILL IN].\nWho may appear there: {{user}} when established by the active scene; Soren Pike was present inside during the opening after observing the practice location. Normal occupants, staff, teams, clubs, or other users of the facility are [FILL IN].\nDynamic Usage: Use for practice departures, corridor scenes, transitions between the building and the exterior stairs/parking area, and callbacks to the opening location. Do not assume the exact sport, activity, team, or building identity from the word 'practice' alone.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "key": [
+        "concrete stairs",
+        "campus stairs",
+        "parking area",
+        "practice parking area"
+      ],
+      "content": "Name: Concrete Stairs & Adjacent Parking Area\nType: Exterior campus transition area\nDescription: Concrete stairs sit outside the practice-building glass doors under campus lights, with a parking area beyond them. During the opening, the area provides a clear exterior sightline from the corridor.\nAtmosphere: Exterior university space under campus lighting; exact landscaping, architecture, traffic level, and surrounding buildings are [FILL IN].\nWho may appear there: Setting-appropriate campus NPCs. During the opening, Rhett Callow and Blaise Danner are among the Ghostface-masked figures outside, while Zane Hollis is nearby in motorcycle gear beside a black sport bike. Exact positioning beyond established scene canon should follow the active roleplay.\nDynamic Usage: Use for arrivals, departures, exterior practice-area scenes, parking transitions, and visual callbacks. Keep the location part of the wider campus rather than treating it as an isolated private property.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "key": [
+        "Britney",
+        "Rhett's girlfriend",
+        "cheer captain"
+      ],
+      "content": "Name: Britney [surname FILL IN]\nRole: Rhett Callow's girlfriend at the time of Night 1; cheer captain at that point in canon.\nAppearance: [FILL IN]\nPersonality: [FILL IN]\nRelationship to main character: Rhett Callow is her boyfriend at Night 1. Her established relationships with Zane Hollis, Soren Pike, and Blaise Danner are [FILL IN].\nRelationship to {{user}}: Britney complained about {{user}}, and that complaint precipitated the original plan to frighten/intimidate {{user}}. The reason for the complaint, Britney's exact claims, prior history, and her personal interpretation of {{user}} are [FILL IN].\nCurrent goals: [FILL IN]\nDynamic Usage: Britney is an autonomous campus NPC with her own routine and goals. She may appear naturally when cheer, Rhett, campus social life, gossip, or an established relationship makes her presence appropriate. She may react to events based only on what she plausibly knows. Do not invent her appearance, motives, private history, friendships, or knowledge. Do not make her appear in every scene merely because Rhett is present.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "key": [
+        "student government",
+        "student government president"
+      ],
+      "content": "Name: [FILL IN — official student-government name]\nType: University student government\nDescription: The university has a student-government organization. Rhett Callow is its president.\nKnown Members: Rhett Callow — president. All other officers, advisers, committees, election history, policies, scandals, budgets, offices, and procedures are [FILL IN].\nAtmosphere: [FILL IN]\nDynamic Usage: Use when university governance, student leadership, official campus events, meetings, reputation, or Rhett's established role as president is relevant. Do not invent institutional powers or claim the organization can produce outcomes that canon has not established.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "key": [
+        "fraternity",
+        "frat",
+        "fraternity exec board",
+        "fraternity social chair"
+      ],
+      "content": "Name: [FILL IN — fraternity name]\nType: University fraternity / social organization\nDescription: A fraternity exists in the setting. Rhett Callow sits on its executive board, and Blaise Danner is its social chair.\nKnown Members: Rhett Callow — executive board. Blaise Danner — social chair. Zane Hollis and Soren Pike's membership status is [FILL IN]. Other members and officers are [FILL IN].\nLocation: [FILL IN — no fraternity house or chapter location is currently established]\nCulture / Reputation: [FILL IN]\nDynamic Usage: Use for established fraternity obligations, meetings, social networks, events, or parties when appropriate. Do not invent a fraternity house, Greek letters, rituals, hazing history, chapter rules, membership lists, or institutional influence until defined.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "key": [
+        "football team",
+        "football program",
+        "university football"
+      ],
+      "content": "Name: [FILL IN — university football team/program name]\nType: University football program\nDescription: A football team/program exists within the university setting.\nKnown Members: [FILL IN]\nCoaches / Staff: [FILL IN]\nFacilities: [FILL IN]\nReputation / Record: [FILL IN]\nDynamic Usage: Use as a living athletic organization when football practices, games, players, staff, or established football-related NPCs become relevant. Do not invent a named recurring player, coach, team record, mascot, position roster, or scandal until established by roleplay or canon.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "key": [
+        "cheer squad",
+        "cheer team",
+        "cheerleading",
+        "cheer captain"
+      ],
+      "content": "Name: [FILL IN — official cheer squad/team name]\nType: University cheer squad\nDescription: A university cheer squad exists. Britney is its captain at the time of Night 1.\nKnown Members: Britney — captain at Night 1. All other members are [FILL IN].\nCoaches / Staff: [FILL IN]\nPractice Location / Schedule: [FILL IN]\nCulture / Reputation: [FILL IN]\nDynamic Usage: Use when cheer practices, games, campus events, team relationships, or Britney's established role make the organization relevant. Do not infer that {{user}} is a cheerleader or member of this squad unless the Role Card or roleplay establishes it.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "key": [
+        "Callow family",
+        "the Callows",
+        "Rhett's family",
+        "Callow connections"
+      ],
+      "content": "Name: Callow Family\nType: Old-money family / local legal and business network\nDescription: Rhett Callow comes from old money and has local legal/business connections through his background. The family's wealth source, relatives, businesses, legal firms, residences, political ties, reputation, and exact level of influence are [FILL IN].\nKnown Members: Rhett Callow. All other family members are [FILL IN].\nRelationship to {{user}}: [FILL IN]\nDynamic Usage: Invoke only when Rhett's family background or explicitly established local connections become relevant. Do not invent relatives, companies, law firms, favors, coverups, institutional control, or guaranteed consequences merely from the phrase 'old money.'",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "key": [
+        "Zane's motorcycle",
+        "Zane's bike",
+        "black sport bike"
+      ],
+      "content": "Name: Zane's Motorcycle\nType: Motorcycle / personal vehicle\nDescription: Zane Hollis is strongly associated with a motorcycle and takes it everywhere. During the opening, a black sport bike with polished black fairings is visible in the campus parking area near him.\nOwner: Zane Hollis\nMake / Model / Year: [FILL IN]\nMechanical modifications: [FILL IN]\nDistinctive markings: [FILL IN]\nDynamic Usage: Use as Zane's transportation and as a natural element of scenes involving his garage/bike workshop, arrivals, departures, or established rides. Do not invent a manufacturer, model, engine specification, license plate, custom modifications, passenger history, or mechanical problem until established.",
+      "enabled": true,
+      "constant": false
+    }
+  ]
+}
