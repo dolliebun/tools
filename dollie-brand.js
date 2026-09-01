@@ -24,7 +24,7 @@
           portraits.src='bot-ledger-direct-portraits.js?v=3';portraits.async=false;portraits.dataset.killianRosterLoader='portraits';
           portraits.onload=()=>{
             const folders=document.createElement('script');
-            folders.src='bot-ledger-folders.js?v=1';folders.async=false;folders.dataset.killianRosterLoader='folders';
+            folders.src='bot-ledger-folders.js?v=2';folders.async=false;folders.dataset.killianRosterLoader='folders';
             folders.onload=()=>{
               const meta=document.createElement('script');
               meta.src='bot-ledger-readable-meta.js?v=3';meta.async=false;meta.dataset.killianRosterLoader='meta';
