@@ -31,6 +31,18 @@ jobs:
           mkdir -p "$(dirname "$ELIAS")"
           cat "$STAGING"/part-*.txt > "$ELIAS"
 
+          # The historic staged part 11 omitted exactly one approved 30-byte source line.
+          # Restore that verified line before any production file is accepted.
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('bot-files/elias-thorne/worldbooks/Blackbriar_Elias_World_Book_v3_MAX_TRIGGER_FINAL.json')
+          s = p.read_text(encoding='utf-8')
+          needle = '        "True Luna bloodline",\n        "Luna bloodline families Rosemond",'
+          replacement = '        "True Luna bloodline",\n        "Luna bloodline families",\n        "Luna bloodline families Rosemond",'
+          assert s.count(needle) == 1, s.count(needle)
+          p.write_text(s.replace(needle, replacement, 1), encoding='utf-8')
+          PY
+
           test "$(wc -c < "$ELIAS" | tr -d ' ')" = '295065'
           echo '7c17477f145cfc8a4e75b8992cfb21a32c30adce50925549995d35b72234e362  bot-files/elias-thorne/worldbooks/Blackbriar_Elias_World_Book_v3_MAX_TRIGGER_FINAL.json' | sha256sum --check --strict
 
@@ -60,7 +72,7 @@ jobs:
 
           | Bot | Approved original | Bytes | SHA-256 | Repository companion |
           | --- | --- | ---: | --- | --- |
-          | Alistair Fieter | `Alistair_Fiechter_NPC_Handoff_FINAL_UPDATED.docx` | 1,553,097 | `15ff8aabc24e5b4a99b12b030fb4e9a5c7f9f6e1be4469a861394ea888e44b1c` | `alista​​ir-fieter/character/Alistair_Fiechter_NPC_Handoff_FINAL_UPDATED.md` |
+          | Alistair Fieter | `Alistair_Fiechter_NPC_Handoff_FINAL_UPDATED.docx` | 1,553,097 | `15ff8aabc24e5b4a99b12b030fb4e9a5c7f9f6e1be4469a861394ea888e44b1c` | `alistair-fieter/character/Alistair_Fiechter_NPC_Handoff_FINAL_UPDATED.md` |
           | Elias Thorne | `Blackbriar_Elias_Master_Handoff_Expanded.docx` | 70,360 | `a68ef451c31bc7c8c626665b79f7392423ad63353b26162c315975bc1efbab04` | `elias-thorne/exports/` and `elias-thorne/worldbooks/` |
           | Davian Astor | `Davian_Astor_NPC_Handoff.docx` | 3,973,776 | `f61085296c7d2f24051b2e9dbe08ff1b4602623e0f4de2ec28d86fbc438a17b2` | `davian-astor/character/Davian_Astor_NPC_Handoff.md` |
           | Elirosa Bloom | `Elirosa_Bloom_NPC_Handoff_UPDATED_CANON_FINAL.docx` | 4,497,965 | `02f501c632683d16129bd99d0e410c7eae3549e399fa19613671b51fa1e81c76` | `elirosa-bloom/character/Elirosa_Bloom_NPC_Handoff_UPDATED_CANON_FINAL.md` |
@@ -79,14 +91,6 @@ jobs:
 
           Generated during the 2026-09-02 archive migration.
           EOF
-
-          # Remove an accidental invisible character from the manifest path if the heredoc editor introduced one.
-          python - <<'PY'
-          from pathlib import Path
-          p = Path('bot-files/SOURCE-ARCHIVE-MANIFEST.md')
-          s = p.read_text(encoding='utf-8').replace('alista\u200b\u200bir-fieter', 'alistair-fieter')
-          p.write_text(s, encoding='utf-8')
-          PY
 
           rm -rf 'bot-files/elias-thorne/_staging'
           git rm '.github/workflows/finalize-archive-migration.yml'
