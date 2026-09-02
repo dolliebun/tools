@@ -36,10 +36,9 @@ jobs:
           p = Path('bot-files/elias-thorne/worldbooks/Blackbriar_Elias_World_Book_v3_MAX_TRIGGER_FINAL.json')
           s = p.read_text(encoding='utf-8')
           needle = '        "True Luna bloodline",\n        "Luna bloodline families Rosemond",'
-          replacement = '        "True Luna bloodline",\n        "Luna bloodline families",\n        "Luna bloodline families Rosemond",'
-          if needle in s:
-              s = s.replace(needle, replacement, 1)
-          p.write_text(s, encoding='utf-8')
+          replacement = '        "True Luna bloodline",\n        "Luna bloodline families",\n        "bloodline families Rosemond",'
+          assert s.count(needle) == 1, s.count(needle)
+          p.write_text(s.replace(needle, replacement, 1), encoding='utf-8')
           PY
 
           wc -c "$ELIAS"
