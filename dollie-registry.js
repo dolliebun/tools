@@ -15,6 +15,13 @@
     recycleIds:false
   });
 
+  const owner=Object.freeze({
+    creator:'Dollie',
+    creatorProfiles:Object.freeze({
+      tipsy:'https://tipsy.chat/profile/1777650556658005181'
+    })
+  });
+
   const records=[
     {ledgerId:'bot-my-captors',name:'My Captors',type:'multi',gender:'mixed',universe:'dreams',sequence:1,year:2026},
     {ledgerId:'bot-rhett-callow',name:'Rhett Callow',type:'solo',gender:'male',universe:'dreams',sequence:1,year:2026},
@@ -46,5 +53,5 @@
   const byLedgerId=Object.fromEntries(records.map(record=>[record.ledgerId,record]));
   const byRegistryId=Object.fromEntries([...roots,...records].map(record=>[record.registryId,record]));
 
-  root.DOLLIE_REGISTRY={SPEC,records,roots,byLedgerId,byRegistryId,makeId};
+  root.DOLLIE_REGISTRY={SPEC,owner,records,roots,byLedgerId,byRegistryId,makeId};
 })(window);
