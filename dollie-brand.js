@@ -5,39 +5,8 @@
   const section=path==='index.html'?'tools':path==='library.html'?'library':path==='bot-ledger.html'?'ledger':'tools';
   document.body.classList.add('dollie-branded');
   document.querySelectorAll('.site-header:not(.ledger-header)').forEach(existing=>existing.classList.add('dollie-old-main-nav'));
-  const bar=document.createElement('header');
-  bar.className='dollie-brandbar';
-  bar.innerHTML=`<a class="dollie-brand-home" href="index.html"><img class="dollie-brand-avatar" src="assets/dollie-avatar.gif" alt="Dollie"><span class="dollie-brand-name"><strong>Dollie Tools</strong><small>softness, with teeth</small></span></a><span class="dollie-brand-scene" aria-hidden="true"></span><nav class="dollie-brand-nav" aria-label="Dollie Tools"><a class="${section==='tools'?'active':''}" href="index.html">Tools</a><a class="${section==='library'?'active':''}" href="library.html">Library</a><a class="${section==='ledger'?'active':''}" href="bot-ledger.html">Archives</a></nav>`;
-  document.body.prepend(bar);
-
+  const bar=document.createElement('header');bar.className='dollie-brandbar';bar.innerHTML=`<a class="dollie-brand-home" href="index.html"><img class="dollie-brand-avatar" src="assets/dollie-avatar.gif" alt="Dollie"><span class="dollie-brand-name"><strong>Dollie Tools</strong><small>softness, with teeth</small></span></a><span class="dollie-brand-scene" aria-hidden="true"></span><nav class="dollie-brand-nav" aria-label="Dollie Tools"><a class="${section==='tools'?'active':''}" href="index.html">Tools</a><a class="${section==='library'?'active':''}" href="library.html">Library</a><a class="${section==='ledger'?'active':''}" href="bot-ledger.html">Archives</a></nav>`;document.body.prepend(bar);
   if(section==='ledger'&&!document.querySelector('script[data-killian-roster-loader]')){
-    const data=document.createElement('script');
-    data.src='bot-ledger-roster-data.js?v=5';data.async=false;data.dataset.killianRosterLoader='data';
-    data.onload=()=>{
-      const helper=document.createElement('script');
-      helper.src='bot-ledger-roster.js?v=5';helper.async=false;helper.dataset.killianRosterLoader='helper';
-      helper.onload=()=>{
-        const visuals=document.createElement('script');
-        visuals.src='bot-ledger-visuals.js?v=4';visuals.async=false;visuals.dataset.killianRosterLoader='visuals';
-        visuals.onload=()=>{
-          const portraits=document.createElement('script');
-          portraits.src='bot-ledger-direct-portraits.js?v=3';portraits.async=false;portraits.dataset.killianRosterLoader='portraits';
-          portraits.onload=()=>{
-            const folders=document.createElement('script');
-            folders.src='bot-ledger-folders.js?v=3';folders.async=false;folders.dataset.killianRosterLoader='folders';
-            folders.onload=()=>{
-              const meta=document.createElement('script');
-              meta.src='bot-ledger-readable-meta.js?v=3';meta.async=false;meta.dataset.killianRosterLoader='meta';
-              document.body.appendChild(meta);
-            };
-            document.body.appendChild(folders);
-          };
-          document.body.appendChild(portraits);
-        };
-        document.body.appendChild(visuals);
-      };
-      document.body.appendChild(helper);
-    };
-    document.body.appendChild(data);
+    const data=document.createElement('script');data.src='bot-ledger-roster-data.js?v=5';data.async=false;data.dataset.killianRosterLoader='data';data.onload=()=>{const helper=document.createElement('script');helper.src='bot-ledger-roster.js?v=5';helper.async=false;helper.dataset.killianRosterLoader='helper';helper.onload=()=>{const visuals=document.createElement('script');visuals.src='bot-ledger-visuals.js?v=4';visuals.async=false;visuals.dataset.killianRosterLoader='visuals';visuals.onload=()=>{const portraits=document.createElement('script');portraits.src='bot-ledger-direct-portraits.js?v=3';portraits.async=false;portraits.dataset.killianRosterLoader='portraits';portraits.onload=()=>{const folders=document.createElement('script');folders.src='bot-ledger-folders.js?v=4';folders.async=false;folders.dataset.killianRosterLoader='folders';folders.onload=()=>{const meta=document.createElement('script');meta.src='bot-ledger-readable-meta.js?v=3';meta.async=false;meta.dataset.killianRosterLoader='meta';document.body.appendChild(meta)};document.body.appendChild(folders)};document.body.appendChild(portraits)};document.body.appendChild(visuals)};document.body.appendChild(helper)};document.body.appendChild(data)
   }
 })();
