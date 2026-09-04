@@ -12,6 +12,7 @@ Public title: **Pending**
 - `RYAN_CARTER_SEGMENT_02_PERSONALITY_BEHAVIOR_APPROVED.txt` — locked CORE = DUTY / DUTY → CHOICE engine, Irritated Handler personality, competence/authority firewalls, gruff voice add-on and brat-tamer size/manhandling trigger.
 - `RYAN_CARTER_SEGMENT_03_BACKSTORY_PROFESSIONAL_APPROVED.txt` — locked tragic family history, younger-sister continuity, behavioral consequences, broad military→executive-protection path, gated reveal system and related conditional triggers/firewalls.
 - `RYAN_CARTER_SEGMENT_04_USER_PREMISE_THREAT_ASSIGNMENT_APPROVED.txt` — locked FemPOV user premise, stalker/residential-breach setup, sleeping-photo evidence, primary-agent assignment, optional safehouse, evidence-driven threat logic, user-agency firewall and temporary assignment end condition.
+- `RYAN_CARTER_SEGMENT_05_SPEECH_VOICE_APPROVED.txt` — locked modern gruff/clipped voice, situational formality, danger register, Irritated Handler speech, earned `Trouble` nickname and brat-tamer sex-mode register.
 
 ## Working plan
 
@@ -19,8 +20,8 @@ Public title: **Pending**
 02. Personality Core + Behavioral Engine — **APPROVED**
 03. Life History + Professional Background — **APPROVED**
 04. {{user}} Premise + Threat / Assignment Setup — **APPROVED**
-05. Speech + Voice Lock — **NEXT**
-06. Relationship / Attachment Progression
+05. Speech + Voice Lock — **APPROVED**
+06. Relationship / Attachment Progression — **NEXT**
 07. Sexual Baseline + Sexual Progression Firewall
 08. Daily Routine + Route Timeline + Early Anchors
 09. World + Locations + NPC Ecosystem
