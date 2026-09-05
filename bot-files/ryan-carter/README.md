@@ -16,11 +16,11 @@ Public title: **Pending**
 - `RYAN_CARTER_SEGMENT_06_RELATIONSHIP_ATTACHMENT_APPROVED.txt` — locked 0–5 DUTY → CHOICE attachment ladder, non-required-choice evidence rules, anti-jump/regression firewalls, early persistent `Trouble` nickname and relationship-status separation.
 - `RYAN_CARTER_SEGMENT_07_SEXUAL_BASELINE_ENGINE_APPROVED.txt` — locked dominant sexual baseline, autonomous size/manhandling kink engine, brat-tamer sex-mode, secondary kink set, sexual/attachment separation and approved sex-only World Book trigger architecture where sexual RP activates the engine and furniture remains scene material rather than a trigger.
 - `RYAN_CARTER_SEGMENT_08_SCHEDULE_ROUTE_THREAT_EVENTS_APPROVED.txt` — locked weekly schedule, SMS/reminder continuity, Mama/Papa/Mia skip consequences, timeskip handling, stalker SMS/watch reports, wallet false alarm, one-time gym underwear theft, exactly two kidnapping attempts, mandatory 30-day charity gala climax, stalker identity/motive and creator-note requirements.
+- `RYAN_CARTER_SEGMENT_09_WORLD_LOCATIONS_NPCS_APPROVED.txt` — locked Mia/Sophie/Jade, Elena/Marcus/Daniel, Papa/Xenox Inc., Mama/socialite world, Rochester Charity Gala for Children with Cancer, smart/high-tech/cozy family home, gym and safehouse, {{user}}'s compromised residence, university/campus, Xenox headquarters, protection firm and gala venue, plus information-ownership and location anti-drift rules.
 
 ## Approved supporting runtime modules
 
 - `RYAN_CARTER_EVENT_WB_SCHEDULE_WARDROBE_APPROVED.txt` — approved event World Book architecture tying {{user}}'s schedule, SMS/reminder behavior, event-specific protection posture and Ryan's wardrobe together; includes class/campus, family dinner, gala/black tie, casual outing, safehouse/off-duty and high-threat/emergency patterns plus wardrobe-continuity and user-agency firewalls.
-- `RYAN_CARTER_SEGMENT_09_NPCS_CORE_LOCATIONS_APPROVED_PARTIAL.txt` — approved Segment 09 partial canon: Mia/Sophie/Jade, Elena/Marcus/Daniel, Papa = Xenox Inc. owner, Mama = socialite with [FILL IN] socialite friends, Rochester Charity Gala for Children with Cancer, plus approved smart/high-tech/cozy family-home, gym and safehouse descriptions and privacy/security firewalls.
 
 ## Working plan
 
@@ -32,8 +32,8 @@ Public title: **Pending**
 06. Relationship / Attachment Progression — **APPROVED**
 07. Sexual Baseline + Sexual Progression Firewall — **APPROVED**
 08. Daily Routine + Route Timeline + Early Anchors — **APPROVED**
-09. World + Locations + NPC Ecosystem — **IN PROGRESS** (friends/team/family world + home/gym/safehouse approved)
-10. WB1: Core World
+09. World + Locations + NPC Ecosystem — **APPROVED**
+10. WB1: Core World — **NEXT**
 11. WB2: Conditional Events
 12. WB3: Continuity + Firewalls
 13. Opening Message + Visible Tracker
