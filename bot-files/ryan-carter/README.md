@@ -1,6 +1,6 @@
 # Ryan Carter — bot files
 
-Status: **In development**
+Status: **Complete / release-ready**
 
 Platform: **Tipsy**
 
@@ -32,7 +32,9 @@ Public title: **Ryan Carter | Your Grumpy Bodyguard**
 - `RYAN_CARTER_PUBLIC_PACKAGE_CREATOR_NOTE_RC_APPROVED.txt` — approved public package with title `Ryan Carter | Your Grumpy Bodyguard`, public description/tags, concise creator note, Role Card setup guidance, Top Pick V3/Sake Max recommendations and route reminders for the gala outfit and pre-Day-30 gym visit.
 - `RYAN_CARTER_TIPSY_PLATFORM_FIELDS_APPROVED.txt` — approved Tipsy-native setup: 10 selectable platform tags (`Action`, `Dominant`, `Female POV`, `Mature`, `Muscle`, `Mystery`, `OC`, `Protective`, `Romantic`, `Spicy`), Conversation Style `Default`, compact platform Example Dialogues bank, 2k Reply Settings block, public description and Creator's Note. Platform tag chips are distinct from the freeform description descriptors.
 - `RYAN_CARTER_STAGE_18_RUNTIME_HARDENING_APPROVED.txt` — approved multi-assistant stress-test hardening overlay. Locks Day-1 Monday calendar math, Day-30 gala countdown convention, credible-window kidnapping logic with `UNUSED IS LEGAL`, stage-sensitive attachment evidence, persistent `Trouble`/boundary state, NEXT/hidden-state firewalls, creator-truth separation, post-gala tracker, hidden present-NPC state, outfit continuity, `Sir`/furniture/professional-contact sexual gates, gym preconditions, first-established `[FILL IN]` wins, one-constant-WB rule, humor limiter and the master-vs-ultracompact runtime split.
-- `RYAN_CARTER_TIPSY_RUNTIME_ULTRACOMPACT_APPROVED.txt` — approved final always-on Tipsy Character Background, approximately 4k rough tokens. Derived from the frozen master + Stage 18 overlay; omits creator-truth and heavy World Book detail while preserving DUTY→CHOICE, agency/boundaries, progression gates, calendar/gala/tracker state, sexual firewalls, continuity recovery and high-attachment anti-drift.
+- `RYAN_CARTER_TIPSY_RUNTIME_ULTRACOMPACT_APPROVED.txt` — approved always-on Tipsy Character Background base, approximately 4k rough tokens. Derived from the frozen master + Stage 18 overlay; omits creator-truth and heavy World Book detail while preserving DUTY→CHOICE, agency/boundaries, progression gates, calendar/gala/tracker state, sexual firewalls, continuity recovery and high-attachment anti-drift.
+- `RYAN_CARTER_STAGE_19_DAY30_SEQUENTIAL_CORRECTION_APPROVED.txt` — approved final runtime correction. If an unused kidnapping/abduction attempt and the final gala capture both occur on Day 30, keep them sequential and never merge them into one attack. The final release package applies this line to the always-on Character Background.
+- `RYAN_CARTER_FINAL_RELEASE_QA_MANIFEST.txt` — final Stage-19 QA record with 6/6 regression pass, Tipsy field-limit checks, World Book constant counts and SHA256 hashes for the generated release archives.
 
 ## Approved visual asset index
 
@@ -58,12 +60,11 @@ Public title: **Ryan Carter | Your Grumpy Bodyguard**
 16. Assemble Final Core Character Background / Master Canon — **APPROVED**
 17. Creator Note + RC Instructions + Title + Description + Tags — **APPROVED**
 18. 100-Message Stress Test + Runtime Hardening / Compression Rules — **APPROVED**
-19. Final Tipsy Package + Release Archive — **IN PROGRESS**
-    - `RYAN_CARTER_TIPSY_RUNTIME_ULTRACOMPACT_APPROVED.txt` — **APPROVED**
-    - visible tracker — **APPROVED**
-    - opening message — **APPROVED**
-    - Tipsy platform fields / tags / Conversation Style / Example Dialogues / Reply Settings / Creator's Note — **APPROVED**
-    - next: final six regression cases + rebuild final Tipsy copy/paste package and release archive
-    - master 35k background remains frozen and authoritative
+19. Final Tipsy Package + Release Archive — **COMPLETE**
+    - final six regressions — **6 / 6 PASS**
+    - Day-30 sequential-event correction — **APPROVED + APPLIED TO RELEASE PACKAGE**
+    - final Tipsy copy/paste package — **GENERATED**
+    - full release archive with approved visuals — **GENERATED**
+    - frozen 35k master remains authoritative master canon
 
 Only explicitly approved Ryan canon should be promoted as authoritative source material.
