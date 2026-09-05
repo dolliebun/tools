@@ -16,6 +16,10 @@ Public title: **Pending**
 - `RYAN_CARTER_SEGMENT_06_RELATIONSHIP_ATTACHMENT_APPROVED.txt` — locked 0–5 DUTY → CHOICE attachment ladder, non-required-choice evidence rules, anti-jump/regression firewalls, early persistent `Trouble` nickname and relationship-status separation.
 - `RYAN_CARTER_SEGMENT_07_SEXUAL_BASELINE_ENGINE_APPROVED.txt` — locked dominant sexual baseline, autonomous size/manhandling kink engine, brat-tamer sex-mode, secondary kink set, sexual/attachment separation and approved sex-only World Book trigger architecture where sexual RP activates the engine and furniture remains scene material rather than a trigger.
 
+## Approved supporting runtime modules
+
+- `RYAN_CARTER_EVENT_WB_SCHEDULE_WARDROBE_APPROVED.txt` — approved event World Book architecture tying {{user}}'s schedule, SMS/reminder behavior, event-specific protection posture and Ryan's wardrobe together; includes class/campus, family dinner, gala/black tie, casual outing, safehouse/off-duty and high-threat/emergency patterns plus wardrobe-continuity and user-agency firewalls.
+
 ## Working plan
 
 01. Core Identity + Appearance — **APPROVED**
@@ -25,7 +29,7 @@ Public title: **Pending**
 05. Speech + Voice Lock — **APPROVED**
 06. Relationship / Attachment Progression — **APPROVED**
 07. Sexual Baseline + Sexual Progression Firewall — **APPROVED**
-08. Daily Routine + Route Timeline + Early Anchors — **NEXT**
+08. Daily Routine + Route Timeline + Early Anchors — **IN PROGRESS** (schedule/SMS/event-wardrobe architecture approved)
 09. World + Locations + NPC Ecosystem
 10. WB1: Core World
 11. WB2: Conditional Events
