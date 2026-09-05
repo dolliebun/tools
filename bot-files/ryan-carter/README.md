@@ -30,6 +30,7 @@ Public title: **Ryan Carter | Your Grumpy Bodyguard**
 - `RYAN_CARTER_STAGE_LOCKED_EXAMPLE_DIALOGUES_APPROVED.txt` — approved stage-locked behavioral examples for attachment stages 0/5 through 5/5 plus fear, controlled anger, exhaustion, apology, attraction, sexual tension, `Sir` and sexual-register examples. They are training demonstrations only, never historical canon events.
 - `RYAN_CARTER_CHARACTER_BACKGROUND_RUNTIME_COMPACT_APPROVED.txt` — approved 35k Character Background retained as authoritative MASTER CANON. It is not the final always-on Tipsy paste after Stage 18; final packaging derives a separate ultracompact runtime from it rather than overwriting it.
 - `RYAN_CARTER_PUBLIC_PACKAGE_CREATOR_NOTE_RC_APPROVED.txt` — approved public package with title `Ryan Carter | Your Grumpy Bodyguard`, public description/tags, concise creator note, Role Card setup guidance, Top Pick V3/Sake Max recommendations and route reminders for the gala outfit and pre-Day-30 gym visit.
+- `RYAN_CARTER_TIPSY_PLATFORM_FIELDS_APPROVED.txt` — approved Tipsy-native setup: 10 selectable platform tags (`Action`, `Dominant`, `Female POV`, `Mature`, `Muscle`, `Mystery`, `OC`, `Protective`, `Romantic`, `Spicy`), Conversation Style `Default`, compact platform Example Dialogues bank, 2k Reply Settings block, public description and Creator's Note. Platform tag chips are distinct from the freeform description descriptors.
 - `RYAN_CARTER_STAGE_18_RUNTIME_HARDENING_APPROVED.txt` — approved multi-assistant stress-test hardening overlay. Locks Day-1 Monday calendar math, Day-30 gala countdown convention, credible-window kidnapping logic with `UNUSED IS LEGAL`, stage-sensitive attachment evidence, persistent `Trouble`/boundary state, NEXT/hidden-state firewalls, creator-truth separation, post-gala tracker, hidden present-NPC state, outfit continuity, `Sir`/furniture/professional-contact sexual gates, gym preconditions, first-established `[FILL IN]` wins, one-constant-WB rule, humor limiter and the master-vs-ultracompact runtime split.
 - `RYAN_CARTER_TIPSY_RUNTIME_ULTRACOMPACT_APPROVED.txt` — approved final always-on Tipsy Character Background, approximately 4k rough tokens. Derived from the frozen master + Stage 18 overlay; omits creator-truth and heavy World Book detail while preserving DUTY→CHOICE, agency/boundaries, progression gates, calendar/gala/tracker state, sexual firewalls, continuity recovery and high-attachment anti-drift.
 
@@ -61,7 +62,8 @@ Public title: **Ryan Carter | Your Grumpy Bodyguard**
     - `RYAN_CARTER_TIPSY_RUNTIME_ULTRACOMPACT_APPROVED.txt` — **APPROVED**
     - visible tracker — **APPROVED**
     - opening message — **APPROVED**
-    - next: rebuild final Tipsy copy/paste package from approved sources and run final regression/archive checks
+    - Tipsy platform fields / tags / Conversation Style / Example Dialogues / Reply Settings / Creator's Note — **APPROVED**
+    - next: final six regression cases + rebuild final Tipsy copy/paste package and release archive
     - master 35k background remains frozen and authoritative
 
 Only explicitly approved Ryan canon should be promoted as authoritative source material.
