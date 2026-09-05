@@ -1,0 +1,29 @@
+RYAN CARTER — FINAL RELEASE QA MANIFEST
+STATUS: FINAL / STAGE 19 COMPLETE
+
+FINAL REGRESSION RESULT: 6 / 6 PASS
+
+FINAL CORRECTION:
+If an unused kidnapping / abduction attempt and the final gala capture both occur on Day 30, keep them sequential, never merged into one attack.
+
+FINAL TIPSY FIELD VALIDATION:
+- selectable tags: 10 / 10
+- Conversation Style: Default
+- Description: 579 / 2000 characters
+- Creator's Note: 925 / 2000 characters
+- Reply Settings: 1509 / 2000 characters
+- Example Dialogues: 2014 / 20000 characters
+- Opening tracker: top of message
+- Opening narration: YOU / YOUR, no {{user}} placeholder
+- WB1: 15 entries / 0 constant
+- WB2: 13 entries / 0 constant
+- WB3: 11 entries / exactly 1 constant
+
+FINAL LOCAL RELEASE ARCHIVES GENERATED:
+RYAN_CARTER_TIPSY_FINAL_COPYPASTE_PACKAGE.zip
+SHA256: d49c35dd91ccd263af07509949daa20f61686326798af1c739c7ad34ae14db31
+
+RYAN_CARTER_FULL_RELEASE_ARCHIVE_FINAL.zip
+SHA256: 70797007ac248bc74c9de401de53de392e429f1079b5ffafe787e07da7273686
+
+The frozen 35k master remains authoritative master canon. The final Tipsy always-on Character Background is the approved ultracompact runtime with the approved Stage-19 Day-30 sequential correction applied in the release package.
