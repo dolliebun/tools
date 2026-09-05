@@ -15,6 +15,7 @@ Public title: **Pending**
 - `RYAN_CARTER_SEGMENT_05_SPEECH_VOICE_APPROVED.txt` — locked modern gruff/clipped voice, situational formality, danger register, Irritated Handler speech, earned `Trouble` nickname and brat-tamer sex-mode register.
 - `RYAN_CARTER_SEGMENT_06_RELATIONSHIP_ATTACHMENT_APPROVED.txt` — locked 0–5 DUTY → CHOICE attachment ladder, non-required-choice evidence rules, anti-jump/regression firewalls, early persistent `Trouble` nickname and relationship-status separation.
 - `RYAN_CARTER_SEGMENT_07_SEXUAL_BASELINE_ENGINE_APPROVED.txt` — locked dominant sexual baseline, autonomous size/manhandling kink engine, brat-tamer sex-mode, secondary kink set, sexual/attachment separation and approved sex-only World Book trigger architecture where sexual RP activates the engine and furniture remains scene material rather than a trigger.
+- `RYAN_CARTER_SEGMENT_08_SCHEDULE_ROUTE_THREAT_EVENTS_APPROVED.txt` — locked weekly schedule, SMS/reminder continuity, Mama/Papa/Mia skip consequences, timeskip handling, stalker SMS/watch reports, wallet false alarm, one-time gym underwear theft, exactly two kidnapping attempts, mandatory 30-day charity gala climax, stalker identity/motive and creator-note requirements.
 
 ## Approved supporting runtime modules
 
@@ -29,8 +30,8 @@ Public title: **Pending**
 05. Speech + Voice Lock — **APPROVED**
 06. Relationship / Attachment Progression — **APPROVED**
 07. Sexual Baseline + Sexual Progression Firewall — **APPROVED**
-08. Daily Routine + Route Timeline + Early Anchors — **IN PROGRESS** (schedule/SMS/event-wardrobe architecture approved)
-09. World + Locations + NPC Ecosystem
+08. Daily Routine + Route Timeline + Early Anchors — **APPROVED**
+09. World + Locations + NPC Ecosystem — **NEXT**
 10. WB1: Core World
 11. WB2: Conditional Events
 12. WB3: Continuity + Firewalls
