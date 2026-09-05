@@ -27,9 +27,10 @@ Public title: **Ryan Carter | Your Grumpy Bodyguard**
 - `RYAN_CARTER_WB3_CONTINUITY_HIDDEN_STATE_FIREWALLS_APPROVED.json` — final approved WB3 with 11 entries and exactly one constant runtime state firewall. Preserves route day, gala countdown, threat/event history, one-time flags, 0/2 kidnapping state, DUTY→CHOICE attachment, sexual/relationship separation, professional exit gate, information ownership, `Trouble`/`Sir`, gated backstory reveal, `[FILL IN]` continuity and high-attachment anti-drift.
 - `RYAN_CARTER_OPENING_AND_VISIBLE_TRACKER_APPROVED.txt` — approved Day-1 opening at {{user}}'s compromised residence plus visible tracker. Tracker exposes DAY, THREAT, GALA countdown, ATTACHMENT, LOCATION and NEXT only; protection-detail status and all hidden runtime flags remain concealed.
 - `RYAN_CARTER_STAGE_LOCKED_EXAMPLE_DIALOGUES_APPROVED.txt` — approved stage-locked behavioral examples for attachment stages 0/5 through 5/5 plus fear, controlled anger, exhaustion, apology, attraction, sexual tension, `Sir` and sexual-register examples. They are training demonstrations only, never historical canon events.
-- `RYAN_CARTER_CHARACTER_BACKGROUND_RUNTIME_COMPACT_APPROVED.txt` — approved 35k Character Background retained as authoritative MASTER CANON. It is not the final always-on Tipsy paste after Stage 18; final packaging must derive a separate ultracompact runtime from it rather than overwrite it.
+- `RYAN_CARTER_CHARACTER_BACKGROUND_RUNTIME_COMPACT_APPROVED.txt` — approved 35k Character Background retained as authoritative MASTER CANON. It is not the final always-on Tipsy paste after Stage 18; final packaging derives a separate ultracompact runtime from it rather than overwriting it.
 - `RYAN_CARTER_PUBLIC_PACKAGE_CREATOR_NOTE_RC_APPROVED.txt` — approved public package with title `Ryan Carter | Your Grumpy Bodyguard`, public description/tags, concise creator note, Role Card setup guidance, Top Pick V3/Sake Max recommendations and route reminders for the gala outfit and pre-Day-30 gym visit.
 - `RYAN_CARTER_STAGE_18_RUNTIME_HARDENING_APPROVED.txt` — approved multi-assistant stress-test hardening overlay. Locks Day-1 Monday calendar math, Day-30 gala countdown convention, credible-window kidnapping logic with `UNUSED IS LEGAL`, stage-sensitive attachment evidence, persistent `Trouble`/boundary state, NEXT/hidden-state firewalls, creator-truth separation, post-gala tracker, hidden present-NPC state, outfit continuity, `Sir`/furniture/professional-contact sexual gates, gym preconditions, first-established `[FILL IN]` wins, one-constant-WB rule, humor limiter and the master-vs-ultracompact runtime split.
+- `RYAN_CARTER_TIPSY_RUNTIME_ULTRACOMPACT_APPROVED.txt` — approved final always-on Tipsy Character Background, approximately 4k rough tokens. Derived from the frozen master + Stage 18 overlay; omits creator-truth and heavy World Book detail while preserving DUTY→CHOICE, agency/boundaries, progression gates, calendar/gala/tracker state, sexual firewalls, continuity recovery and high-attachment anti-drift.
 
 ## Approved visual asset index
 
@@ -55,8 +56,9 @@ Public title: **Ryan Carter | Your Grumpy Bodyguard**
 16. Assemble Final Core Character Background / Master Canon — **APPROVED**
 17. Creator Note + RC Instructions + Title + Description + Tags — **APPROVED**
 18. 100-Message Stress Test + Runtime Hardening / Compression Rules — **APPROVED**
-19. Final Tipsy Package + Release Archive — **NEXT**
-    - first required artifact: `RYAN_CARTER_TIPSY_RUNTIME_ULTRACOMPACT.txt` targeting approximately 2.5–4k always-on tokens
+19. Final Tipsy Package + Release Archive — **IN PROGRESS**
+    - `RYAN_CARTER_TIPSY_RUNTIME_ULTRACOMPACT_APPROVED.txt` — **APPROVED**
+    - next: assemble final copy/paste release package + archive manifest
     - master 35k background remains frozen and authoritative
 
 Only explicitly approved Ryan canon should be promoted into this folder as authoritative source material.
