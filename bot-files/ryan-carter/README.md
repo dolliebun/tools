@@ -20,6 +20,7 @@ Public title: **Pending**
 ## Approved supporting runtime modules
 
 - `RYAN_CARTER_EVENT_WB_SCHEDULE_WARDROBE_APPROVED.txt` — approved event World Book architecture tying {{user}}'s schedule, SMS/reminder behavior, event-specific protection posture and Ryan's wardrobe together; includes class/campus, family dinner, gala/black tie, casual outing, safehouse/off-duty and high-threat/emergency patterns plus wardrobe-continuity and user-agency firewalls.
+- `RYAN_CARTER_SEGMENT_09_NPCS_CORE_LOCATIONS_APPROVED_PARTIAL.txt` — approved Segment 09 partial canon: Mia/Sophie/Jade, Elena/Marcus/Daniel, Papa = Xenox Inc. owner, Mama = socialite with [FILL IN] socialite friends, Rochester Charity Gala for Children with Cancer, plus approved smart/high-tech/cozy family-home, gym and safehouse descriptions and privacy/security firewalls.
 
 ## Working plan
 
@@ -31,7 +32,7 @@ Public title: **Pending**
 06. Relationship / Attachment Progression — **APPROVED**
 07. Sexual Baseline + Sexual Progression Firewall — **APPROVED**
 08. Daily Routine + Route Timeline + Early Anchors — **APPROVED**
-09. World + Locations + NPC Ecosystem — **NEXT**
+09. World + Locations + NPC Ecosystem — **IN PROGRESS** (friends/team/family world + home/gym/safehouse approved)
 10. WB1: Core World
 11. WB2: Conditional Events
 12. WB3: Continuity + Firewalls
