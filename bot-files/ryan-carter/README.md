@@ -25,16 +25,13 @@ Public title: **Ryan Carter | Your Grumpy Bodyguard**
 - `RYAN_CARTER_WB1_CORE_WORLD_APPROVED.json` — final approved WB1 Core World in JSON with 15 keyword-only, non-constant entries for world vitality, friends, family, Familia GC, protection team, family home, {{user}} residence, university, gym, safehouse, Xenox Inc., protection firm and Rochester Charity Gala. Includes Mama and Papa approved appearances.
 - `WB2_PARTS/README.md` — authoritative archive index for the approved WB2 Schedule + Events + Threat Engine. Four exact parts reconstruct `RYAN_CARTER_WB2_SCHEDULE_EVENTS_THREAT_APPROVED.json`; includes expanded common trigger phrasing, recurring schedule logic, stalker escalation, one-time incidents, kidnapping-attempt architecture and the Day-30 gala capture.
 - `RYAN_CARTER_WB3_CONTINUITY_HIDDEN_STATE_FIREWALLS_APPROVED.json` — final approved WB3 with 11 entries and exactly one constant runtime state firewall. Preserves route day, gala countdown, threat/event history, one-time flags, 0/2 kidnapping state, DUTY→CHOICE attachment, sexual/relationship separation, professional exit gate, information ownership, `Trouble`/`Sir`, gated backstory reveal, `[FILL IN]` continuity and high-attachment anti-drift.
-- `RYAN_CARTER_VISIBLE_TRACKER_APPROVED.txt` — approved visible tracker architecture. Exposes DAY, THREAT, GALA, ATTACHMENT, LOCATION and NEXT only; hidden runtime state remains concealed. This is approved independently of the opening message.
+- `RYAN_CARTER_VISIBLE_TRACKER_APPROVED.txt` — approved visible tracker architecture. Exposes DAY, THREAT, GALA, ATTACHMENT, LOCATION and NEXT only; hidden runtime state remains concealed.
+- `RYAN_CARTER_OPENING_MESSAGE_APPROVED.txt` — approved Day-1 opening with the visible tracker at the top, second-person YOU/YOUR narration, modern 2026 cadence and Ryan's approved clipped/tired voice. Preserves the security sweep, photo logic, firm call, stay-and-reinforce option, babysitter line and user-choice structure.
 - `RYAN_CARTER_STAGE_LOCKED_EXAMPLE_DIALOGUES_APPROVED.txt` — approved stage-locked behavioral examples for attachment stages 0/5 through 5/5 plus fear, controlled anger, exhaustion, apology, attraction, sexual tension, `Sir` and sexual-register examples. They are training demonstrations only, never historical canon events.
 - `RYAN_CARTER_CHARACTER_BACKGROUND_RUNTIME_COMPACT_APPROVED.txt` — approved 35k Character Background retained as authoritative MASTER CANON. It is not the final always-on Tipsy paste after Stage 18; final packaging derives a separate ultracompact runtime from it rather than overwriting it.
 - `RYAN_CARTER_PUBLIC_PACKAGE_CREATOR_NOTE_RC_APPROVED.txt` — approved public package with title `Ryan Carter | Your Grumpy Bodyguard`, public description/tags, concise creator note, Role Card setup guidance, Top Pick V3/Sake Max recommendations and route reminders for the gala outfit and pre-Day-30 gym visit.
 - `RYAN_CARTER_STAGE_18_RUNTIME_HARDENING_APPROVED.txt` — approved multi-assistant stress-test hardening overlay. Locks Day-1 Monday calendar math, Day-30 gala countdown convention, credible-window kidnapping logic with `UNUSED IS LEGAL`, stage-sensitive attachment evidence, persistent `Trouble`/boundary state, NEXT/hidden-state firewalls, creator-truth separation, post-gala tracker, hidden present-NPC state, outfit continuity, `Sir`/furniture/professional-contact sexual gates, gym preconditions, first-established `[FILL IN]` wins, one-constant-WB rule, humor limiter and the master-vs-ultracompact runtime split.
 - `RYAN_CARTER_TIPSY_RUNTIME_ULTRACOMPACT_APPROVED.txt` — approved final always-on Tipsy Character Background, approximately 4k rough tokens. Derived from the frozen master + Stage 18 overlay; omits creator-truth and heavy World Book detail while preserving DUTY→CHOICE, agency/boundaries, progression gates, calendar/gala/tracker state, sexual firewalls, continuity recovery and high-attachment anti-drift.
-
-## Unapproved working material
-
-- `RYAN_CARTER_OPENING_MESSAGE_DRAFT.txt` — **DRAFT / NOT APPROVED**. The previous combined opening+tracker file was incorrectly labeled approved. Creator correction on 2026-09-06: the opening itself was never approved. Do not ship this draft until explicit approval.
 
 ## Approved visual asset index
 
@@ -55,15 +52,16 @@ Public title: **Ryan Carter | Your Grumpy Bodyguard**
 11. WB1: Core World / NPCs / Locations — **APPROVED**
 12. WB2: Schedule + Events + Threat Engine — **APPROVED**
 13. WB3: Continuity + Hidden State + Firewalls — **APPROVED**
-14. Opening Message + Visible Tracker — **PARTIAL: TRACKER APPROVED / OPENING NOT APPROVED**
+14. Opening Message + Visible Tracker — **APPROVED**
 15. Stage-Locked Example Dialogues — **APPROVED**
 16. Assemble Final Core Character Background / Master Canon — **APPROVED**
 17. Creator Note + RC Instructions + Title + Description + Tags — **APPROVED**
 18. 100-Message Stress Test + Runtime Hardening / Compression Rules — **APPROVED**
-19. Final Tipsy Package + Release Archive — **BLOCKED ON OPENING APPROVAL**
+19. Final Tipsy Package + Release Archive — **IN PROGRESS**
     - `RYAN_CARTER_TIPSY_RUNTIME_ULTRACOMPACT_APPROVED.txt` — **APPROVED**
     - visible tracker — **APPROVED**
-    - opening message — **NOT APPROVED / MUST BE WORKED NEXT**
+    - opening message — **APPROVED**
+    - next: rebuild final Tipsy copy/paste package from approved sources and run final regression/archive checks
     - master 35k background remains frozen and authoritative
 
 Only explicitly approved Ryan canon should be promoted as authoritative source material.
