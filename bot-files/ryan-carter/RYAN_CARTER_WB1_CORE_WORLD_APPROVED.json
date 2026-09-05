@@ -1,0 +1,111 @@
+{
+  "name": "Ryan Carter - WB1 Core World - Approved",
+  "description": "Runtime-optimized stable world lore for Ryan Carter's bodyguard route. All entries are keyword-only and non-constant. WB1 defines people, institutions and locations; it does not manufacture plot events. Conditional incidents, schedules and threat progression belong to WB2. Continuity, information ownership, used-event flags and state firewalls belong to WB3. [FILL IN] values are intentionally unspecified and may be generated naturally when first required, then should remain consistent with established roleplay continuity.",
+  "entries": [
+    {
+      "name": "Global World Vitality",
+      "key": ["background activity","background event","ambient activity","people around them","people nearby","other people","crowd","crowds","surroundings","scene background","ordinary life","daily life","minor event","minor events"],
+      "content": "GLOBAL WORLD VITALITY\n\nThe world continues beyond {{char}} and {{user}}.\n\nNPCs have their own work, classes, friendships, families, plans, conversations, obligations and moods. They may naturally enter or leave scenes when their location, schedule or relationship makes that plausible.\n\nLocations remain populated and functional. Students attend classes, staff work, vehicles arrive and leave, phones receive ordinary messages, businesses operate, families talk and mundane life continues around the protection detail.\n\nNot every background occurrence is connected to the stalker.\n\nDo not turn ordinary strangers, staff, students or passing vehicles into threats without relevant event logic.\n\nThe main character remains {{char}}. World activity supports his route rather than replacing it.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "name": "Mia Park",
+      "key": ["Mia","Mia Park","Mia ♡","from Mia","text from Mia","message from Mia","Mia texted","Mia called","class with Mia","coffee from Mia","dinner with Mia","bring Mia","invited Mia"],
+      "content": "MIA PARK\n\nMia Park is {{user}}'s closest female university friend.\n\nShe is warm, quick, casually funny and comfortable enough with {{user}} to text without ceremony. She knows {{user}}'s normal university rhythm and naturally supports class reminders, room changes, saved seats, coffee, lunch, ordinary conversation and Tuesday family dinner.\n\nMia may become genuinely worried by repeated unexplained missed classes or unusual silence, but she is a friend rather than a caretaker.\n\nShe may also appear in ordinary Saturday plans when plausible.\n\nMia has her own life and friendship with {{user}}. She does not constantly ship {{char}} and {{user}}, manufacture romantic situations or magically know what happened privately.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "name": "Sophie Grant",
+      "key": ["Sophie","Sophie Grant","from Sophie","text from Sophie","message from Sophie","Sophie invited","brunch with Sophie","shopping with Sophie","gallery with Sophie","party with Sophie"],
+      "content": "SOPHIE GRANT\n\nSophie Grant is one of {{user}}'s female friends from her wider social circle.\n\nShe is polished, extroverted and socially informed without being a caricatured gossip.\n\nSophie naturally supports brunch, shopping, cafés, gallery openings, parties, formal invitations and Saturday social plans.\n\nShe understands wealthy and high-profile social environments well enough to notice when an event is likely to be crowded, photographed or socially important.\n\nShe has no mechanical relationship tracker and reacts naturally to what actually happens.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "name": "Jade Morgan",
+      "key": ["Jade","Jade Morgan","from Jade","text from Jade","message from Jade","gym with Jade","workout with Jade","Jade invited","Jade's gym"],
+      "content": "JADE MORGAN\n\nJade Morgan is {{user}}'s practical, energetic female friend.\n\nShe naturally supports gym visits, active plans, casual food, errands and spontaneous Saturday outings.\n\nA typical Jade invitation may be as simple as:\n\n[ From: Jade ]\n*gym at three?*\n\nJade provides an organic path into gym scenes, but she does not know that any stalker-related event may occur there and her presence never automatically activates one.\n\nShe has no mechanical relationship tracker.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "name": "Mama and Papa",
+      "key": ["Mama","Papa","Pookie Bear","{{user}}'s parents","family dinner","family lunch","family day","Sunday movie","Sunday movie night"],
+      "content": "MAMA + PAPA\n\nMAMA\n{{user}}'s affectionate socialite mother.\n\nAppearance:\n- mature, elegant blonde woman\n- warm light skin\n- hazel/brown eyes\n- refined feminine features\n- shoulder-length blonde hair usually styled into polished waves or an elegant updo for formal events\n- graceful, glamorous presentation\n- favors sophisticated high-society fashion, especially fitted evening gowns, fine jewelry and polished formal styling\n\nPersonality / role:\nMama is socially capable, affectionate and involved. She is accustomed to charity events, formal invitations and wealthy social circles. She calls {{user}} \"Pookie Bear.\"\n\nMama has her own established socialite circle:\nNames: [FILL IN]\nAppearances: [FILL IN]\n\nPAPA\n{{user}}'s affectionate father and owner of Xenox Inc.\n\nAppearance:\n- mature, handsome light-skinned man\n- brown hair heavily threaded with silver\n- neatly groomed salt-and-pepper beard\n- hazel/green eyes\n- broad, masculine features\n- polished, expensive presentation\n- usually dresses in tailored businesswear or formal black tie for major events\n\nPersonality / role:\nPapa may appear polished and authoritative in business settings, but he is openly affectionate and emotionally softer with his family. Sunday family time matters strongly to him.\n\nThe family hired professional protection because the threat to {{user}} is genuine, not because either parent wants to control her ordinary life.\n\nNeither parent automatically knows {{user}}'s private romantic or sexual developments.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "name": "Familia GC",
+      "key": ["Familia GC","family group chat","family chat","message from Mama","message from Papa","Mama texted","Papa texted","family text"],
+      "content": "FAMILIA GC\n\nUse compact phone formatting when family messages naturally appear:\n\n[ From: Familia GC ]\nMama: *message*\nPapa: *message*\n\nMessages may include invitations, reminders, family chatter, social logistics, concern or ordinary mundane conversation.\n\nDo not write {{user}}'s reply or decide whether she accepts an invitation.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "name": "Protection Team",
+      "key": ["Elena Torres","Elena","Marcus Reed","Marcus","Daniel Brooks","Daniel","relief agent","relief shift","protection team","security team","operations team","protective driver","security driver"],
+      "content": "PROTECTION TEAM\n\n{{char}} is the primary close-protection agent on {{user}}'s detail, but he is not the only competent professional involved.\n\nELENA TORRES, 32\nQualified relief close-protection agent. Calm, capable and professional. She can genuinely take over {{user}}'s protection when {{char}} is relieved. She is not a romantic rival.\n\nMARCUS REED, 39\nOperations/team lead. Coordinates staffing, threat briefings, incident response and major protection operations. He may disagree professionally with {{char}}, order him to rest or formally relieve him from the detail.\n\nDANIEL BROOKS, 34\nProtective driver and security-support specialist. Handles vehicles, transport, movement logistics and related support. He is not a magical hacker or instant technical solution.\n\nThe wider firm may provide additional ordinary personnel when operationally necessary, but do not constantly invent named elite agents.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "name": "Family Home",
+      "key": ["family home","family estate","parents' house","Mama's house","Papa's house","home security room","family living room","family kitchen","Sunday movie night at home"],
+      "content": "{{user}}'S FAMILY HOME\n\nA large contemporary smart estate centered on privacy, warmth and actual family life rather than sterile display wealth.\n\nVisual language:\n- pale stone\n- warm wood\n- large windows\n- soft indirect lighting\n- deep comfortable furniture\n- integrated smart-home systems\n- lived-in family objects\n\nTechnology includes automated climate and lighting, motorized curtains, smart glass, concealed speakers and integrated property security.\n\nLIVING ROOM\nLarge sectional, deep armchairs, recessed television, blackout curtains, concealed surround sound and warm evening lighting. Sunday family movie time normally happens here.\n\nKITCHEN\nLarge warm modern kitchen with oversized island, hidden appliances, induction, smart ovens, coffee station, pantry and casual seating.\n\nDINING ROOM\nElegant but intimate. Tuesday family dinner with Mia normally uses this space.\n\nPAPA'S HOME OFFICE\nWarm darker wood, construction drawings, architectural models, Xenox documents, secure workstation and concealed displays.\n\nSECURITY ROOM\nProfessional but comfortable room containing property cameras, gates/access status, alarms, perimeter information, secure communications, workstations, equipment storage, good seating, coffee and a small refrigerator.\n\nEarly in the route, {{char}} normally works from the security room while the family has Sunday movie time nearby.\n\nPRIVACY\nNo legitimate cameras exist in bedrooms, bathrooms or inappropriate private spaces.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "name": "User Residence",
+      "key": ["{{user}}'s residence","{{user}}'s apartment","her residence","her apartment","compromised residence","compromised apartment","bedroom breach","sleeping photograph","sleeping photo"],
+      "content": "{{user}}'S RESIDENCE\n\n{{user}} has an upscale independent smart residence.\n\nDo not define {{user}}'s personal decorating style, bedroom aesthetic, collections or possessions unless she establishes them.\n\nThe residence includes modern access control, smart locks, video intercom, automated lighting/climate, smart curtains or blinds and appropriate public/common-area security.\n\nBefore {{char}}'s assignment, the stalker entered the residence, photographed {{user}} asleep inside her bedroom and left without stealing valuables.\n\nThe sleeping photograph and original intrusion are established historical facts. Do not replay or rediscover the intrusion as a new event.\n\nNo legitimate cameras exist inside the bedroom or bathroom.\n\n{{char}} considers the residence compromised until professionally reassessed.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "name": "University",
+      "key": ["university","campus","{{user}}'s university","university campus","lecture hall","seminar room","campus café","campus cafe","university library","student common area","campus walkway","campus parking","campus drop-off","class building"],
+      "content": "UNIVERSITY\n\nName: [FILL IN]\n\nA large affluent modern university combining older academic buildings with newer smart facilities.\n\nRelevant spaces include lecture halls, seminar rooms, library, campus café, student common areas, landscaped walkways, study spaces, administrative buildings and parking/drop-off zones.\n\nTechnology may include student-ID access where appropriate, digital class information, campus Wi-Fi, public-area CCTV and normal emergency infrastructure.\n\nThe university is busy and imperfectly observable. Crowds, visitors, multiple entrances and ordinary public movement exist without making the campus incompetently unsafe.\n\n{{char}} normally uses low-profile protection here: nearby walking position, waiting outside lectures, a useful café position, route observation and vehicle coordination rather than sitting beside {{user}} through every class.\n\nCampus scenes should remain capable of being ordinary student-life scenes.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "name": "Gym",
+      "key": ["fitness club","wellness club","the gym","gym membership","gym locker","gym changing room","women's changing room","workout floor","gym café","gym cafe","recovery room"],
+      "content": "GYM\n\nA premium smart fitness and wellness club blending high-end comfort with modern performance facilities.\n\nVisual language:\nwarm stone, dark wood, greenery, acoustic panels, ambient lighting and large windows.\n\nFacilities include:\n- free weights\n- strength machines\n- cardio\n- functional training\n- stretching areas\n- studios\n- café/lounge\n- optional recovery facilities\n\nSmart systems support member access, locker assignment, bookings and some equipment profiles.\n\nWOMEN'S CHANGING ROOM\nPrivate, warm and spa-like with electronic lockers, benches, private changing areas, showers, vanity stations, towels and secure storage.\n\nNo cameras exist inside changing rooms, showers or other private areas. Appropriate CCTV may cover entrances, reception, public corridors, lobby/elevator and parking access.\n\nThe gym remains a normal reusable location. Mentioning or entering it does not automatically trigger a stalker event.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "name": "Safehouse",
+      "key": ["safehouse","safe house","secure house","protection house","safehouse living room","safehouse kitchen","safehouse bedroom","safehouse operations room","safehouse garage"],
+      "content": "SAFEHOUSE\n\nAn outwardly discreet high-end contemporary residence intended for protected clients who may need to live there for days or weeks.\n\nThe interior is intentionally cozy rather than bunker-like: warm oak, soft stone, muted textiles, rugs, deep seating, understated art and warm lighting.\n\nENTRY\nSecure vehicle arrival through enclosed/protected garage access with layered authentication and monitored exterior approaches.\n\nLIVING ROOM\nModular sofa, blankets, television, integrated speakers, shelves, soft lamps and smart privacy glass.\n\nKITCHEN\nFully equipped smart kitchen with pantry, refrigerator, induction, smart oven, coffee machine, filtration and island seating.\n\nBEDROOMS\nSeveral separate comfortable bedrooms with climate control, blackout curtains, adjustable lighting, storage and charging.\n\n{{user}} has her own room.\n{{char}} has his own room.\nRelief-agent accommodation exists.\n\nThere is no architecturally forced one-bed trope.\n\nOPERATIONS ROOM\nSecure communications, exterior camera feeds, access logs, alarms, protected workstations and equipment storage.\n\nSECURITY\nExterior cameras, perimeter sensors, controlled locks, smart glass, automated exterior lighting, backup power, environmental monitoring and secure garage access.\n\nThe safehouse is secure without feeling like a prison and domestic without automatically implying romance.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "name": "Xenox Inc.",
+      "key": ["Xenox","Xenox Inc","Xenox headquarters","Papa's company","Papa's business","construction company","Papa's office","Xenox office","Xenox records","Xenox project"],
+      "content": "XENOX INC.\n\nXenox Inc. is Papa's successful construction and development company.\n\nIts work may include major commercial, residential and infrastructure projects.\n\nHEADQUARTERS\nA polished modern corporate environment using stone, glass, warm wood, architectural models, project displays, smart conference rooms and controlled access.\n\nWorking areas remain visibly functional with plans, site information, material samples, schedules and ordinary employees.\n\nPAPA'S EXECUTIVE OFFICE\nFormal and business-facing, containing secure work systems, project drawings, construction models, meeting space and controlled document storage.\n\nXenox possesses plausible historical records involving former partners, contractors, business events, projects and professional contacts.\n\nThe stalker once had a business relationship with Papa through Xenox Inc.\n\nMerely visiting Xenox or searching old material does not automatically identify the stalker.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "name": "Protection Firm",
+      "key": ["protection firm","security firm","{{char}}'s firm","Ryan's firm","executive protection firm","protection office","firm headquarters","operations office","secure garage"],
+      "content": "{{char}}'S PROTECTION FIRM\n\nName: [FILL IN]\n\nAn established private executive-protection company serving executives, wealthy families and other high-profile clients.\n\nIt is discreet, professional and technologically capable without functioning as a secret intelligence agency.\n\nRelevant facilities include:\n- secure reception\n- client briefing rooms\n- operations/dispatch\n- threat-analysis workstations\n- secure communications\n- equipment storage\n- staff rest areas\n- training space\n- secure vehicle facility\n\nThe firm can assign relief agents, adjust staffing, coordinate large security operations and formally end or reassign {{char}}'s protection detail.\n\n{{char}} is an employee of the firm, not its owner.",
+      "enabled": true,
+      "constant": false
+    },
+    {
+      "name": "Rochester Charity Gala for Children with Cancer",
+      "key": ["Rochester Charity Gala","Rochester gala","charity gala","gala for children with cancer","Day 30 gala","black tie gala","Rochester Charity Gala for Children with Cancer"],
+      "content": "ROCHESTER CHARITY GALA FOR CHILDREN WITH CANCER\n\nA prestigious annual black-tie fundraiser attended by wealthy donors, business owners, socialites, public figures, charity patrons, press and members of Papa's professional network.\n\nMama's social world and Xenox Inc.'s business world naturally overlap here.\n\nVenue name: [FILL IN]\n\nThe venue is an elegant high-end formal event space.\n\nMAIN EVENT AREAS\n- grand ballroom\n- reception/cocktail area\n- formal dining\n- stage\n- dance floor\n- charity displays\n- photography/press areas\n- controlled guest arrival\n- coat check\n\nBACK OF HOUSE\n- kitchens\n- service corridors\n- staff entrances\n- loading access\n- elevators\n- stairs\n- utility/service areas\n\nBASE SECURITY\n- guest list\n- event credentials\n- public-area CCTV\n- venue/event security\n- controlled service access\n- vehicle management\n- emergency exits\n\n{{char}}'s protection team may supplement this infrastructure during the Day-30 operation.\n\nThe route's countdown, lure plan and stalker capture do not belong in this static entry. They are governed by WB2.",
+      "enabled": true,
+      "constant": false
+    }
+  ]
+}
