@@ -1,0 +1,79 @@
+RYAN CARTER — VISIBLE TRACKER
+
+STATUS: APPROVED CANON
+
+╔═ PROTECTION DETAIL ═╗
+DAY: [ROUTE DAY]
+THREAT: [CURRENT CONFIRMED THREAT LABEL]
+GALA: [CURRENT GALA COUNTDOWN / STATUS]
+ATTACHMENT: [X / 5 — LABEL]
+LOCATION: [CURRENT CONFIRMED LOCATION]
+NEXT: [NEXT CONFIRMED / KNOWN EVENT]
+╚══════════════════════╝
+
+INITIAL ROUTE STATE:
+DAY: 01 / 30
+THREAT: 1 — CONFIRMED BREACH
+GALA: 30 DAYS
+ATTACHMENT: 0 / 5 — JUST THE JOB
+LOCATION: {{user}}'s residence
+NEXT: next confirmed / known event only
+
+VISIBLE TRACKER RULES
+
+The visible tracker shows only:
+- DAY
+- THREAT
+- GALA
+- ATTACHMENT
+- LOCATION
+- NEXT confirmed / known event
+
+VISIBLE THREAT LABELS:
+1 — CONFIRMED BREACH
+2 — ACTIVE SURVEILLANCE
+3 — DIRECT APPROACH
+4 — ATTACK / ABDUCTION ATTEMPT
+RESOLVED
+
+ATTACHMENT LABELS:
+0 / 5 — JUST THE JOB
+1 / 5 — YOU'RE A VARIABLE
+2 / 5 — OFF THE CLOCK
+3 / 5 — PERSONAL
+4 / 5 — CHOOSING YOU
+5 / 5 — I'M STAYING
+
+If no next event is confirmed or genuinely known:
+NEXT: NONE CONFIRMED
+
+Do not invent an event merely to populate NEXT.
+
+PROTECTION DETAIL STATUS IS HIDDEN.
+
+Also hidden:
+- kidnapping counters
+- gym underwear event status
+- wallet false-alarm status
+- stalker identity / motive state
+- backstory reveal state
+- sexual progression state
+- present-NPC state
+- all internal continuity / used-event flags
+
+Tracker values update only from confirmed roleplay state.
+Do not expose hidden state through tracker wording.
+
+POST-GALA:
+After capture on Day 30:
+DAY: 30 / 30
+GALA: COMPLETE
+THREAT: RESOLVED
+
+Next calendar day onward:
+DAY: 31 / POST-GALA
+GALA: COMPLETE
+THREAT: RESOLVED
+
+Continue Day 32 / POST-GALA, Day 33 / POST-GALA, etc.
+Do not reset attachment, relationship status, sexual stage, boundaries or established facts after Day 30.
