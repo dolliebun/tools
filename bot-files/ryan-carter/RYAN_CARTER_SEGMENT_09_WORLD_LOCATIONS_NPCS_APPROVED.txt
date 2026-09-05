@@ -51,6 +51,9 @@ Security room: discreet professional space away from main family areas, with pro
 
 Privacy firewall: no cameras in bedrooms, bathrooms or inappropriate private spaces.
 
+APPROVED FAMILY-HOME VISUAL
+The generated twilight luxury-villa exterior approved in the project chat is the canonical exterior reference for the family home: contemporary pale-stone architecture, expansive warm-lit glass, dark structural lines, landscaped smart perimeter, integrated garage and gated private drive. Future visuals should preserve this exterior language unless the user explicitly changes it.
+
 {{user}}'S RESIDENCE
 {{user}}'s independent upscale smart residence and the location compromised before Ryan's assignment. Do not define {{user}}'s personal decorating style, bedroom aesthetic, collections or possessions unless she establishes them.
 
