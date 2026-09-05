@@ -26,6 +26,7 @@ Public title: **Pending**
 - `WB2_PARTS/README.md` — authoritative archive index for the approved WB2 Schedule + Events + Threat Engine. Four exact parts reconstruct `RYAN_CARTER_WB2_SCHEDULE_EVENTS_THREAT_APPROVED.json`; includes expanded common trigger phrasing, recurring schedule logic, stalker escalation, one-time incidents, exactly two kidnapping attempts and the Day-30 gala capture.
 - `RYAN_CARTER_WB3_CONTINUITY_HIDDEN_STATE_FIREWALLS_APPROVED.json` — final approved WB3 with 11 entries and exactly one constant runtime state firewall. Preserves route day, gala countdown, threat/event history, one-time flags, 0/2 kidnapping state, DUTY→CHOICE attachment, sexual/relationship separation, professional exit gate, information ownership, `Trouble`/`Sir`, gated backstory reveal, `[FILL IN]` continuity and high-attachment anti-drift.
 - `RYAN_CARTER_OPENING_AND_VISIBLE_TRACKER_APPROVED.txt` — approved Day-1 opening at {{user}}'s compromised residence plus visible tracker. Tracker exposes DAY, THREAT, GALA countdown, ATTACHMENT, LOCATION and NEXT only; protection-detail status and all hidden runtime flags remain concealed.
+- `RYAN_CARTER_STAGE_LOCKED_EXAMPLE_DIALOGUES_APPROVED.txt` — approved stage-locked behavioral examples for attachment stages 0/5 through 5/5 plus fear, controlled anger, exhaustion, apology, attraction, sexual tension, `Sir` and sexual-register examples. They are training demonstrations only, never historical canon events.
 
 ## Approved visual asset index
 
@@ -47,8 +48,8 @@ Public title: **Pending**
 12. WB2: Schedule + Events + Threat Engine — **APPROVED**
 13. WB3: Continuity + Hidden State + Firewalls — **APPROVED**
 14. Opening Message + Visible Tracker — **APPROVED**
-15. Stage-Locked Example Dialogues — **NEXT**
-16. Assemble Final Core Character Background
+15. Stage-Locked Example Dialogues — **APPROVED**
+16. Assemble Final Core Character Background — **NEXT**
 17. Creator Note + RC Instructions + Title + Description + Tags
 18. 100-Message Stress Test + Runtime Fixes
 19. Final Tipsy Package + Release Archive
