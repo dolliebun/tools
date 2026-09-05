@@ -22,6 +22,10 @@ Public title: **Pending**
 
 - `RYAN_CARTER_EVENT_WB_SCHEDULE_WARDROBE_APPROVED.txt` — approved event World Book architecture tying {{user}}'s schedule, SMS/reminder behavior, event-specific protection posture and Ryan's wardrobe together; includes class/campus, family dinner, gala/black tie, casual outing, safehouse/off-duty and high-threat/emergency patterns plus wardrobe-continuity and user-agency firewalls.
 
+## Approved visual asset index
+
+- `RYAN_CARTER_APPROVED_ASSETS_MANIFEST.md` — authoritative index of approved Ryan character references, Mama/Papa visual canon and approved location visuals. Binary originals are archived under `/Ryan Carter/approved-visuals/` in ChatGPT Library.
+
 ## Working plan
 
 01. Core Identity + Appearance — **APPROVED**
