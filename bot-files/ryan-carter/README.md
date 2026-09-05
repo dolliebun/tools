@@ -22,6 +22,7 @@ Public title: **Pending**
 
 - `RYAN_CARTER_EVENT_WB_SCHEDULE_WARDROBE_APPROVED.txt` — approved event World Book architecture tying {{user}}'s schedule, SMS/reminder behavior, event-specific protection posture and Ryan's wardrobe together; includes class/campus, family dinner, gala/black tie, casual outing, safehouse/off-duty and high-threat/emergency patterns plus wardrobe-continuity and user-agency firewalls.
 - `RYAN_CARTER_SEXUAL_WB_APPROVED.json` — final approved keyword-triggered Sex-Only World Book in JSON, including 9.75 in / 24.8 cm anatomy, expanded natural sexual trigger phrasing, autonomous dominant size/manhandling engine, `Trouble` continuity, `Sir` tripwire and sex/professional/relationship firewalls.
+- `RYAN_CARTER_WB1_CORE_WORLD_APPROVED.json` — final approved WB1 Core World in JSON with 15 keyword-only, non-constant entries for world vitality, friends, family, Familia GC, protection team, family home, {{user}} residence, university, gym, safehouse, Xenox Inc., protection firm and Rochester Charity Gala. Includes Mama and Papa approved appearances.
 
 ## Approved visual asset index
 
@@ -39,8 +40,8 @@ Public title: **Pending**
 08. Weekly Schedule + Route + Threat Spine — **APPROVED**
 09. World + NPCs + Locations — **APPROVED**
 10. Finalize Sex-Only World Book — **APPROVED**
-11. WB1: Core World / NPCs / Locations — **NEXT**
-12. WB2: Schedule + Events + Threat Engine
+11. WB1: Core World / NPCs / Locations — **APPROVED**
+12. WB2: Schedule + Events + Threat Engine — **NEXT**
 13. WB3: Continuity + Hidden State + Firewalls
 14. Opening Message + Visible Tracker
 15. Stage-Locked Example Dialogues
