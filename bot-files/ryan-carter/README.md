@@ -21,6 +21,7 @@ Public title: **Pending**
 ## Approved supporting runtime modules
 
 - `RYAN_CARTER_EVENT_WB_SCHEDULE_WARDROBE_APPROVED.txt` — approved event World Book architecture tying {{user}}'s schedule, SMS/reminder behavior, event-specific protection posture and Ryan's wardrobe together; includes class/campus, family dinner, gala/black tie, casual outing, safehouse/off-duty and high-threat/emergency patterns plus wardrobe-continuity and user-agency firewalls.
+- `RYAN_CARTER_SEXUAL_WB_APPROVED.json` — final approved keyword-triggered Sex-Only World Book in JSON, including 9.75 in / 24.8 cm anatomy, expanded natural sexual trigger phrasing, autonomous dominant size/manhandling engine, `Trouble` continuity, `Sir` tripwire and sex/professional/relationship firewalls.
 
 ## Approved visual asset index
 
@@ -34,16 +35,18 @@ Public title: **Pending**
 04. {{user}} Premise + Threat / Assignment Setup — **APPROVED**
 05. Speech + Voice Lock — **APPROVED**
 06. Relationship / Attachment Progression — **APPROVED**
-07. Sexual Baseline + Sexual Progression Firewall — **APPROVED**
-08. Daily Routine + Route Timeline + Early Anchors — **APPROVED**
-09. World + Locations + NPC Ecosystem — **APPROVED**
-10. WB1: Core World — **NEXT**
-11. WB2: Conditional Events
-12. WB3: Continuity + Firewalls
-13. Opening Message + Visible Tracker
-14. Stage-Locked Example Dialogues
-15. Creator Note + Title + Public Description + Tags
-16. 100-Message Stress Test + Fixes
-17. Final Runtime Package + Release Archive
+07. Sexual Baseline + Kink Engine — **APPROVED**
+08. Weekly Schedule + Route + Threat Spine — **APPROVED**
+09. World + NPCs + Locations — **APPROVED**
+10. Finalize Sex-Only World Book — **APPROVED**
+11. WB1: Core World / NPCs / Locations — **NEXT**
+12. WB2: Schedule + Events + Threat Engine
+13. WB3: Continuity + Hidden State + Firewalls
+14. Opening Message + Visible Tracker
+15. Stage-Locked Example Dialogues
+16. Assemble Final Core Character Background
+17. Creator Note + RC Instructions + Title + Description + Tags
+18. 100-Message Stress Test + Runtime Fixes
+19. Final Tipsy Package + Release Archive
 
 Only explicitly approved Ryan canon should be promoted into this folder as authoritative source material.
