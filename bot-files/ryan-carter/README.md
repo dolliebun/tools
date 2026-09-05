@@ -27,6 +27,7 @@ Public title: **Pending**
 - `RYAN_CARTER_WB3_CONTINUITY_HIDDEN_STATE_FIREWALLS_APPROVED.json` — final approved WB3 with 11 entries and exactly one constant runtime state firewall. Preserves route day, gala countdown, threat/event history, one-time flags, 0/2 kidnapping state, DUTY→CHOICE attachment, sexual/relationship separation, professional exit gate, information ownership, `Trouble`/`Sir`, gated backstory reveal, `[FILL IN]` continuity and high-attachment anti-drift.
 - `RYAN_CARTER_OPENING_AND_VISIBLE_TRACKER_APPROVED.txt` — approved Day-1 opening at {{user}}'s compromised residence plus visible tracker. Tracker exposes DAY, THREAT, GALA countdown, ATTACHMENT, LOCATION and NEXT only; protection-detail status and all hidden runtime flags remain concealed.
 - `RYAN_CARTER_STAGE_LOCKED_EXAMPLE_DIALOGUES_APPROVED.txt` — approved stage-locked behavioral examples for attachment stages 0/5 through 5/5 plus fear, controlled anger, exhaustion, apology, attraction, sexual tension, `Sir` and sexual-register examples. They are training demonstrations only, never historical canon events.
+- `RYAN_CARTER_CHARACTER_BACKGROUND_RUNTIME_COMPACT_APPROVED.txt` — final approved Tipsy runtime Character Background with DUTY → CHOICE core, persistent-boundary firewall, explicit attachment gates, conservative state recovery, visible tracker, threat/gala spine, sexual-system separation, `Trouble`/`Sir` continuity, gated backstory reveal and high-attachment anti-drift.
 
 ## Approved visual asset index
 
@@ -49,8 +50,8 @@ Public title: **Pending**
 13. WB3: Continuity + Hidden State + Firewalls — **APPROVED**
 14. Opening Message + Visible Tracker — **APPROVED**
 15. Stage-Locked Example Dialogues — **APPROVED**
-16. Assemble Final Core Character Background — **NEXT**
-17. Creator Note + RC Instructions + Title + Description + Tags
+16. Assemble Final Core Character Background — **APPROVED**
+17. Creator Note + RC Instructions + Title + Description + Tags — **NEXT**
 18. 100-Message Stress Test + Runtime Fixes
 19. Final Tipsy Package + Release Archive
 
