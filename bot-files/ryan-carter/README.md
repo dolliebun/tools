@@ -15,7 +15,7 @@ Public title: **Ryan Carter | Your Grumpy Bodyguard**
 - `RYAN_CARTER_SEGMENT_05_SPEECH_VOICE_APPROVED.txt` — locked modern gruff/clipped voice, situational formality, danger register, Irritated Handler speech, earned `Trouble` nickname and brat-tamer sex-mode register.
 - `RYAN_CARTER_SEGMENT_06_RELATIONSHIP_ATTACHMENT_APPROVED.txt` — locked 0–5 DUTY → CHOICE attachment ladder, non-required-choice evidence rules, anti-jump/regression firewalls, early persistent `Trouble` nickname and relationship-status separation.
 - `RYAN_CARTER_SEGMENT_07_SEXUAL_BASELINE_ENGINE_APPROVED.txt` — locked dominant sexual baseline, autonomous size/manhandling kink engine, brat-tamer sex-mode, secondary kink set, sexual/attachment separation and approved sex-only World Book trigger architecture where sexual RP activates the engine and furniture remains scene material rather than a trigger.
-- `RYAN_CARTER_SEGMENT_08_SCHEDULE_ROUTE_THREAT_EVENTS_APPROVED.txt` — locked weekly schedule, SMS/reminder continuity, Mama/Papa/Mia skip consequences, timeskip handling, stalker SMS/watch reports, wallet false alarm, one-time gym underwear theft, exactly two kidnapping attempts, mandatory 30-day charity gala climax, stalker identity/motive and creator-note requirements.
+- `RYAN_CARTER_SEGMENT_08_SCHEDULE_ROUTE_THREAT_EVENTS_APPROVED.txt` — locked weekly schedule, SMS/reminder continuity, Mama/Papa/Mia skip consequences, timeskip handling, stalker SMS/watch reports, wallet false alarm, one-time gym underwear theft, exactly two kidnapping attempts as route design intent, mandatory 30-day charity gala climax, stalker identity/motive and creator-note requirements.
 - `RYAN_CARTER_SEGMENT_09_WORLD_LOCATIONS_NPCS_APPROVED.txt` — locked Mia/Sophie/Jade, Elena/Marcus/Daniel, Papa/Xenox Inc., Mama/socialite world, Rochester Charity Gala for Children with Cancer, smart/high-tech/cozy family home, gym and safehouse, {{user}}'s compromised residence, university/campus, Xenox headquarters, protection firm and gala venue, plus information-ownership and location anti-drift rules.
 
 ## Approved supporting runtime modules
@@ -23,12 +23,13 @@ Public title: **Ryan Carter | Your Grumpy Bodyguard**
 - `RYAN_CARTER_EVENT_WB_SCHEDULE_WARDROBE_APPROVED.txt` — approved event World Book architecture tying {{user}}'s schedule, SMS/reminder behavior, event-specific protection posture and Ryan's wardrobe together; includes class/campus, family dinner, gala/black tie, casual outing, safehouse/off-duty and high-threat/emergency patterns plus wardrobe-continuity and user-agency firewalls.
 - `RYAN_CARTER_SEXUAL_WB_APPROVED.json` — final approved keyword-triggered Sex-Only World Book in JSON, including 9.75 in / 24.8 cm anatomy, expanded natural sexual trigger phrasing, autonomous dominant size/manhandling engine, `Trouble` continuity, `Sir` tripwire and sex/professional/relationship firewalls.
 - `RYAN_CARTER_WB1_CORE_WORLD_APPROVED.json` — final approved WB1 Core World in JSON with 15 keyword-only, non-constant entries for world vitality, friends, family, Familia GC, protection team, family home, {{user}} residence, university, gym, safehouse, Xenox Inc., protection firm and Rochester Charity Gala. Includes Mama and Papa approved appearances.
-- `WB2_PARTS/README.md` — authoritative archive index for the approved WB2 Schedule + Events + Threat Engine. Four exact parts reconstruct `RYAN_CARTER_WB2_SCHEDULE_EVENTS_THREAT_APPROVED.json`; includes expanded common trigger phrasing, recurring schedule logic, stalker escalation, one-time incidents, exactly two kidnapping attempts and the Day-30 gala capture.
+- `WB2_PARTS/README.md` — authoritative archive index for the approved WB2 Schedule + Events + Threat Engine. Four exact parts reconstruct `RYAN_CARTER_WB2_SCHEDULE_EVENTS_THREAT_APPROVED.json`; includes expanded common trigger phrasing, recurring schedule logic, stalker escalation, one-time incidents, kidnapping-attempt architecture and the Day-30 gala capture.
 - `RYAN_CARTER_WB3_CONTINUITY_HIDDEN_STATE_FIREWALLS_APPROVED.json` — final approved WB3 with 11 entries and exactly one constant runtime state firewall. Preserves route day, gala countdown, threat/event history, one-time flags, 0/2 kidnapping state, DUTY→CHOICE attachment, sexual/relationship separation, professional exit gate, information ownership, `Trouble`/`Sir`, gated backstory reveal, `[FILL IN]` continuity and high-attachment anti-drift.
 - `RYAN_CARTER_OPENING_AND_VISIBLE_TRACKER_APPROVED.txt` — approved Day-1 opening at {{user}}'s compromised residence plus visible tracker. Tracker exposes DAY, THREAT, GALA countdown, ATTACHMENT, LOCATION and NEXT only; protection-detail status and all hidden runtime flags remain concealed.
 - `RYAN_CARTER_STAGE_LOCKED_EXAMPLE_DIALOGUES_APPROVED.txt` — approved stage-locked behavioral examples for attachment stages 0/5 through 5/5 plus fear, controlled anger, exhaustion, apology, attraction, sexual tension, `Sir` and sexual-register examples. They are training demonstrations only, never historical canon events.
-- `RYAN_CARTER_CHARACTER_BACKGROUND_RUNTIME_COMPACT_APPROVED.txt` — final approved Tipsy runtime Character Background with DUTY → CHOICE core, persistent-boundary firewall, explicit attachment gates, conservative state recovery, visible tracker, threat/gala spine, sexual-system separation, `Trouble`/`Sir` continuity, gated backstory reveal and high-attachment anti-drift.
+- `RYAN_CARTER_CHARACTER_BACKGROUND_RUNTIME_COMPACT_APPROVED.txt` — approved 35k Character Background retained as authoritative MASTER CANON. It is not the final always-on Tipsy paste after Stage 18; final packaging must derive a separate ultracompact runtime from it rather than overwrite it.
 - `RYAN_CARTER_PUBLIC_PACKAGE_CREATOR_NOTE_RC_APPROVED.txt` — approved public package with title `Ryan Carter | Your Grumpy Bodyguard`, public description/tags, concise creator note, Role Card setup guidance, Top Pick V3/Sake Max recommendations and route reminders for the gala outfit and pre-Day-30 gym visit.
+- `RYAN_CARTER_STAGE_18_RUNTIME_HARDENING_APPROVED.txt` — approved multi-assistant stress-test hardening overlay. Locks Day-1 Monday calendar math, Day-30 gala countdown convention, credible-window kidnapping logic with `UNUSED IS LEGAL`, stage-sensitive attachment evidence, persistent `Trouble`/boundary state, NEXT/hidden-state firewalls, creator-truth separation, post-gala tracker, hidden present-NPC state, outfit continuity, `Sir`/furniture/professional-contact sexual gates, gym preconditions, first-established `[FILL IN]` wins, one-constant-WB rule, humor limiter and the master-vs-ultracompact runtime split.
 
 ## Approved visual asset index
 
@@ -51,9 +52,11 @@ Public title: **Ryan Carter | Your Grumpy Bodyguard**
 13. WB3: Continuity + Hidden State + Firewalls — **APPROVED**
 14. Opening Message + Visible Tracker — **APPROVED**
 15. Stage-Locked Example Dialogues — **APPROVED**
-16. Assemble Final Core Character Background — **APPROVED**
+16. Assemble Final Core Character Background / Master Canon — **APPROVED**
 17. Creator Note + RC Instructions + Title + Description + Tags — **APPROVED**
-18. 100-Message Stress Test + Runtime Fixes — **NEXT**
-19. Final Tipsy Package + Release Archive
+18. 100-Message Stress Test + Runtime Hardening / Compression Rules — **APPROVED**
+19. Final Tipsy Package + Release Archive — **NEXT**
+    - first required artifact: `RYAN_CARTER_TIPSY_RUNTIME_ULTRACOMPACT.txt` targeting approximately 2.5–4k always-on tokens
+    - master 35k background remains frozen and authoritative
 
 Only explicitly approved Ryan canon should be promoted into this folder as authoritative source material.
