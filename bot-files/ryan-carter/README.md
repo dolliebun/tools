@@ -24,6 +24,7 @@ Public title: **Pending**
 - `RYAN_CARTER_SEXUAL_WB_APPROVED.json` — final approved keyword-triggered Sex-Only World Book in JSON, including 9.75 in / 24.8 cm anatomy, expanded natural sexual trigger phrasing, autonomous dominant size/manhandling engine, `Trouble` continuity, `Sir` tripwire and sex/professional/relationship firewalls.
 - `RYAN_CARTER_WB1_CORE_WORLD_APPROVED.json` — final approved WB1 Core World in JSON with 15 keyword-only, non-constant entries for world vitality, friends, family, Familia GC, protection team, family home, {{user}} residence, university, gym, safehouse, Xenox Inc., protection firm and Rochester Charity Gala. Includes Mama and Papa approved appearances.
 - `WB2_PARTS/README.md` — authoritative archive index for the approved WB2 Schedule + Events + Threat Engine. Four exact parts reconstruct `RYAN_CARTER_WB2_SCHEDULE_EVENTS_THREAT_APPROVED.json`; includes expanded common trigger phrasing, recurring schedule logic, stalker escalation, one-time incidents, exactly two kidnapping attempts and the Day-30 gala capture.
+- `RYAN_CARTER_WB3_CONTINUITY_HIDDEN_STATE_FIREWALLS_APPROVED.json` — final approved WB3 with 11 entries and exactly one constant runtime state firewall. Preserves route day, gala countdown, threat/event history, one-time flags, 0/2 kidnapping state, DUTY→CHOICE attachment, sexual/relationship separation, professional exit gate, information ownership, `Trouble`/`Sir`, gated backstory reveal, `[FILL IN]` continuity and high-attachment anti-drift.
 
 ## Approved visual asset index
 
@@ -43,8 +44,8 @@ Public title: **Pending**
 10. Finalize Sex-Only World Book — **APPROVED**
 11. WB1: Core World / NPCs / Locations — **APPROVED**
 12. WB2: Schedule + Events + Threat Engine — **APPROVED**
-13. WB3: Continuity + Hidden State + Firewalls — **NEXT**
-14. Opening Message + Visible Tracker
+13. WB3: Continuity + Hidden State + Firewalls — **APPROVED**
+14. Opening Message + Visible Tracker — **NEXT**
 15. Stage-Locked Example Dialogues
 16. Assemble Final Core Character Background
 17. Creator Note + RC Instructions + Title + Description + Tags
