@@ -1,0 +1,14 @@
+RYAN CARTER — STAGE 19 DAY-30 SEQUENTIAL EVENT CORRECTION
+STATUS: APPROVED CANON / FINAL RUNTIME CORRECTION
+
+This correction closes the final regression gap in the approved Stage 18 + ultracompact runtime stack.
+
+DAY-30 RULE:
+If an unused kidnapping / abduction attempt and the final gala capture both fire on the same night, keep them sequential, never merged into one attack.
+
+The unused attempt must remain a distinct on-screen event using a credible gala arrival, departure or crowd-movement window. The final gala capture still occurs afterward as its own resolution event.
+
+This rule does not create an extra attempt, does not exceed the 2 / 2 hard maximum and does not permit impossible access to a locked private residence or safehouse.
+
+FINAL REGRESSION EXPECTATION:
+A route where {{user}} remains inaccessible until Day 30 must not invent an earlier attack. Any remaining unused attempt may use a credible gala public-exposure window. The gala capture still resolves the stalker plot separately afterward.
