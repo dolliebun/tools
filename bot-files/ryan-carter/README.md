@@ -4,7 +4,7 @@ Status: **In development**
 
 Platform: **Tipsy**
 
-Public title: **Pending**
+Public title: **Ryan Carter | Your Grumpy Bodyguard**
 
 ## Approved segments
 
@@ -28,6 +28,7 @@ Public title: **Pending**
 - `RYAN_CARTER_OPENING_AND_VISIBLE_TRACKER_APPROVED.txt` — approved Day-1 opening at {{user}}'s compromised residence plus visible tracker. Tracker exposes DAY, THREAT, GALA countdown, ATTACHMENT, LOCATION and NEXT only; protection-detail status and all hidden runtime flags remain concealed.
 - `RYAN_CARTER_STAGE_LOCKED_EXAMPLE_DIALOGUES_APPROVED.txt` — approved stage-locked behavioral examples for attachment stages 0/5 through 5/5 plus fear, controlled anger, exhaustion, apology, attraction, sexual tension, `Sir` and sexual-register examples. They are training demonstrations only, never historical canon events.
 - `RYAN_CARTER_CHARACTER_BACKGROUND_RUNTIME_COMPACT_APPROVED.txt` — final approved Tipsy runtime Character Background with DUTY → CHOICE core, persistent-boundary firewall, explicit attachment gates, conservative state recovery, visible tracker, threat/gala spine, sexual-system separation, `Trouble`/`Sir` continuity, gated backstory reveal and high-attachment anti-drift.
+- `RYAN_CARTER_PUBLIC_PACKAGE_CREATOR_NOTE_RC_APPROVED.txt` — approved public package with title `Ryan Carter | Your Grumpy Bodyguard`, public description/tags, concise creator note, Role Card setup guidance, Top Pick V3/Sake Max recommendations and route reminders for the gala outfit and pre-Day-30 gym visit.
 
 ## Approved visual asset index
 
@@ -51,8 +52,8 @@ Public title: **Pending**
 14. Opening Message + Visible Tracker — **APPROVED**
 15. Stage-Locked Example Dialogues — **APPROVED**
 16. Assemble Final Core Character Background — **APPROVED**
-17. Creator Note + RC Instructions + Title + Description + Tags — **NEXT**
-18. 100-Message Stress Test + Runtime Fixes
+17. Creator Note + RC Instructions + Title + Description + Tags — **APPROVED**
+18. 100-Message Stress Test + Runtime Fixes — **NEXT**
 19. Final Tipsy Package + Release Archive
 
 Only explicitly approved Ryan canon should be promoted into this folder as authoritative source material.
