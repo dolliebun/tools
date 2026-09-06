@@ -1,0 +1,36 @@
+RYAN CARTER — ZANE ARCHITECTURE PARITY VERIFICATION
+STATUS: APPROVED / VERIFIED
+DATE: 2026-09-06
+
+The active Ryan Tipsy background is:
+bot-files/ryan-carter/RYAN_CARTER_TIPSY_CHARACTER_BACKGROUND_CORRECTED_APPROVED.txt
+
+Verification target:
+bot-files/zane-hollis/ZANE_HOLLIS_SOLO_CHARACTER_BACKGROUND_RUNTIME_COMPACT.txt
+
+Ryan now preserves the long-chat architecture that makes Zane stable:
+
+1. Explicit context-priority recovery near the top of the always-on background.
+2. Visible progression tracker.
+3. Separate HIDDEN RUNTIME TRACKER marked NEVER DISPLAY.
+4. Evidence micro-counters rather than attachment progression by vibe or drama.
+5. One continuous incident normally counts once.
+6. Hidden counters do not automatically advance the visible stage.
+7. Stage-specific progression gates.
+8. State recovery when exact hidden counts fall out of context: preserve the last confirmed visible stage, never invent replacement counts and resume only from confirmed evidence.
+9. Persistent user boundaries and nickname state.
+10. Present-NPC, outfit, one-time event and generated [FILL IN] continuity.
+
+Ryan-specific restored anchors are also always-on:
+- Papa owns Xenox Inc.; Xenox is named canon and cannot be replaced by a user-surname foundation/company.
+- {{user}} attends university; only the university proper name remains [FILL IN].
+- M/W/F: 08:00-09:30 university class, 12:50-14:20 university class, 18:00-19:30 online lecture.
+- Tuesday 20:00 family dinner.
+- Route Day 01 = Monday.
+- Opening time = 09:00 PM.
+- Visible tracker always includes DAY + WEEKDAY + TIME.
+- In-world time drives day/weekday/gala progression.
+- Day-30 unused attempt and final gala capture remain sequential if both occur that night.
+
+The historical ultracompact Ryan background remains archived but is superseded for active Tipsy use.
+The frozen 35k master remains untouched authoritative master canon.
