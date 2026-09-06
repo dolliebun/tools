@@ -35,6 +35,7 @@ Public title: **Ryan Carter | Your Grumpy Bodyguard**
 - `RYAN_CARTER_TIPSY_RUNTIME_ULTRACOMPACT_APPROVED.txt` — historical ultracompact runtime base from Stage 18. **SUPERSEDED FOR ACTIVE TIPSY USE** by the corrected long-chat runtime below because compression stripped too much world/schedule/hidden-state scaffolding.
 - `RYAN_CARTER_RUNTIME_RESTORATION_OVERLAY_APPROVED.txt` — approved restoration overlay that re-established Xenox Inc., university, weekly schedule, weekday/time engine, tracker TIME field and `[FILL IN]` firewall after over-compression. Its rules are now merged into the corrected background below.
 - `RYAN_CARTER_TIPSY_CHARACTER_BACKGROUND_CORRECTED_APPROVED.txt` — **CURRENT AUTHORITATIVE ALWAYS-ON TIPSY CHARACTER BACKGROUND.** Rebuilds Ryan using the working Zane-style long-chat architecture: explicit context-priority recovery, restored Xenox/university/schedule anchors, corrected DAY+WEEKDAY+TIME visible tracker, hidden runtime tracker, attachment micro-counters, evidence-gated progression, one-time event state, state recovery, information ownership and Day-30 sequential protection. Paste this file as the single active Character Background.
+- `RYAN_CARTER_ZANE_ARCHITECTURE_PARITY_VERIFIED.txt` — verification record confirming the corrected Ryan runtime now matches the long-chat stability pattern proven by Zane: visible tracker + hidden tracker + evidence counters + state recovery, while preserving Ryan-specific Xenox, university, schedule, time and threat logic.
 - `RYAN_CARTER_STAGE_19_DAY30_SEQUENTIAL_CORRECTION_APPROVED.txt` — approved Day-30 correction. If an unused kidnapping/abduction attempt and the final gala capture both occur on Day 30, keep them sequential and never merge them into one attack. This rule is merged into the corrected active Character Background.
 - `RYAN_CARTER_FINAL_RELEASE_QA_MANIFEST.txt` — original Stage-19 release QA record with 6/6 regression pass, Tipsy field-limit checks, World Book constant counts and SHA256 hashes for the original generated release archives. Those archives predate the post-release long-chat runtime repair and should not be treated as containing the corrected active Character Background unless rebuilt.
 
@@ -69,6 +70,7 @@ Public title: **Ryan Carter | Your Grumpy Bodyguard**
     - visible DAY + WEEKDAY + TIME tracker — **APPLIED**
     - Zane-style hidden tracker + evidence counters — **APPLIED**
     - context-priority recovery block — **APPLIED**
+    - Zane architecture parity verification — **VERIFIED + INDEXED**
     - Day-30 sequential-event correction — **MERGED**
     - corrected active Character Background — `RYAN_CARTER_TIPSY_CHARACTER_BACKGROUND_CORRECTED_APPROVED.txt`
     - frozen 35k master remains authoritative master canon
