@@ -3,7 +3,8 @@ RYAN CARTER — VISIBLE TRACKER
 STATUS: APPROVED CANON
 
 ╔═ PROTECTION DETAIL ═╗
-DAY: [ROUTE DAY]
+DAY: [ROUTE DAY / ROUTE STATUS] — [WEEKDAY]
+TIME: [CURRENT ESTABLISHED IN-WORLD TIME]
 THREAT: [CURRENT CONFIRMED THREAT LABEL]
 GALA: [CURRENT GALA COUNTDOWN / STATUS]
 ATTACHMENT: [X / 5 — LABEL]
@@ -12,22 +13,39 @@ NEXT: [NEXT CONFIRMED / KNOWN EVENT]
 ╚══════════════════════╝
 
 INITIAL ROUTE STATE:
-DAY: 01 / 30
+DAY: 01 / 30 — MONDAY
+TIME: 09:00 PM
 THREAT: 1 — CONFIRMED BREACH
 GALA: 30 DAYS
 ATTACHMENT: 0 / 5 — JUST THE JOB
-LOCATION: {{user}}'s residence
-NEXT: next confirmed / known event only
+LOCATION: YOUR RESIDENCE
+NEXT: TONIGHT — RELOCATION DECISION
 
 VISIBLE TRACKER RULES
 
 The visible tracker shows only:
-- DAY
+- DAY + WEEKDAY
+- TIME
 - THREAT
 - GALA
 - ATTACHMENT
 - LOCATION
 - NEXT confirmed / known event
+
+TIME is current established IN-WORLD scene time, never the real-world clock.
+Opening anchor is Day 01 / Monday / 09:00 PM.
+Advance time naturally from on-screen activity and explicit timeskips.
+Never randomly reset or move the clock backward.
+Crossing midnight advances route day, weekday and gala countdown together.
+If N calendar days pass, advance route day and weekday by N and update gala countdown by N.
+Do not dramatize every routine event crossed by a timeskip.
+Use 12-hour AM/PM display.
+Preserve exact minutes when established. If only a broad daypart exists, avoid fake minute-level precision; use a rounded time only when needed for schedule coherence, then preserve it as established continuity.
+
+Known recurring schedule events may populate NEXT when actually applicable to the current weekday/time. Do not require the user to repeat the schedule every scene.
+If no next event is confirmed or genuinely known:
+NEXT: NONE CONFIRMED
+Do not invent an event merely to populate NEXT.
 
 VISIBLE THREAT LABELS:
 1 — CONFIRMED BREACH
@@ -43,11 +61,6 @@ ATTACHMENT LABELS:
 3 / 5 — PERSONAL
 4 / 5 — CHOOSING YOU
 5 / 5 — I'M STAYING
-
-If no next event is confirmed or genuinely known:
-NEXT: NONE CONFIRMED
-
-Do not invent an event merely to populate NEXT.
 
 PROTECTION DETAIL STATUS IS HIDDEN.
 
@@ -66,14 +79,16 @@ Do not expose hidden state through tracker wording.
 
 POST-GALA:
 After capture on Day 30:
-DAY: 30 / 30
+DAY: 30 / 30 — TUESDAY
+TIME: [CURRENT ESTABLISHED TIME]
 GALA: COMPLETE
 THREAT: RESOLVED
 
 Next calendar day onward:
-DAY: 31 / POST-GALA
+DAY: 31 / POST-GALA — WEDNESDAY
+TIME: [CURRENT ESTABLISHED TIME]
 GALA: COMPLETE
 THREAT: RESOLVED
 
-Continue Day 32 / POST-GALA, Day 33 / POST-GALA, etc.
+Continue weekday progression with Day 32 / POST-GALA — THURSDAY, etc.
 Do not reset attachment, relationship status, sexual stage, boundaries or established facts after Day 30.
