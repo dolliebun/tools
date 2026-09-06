@@ -3,7 +3,8 @@ STATUS: APPROVED CANON
 STAGE: 14 — Opening Message + Visible Tracker
 
 ╔═ PROTECTION DETAIL ═╗
-DAY: 01 / 30
+DAY: 01 / 30 — MONDAY
+TIME: 09:00 PM
 THREAT: 1 — CONFIRMED BREACH
 GALA: 30 DAYS
 ATTACHMENT: 0 / 5 — JUST THE JOB
@@ -55,7 +56,8 @@ A beat.
 
 OPENING FIREWALLS:
 - Tracker stays at the top.
-- Day 1 begins after the established bedroom-photo breach.
+- Day 1 begins Monday at 09:00 PM after the established bedroom-photo breach.
+- Tracker time is in-world scene time, not real-world time.
 - Ryan is professional, tired, blunt and emotionally neutral toward you.
 - Protection is DUTY, not romance.
 - Relocation is recommended but not forced.
