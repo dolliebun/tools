@@ -1,78 +1,61 @@
 # Ryan Carter — bot files
 
-Status: **Complete / release-ready**
-
+Status: **Complete / active post-release revisions**
 Platform: **Tipsy**
-
 Public title: **Ryan Carter | Your Grumpy Bodyguard**
+
+## Current release sources
+
+The creator's latest public copy is authoritative. Do not restore older assistant rewrites or removed earnings disclosures.
+
+- `RYAN_CARTER_OPENING_MESSAGE_APPROVED.txt` — **CURRENT OPENING**, creator's exact revised prose, Ryan1/Ryan2/Ryan3 images, divider, Discord banner and Day 01 / Monday / 09:14 PM tracker. Early attraction cues are intentional and do not advance attachment.
+- `RYAN_CARTER_TIPSY_PLATFORM_FIELDS_APPROVED.txt` — **CURRENT TIPSY DESCRIPTION + CREATOR'S NOTE**, plus title, ten platform tags, Default conversation style, examples and Reply Settings. Public earnings disclosure removed.
+- `RYAN_CARTER_PUBLIC_PACKAGE_CREATOR_NOTE_RC_APPROVED.txt` — synchronized public description, Creator's Note, RC instructions and public descriptors.
+- `RYAN_CARTER_VISIBLE_TRACKER_APPROVED.txt` — **CURRENT VISIBLE TRACKER**, with DAY + WEEKDAY, TIME, THREAT, GALA, ATTACHMENT, LOCATION and NEXT. Initial time 09:14 PM.
+- `RYAN_CARTER_CREATOR_PUBLIC_REVISION_20260908_APPROVED.txt` — **CURRENT CREATOR-REVISION PRECEDENCE**. Supersedes older 09:00 PM opening anchors and the assistant's rejected opening rewrite. Keeps private monetization out of public copy.
+- `RYAN_CARTER_TIPSY_CHARACTER_BACKGROUND_CORRECTED_APPROVED.txt` — current corrected long-chat background. Retains Zane-style hidden tracker, evidence counters, state recovery, Xenox, university, weekly schedule and Day-30 sequential rules. Its historical 09:00 PM opening references are superseded by the current creator revision. Do not re-compress or replace the background with the old ultracompact.
+
+The latest public-copy update did not rewrite the full Character Background or rebuild the original release ZIPs. A future consolidated package should merge the 09:14 PM anchor and intentional early-attraction clarification into the background without deleting other canon. Existing chats keep their latest confirmed time.
 
 ## Approved segments
 
-- `RYAN_CARTER_SEGMENT_01_CORE_IDENTITY_APPEARANCE_APPROVED.txt` — locked identity, appearance, body-proportion fantasy, visual baseline, wardrobe and scent.
-- `RYAN_CARTER_SEGMENT_02_PERSONALITY_BEHAVIOR_APPROVED.txt` — locked CORE = DUTY / DUTY → CHOICE engine, Irritated Handler personality, competence/authority firewalls, gruff voice add-on and brat-tamer size/manhandling trigger.
-- `RYAN_CARTER_SEGMENT_03_BACKSTORY_PROFESSIONAL_APPROVED.txt` — locked tragic family history, younger-sister continuity, behavioral consequences, broad military→executive-protection path, gated reveal system and related conditional triggers/firewalls.
-- `RYAN_CARTER_SEGMENT_04_USER_PREMISE_THREAT_ASSIGNMENT_APPROVED.txt` — locked FemPOV user premise, stalker/residential-breach setup, sleeping-photo evidence, primary-agent assignment, optional safehouse, evidence-driven threat logic, user-agency firewall and temporary assignment end condition.
-- `RYAN_CARTER_SEGMENT_05_SPEECH_VOICE_APPROVED.txt` — locked modern gruff/clipped voice, situational formality, danger register, Irritated Handler speech, earned `Trouble` nickname and brat-tamer sex-mode register.
-- `RYAN_CARTER_SEGMENT_06_RELATIONSHIP_ATTACHMENT_APPROVED.txt` — locked 0–5 DUTY → CHOICE attachment ladder, non-required-choice evidence rules, anti-jump/regression firewalls, early persistent `Trouble` nickname and relationship-status separation.
-- `RYAN_CARTER_SEGMENT_07_SEXUAL_BASELINE_ENGINE_APPROVED.txt` — locked dominant sexual baseline, autonomous size/manhandling kink engine, brat-tamer sex-mode, secondary kink set, sexual/attachment separation and approved sex-only World Book trigger architecture where sexual RP activates the engine and furniture remains scene material rather than a trigger.
-- `RYAN_CARTER_SEGMENT_08_SCHEDULE_ROUTE_THREAT_EVENTS_APPROVED.txt` — locked weekly schedule, SMS/reminder continuity, Mama/Papa/Mia skip consequences, timeskip handling, stalker SMS/watch reports, wallet false alarm, one-time gym underwear theft, exactly two kidnapping attempts as route design intent, mandatory 30-day charity gala climax, stalker identity/motive and creator-note requirements.
-- `RYAN_CARTER_SEGMENT_09_WORLD_LOCATIONS_NPCS_APPROVED.txt` — locked Mia/Sophie/Jade, Elena/Marcus/Daniel, Papa/Xenox Inc., Mama/socialite world, Rochester Charity Gala for Children with Cancer, smart/high-tech/cozy family home, gym and safehouse, {{user}}'s compromised residence, university/campus, Xenox headquarters, protection firm and gala venue, plus information-ownership and location anti-drift rules.
+- `RYAN_CARTER_SEGMENT_01_CORE_IDENTITY_APPEARANCE_APPROVED.txt` — identity, appearance, proportions, wardrobe and scent.
+- `RYAN_CARTER_SEGMENT_02_PERSONALITY_BEHAVIOR_APPROVED.txt` — DUTY → CHOICE, Irritated Handler, competence, authority and behavior.
+- `RYAN_CARTER_SEGMENT_03_BACKSTORY_PROFESSIONAL_APPROVED.txt` — family history, sister, military/protection career and gated reveal.
+- `RYAN_CARTER_SEGMENT_04_USER_PREMISE_THREAT_ASSIGNMENT_APPROVED.txt` — user premise, sleeping-photo breach, assignment, safehouse choice and threat logic.
+- `RYAN_CARTER_SEGMENT_05_SPEECH_VOICE_APPROVED.txt` — modern gruff voice, pressure registers, Trouble and sexual register.
+- `RYAN_CARTER_SEGMENT_06_RELATIONSHIP_ATTACHMENT_APPROVED.txt` — 0–5 attachment, DUTY → CHOICE, evidence gates and regression.
+- `RYAN_CARTER_SEGMENT_07_SEXUAL_BASELINE_ENGINE_APPROVED.txt` — sexual baseline, autonomous kink engine and separation firewalls.
+- `RYAN_CARTER_SEGMENT_08_SCHEDULE_ROUTE_THREAT_EVENTS_APPROVED.txt` — weekly schedule, reminders, recurring events, thriller incidents and gala.
+- `RYAN_CARTER_SEGMENT_09_WORLD_LOCATIONS_NPCS_APPROVED.txt` — family, friends, protection team, Xenox, university, locations and gala.
 
-## Approved supporting runtime modules
+## World Books and runtime support
 
-- `RYAN_CARTER_EVENT_WB_SCHEDULE_WARDROBE_APPROVED.txt` — approved event World Book architecture tying {{user}}'s schedule, SMS/reminder behavior, event-specific protection posture and Ryan's wardrobe together; includes class/campus, family dinner, gala/black tie, casual outing, safehouse/off-duty and high-threat/emergency patterns plus wardrobe-continuity and user-agency firewalls.
-- `RYAN_CARTER_SEXUAL_WB_APPROVED.json` — final approved keyword-triggered Sex-Only World Book in JSON, including 9.75 in / 24.8 cm anatomy, expanded natural sexual trigger phrasing, autonomous dominant size/manhandling engine, `Trouble` continuity, `Sir` tripwire and sex/professional/relationship firewalls.
-- `RYAN_CARTER_WB1_CORE_WORLD_APPROVED.json` — final approved WB1 Core World in JSON with 15 keyword-only, non-constant entries for world vitality, friends, family, Familia GC, protection team, family home, {{user}} residence, university, gym, safehouse, Xenox Inc., protection firm and Rochester Charity Gala. Includes Mama and Papa approved appearances.
-- `WB2_PARTS/README.md` — authoritative archive index for the approved WB2 Schedule + Events + Threat Engine. Four exact parts reconstruct `RYAN_CARTER_WB2_SCHEDULE_EVENTS_THREAT_APPROVED.json`; includes expanded common trigger phrasing, recurring schedule logic, stalker escalation, one-time incidents, kidnapping-attempt architecture and the Day-30 gala capture.
-- `RYAN_CARTER_WB3_CONTINUITY_HIDDEN_STATE_FIREWALLS_APPROVED.json` — final approved WB3 with 11 entries and exactly one constant runtime state firewall. Preserves route day, gala countdown, threat/event history, one-time flags, 0/2 kidnapping state, DUTY→CHOICE attachment, sexual/relationship separation, professional exit gate, information ownership, `Trouble`/`Sir`, gated backstory reveal, `[FILL IN]` continuity and high-attachment anti-drift.
-- `RYAN_CARTER_VISIBLE_TRACKER_APPROVED.txt` — corrected visible tracker architecture. Exposes DAY + WEEKDAY, TIME, THREAT, GALA, ATTACHMENT, LOCATION and NEXT only. Opening anchor is Day 01 / Monday / 09:00 PM; hidden runtime state remains concealed.
-- `RYAN_CARTER_OPENING_MESSAGE_APPROVED.txt` — approved Day-1 opening with the corrected visible tracker at the top, second-person YOU/YOUR narration, modern 2026 cadence and Ryan's approved clipped/tired voice. Preserves the security sweep, photo logic, firm call, stay-and-reinforce option, babysitter line and user-choice structure.
-- `RYAN_CARTER_STAGE_LOCKED_EXAMPLE_DIALOGUES_APPROVED.txt` — approved stage-locked behavioral examples for attachment stages 0/5 through 5/5 plus fear, controlled anger, exhaustion, apology, attraction, sexual tension, `Sir` and sexual-register examples. They are training demonstrations only, never historical canon events.
-- `RYAN_CARTER_CHARACTER_BACKGROUND_RUNTIME_COMPACT_APPROVED.txt` — approved 35k Character Background retained as authoritative MASTER CANON. It remains frozen and is not overwritten by runtime compression or repair passes.
-- `RYAN_CARTER_PUBLIC_PACKAGE_CREATOR_NOTE_RC_APPROVED.txt` — approved public package with title `Ryan Carter | Your Grumpy Bodyguard`, public description/tags, concise creator note, Role Card setup guidance, Top Pick V3/Sake Max recommendations and route reminders for the gala outfit and pre-Day-30 gym visit.
-- `RYAN_CARTER_TIPSY_PLATFORM_FIELDS_APPROVED.txt` — approved Tipsy-native setup: 10 selectable platform tags (`Action`, `Dominant`, `Female POV`, `Mature`, `Muscle`, `Mystery`, `OC`, `Protective`, `Romantic`, `Spicy`), Conversation Style `Default`, compact platform Example Dialogues bank, 2k Reply Settings block, public description and Creator's Note. Platform tag chips are distinct from the freeform description descriptors.
-- `RYAN_CARTER_STAGE_18_RUNTIME_HARDENING_APPROVED.txt` — approved multi-assistant stress-test hardening overlay. Locks Day-1 Monday calendar math, Day-30 gala countdown convention, credible-window kidnapping logic with `UNUSED IS LEGAL`, stage-sensitive attachment evidence, persistent `Trouble`/boundary state, NEXT/hidden-state firewalls, creator-truth separation, post-gala tracker, hidden present-NPC state, outfit continuity, `Sir`/furniture/professional-contact sexual gates, gym preconditions, first-established `[FILL IN]` wins, one-constant-WB rule, humor limiter and the master-vs-runtime split.
-- `RYAN_CARTER_TIPSY_RUNTIME_ULTRACOMPACT_APPROVED.txt` — historical ultracompact runtime base from Stage 18. **SUPERSEDED FOR ACTIVE TIPSY USE** by the corrected long-chat runtime below because compression stripped too much world/schedule/hidden-state scaffolding.
-- `RYAN_CARTER_RUNTIME_RESTORATION_OVERLAY_APPROVED.txt` — approved restoration overlay that re-established Xenox Inc., university, weekly schedule, weekday/time engine, tracker TIME field and `[FILL IN]` firewall after over-compression. Its rules are now merged into the corrected background below.
-- `RYAN_CARTER_TIPSY_CHARACTER_BACKGROUND_CORRECTED_APPROVED.txt` — **CURRENT AUTHORITATIVE ALWAYS-ON TIPSY CHARACTER BACKGROUND.** Rebuilds Ryan using the working Zane-style long-chat architecture: explicit context-priority recovery, restored Xenox/university/schedule anchors, corrected DAY+WEEKDAY+TIME visible tracker, hidden runtime tracker, attachment micro-counters, evidence-gated progression, one-time event state, state recovery, information ownership and Day-30 sequential protection. Paste this file as the single active Character Background.
-- `RYAN_CARTER_ZANE_ARCHITECTURE_PARITY_VERIFIED.txt` — verification record confirming the corrected Ryan runtime now matches the long-chat stability pattern proven by Zane: visible tracker + hidden tracker + evidence counters + state recovery, while preserving Ryan-specific Xenox, university, schedule, time and threat logic.
-- `RYAN_CARTER_STAGE_19_DAY30_SEQUENTIAL_CORRECTION_APPROVED.txt` — approved Day-30 correction. If an unused kidnapping/abduction attempt and the final gala capture both occur on Day 30, keep them sequential and never merge them into one attack. This rule is merged into the corrected active Character Background.
-- `RYAN_CARTER_FINAL_RELEASE_QA_MANIFEST.txt` — original Stage-19 release QA record with 6/6 regression pass, Tipsy field-limit checks, World Book constant counts and SHA256 hashes for the original generated release archives. Those archives predate the post-release long-chat runtime repair and should not be treated as containing the corrected active Character Background unless rebuilt.
+- `RYAN_CARTER_EVENT_WB_SCHEDULE_WARDROBE_APPROVED.txt` — event/schedule/wardrobe architecture.
+- `RYAN_CARTER_SEXUAL_WB_APPROVED.json` — approved sex-only World Book.
+- `RYAN_CARTER_SEX_WB_ANATOMY_TRIGGERS_SIR_APPROVED.txt` — sexual reference and trigger gates.
+- `RYAN_CARTER_WB1_CORE_WORLD_APPROVED.json` — 15 keyword-only, nonconstant core-world entries.
+- `WB2_PARTS/README.md` — authoritative four-part WB2 archive index, 13 nonconstant schedule/event/threat entries.
+- `RYAN_CARTER_WB3_CONTINUITY_HIDDEN_STATE_FIREWALLS_APPROVED.json` — 11 entries, exactly one constant continuity entry.
+- `RYAN_CARTER_STAGE_LOCKED_EXAMPLE_DIALOGUES_APPROVED.txt` — behavioral examples, not historical events.
+- `RYAN_CARTER_ZANE_ARCHITECTURE_PARITY_VERIFIED.txt` — structural comparison and hidden-tracker parity record.
+- `RYAN_CARTER_STAGE_18_RUNTIME_HARDENING_APPROVED.txt` — original long-chat hardening.
+- `RYAN_CARTER_STAGE_19_DAY30_SEQUENTIAL_CORRECTION_APPROVED.txt` — unused attempt and final capture remain separate sequential events.
 
-## Approved visual asset index
+## Historical sources and archives
 
-- `RYAN_CARTER_APPROVED_ASSETS_MANIFEST.md` — authoritative index of approved Ryan character references, Mama/Papa visual canon and approved location visuals. Binary originals are archived under `/Ryan Carter/approved-visuals/` in ChatGPT Library.
+- `RYAN_CARTER_CHARACTER_BACKGROUND_RUNTIME_COMPACT_APPROVED.txt` — **FROZEN 35K MASTER CANON. Do not overwrite.**
+- `RYAN_CARTER_TIPSY_RUNTIME_ULTRACOMPACT_APPROVED.txt` — historical Stage-18 ultracompact, superseded for active use.
+- `RYAN_CARTER_RUNTIME_RESTORATION_OVERLAY_APPROVED.txt` — historical restoration overlay, merged into the corrected long-chat background. Its old time anchor is superseded.
+- `RYAN_CARTER_FINAL_RELEASE_QA_MANIFEST.txt` — original Stage-19 QA, 6/6 regressions and original archive hashes. These results do not constitute a new live-model test of the September 8 revisions.
+- `RYAN_CARTER_APPROVED_ASSETS_MANIFEST.md` — authoritative approved character, family and location visual index. Binary originals remain in the Ryan Carter Library workspace.
 
-## Working plan
+The original full release and copy/paste archives predate the post-release runtime and public-copy revisions. They must not be presented as containing the latest files until rebuilt and verified.
 
-01. Core Identity + Appearance — **APPROVED**
-02. Personality Core + Behavioral Engine — **APPROVED**
-03. Life History + Professional Background — **APPROVED**
-04. {{user}} Premise + Threat / Assignment Setup — **APPROVED**
-05. Speech + Voice Lock — **APPROVED**
-06. Relationship / Attachment Progression — **APPROVED**
-07. Sexual Baseline + Kink Engine — **APPROVED**
-08. Weekly Schedule + Route + Threat Spine — **APPROVED**
-09. World + NPCs + Locations — **APPROVED**
-10. Finalize Sex-Only World Book — **APPROVED**
-11. WB1: Core World / NPCs / Locations — **APPROVED**
-12. WB2: Schedule + Events + Threat Engine — **APPROVED**
-13. WB3: Continuity + Hidden State + Firewalls — **APPROVED**
-14. Opening Message + Visible Tracker — **APPROVED**
-15. Stage-Locked Example Dialogues — **APPROVED**
-16. Assemble Final Core Character Background / Master Canon — **APPROVED**
-17. Creator Note + RC Instructions + Title + Description + Tags — **APPROVED**
-18. 100-Message Stress Test + Runtime Hardening / Compression Rules — **APPROVED**
-19. Final Tipsy Package + Release Archive — **COMPLETE**
-20. Post-release runtime repair — **APPROVED + ACTIVE**
-    - Xenox/family-business restoration — **APPLIED**
-    - university + weekly schedule restoration — **APPLIED**
-    - visible DAY + WEEKDAY + TIME tracker — **APPLIED**
-    - Zane-style hidden tracker + evidence counters — **APPLIED**
-    - context-priority recovery block — **APPLIED**
-    - Zane architecture parity verification — **VERIFIED + INDEXED**
-    - Day-30 sequential-event correction — **MERGED**
-    - corrected active Character Background — `RYAN_CARTER_TIPSY_CHARACTER_BACKGROUND_CORRECTED_APPROVED.txt`
-    - frozen 35k master remains authoritative master canon
+## Progress
 
-Only explicitly approved Ryan canon should be promoted as authoritative source material.
+Stages 01–19: approved original release.
+Stage 20: post-release runtime restoration and Zane-style hidden-tracker architecture.
+Stage 21: September 8 creator public-copy revision, approved and applied to opening, description, Creator's Note, tracker and release precedence.
+
+Only explicitly approved Ryan canon is authoritative. The creator's own wording takes precedence over assistant editorial suggestions. Preserve user agency and the independent attachment, sexual, relationship and threat systems.
