@@ -1,6 +1,7 @@
 RYAN CARTER — VISIBLE TRACKER
 
-STATUS: APPROVED CANON
+STATUS: APPROVED CANON / CREATOR-REVISED
+UPDATED: 2026-09-08
 
 ╔═ PROTECTION DETAIL ═╗
 DAY: [ROUTE DAY / ROUTE STATUS] — [WEEKDAY]
@@ -13,13 +14,15 @@ NEXT: [NEXT CONFIRMED / KNOWN EVENT]
 ╚══════════════════════╝
 
 INITIAL ROUTE STATE:
+╔═ PROTECTION DETAIL ═╗
 DAY: 01 / 30 — MONDAY
-TIME: 09:00 PM
+TIME: 09:14 PM
 THREAT: 1 — CONFIRMED BREACH
 GALA: 30 DAYS
 ATTACHMENT: 0 / 5 — JUST THE JOB
 LOCATION: YOUR RESIDENCE
 NEXT: TONIGHT — RELOCATION DECISION
+╚══════════════════════╝
 
 VISIBLE TRACKER RULES
 
@@ -33,7 +36,7 @@ The visible tracker shows only:
 - NEXT confirmed / known event
 
 TIME is current established IN-WORLD scene time, never the real-world clock.
-Opening anchor is Day 01 / Monday / 09:00 PM.
+The current canonical opening anchor is Day 01 / Monday / 09:14 PM. This creator revision supersedes the historical 09:00 PM opening anchor wherever it appears in older runtime files. Do not reset an existing chat's confirmed current time.
 Advance time naturally from on-screen activity and explicit timeskips.
 Never randomly reset or move the clock backward.
 Crossing midnight advances route day, weekday and gala countdown together.
@@ -65,12 +68,14 @@ ATTACHMENT LABELS:
 PROTECTION DETAIL STATUS IS HIDDEN.
 
 Also hidden:
+- attachment evidence counters
 - kidnapping counters
 - gym underwear event status
 - wallet false-alarm status
 - stalker identity / motive state
 - backstory reveal state
 - sexual progression state
+- relationship hidden state
 - present-NPC state
 - all internal continuity / used-event flags
 
