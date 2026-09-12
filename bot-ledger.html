@@ -455,6 +455,21 @@ body.dollie-branded .dollie-brand-nav a:hover,body.dollie-branded .dollie-brand-
 @media(max-width:900px){.hero img{height:190px;max-height:190px}.content-title{font-size:29px}.nav-item,.collab-head,.grp-head,.solo-item{font-size:15px}}
 @media(max-width:560px){.hero{display:none}.logo-text{font-size:22px}}
 
+
+/* Tipsy production dossier */
+.dossier{margin-top:18px;border:1px solid rgba(255,107,163,.34);background:rgba(255,45,120,.035)}
+.dossier>summary{cursor:pointer;padding:14px 16px;color:var(--hot2);font-family:var(--display);font-size:14px;letter-spacing:.08em;list-style:none}
+.dossier>summary::-webkit-details-marker{display:none}.dossier>summary:before{content:'♡ ';color:var(--hot)}
+.dossier-body{padding:0 16px 16px}.dossier-section{border-top:1px solid rgba(255,107,163,.22);padding-top:15px;margin-top:15px}
+.dossier-title{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}.dossier-title h3{margin:0;color:var(--cream);font-size:13px}.dossier-title small{color:var(--dim);font-size:9px}
+.dossier .ftext{min-height:110px}.dossier .ftext.large{min-height:190px}.dossier .ftext.huge{min-height:280px}
+.dossier .checkline{display:flex;gap:16px;flex-wrap:wrap;margin:9px 0}.dossier .checkline label{font-size:11px;color:var(--blush)}
+.dossier .drive-row{display:grid;grid-template-columns:1fr auto;gap:7px}.dossier .count{float:right;color:var(--dim);font-family:var(--mono);font-size:9px}
+.event-tag-preview{display:inline-block;color:#ffd1e2;font-family:'Brush Script MT','Segoe Script',cursive;font-size:20px;font-weight:800;font-style:italic;transform:rotate(-5deg);text-shadow:0 1px 0 #6f193a}
+.dossier-note{padding:10px;border:1px dashed rgba(255,107,163,.35);color:var(--dim);font-size:10px;line-height:1.5;margin-top:10px}
+.bot-event-tag{font-family:'Brush Script MT','Segoe Script',cursive!important;font-size:14px!important;font-style:italic;transform:rotate(-4deg);color:#ffd1e2!important}
+@media(max-width:700px){.dossier .drive-row{grid-template-columns:1fr}.dossier-body{padding:0 11px 12px}}
+
 </style>
 </head>
 <body>
@@ -592,6 +607,66 @@ body.dollie-branded .dollie-brand-nav a:hover,body.dollie-branded .dollie-brand-
         <div class="fgrid full">
           <div><div class="flabel">linked bots</div><div class="pill-row" id="linkRow"></div></div>
         </div>
+
+        <details class="dossier" open>
+          <summary>complete Tipsy + asset dossier</summary>
+          <div class="dossier-body">
+            <div class="dossier-section">
+              <div class="dossier-title"><h3>Tipsy identity</h3><small>every field from character creation</small></div>
+              <div class="fgrid thirds">
+                <div><div class="flabel">character type</div><select class="fsel" id="fTipsyType"><option>Character</option><option>Multi-character</option></select></div>
+                <div><div class="flabel">main character gender</div><select class="fsel" id="fGender"><option>Male</option><option>Female</option><option>Non-binary</option><option>Mixed</option></select></div>
+                <div><div class="flabel">conversation style</div><select class="fsel" id="fConversationStyle"><option>Default</option><option>Safe for Work</option><option>Romance</option><option>Flirty</option></select></div>
+              </div>
+              <div class="checkline">
+                <label><input type="checkbox" id="fBackgroundPublic"> public background</label>
+                <label><input type="radio" name="fRating" value="Limited" checked> limited</label><label><input type="radio" name="fRating" value="Limitless"> limitless</label>
+                <label><input type="radio" name="fVisibility" value="Public" checked> public</label><label><input type="radio" name="fVisibility" value="Private"> private</label>
+              </div>
+            </div>
+            <div class="dossier-section">
+              <div class="dossier-title"><h3>public listing</h3><small>separate paste-ready blocks</small></div>
+              <div class="fgrid full"><div><div class="flabel">description <span class="count" data-counter="fTipsyDescription">0 / 100,000</span></div><textarea class="ftext" id="fTipsyDescription" maxlength="100000" placeholder="Public description shown on the card and at the top of the chat."></textarea></div></div>
+              <div class="fgrid full"><div><div class="flabel">opening <span class="count" data-counter="fOpening">0 / 20,000</span></div><textarea class="ftext large" id="fOpening" maxlength="20000" placeholder="Opening scenario. Keep narration and dialogue exactly as it will be pasted."></textarea></div></div>
+              <div class="fgrid full"><div><div class="flabel">background <span class="count" data-counter="fBackground">0 / 1,000,000</span></div><textarea class="ftext huge" id="fBackground" maxlength="1000000" placeholder="Appearance, personality, background, prompts, stories and rules."></textarea></div></div>
+            </div>
+            <div class="dossier-section">
+              <div class="dossier-title"><h3>runtime voice</h3><small>Tipsy conversation fields</small></div>
+              <div class="fgrid full"><div><div class="flabel">example dialogues <span class="count" data-counter="fExamples">0 / 20,000</span></div><textarea class="ftext large" id="fExamples" maxlength="20000" placeholder="{{char}}: ...&#10;{{user}}: ..."></textarea></div></div>
+              <div class="fgrid full"><div><div class="flabel">reply settings <span class="count" data-counter="fReplySettings">0 / 2,000</span></div><textarea class="ftext large" id="fReplySettings" maxlength="2000" placeholder="Length, detail, narrative format, tone and writing style."></textarea></div></div>
+              <div class="fgrid full"><div><div class="flabel">creator's note <span class="count" data-counter="fCreatorNote">0 / 2,000</span></div><textarea class="ftext" id="fCreatorNote" maxlength="2000" placeholder="Roleplay advice, model recommendations and chat guidance."></textarea></div></div>
+            </div>
+            <div class="dossier-section">
+              <div class="dossier-title"><h3>tags + special event</h3><span class="event-tag-preview" id="eventTagPreview">Event!</span></div>
+              <div class="fgrid">
+                <div><div class="flabel">Tipsy tags · maximum 10</div><input class="finput" id="fTipsyTags" list="tipsyTagList" placeholder="AnyPOV, OC, Romance"><datalist id="tipsyTagList"><option value="Action"><option value="Anime"><option value="AnyPOV"><option value="Best Friend"><option value="Celebrity"><option value="Delinquent"><option value="Demon"><option value="Depressed"><option value="Dominant"><option value="Enemy to Lovers"><option value="Fan-made"><option value="Female POV"><option value="Femboy"><option value="Feral"><option value="Fictional"><option value="Furry"><option value="Game"><option value="Hero"><option value="Historical"><option value="Horror"><option value="Kuudere"><option value="LGBTQ+"><option value="Lore"><option value="Mafia"><option value="Magical"><option value="Male POV"><option value="Married Partner"><option value="Mature"><option value="MLM"><option value="Monster"><option value="Multiple"><option value="Muscle"><option value="Mystery"><option value="Non-human"><option value="OC"><option value="Omegaverse"><option value="Protective"><option value="Realistic"><option value="Romantic"><option value="RPG"><option value="Scenario"><option value="Spicy"><option value="Submissive"><option value="Tsundere"><option value="Twins"><option value="Vampire"><option value="Villain"><option value="Wholesome"><option value="WLW"><option value="Yandere"></datalist></div>
+                <div><div class="flabel">handwritten event tag</div><input class="finput" id="fEventTag" maxlength="40" placeholder="WildWest, Halloween, Winter Ball…"></div>
+              </div>
+            </div>
+            <div class="dossier-section">
+              <div class="dossier-title"><h3>Google Drive assets</h3><small>static + dynamic media per bot</small></div>
+              <div class="drive-row"><input class="finput" id="fDriveFolder" type="url" placeholder="Google Drive bot folder URL"><button class="btn-q" type="button" id="openDriveFolder">open folder ↗</button></div>
+              <div class="fgrid thirds" style="margin-top:10px">
+                <div><div class="flabel">avatar / character image</div><input class="finput" id="fAvatarUrl" type="url" placeholder="Drive share URL"></div>
+                <div><div class="flabel">static cover</div><input class="finput" id="fStaticCoverUrl" type="url" placeholder="Drive share URL"></div>
+                <div><div class="flabel">dynamic cover / video</div><input class="finput" id="fDynamicCoverUrl" type="url" placeholder="Drive share URL"></div>
+              </div>
+              <div class="checkline"><label><input type="checkbox" id="fWatermark"> watermark enabled</label><label><input type="checkbox" id="fDynamicCover"> dynamic cover enabled</label></div>
+              <div class="fgrid full"><div><div class="flabel">post screenshots + promo asset links</div><textarea class="ftext" id="fPromoLinks" placeholder="One Drive URL per line: screenshots, promo crops, cards and alternate versions."></textarea></div></div>
+              <div class="fgrid full"><div><div class="flabel">image notes, prompts + credits</div><textarea class="ftext" id="fImageNotes" placeholder="Prompts, generation dates, credits, crop notes, alt text and usage rights."></textarea></div></div>
+              <div class="dossier-note">The ledger stores Drive links. Secure direct uploading requires Dollie's Google OAuth or Apps Script configuration and is not faked by this page.</div>
+            </div>
+            <div class="dossier-section">
+              <div class="dossier-title"><h3>files + release</h3><small>repository-aligned record</small></div>
+              <div class="fgrid">
+                <div><div class="flabel">Tipsy public URL</div><input class="finput" id="fTipsyUrl" type="url" placeholder="https://tipsy.chat/chat/..."></div>
+                <div><div class="flabel">GitHub bot folder</div><input class="finput" id="fGithubFolder" type="url" placeholder="https://github.com/dolliebun/tools/tree/main/bot-files/..."></div>
+              </div>
+              <div class="fgrid full"><div><div class="flabel">TXT / JSON upload manifest · up to 10 files</div><textarea class="ftext" id="fUploadManifest" placeholder="Filename, purpose, GitHub path and Drive backup link."></textarea></div></div>
+              <div class="fgrid full"><div><div class="flabel">release / event log</div><textarea class="ftext" id="fReleaseLog" placeholder="Date every event, publish, update, cross-post and important change."></textarea></div></div>
+            </div>
+          </div>
+        </details>
         <div class="form-actions">
           <button class="btn-cancel" id="cancelBtn">cancel</button>
           <button class="btn-save" id="saveBtn">save bot</button>
@@ -651,7 +726,7 @@ async function probe(){
 function parse(v){try{const d=typeof v==='string'?JSON.parse(v):v;return d&&Array.isArray(d.bots)?d.bots:(Array.isArray(d)?d:null)}catch(e){return null}}
 function normaliseBots(){
   bots.forEach(x=>{
-    x.checklist=x.checklist||[];x.links=x.links||[];
+    x.checklist=x.checklist||[];x.links=x.links||[];x.dossier=x.dossier||{};
     if(!Array.isArray(x.notes))x.notes=x.notes?[{id:uid(),ts:stamp(),text:String(x.notes)}]:[];
     if(!x.desc&&x.description)x.desc=x.description;
     if(!STAGES.includes(x.stage))x.stage='Concept';
@@ -838,6 +913,7 @@ function botHTML(b){
         ${b.checklist.length?`<span class="tag">${p}%</span>`:''}
       </div>
       ${b.desc?`<div class="bot-desc">${esc(b.desc)}</div>`:''}
+      ${b.dossier?.eventTag?`<div class="bot-meta"><span class="tag bot-event-tag">${esc(b.dossier.eventTag)}</span></div>`:''}
       ${b.checklist.length?`<div class="mini-checks">${b.checklist.map(c=>
         `<button class="mc ${c.done?'done':''}" data-a="tick" data-id="${b.id}" data-ck="${c.id}"><span class="box"></span>${esc(c.text)}</button>`).join('')}</div>`:''}
       ${links.length?`<div class="linked-row"><span class="lbl">linked</span>${links.map(l=>
@@ -948,6 +1024,13 @@ function openForm(id){
   $('fName').value=b?b.name:''; $('fStage').value=b?b.stage:'Concept';
   $('fPrio').value=b?b.priority:'Medium'; $('fPlat').value=b?b.platform:'Tipsy';
   $('fCollab').value=b?(b.collab||''):''; $('fDesc').value=b?(b.desc||''):'';
+  const d=b?.dossier||{};
+  const vals={fTipsyType:d.tipsyType||'Character',fGender:d.gender||'Male',fConversationStyle:d.conversationStyle||'Default',fTipsyDescription:d.description||'',fOpening:d.opening||'',fBackground:d.background||'',fExamples:d.examples||'',fReplySettings:d.replySettings||'',fCreatorNote:d.creatorNote||'',fTipsyTags:(d.tags||[]).join(', '),fEventTag:d.eventTag||'',fDriveFolder:d.driveFolder||'',fAvatarUrl:d.avatarUrl||'',fStaticCoverUrl:d.staticCoverUrl||'',fDynamicCoverUrl:d.dynamicCoverUrl||'',fPromoLinks:d.promoLinks||'',fImageNotes:d.imageNotes||'',fTipsyUrl:d.tipsyUrl||'',fGithubFolder:d.githubFolder||'',fUploadManifest:d.uploadManifest||'',fReleaseLog:d.releaseLog||''};
+  Object.entries(vals).forEach(([id,v])=>{if($(id))$(id).value=v});
+  $('fBackgroundPublic').checked=!!d.backgroundPublic;$('fWatermark').checked=!!d.watermark;$('fDynamicCover').checked=!!d.dynamicCover;
+  const rating=document.querySelector('[name="fRating"][value="'+(d.rating||'Limited')+'"]');if(rating)rating.checked=true;
+  const visibility=document.querySelector('[name="fVisibility"][value="'+(d.visibility||'Public')+'"]');if(visibility)visibility.checked=true;
+  updateDossierUi();
   draftChecks=b?b.checklist.map(c=>({...c})):[];
   draftLinks=b?[...(b.links||[])]:[];
   $('nameErr').classList.remove('show');
@@ -965,6 +1048,7 @@ function commit(){
   const data={
     name, stage:$('fStage').value, priority:$('fPrio').value, platform:$('fPlat').value,
     collab:$('fCollab').value.trim(), desc:$('fDesc').value.trim(),
+    dossier:{tipsyType:$('fTipsyType').value,gender:$('fGender').value,conversationStyle:$('fConversationStyle').value,backgroundPublic:$('fBackgroundPublic').checked,rating:document.querySelector('[name="fRating"]:checked')?.value||'Limited',visibility:document.querySelector('[name="fVisibility"]:checked')?.value||'Public',description:$('fTipsyDescription').value,opening:$('fOpening').value,background:$('fBackground').value,examples:$('fExamples').value,replySettings:$('fReplySettings').value,creatorNote:$('fCreatorNote').value,tags:$('fTipsyTags').value.split(',').map(x=>x.trim()).filter(Boolean).slice(0,10),eventTag:$('fEventTag').value.trim(),driveFolder:$('fDriveFolder').value.trim(),avatarUrl:$('fAvatarUrl').value.trim(),staticCoverUrl:$('fStaticCoverUrl').value.trim(),dynamicCoverUrl:$('fDynamicCoverUrl').value.trim(),watermark:$('fWatermark').checked,dynamicCover:$('fDynamicCover').checked,promoLinks:$('fPromoLinks').value,imageNotes:$('fImageNotes').value,tipsyUrl:$('fTipsyUrl').value.trim(),githubFolder:$('fGithubFolder').value.trim(),uploadManifest:$('fUploadManifest').value,releaseLog:$('fReleaseLog').value},
     checklist:draftChecks.filter(c=>c.text.trim()).map(c=>({id:c.id||uid(),text:c.text.trim(),done:!!c.done})),
     links:draftLinks.filter(id=>bots.some(b=>b.id===id)),
     updated:Date.now()
@@ -984,6 +1068,13 @@ $('addBtn').onclick=()=>openForm(null);
 $('cancelBtn').onclick=closeForm;
 $('saveBtn').onclick=commit;
 $('fName').oninput=countName;
+function updateDossierUi(){
+  document.querySelectorAll('[data-counter]').forEach(s=>{const e=$(s.dataset.counter);if(e)s.textContent=e.value.length.toLocaleString()+' / '+Number(e.maxLength).toLocaleString()});
+  const event=$('fEventTag').value.trim();$('eventTagPreview').textContent=event||'Event!';
+  const tags=$('fTipsyTags').value.split(',').map(x=>x.trim()).filter(Boolean);$('fTipsyTags').classList.toggle('bad-field',tags.length>10);
+}
+document.querySelectorAll('.dossier input,.dossier textarea,.dossier select').forEach(e=>e.addEventListener('input',updateDossierUi));
+$('openDriveFolder').onclick=()=>{const u=$('fDriveFolder').value.trim();if(!u)return toast('paste the Google Drive folder URL first');window.open(u,'_blank','noopener')};
 $('search').oninput=render;
 $('sortSel').onchange=render;
 $('printBtn').onclick=()=>window.print();
