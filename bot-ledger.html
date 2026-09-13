@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dollie Tools · Bot Ledger</title>
 <link rel="icon" href="assets/favicon.png">
-<link rel="stylesheet" href="dollie-brand.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..800;1,6..96,400..700&family=Outfit:wght@200;300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -511,6 +510,13 @@ body.dollie-branded .content{color:#3b3138!important}
 body.dollie-branded .search-wrap{background:#fff!important}
 body.dollie-branded .search-input{background:#fff!important;color:#3b3138!important;border:0!important;box-shadow:none!important}
 body.dollie-branded .sel{background:#fff9fc!important;color:#3b3138!important;border:2px solid #3b3138!important}
+
+/* Hard rebrand shell with no legacy header dependency */
+html,body{background:#fceef5!important;color:#3b3138!important}
+body{background-color:#fceef5!important;background-image:linear-gradient(45deg,transparent 46%,rgba(207,169,186,.18) 47%,rgba(207,169,186,.18) 53%,transparent 54%),linear-gradient(-45deg,transparent 46%,rgba(207,169,186,.18) 47%,rgba(207,169,186,.18) 53%,transparent 54%)!important;background-size:48px 48px!important}
+.dollie-brandbar{display:none!important}
+.main,.content{background-color:#fceef5!important;background-image:linear-gradient(45deg,transparent 46%,rgba(207,169,186,.12) 47%,rgba(207,169,186,.12) 53%,transparent 54%),linear-gradient(-45deg,transparent 46%,rgba(207,169,186,.12) 47%,rgba(207,169,186,.12) 53%,transparent 54%)!important;background-size:48px 48px!important;color:#3b3138!important}
+.site-header{background:#f3b6cf!important}
 </style>
 </head>
 <body>
@@ -721,7 +727,6 @@ body.dollie-branded .sel{background:#fff9fc!important;color:#3b3138!important;bo
 <footer class="dollie-credit">Dollie Tools · Bot Ledger · private creator archive</footer>
 <div class="toast" id="toast"></div>
 
-<script src="dollie-brand.js"></script>
 <script>
 const KEY='dollie-bot-ledger-v1';
 const STAGES=['Concept','Visual','Prompt','Testing','Refinement','Promo','Complete'];
@@ -1270,5 +1275,12 @@ async function loadUi(){
 
 (async()=>{await probe();await loadData();await loadUi();render();setChip()})();
 </script>
+<script src="dollie-registry.js?v=3"></script>
+<script src="bot-ledger-roster-data.js?v=25"></script>
+<script src="bot-ledger-roster.js?v=7"></script>
+<script src="bot-ledger-visuals.js?v=5"></script>
+<script src="bot-ledger-direct-portraits.js?v=4"></script>
+<script src="bot-ledger-folders.js?v=6"></script>
+<script src="bot-ledger-readable-meta.js?v=4"></script>
 </body>
 </html>
